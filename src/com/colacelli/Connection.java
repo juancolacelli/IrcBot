@@ -11,6 +11,7 @@ import java.util.Random;
 public class Connection implements Settings {
 	private String server      = SERVER;
 	private int port	       = PORT;
+	private String password    = PASSWORD;
 	
 	private String nick        = NICK;
 	private String login       = LOGIN;
@@ -33,6 +34,11 @@ public class Connection implements Settings {
 		    socket = new Socket(server, port);
 		    writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
 		    reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+		    
+		    if(!password.equals("")) {
+		        writer.write("PASS " + password + "\r\n");
+		        writer.flush();	
+		    }
 		    
 		    login();
 		    
