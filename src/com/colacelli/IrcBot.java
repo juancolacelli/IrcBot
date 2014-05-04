@@ -4,7 +4,7 @@ package com.colacelli;
 
 public class IrcBot {
     public static void main(String[] args) throws Exception {
-    	Connection connection = new Connection();
-    	connection.connect();
+        Connection connection = new Connection();
+        connection.connect();
     }
 }
