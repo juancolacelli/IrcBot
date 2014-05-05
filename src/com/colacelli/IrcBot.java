@@ -1,5 +1,3 @@
-/* Based on: http://oreilly.com/pub/h/1966 */
-
 package com.colacelli;
 
 import com.colacelli.ircbot.IrcConnection;
