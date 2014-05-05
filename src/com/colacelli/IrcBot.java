@@ -2,9 +2,11 @@
 
 package com.colacelli;
 
-public class IrcBot {
+import com.colacelli.ircbot.IrcConnection;
+
+public class IrcBot implements Settings {
     public static void main(String[] args) throws Exception {
-        Connection connection = new Connection();
-        connection.connect();
+        IrcConnection ircConnection = new IrcConnection(new IrcConnectionHandlerImplementation());
+        ircConnection.connect(SERVER, PORT, PASSWORD, NICK, LOGIN, CHANNEL);
     }
 }

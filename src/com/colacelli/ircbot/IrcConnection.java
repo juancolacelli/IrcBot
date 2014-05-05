@@ -1,4 +1,4 @@
-package com.colacelli;
+package com.colacelli.ircbot;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,28 +8,33 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Random;
 
-public class Connection implements Settings {
-    private String server      = SERVER;
-    private int port           = PORT;
-    private String password    = PASSWORD;
+public class IrcConnection {
+    private String server;
+    private int port;
+    private String password;
     
-    private String nick        = NICK;
-    private String login       = LOGIN;
-    private String channel     = CHANNEL;
+    private String nick;
+    private String login;
+    private String channel;
     
     private Socket socket;
     private BufferedWriter writer;
     private BufferedReader reader;
-    private ConnectionHandler handler = new ConnectionHandler(this); 
+    private IrcConnectionHandler handler;
     
-    public void connect() throws IOException {
-        connect(this.server, this.port);
+    public IrcConnection(IrcConnectionHandler handler) {
+        this.handler = handler;
     }
     
-    public void connect(String server, int port) throws IOException {
+    public void connect(String server, int port, String password, String nick, String login, String channel) throws IOException {
         try {
-            this.server = server;
-            this.port   = port;
+            this.nick     = nick;
+            this.login    = login;
+            this.channel  = channel;
+
+            this.server   = server;
+            this.port     = port;
+            this.password = password;
             
             socket = new Socket(server, port);
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -40,7 +45,7 @@ public class Connection implements Settings {
                 writer.flush();    
             }
             
-            login();
+            login(this.nick, this.login);
             
             handler.onConnect(this.server, this.port);
         } catch(Exception e) {
@@ -58,46 +63,6 @@ public class Connection implements Settings {
         }
     }
     
-    public void reconnect() throws IOException {
-        disconnect();
-        connect();
-    }
-    
-    public void login() throws IOException {
-        login(this.nick, this.login);
-    }
-    
-    public void login(String nick, String login) throws IOException {
-        try {
-            this.nick(nick);
-            
-            this.login = login;
-            
-            writer.write("USER " + login + " 8 * : " + login + "\r\n");
-            writer.flush();
-            
-            listen();
-        } catch(IOException e) {
-            reconnect();
-        }
-
-    }
-    
-    public void nick(String nick) throws IOException {
-        try {
-            this.nick = nick;
-            
-            writer.write("NICK " + nick + "\r\n");
-            writer.flush();
-        } catch(IOException e) {
-            reconnect();
-        }
-    }
-    
-    public void join() throws IOException {
-        join(this.channel);
-    }
-    
     public void join(String channel) throws IOException {
         try {
             if(!this.channel.equals(channel))
@@ -109,19 +74,6 @@ public class Connection implements Settings {
             writer.flush();
 
             handler.onJoin(channel);
-        } catch(IOException e) {
-            reconnect();
-        }
-    }
-
-    public void part(String channel) throws IOException {
-        try {
-            this.channel = "";
-
-            writer.write("PART " + channel + "\r\n");
-            writer.flush();
-            
-            handler.onPart(channel);
         } catch(IOException e) {
             reconnect();
         }
@@ -138,7 +90,7 @@ public class Connection implements Settings {
                 // Login
                 if(line.indexOf("004") >= 0) {
                     // We are now logged in.
-                    join();
+                       join(this.channel);
     
                     handler.onLogin(this.nick, this.login);
                 } else if(line.indexOf("433") >= 0) {               
@@ -171,7 +123,7 @@ public class Connection implements Settings {
                             String nick    = splittedLine[3];
                             String channel = splittedLine[2];
                             
-                            if(AUTO_REJOIN && nick.equals(this.nick))
+                            if(nick.equals(this.nick))
                                 join(channel);
                             
                             handler.onKick(nick, channel);
@@ -185,6 +137,22 @@ public class Connection implements Settings {
         }
     }
     
+    public void login(String nick, String login) throws IOException {
+        try {
+            this.nick(nick);
+            
+            this.login = login;
+            
+            writer.write("USER " + login + " 8 * : " + login + "\r\n");
+            writer.flush();
+            
+            listen();
+        } catch(IOException e) {
+            reconnect();
+        }
+
+    }
+
     public void msg(String receiver, String message) throws IOException {
         try {
             writer.write("PRIVMSG " + receiver + " :" + message + "\r\n");
@@ -192,5 +160,34 @@ public class Connection implements Settings {
         } catch(IOException e) {
             reconnect();
         }
+    }
+    
+    public void nick(String nick) throws IOException {
+        try {
+            this.nick = nick;
+            
+            writer.write("NICK " + nick + "\r\n");
+            writer.flush();
+        } catch(IOException e) {
+            reconnect();
+        }
+    }
+
+    public void part(String channel) throws IOException {
+        try {
+            this.channel = "";
+
+            writer.write("PART " + channel + "\r\n");
+            writer.flush();
+            
+            handler.onPart(channel);
+        } catch(IOException e) {
+            reconnect();
+        }
+    }
+    
+    public void reconnect() throws IOException {
+        disconnect();
+        connect(this.server, this.port, this.password, this.nick, this.login, this.channel);
     }
 }
