@@ -82,6 +82,24 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
 				transport.mode(channel, "-o " + deopNick);
 				
 				break;
+        	case "!voice":
+        		String voiceNick = sender;
+        		if(parameters != null)
+        			voiceNick	 = parameters[0];
+        		
+				transport.msg(sender, "Giving VOICE to " + voiceNick + " in " + channel);
+				transport.mode(channel, "+v " + voiceNick);
+				
+				break;
+        	case "!devoice":
+        		String devoiceNick = sender;
+        		if(parameters != null)
+        			devoiceNick	   = parameters[0];
+        		
+				transport.msg(sender, "Removing VOICE to " + devoiceNick + " in " + channel);
+				transport.mode(channel, "-v " + devoiceNick);
+				
+				break;
         }
     }
 

@@ -11,6 +11,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 public final class IrcConnection {
+	private static final String ENTER =  "\r\n";
     private String server;
     private int port;
     private String password;
@@ -42,7 +43,7 @@ public final class IrcConnection {
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
             if(!password.equals("")) {
-                writer.write("PASS " + password + "\r\n");
+                writer.write("PASS " + password + ENTER);
                 writer.flush();    
             }
             
@@ -59,7 +60,7 @@ public final class IrcConnection {
     }
     
     public void join(String channel) throws IOException {
-        writer.write("JOIN " + channel + "\r\n");
+        writer.write("JOIN " + channel + ENTER);
         writer.flush();
 
         handler.onJoin(channel);
@@ -82,7 +83,7 @@ public final class IrcConnection {
             }         
             
             if(line.toLowerCase().startsWith("ping ")) {               
-                writer.write("PONG " + line.substring(5) + "\r\n");
+                writer.write("PONG " + line.substring(5) + ENTER);
                 writer.flush();
                 
                 handler.onPing();
@@ -131,19 +132,19 @@ public final class IrcConnection {
         
         this.login = login;
         
-        writer.write("USER " + login + " 8 * : " + login + "\r\n");
+        writer.write("USER " + login + " 8 * : " + login + ENTER);
         writer.flush();
         
         listen();
     }
 
     public void msg(String receiver, String message) throws IOException {
-        writer.write("PRIVMSG " + receiver + " :" + message + "\r\n");
+        writer.write("PRIVMSG " + receiver + " :" + message + ENTER);
         writer.flush();    
     }
     
     public void mode(String channel, String mode) throws IOException {
-    	writer.write("MODE " + channel + " " + mode);
+    	writer.write("MODE " + channel + " " + mode + ENTER);
     	writer.flush();
     	
     	handler.onMode(channel, mode);
@@ -152,12 +153,12 @@ public final class IrcConnection {
     public void nick(String nick) throws IOException {
         this.nick = nick;
         
-        writer.write("NICK " + nick + "\r\n");
+        writer.write("NICK " + nick + ENTER);
         writer.flush();
     }
 
     public void part(String channel) throws IOException {
-        writer.write("PART " + channel + "\r\n");
+        writer.write("PART " + channel + ENTER);
         writer.flush();
         
         handler.onPart(channel);
