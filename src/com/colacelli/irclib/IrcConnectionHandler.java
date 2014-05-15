@@ -3,7 +3,6 @@ package com.colacelli.irclib;
 import java.io.IOException;
 
 public abstract class IrcConnectionHandler {
-    @SuppressWarnings("unused")
     protected IrcConnection transport;
     
     public void setTransport(IrcConnection transport) {

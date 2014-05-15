@@ -6,9 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.Random;
-import java.util.stream.Collectors;
 
 public final class IrcConnection {
 	private static final String ENTER =  "\r\n";
