@@ -136,7 +136,7 @@ public final class IrcConnection {
         listen();
     }
 
-    public void msg(String receiver, String message) throws IOException {
+    public void message(String receiver, String message) throws IOException {
         writer.write("PRIVMSG " + receiver + " :" + message + ENTER);
         writer.flush();    
     }

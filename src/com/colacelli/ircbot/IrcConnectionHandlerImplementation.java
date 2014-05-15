@@ -47,7 +47,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
         switch(command) {
             case "!join":
                 if(parameters != null) {
-                    transport.msg(sender, "Joining " + parameters[0]);
+                    transport.message(sender, "Joining " + parameters[0]);
                     transport.join(parameters[0]);
                 }
                 
@@ -59,7 +59,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                     partChannel = parameters[0];
                 
                 if(partChannel != "") {
-                    transport.msg(sender, "Parting from " + partChannel);
+                    transport.message(sender, "Parting from " + partChannel);
                     transport.part(partChannel);    
                 }
                 
@@ -69,7 +69,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     opNick      = parameters[0];
                 
-                transport.msg(sender, "Giving OP to " + opNick + " in " + channel);
+                transport.message(sender, "Giving OP to " + opNick + " in " + channel);
                 transport.mode(channel, "+o " + opNick);
                 
                 break;
@@ -78,7 +78,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     deopNick    = parameters[0];
                 
-                transport.msg(sender, "Removing OP to " + deopNick + " in " + channel);
+                transport.message(sender, "Removing OP to " + deopNick + " in " + channel);
                 transport.mode(channel, "-o " + deopNick);
                 
                 break;
@@ -87,7 +87,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     voiceNick     = parameters[0];
                 
-                transport.msg(sender, "Giving VOICE to " + voiceNick + " in " + channel);
+                transport.message(sender, "Giving VOICE to " + voiceNick + " in " + channel);
                 transport.mode(channel, "+v " + voiceNick);
                 
                 break;
@@ -96,7 +96,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     devoiceNick       = parameters[0];
                 
-                transport.msg(sender, "Removing VOICE to " + devoiceNick + " in " + channel);
+                transport.message(sender, "Removing VOICE to " + devoiceNick + " in " + channel);
                 transport.mode(channel, "-v " + devoiceNick);
                 
                 break;
