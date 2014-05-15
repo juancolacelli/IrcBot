@@ -32,74 +32,74 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
 
     @Override
     public void onMessage(String sender, String message, String channel) throws IOException {
-    	if(channel != "")
-    		System.out.println("Message received from " + sender + ": " + message + " in " + channel);
-    	else
-    		System.out.println("Private message received from " + sender + ": " + message);
+        if(channel != "")
+            System.out.println("Message received from " + sender + ": " + message + " in " + channel);
+        else
+            System.out.println("Private message received from " + sender + ": " + message);
         
         String[] splittedMessage = message.split(" ");
-        String command 			 = splittedMessage[0];
-        String[] parameters 	 = null;
+        String command              = splittedMessage[0];
+        String[] parameters      = null;
         
         if(splittedMessage.length > 1)
-        	parameters 			 = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
+            parameters              = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
         
         switch(command) {
-    		case "!join":
-    			if(parameters != null) {
-    				transport.msg(sender, "Joining " + parameters[0]);
-    				transport.join(parameters[0]);
-    			}
-    			
-    			break;
-        	case "!part":
-        		String partChannel = channel;
-        		
-        		if(parameters != null)
-    				partChannel = parameters[0];
-        		
-        		if(partChannel != "") {
-    				transport.msg(sender, "Parting from " + partChannel);
-        			transport.part(partChannel);	
-        		}
-        		
-        		break;
-        	case "!op":
-        		String opNick = sender;
-        		if(parameters != null)
-        			opNick	  = parameters[0];
-        		
-				transport.msg(sender, "Giving OP to " + opNick + " in " + channel);
-				transport.mode(channel, "+o " + opNick);
-				
-				break;
-        	case "!deop":
-        		String deopNick = sender;
-        		if(parameters != null)
-        			deopNick	= parameters[0];
-        		
-				transport.msg(sender, "Removing OP to " + deopNick + " in " + channel);
-				transport.mode(channel, "-o " + deopNick);
-				
-				break;
-        	case "!voice":
-        		String voiceNick = sender;
-        		if(parameters != null)
-        			voiceNick	 = parameters[0];
-        		
-				transport.msg(sender, "Giving VOICE to " + voiceNick + " in " + channel);
-				transport.mode(channel, "+v " + voiceNick);
-				
-				break;
-        	case "!devoice":
-        		String devoiceNick = sender;
-        		if(parameters != null)
-        			devoiceNick	   = parameters[0];
-        		
-				transport.msg(sender, "Removing VOICE to " + devoiceNick + " in " + channel);
-				transport.mode(channel, "-v " + devoiceNick);
-				
-				break;
+            case "!join":
+                if(parameters != null) {
+                    transport.msg(sender, "Joining " + parameters[0]);
+                    transport.join(parameters[0]);
+                }
+                
+                break;
+            case "!part":
+                String partChannel = channel;
+                
+                if(parameters != null)
+                    partChannel = parameters[0];
+                
+                if(partChannel != "") {
+                    transport.msg(sender, "Parting from " + partChannel);
+                    transport.part(partChannel);    
+                }
+                
+                break;
+            case "!op":
+                String opNick = sender;
+                if(parameters != null)
+                    opNick      = parameters[0];
+                
+                transport.msg(sender, "Giving OP to " + opNick + " in " + channel);
+                transport.mode(channel, "+o " + opNick);
+                
+                break;
+            case "!deop":
+                String deopNick = sender;
+                if(parameters != null)
+                    deopNick    = parameters[0];
+                
+                transport.msg(sender, "Removing OP to " + deopNick + " in " + channel);
+                transport.mode(channel, "-o " + deopNick);
+                
+                break;
+            case "!voice":
+                String voiceNick = sender;
+                if(parameters != null)
+                    voiceNick     = parameters[0];
+                
+                transport.msg(sender, "Giving VOICE to " + voiceNick + " in " + channel);
+                transport.mode(channel, "+v " + voiceNick);
+                
+                break;
+            case "!devoice":
+                String devoiceNick = sender;
+                if(parameters != null)
+                    devoiceNick       = parameters[0];
+                
+                transport.msg(sender, "Removing VOICE to " + devoiceNick + " in " + channel);
+                transport.mode(channel, "-v " + devoiceNick);
+                
+                break;
         }
     }
 

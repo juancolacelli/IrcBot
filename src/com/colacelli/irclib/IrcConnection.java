@@ -9,7 +9,7 @@ import java.net.Socket;
 import java.util.Random;
 
 public final class IrcConnection {
-	private static final String ENTER =  "\r\n";
+    private static final String ENTER =  "\r\n";
     private String server;
     private int port;
     private String password;
@@ -99,7 +99,7 @@ public final class IrcConnection {
                             String privmsgChannel = "";
                             
                             if(splittedLine[2].indexOf("#") != -1)
-                            	privmsgChannel	  = splittedLine[2];
+                                privmsgChannel      = splittedLine[2];
                             
                             handler.onMessage(privmsgSender, privmsgMessage, privmsgChannel);
                         }
@@ -113,13 +113,13 @@ public final class IrcConnection {
                         
                         break;
                     case "MODE":
-                    	String modeChannel = splittedLine[2];
-                    	// FIXME: Mode is uncompleted, it just sends the first parameter.
-                    	String modeMode	    = splittedLine[3];
-                    	
-                    	handler.onMode(modeChannel, modeMode);
-                    	
-                    	break;
+                        String modeChannel = splittedLine[2];
+                        // FIXME: Mode is uncompleted, it just sends the first parameter.
+                        String modeMode        = splittedLine[3];
+                        
+                        handler.onMode(modeChannel, modeMode);
+                        
+                        break;
                 }
             }
         }
@@ -142,10 +142,10 @@ public final class IrcConnection {
     }
     
     public void mode(String channel, String mode) throws IOException {
-    	writer.write("MODE " + channel + " " + mode + ENTER);
-    	writer.flush();
-    	
-    	handler.onMode(channel, mode);
+        writer.write("MODE " + channel + " " + mode + ENTER);
+        writer.flush();
+        
+        handler.onMode(channel, mode);
     }
     
     public void nick(String nick) throws IOException {
