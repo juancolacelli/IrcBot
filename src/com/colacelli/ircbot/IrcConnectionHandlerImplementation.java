@@ -3,46 +3,54 @@ package com.colacelli.ircbot;
 import java.io.IOException;
 import java.util.Arrays;
 
+import com.colacelli.irclib.IrcChannel;
 import com.colacelli.irclib.IrcConnectionHandler;
+import com.colacelli.irclib.IrcMessage;
+import com.colacelli.irclib.IrcServer;
+import com.colacelli.irclib.IrcUser;
 
 public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     @Override
-    public void onConnect(String server, int port, String nick, String login) throws IOException {
-        System.out.println("Connected to " + server + ":" + port + " as: " + nick + ":" + login);
+    public void onConnect(IrcServer server, String nick, String login) throws IOException {
+        System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + nick + ":" + login);
         
         transport.join(Configurable.CHANNEL);
     }
 
     @Override
-    public void onDisconnect(String server, int port) throws IOException {
-        System.out.println("Disconnecting from " + server + ":" + port);
+    public void onDisconnect(IrcServer server) throws IOException {
+        System.out.println("Disconnecting from " + server.getHostname() + ":" + server.getPort());
     }
 
     @Override
-    public void onJoin(String channel) throws IOException {
-        System.out.println("Joining " + channel);
+    public void onJoin(IrcChannel channel) throws IOException {
+        System.out.println("Joining " + channel.getName());
     }
 
     @Override
-    public void onKick(String nick, String channel) throws IOException {
-        System.out.println(nick + " has been kicked from " + channel);
+    public void onKick(IrcUser user, IrcChannel channel) throws IOException {
+        System.out.println(user.getNick() + " has been kicked from " + channel.getName());
         
         this.transport.join(Configurable.CHANNEL);
     }
 
     @Override
-    public void onMessage(String sender, String message, String channel) throws IOException {
-        if(channel != "")
-            System.out.println("Message received from " + sender + ": " + message + " in " + channel);
-        else
-            System.out.println("Private message received from " + sender + ": " + message);
+    public void onMessage(IrcMessage message) throws IOException {
+        String sender  = message.getUser().getNick();
+        String text    = message.getText();
+        String channel = message.getChannel();
         
-        String[] splittedMessage = message.split(" ");
-        String command              = splittedMessage[0];
+        if(channel != "")
+            System.out.println("Message received from " + sender + ": " + text + " in " + channel);
+        else
+            System.out.println("Private message received from " + sender + ": " + text);
+        
+        String[] splittedMessage = text.split(" ");
+        String command           = splittedMessage[0];
         String[] parameters      = null;
         
         if(splittedMessage.length > 1)
-            parameters              = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
+            parameters           = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
         
         switch(command) {
             case "!join":
@@ -67,7 +75,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
             case "!op":
                 String opNick = sender;
                 if(parameters != null)
-                    opNick      = parameters[0];
+                    opNick    = parameters[0];
                 
                 transport.message(sender, "Giving OP to " + opNick + " in " + channel);
                 transport.mode(channel, "+o " + opNick);
@@ -85,7 +93,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
             case "!voice":
                 String voiceNick = sender;
                 if(parameters != null)
-                    voiceNick     = parameters[0];
+                    voiceNick    = parameters[0];
                 
                 transport.message(sender, "Giving VOICE to " + voiceNick + " in " + channel);
                 transport.mode(channel, "+v " + voiceNick);
@@ -94,7 +102,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
             case "!devoice":
                 String devoiceNick = sender;
                 if(parameters != null)
-                    devoiceNick       = parameters[0];
+                    devoiceNick    = parameters[0];
                 
                 transport.message(sender, "Removing VOICE to " + devoiceNick + " in " + channel);
                 transport.mode(channel, "-v " + devoiceNick);
@@ -104,8 +112,8 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     }
 
     @Override
-    public void onMode(String channel, String mode) throws IOException {
-        System.out.println("Mode changed to " + mode + " in " + channel);
+    public void onMode(IrcChannel channel, String mode) throws IOException {
+        System.out.println("Mode changed to " + mode + " in " + channel.getName());
     }
 
     @Override
@@ -114,8 +122,8 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     }
 
     @Override
-    public void onPart(String channel) throws IOException {
-        System.out.println("Parting from " + channel);
+    public void onPart(IrcChannel channel) throws IOException {
+        System.out.println("Parting from " + channel.getName());
     }
 
     @Override
