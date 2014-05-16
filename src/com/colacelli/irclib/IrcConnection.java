@@ -103,7 +103,7 @@ public final class IrcConnection {
                     case "JOIN":
                         handler.onJoin(new IrcUser(line.substring(1, line.indexOf("!"))), new IrcChannel(splittedLine[2]));
 
-                    	break;
+                        break;
                     case "KICK":
                         handler.onKick(new IrcUser(splittedLine[3]), new IrcChannel(splittedLine[2]));
                         
@@ -114,17 +114,17 @@ public final class IrcConnection {
                         
                         break;
                     case "NICK":
-                    	String oldNick   = line.substring(1, line.indexOf("!"));
-                    	IrcUser nickUser = new IrcUser(oldNick);
-                    	nickUser.setNick(splittedLine[2].substring(1));
+                        String oldNick   = line.substring(1, line.indexOf("!"));
+                        IrcUser nickUser = new IrcUser(oldNick);
+                        nickUser.setNick(splittedLine[2].substring(1));
 
                         handler.onNickChange(nickUser);
 
-                    	break;
+                        break;
                     case "PART":
                         handler.onPart(new IrcUser(line.substring(1, line.indexOf("!"))), new IrcChannel(splittedLine[2]));
 
-                    	break;
+                        break;
                 }
             }
         }

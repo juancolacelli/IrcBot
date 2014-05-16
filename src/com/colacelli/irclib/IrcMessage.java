@@ -40,6 +40,6 @@ public class IrcMessage {
     }
     
     public Boolean isPrivate() {
-    	return this.channel != null;
+        return this.channel != null;
     }
 }

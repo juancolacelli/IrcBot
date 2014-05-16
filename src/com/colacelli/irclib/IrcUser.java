@@ -27,7 +27,7 @@ public class IrcUser {
     }
     
     public void setNick(String nick) {
-    	this.oldNick = this.nick;
+        this.oldNick = this.nick;
         this.nick    = nick;
     }
 }
