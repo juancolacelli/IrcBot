@@ -3,7 +3,7 @@ package com.colacelli.irclib;
 public class IrcUser {
     private String nick;
     
-    IrcUser(String nick) {
+    public IrcUser(String nick) {
         this.nick = nick;
     }
     

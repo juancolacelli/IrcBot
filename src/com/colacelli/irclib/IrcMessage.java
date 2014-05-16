@@ -1,25 +1,45 @@
 package com.colacelli.irclib;
 
 public class IrcMessage {
-    private IrcUser user;
+    private IrcUser sender;
+    private IrcUser receiver;
     private String text;
-    private String channel;
+    private IrcChannel channel;
     
-    IrcMessage(IrcUser user, String text, String channel) {
-        this.user    = user;
+    IrcMessage(IrcUser user, String text, IrcChannel channel) {
+        this.sender    = user;
         this.text    = text;
         this.channel = channel;
     }
     
-    public IrcUser getUser() {
-        return this.user;
+    IrcMessage(IrcChannel channel, String text) {
+        this.text    = text;
+        this.channel = channel;
+    }
+    
+    public IrcMessage(IrcUser receiver, String text) {
+        this.text     = text;
+        this.receiver = receiver;
+    }
+    
+    public IrcUser getSender() {
+        return this.sender;
     }
     
     public String getText() {
         return this.text;
     }
         
-    public String getChannel() {
+    public IrcChannel getChannel() {
         return this.channel;
+    }
+    
+    
+    public IrcUser getReceiver() {
+        return this.receiver;
+    }
+    
+    public Boolean isPrivate() {
+    	return this.channel != null;
     }
 }

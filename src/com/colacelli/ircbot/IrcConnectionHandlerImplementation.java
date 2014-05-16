@@ -14,7 +14,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     public void onConnect(IrcServer server, String nick, String login) throws IOException {
         System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + nick + ":" + login);
         
-        transport.join(Configurable.CHANNEL);
+        transport.joinChannel(Configurable.CHANNEL);
     }
 
     @Override
@@ -31,17 +31,17 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     public void onKick(IrcUser user, IrcChannel channel) throws IOException {
         System.out.println(user.getNick() + " has been kicked from " + channel.getName());
         
-        this.transport.join(Configurable.CHANNEL);
+        this.transport.joinChannel(Configurable.CHANNEL);
     }
 
     @Override
     public void onMessage(IrcMessage message) throws IOException {
-        String sender  = message.getUser().getNick();
-        String text    = message.getText();
-        String channel = message.getChannel();
+        String sender      = message.getSender().getNick();
+        String text        = message.getText();
+        IrcChannel channel = message.getChannel();
         
-        if(channel != "")
-            System.out.println("Message received from " + sender + ": " + text + " in " + channel);
+        if(channel.getName() != "")
+            System.out.println("Message received from " + sender + ": " + text + " in " + channel.getName());
         else
             System.out.println("Private message received from " + sender + ": " + text);
         
@@ -55,20 +55,20 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
         switch(command) {
             case "!join":
                 if(parameters != null) {
-                    transport.message(sender, "Joining " + parameters[0]);
-                    transport.join(parameters[0]);
+                    transport.sendMessage(new IrcMessage(new IrcUser(sender), "Joining " + parameters[0]));
+                    transport.joinChannel(parameters[0]);
                 }
                 
                 break;
             case "!part":
-                String partChannel = channel;
+                String partChannel = channel.getName();
                 
                 if(parameters != null)
                     partChannel = parameters[0];
                 
                 if(partChannel != "") {
-                    transport.message(sender, "Parting from " + partChannel);
-                    transport.part(partChannel);    
+                    transport.sendMessage(new IrcMessage(new IrcUser(sender), "Parting from " + partChannel));
+                    transport.partFromChannel(partChannel);    
                 }
                 
                 break;
@@ -77,8 +77,8 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     opNick    = parameters[0];
                 
-                transport.message(sender, "Giving OP to " + opNick + " in " + channel);
-                transport.mode(channel, "+o " + opNick);
+                transport.sendMessage(new IrcMessage(new IrcUser(sender), "Giving OP to " + opNick + " in " + channel.getName()));
+                transport.changeMode(channel.getName(), "+o " + opNick);
                 
                 break;
             case "!deop":
@@ -86,8 +86,8 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     deopNick    = parameters[0];
                 
-                transport.message(sender, "Removing OP to " + deopNick + " in " + channel);
-                transport.mode(channel, "-o " + deopNick);
+                transport.sendMessage(new IrcMessage(new IrcUser(sender), "Removing OP to " + deopNick + " in " + channel.getName()));
+                transport.changeMode(channel.getName(), "-o " + deopNick);
                 
                 break;
             case "!voice":
@@ -95,8 +95,8 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     voiceNick    = parameters[0];
                 
-                transport.message(sender, "Giving VOICE to " + voiceNick + " in " + channel);
-                transport.mode(channel, "+v " + voiceNick);
+                transport.sendMessage(new IrcMessage(new IrcUser(sender), "Giving VOICE to " + voiceNick + " in " + channel.getName()));
+                transport.changeMode(channel.getName(), "+v " + voiceNick);
                 
                 break;
             case "!devoice":
@@ -104,8 +104,8 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     devoiceNick    = parameters[0];
                 
-                transport.message(sender, "Removing VOICE to " + devoiceNick + " in " + channel);
-                transport.mode(channel, "-v " + devoiceNick);
+                transport.sendMessage(new IrcMessage(new IrcUser(sender), "Removing VOICE to " + devoiceNick + " in " + channel.getName()));
+                transport.changeMode(channel.getName(), "-v " + devoiceNick);
                 
                 break;
         }

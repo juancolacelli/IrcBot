@@ -27,7 +27,7 @@ public final class IrcConnection {
         this.handler.setTransport(this);
     }
     
-    public void connect(IrcServer server, String nick, String login) throws IOException {
+    public void connectToServer(IrcServer server, String nick, String login) throws IOException {
         try {
             this.nick     = nick;
             this.login    = login;
@@ -43,26 +43,26 @@ public final class IrcConnection {
                 writer.flush();    
             }
             
-            login(this.nick, this.login);
+            loginToServer(this.nick, this.login);
         } catch(Exception e) {
-            reconnect();
+            reconnectToServer();
         }
     }
     
-    public void disconnect() throws IOException {
+    public void disconnectFromServer() throws IOException {
         socket.close();
         
         handler.onDisconnect(this.server);
     }
     
-    public void join(String channel) throws IOException {
+    public void joinChannel(String channel) throws IOException {
         writer.write("JOIN " + channel + ENTER);
         writer.flush();
 
         handler.onJoin(new IrcChannel(channel));
     }
     
-    public void listen() throws IOException {
+    private void listenServer() throws IOException {
         // Keep reading lines from the server.
         String line = null;
         
@@ -76,7 +76,7 @@ public final class IrcConnection {
                     handler.onConnect(this.server, this.nick, this.login);
                 } else if(rawCode == RawCode.NICKNAME_IN_USE.getCode()) {
                     // Re-login with a random ending
-                    nick(this.nick + (new Random()).nextInt(9));
+                    changeNick(this.nick + (new Random()).nextInt(9));
                 }  
             } catch(NumberFormatException e) {}    
             
@@ -99,7 +99,7 @@ public final class IrcConnection {
                             if(splittedLine[2].indexOf("#") != -1)
                                 privmsgChannel    = splittedLine[2];
                             
-                            handler.onMessage(new IrcMessage(new IrcUser(privmsgSender), privmsgText, privmsgChannel));
+                            handler.onMessage(new IrcMessage(new IrcUser(privmsgSender), privmsgText, new IrcChannel(privmsgChannel)));
                         }
                         
                         break;
@@ -123,45 +123,45 @@ public final class IrcConnection {
         }
     }
     
-    public void login(String nick, String login) throws IOException {
-        this.nick(nick);
+    private void loginToServer(String nick, String login) throws IOException {
+        this.changeNick(nick);
         
         this.login = login;
         
         writer.write("USER " + login + " 8 * : " + login + ENTER);
         writer.flush();
         
-        listen();
+        listenServer();
     }
 
-    public void message(String receiver, String message) throws IOException {
-        writer.write("PRIVMSG " + receiver + " :" + message + ENTER);
+    public void sendMessage(IrcMessage message) throws IOException {
+        writer.write("PRIVMSG " + (message.isPrivate() ? message.getChannel().getName() : message.getReceiver().getNick()) + " :" + message.getText() + ENTER);
         writer.flush();    
     }
     
-    public void mode(String channel, String mode) throws IOException {
+    public void changeMode(String channel, String mode) throws IOException {
         writer.write("MODE " + channel + " " + mode + ENTER);
         writer.flush();
         
         handler.onMode(new IrcChannel(channel), mode);
     }
     
-    public void nick(String nick) throws IOException {
+    public void changeNick(String nick) throws IOException {
         this.nick = nick;
         
         writer.write("NICK " + nick + ENTER);
         writer.flush();
     }
 
-    public void part(String channel) throws IOException {
+    public void partFromChannel(String channel) throws IOException {
         writer.write("PART " + channel + ENTER);
         writer.flush();
         
         handler.onPart(new IrcChannel(channel));
     }
     
-    public void reconnect() throws IOException {
-        disconnect();
-        connect(this.server, this.nick, this.login);
+    public void reconnectToServer() throws IOException {
+        disconnectFromServer();
+        connectToServer(this.server, this.nick, this.login);
     }
 }
