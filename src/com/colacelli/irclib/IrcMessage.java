@@ -6,20 +6,20 @@ public class IrcMessage {
     private String text;
     private IrcChannel channel;
     
-    IrcMessage(IrcUser user, String text, IrcChannel channel) {
-        this.sender    = user;
+    public IrcMessage(IrcUser user, String text, IrcChannel channel) {
+        this.sender  = user;
         this.text    = text;
         this.channel = channel;
     }
     
-    IrcMessage(IrcChannel channel, String text) {
-        this.text    = text;
+    public IrcMessage(IrcChannel channel, String text) {
         this.channel = channel;
+    	this.text    = text;
     }
     
     public IrcMessage(IrcUser receiver, String text) {
-        this.text     = text;
         this.receiver = receiver;
+        this.text     = text;
     }
     
     public IrcUser getSender() {
@@ -41,5 +41,9 @@ public class IrcMessage {
     
     public Boolean isPrivate() {
         return this.channel != null;
+    }
+    
+    public void setSender(IrcUser sender) {
+    	this.sender = sender;
     }
 }
