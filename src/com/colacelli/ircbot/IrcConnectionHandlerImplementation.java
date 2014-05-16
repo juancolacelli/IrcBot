@@ -11,8 +11,8 @@ import com.colacelli.irclib.IrcUser;
 
 public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     @Override
-    public void onConnect(IrcServer server, String nick, String login) throws IOException {
-        System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + nick + ":" + login);
+    public void onConnect(IrcServer server, IrcUser user) throws IOException {
+        System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + user.getNick() + ":" + user.getLogin());
         
         transport.joinChannel(Configurable.CHANNEL);
     }
@@ -23,8 +23,8 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     }
 
     @Override
-    public void onJoin(IrcChannel channel) throws IOException {
-        System.out.println("Joining " + channel.getName());
+    public void onJoin(IrcUser user, IrcChannel channel) throws IOException {
+        System.out.println(user.getNick() + " joined " + channel.getName());
     }
 
     @Override
@@ -117,13 +117,13 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     }
 
     @Override
-    public void onNick(String nick) throws IOException {
-        System.out.println("Changing nickname to " + nick);
+    public void onNickChange(IrcUser user) throws IOException {
+        System.out.println(user.getOldNick() + " changed nickname to " + user.getNick());
     }
 
     @Override
-    public void onPart(IrcChannel channel) throws IOException {
-        System.out.println("Parting from " + channel.getName());
+    public void onPart(IrcUser user, IrcChannel channel) throws IOException {
+        System.out.println(user.getNick() + " parted from " + channel.getName());
     }
 
     @Override

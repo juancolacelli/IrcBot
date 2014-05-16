@@ -14,8 +14,7 @@ public final class IrcConnection {
     private static final String ENTER =  "\r\n";
     private IrcServer server;
     
-    private String nick;
-    private String login;
+    private IrcUser user;
     
     private Socket socket;
     private BufferedWriter writer;
@@ -27,12 +26,10 @@ public final class IrcConnection {
         this.handler.setTransport(this);
     }
     
-    public void connectToServer(IrcServer server, String nick, String login) throws IOException {
+    public void connectToServer(IrcServer server, IrcUser user) throws IOException {
         try {
-            this.nick     = nick;
-            this.login    = login;
-
-            this.server   = server;
+            this.user   = user;
+            this.server = server;
             
             socket = new Socket(server.getHostname(), server.getPort());
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -43,7 +40,7 @@ public final class IrcConnection {
                 writer.flush();    
             }
             
-            loginToServer(this.nick, this.login);
+            loginToServer(this.user);
         } catch(Exception e) {
             reconnectToServer();
         }
@@ -59,7 +56,7 @@ public final class IrcConnection {
         writer.write("JOIN " + channel + ENTER);
         writer.flush();
 
-        handler.onJoin(new IrcChannel(channel));
+        handler.onJoin(this.user, new IrcChannel(channel));
     }
     
     private void listenServer() throws IOException {
@@ -73,10 +70,10 @@ public final class IrcConnection {
             try {
                 int rawCode = Integer.parseInt(splittedLine[1]);
                 if(rawCode == RawCode.LOGGED_IN.getCode()) {
-                    handler.onConnect(this.server, this.nick, this.login);
+                    handler.onConnect(this.server, this.user);
                 } else if(rawCode == RawCode.NICKNAME_IN_USE.getCode()) {
                     // Re-login with a random ending
-                    changeNick(this.nick + (new Random()).nextInt(9));
+                    changeNick(this.user.getNick() + (new Random()).nextInt(9));
                 }  
             } catch(NumberFormatException e) {}    
             
@@ -103,32 +100,40 @@ public final class IrcConnection {
                         }
                         
                         break;
+                    case "JOIN":
+                        handler.onJoin(new IrcUser(line.substring(1, line.indexOf("!"))), new IrcChannel(splittedLine[2]));
+
+                    	break;
                     case "KICK":
-                        String kickNick    = splittedLine[3];
-                        String kickChannel = splittedLine[2];
-                        
-                        handler.onKick(new IrcUser(kickNick), new IrcChannel(kickChannel));
+                        handler.onKick(new IrcUser(splittedLine[3]), new IrcChannel(splittedLine[2]));
                         
                         break;
                     case "MODE":
-                        String modeChannel = splittedLine[2];
                         // FIXME: Mode is uncompleted, it just sends the first parameter.
-                        String modeMode    = splittedLine[3];
-                        
-                        handler.onMode(new IrcChannel(modeChannel), modeMode);
+                        handler.onMode(new IrcChannel(splittedLine[2]), splittedLine[3]);
                         
                         break;
+                    case "NICK":
+                    	String oldNick   = line.substring(1, line.indexOf("!"));
+                    	IrcUser nickUser = new IrcUser(oldNick);
+                    	nickUser.setNick(splittedLine[2].substring(1));
+
+                        handler.onNickChange(nickUser);
+
+                    	break;
+                    case "PART":
+                        handler.onPart(new IrcUser(line.substring(1, line.indexOf("!"))), new IrcChannel(splittedLine[2]));
+
+                    	break;
                 }
             }
         }
     }
     
-    private void loginToServer(String nick, String login) throws IOException {
-        this.changeNick(nick);
+    private void loginToServer(IrcUser user) throws IOException {
+        this.changeNick(user.getNick());
         
-        this.login = login;
-        
-        writer.write("USER " + login + " 8 * : " + login + ENTER);
+        writer.write("USER " + user.getLogin() + " 8 * : " + user.getLogin() + ENTER);
         writer.flush();
         
         listenServer();
@@ -136,7 +141,9 @@ public final class IrcConnection {
 
     public void sendMessage(IrcMessage message) throws IOException {
         writer.write("PRIVMSG " + (message.isPrivate() ? message.getChannel().getName() : message.getReceiver().getNick()) + " :" + message.getText() + ENTER);
-        writer.flush();    
+        writer.flush();
+        
+        handler.onMessage(message);
     }
     
     public void changeMode(String channel, String mode) throws IOException {
@@ -147,21 +154,23 @@ public final class IrcConnection {
     }
     
     public void changeNick(String nick) throws IOException {
-        this.nick = nick;
+        this.user.setNick(nick);
         
         writer.write("NICK " + nick + ENTER);
         writer.flush();
+        
+        handler.onNickChange(this.user);
     }
 
     public void partFromChannel(String channel) throws IOException {
         writer.write("PART " + channel + ENTER);
         writer.flush();
         
-        handler.onPart(new IrcChannel(channel));
+        handler.onPart(this.user, new IrcChannel(channel));
     }
     
     public void reconnectToServer() throws IOException {
         disconnectFromServer();
-        connectToServer(this.server, this.nick, this.login);
+        connectToServer(this.server, this.user);
     }
 }
