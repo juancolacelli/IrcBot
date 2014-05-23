@@ -13,10 +13,10 @@ import com.colacelli.irclib.Rawable.RawCode;
 
 public final class IrcConnection {
     private static final String ENTER =  "\r\n";
-    private IrcServer server;
+    private IrcServer currentServer;
     
-    private IrcUser user;
-    private HashMap<String, IrcChannel> channels = new HashMap<String, IrcChannel>();
+    private IrcUser currentUser;
+    private HashMap<String, IrcChannel> channelsJoined = new HashMap<String, IrcChannel>();
     
     private Socket socket;
     private BufferedWriter writer;
@@ -34,19 +34,19 @@ public final class IrcConnection {
     
     private void connectToServer(IrcServer newServer, IrcUser newUser) throws IOException {
         try {
-            user   = newUser;
-            server = newServer;
+            currentUser   = newUser;
+            currentServer = newServer;
             
-            socket = new Socket(server.getHostname(), server.getPort());
+            socket = new Socket(currentServer.getHostname(), currentServer.getPort());
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             
-            if(!server.getPassword().equals("")) {
-                writer.write("PASS " + server.getPassword() + ENTER);
+            if(!currentServer.getPassword().equals("")) {
+                writer.write("PASS " + currentServer.getPassword() + ENTER);
                 writer.flush();    
             }
             
-            loginToServer(user);
+            loginToServer(currentUser);
         } catch(Exception e) {
             reconnectToServer();
         }
@@ -55,7 +55,7 @@ public final class IrcConnection {
     public void disconnectFromServer() throws IOException {
         socket.close();
         
-        handler.onDisconnect(server);
+        handler.onDisconnect(currentServer);
     }
     
     public void joinChannel(String channelName) throws IOException {
@@ -66,8 +66,8 @@ public final class IrcConnection {
         writer.write("JOIN " + channel.getName() + ENTER);
         writer.flush();
         
-        if(channels.get(channel.getName()) == null)
-            channels.put(channel.getName(), channel);    
+        if(channelsJoined.get(channel.getName()) == null)
+            channelsJoined.put(channel.getName(), channel);    
     }
     
     private void listenServer() throws IOException {
@@ -81,10 +81,10 @@ public final class IrcConnection {
             try {
                 int rawCode = Integer.parseInt(splittedLine[1]);
                 if(rawCode == RawCode.LOGGED_IN.getCode()) {
-                    handler.onConnect(server, user);
+                    handler.onConnect(currentServer, currentUser);
                 } else if(rawCode == RawCode.NICKNAME_IN_USE.getCode()) {
                     // Re-login with a random ending
-                    changeNick(user.getNick() + (new Random()).nextInt(9));
+                    changeNick(currentUser.getNick() + (new Random()).nextInt(9));
                 }  
             } catch(NumberFormatException e) {}    
             
@@ -97,7 +97,7 @@ public final class IrcConnection {
                 IrcChannel channel = null;
                 
                 if(splittedLine[2].indexOf("#") != -1)
-                    channel = channels.get(splittedLine[2]);
+                    channel = channelsJoined.get(splittedLine[2]);
                 
                 switch(splittedLine[1]) {
                     case "PRIVMSG":
@@ -162,7 +162,7 @@ public final class IrcConnection {
     
     
     public void sendChannelMessage(String channelName, String messageText) throws IOException {
-        IrcChannel channel = channels.get(channelName);
+        IrcChannel channel = channelsJoined.get(channelName);
         
         if(channel != null) {
             sendChannelMessage(new IrcChannelMessage(channel, messageText));
@@ -177,18 +177,18 @@ public final class IrcConnection {
         writer.write("PRIVMSG " + ircChannelMessage.getChannel().getName() + " :" + ircChannelMessage.getText() + ENTER);
         writer.flush();
         
-        ircChannelMessage.setSender(user);
+        ircChannelMessage.setSender(currentUser);
     }
 
     private void sendPrivateMessage(IrcPrivateMessage ircPrivateMessage) throws IOException {
         writer.write("PRIVMSG " + ircPrivateMessage.getReceiver().getNick() + " :" + ircPrivateMessage.getText() + ENTER);
         writer.flush();
         
-        ircPrivateMessage.setSender(user);
+        ircPrivateMessage.setSender(currentUser);
     }
     
     public void changeMode(String channelName, String mode) throws IOException {
-        IrcChannel channel = channels.get(channelName);
+        IrcChannel channel = channelsJoined.get(channelName);
         
         if(channel != null) {
             changeMode(channel, mode);
@@ -201,14 +201,14 @@ public final class IrcConnection {
     }
     
     public void changeNick(String nick) throws IOException {
-        user.setNick(nick);
+        currentUser.setNick(nick);
         
         writer.write("NICK " + nick + ENTER);
         writer.flush();
     }
 
     public void partFromChannel(String channelName) throws IOException {
-        IrcChannel channel = channels.get(channelName);
+        IrcChannel channel = channelsJoined.get(channelName);
         
         if(channel != null) {
             partFromChannel(channel);
@@ -219,16 +219,16 @@ public final class IrcConnection {
         writer.write("PART " + channel.getName() + ENTER);
         writer.flush();
         
-        if(channels.get(channel.getName()) != null)
-            channels.remove(channel.getName());   
+        if(channelsJoined.get(channel.getName()) != null)
+            channelsJoined.remove(channel.getName());   
     }
     
     public void reconnectToServer() throws IOException {
         disconnectFromServer();
-        connectToServer(server, user);
+        connectToServer(currentServer, currentUser);
     }
     
-    public IrcUser getUser() {
-        return user;
+    public IrcUser getCurrentUser() {
+        return currentUser;
     }
 }

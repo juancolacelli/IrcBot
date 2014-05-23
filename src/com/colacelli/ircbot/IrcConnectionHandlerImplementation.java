@@ -27,7 +27,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     public void onJoin(IrcUser user, IrcChannel channel) throws IOException {
         System.out.println(user.getNick() + " joined " + channel.getName());
         
-        if(!user.getNick().equals(transport.getUser().getNick()))
+        if(!user.getNick().equals(transport.getCurrentUser().getNick()))
             transport.sendChannelMessage(channel.getName(), "Hello " + user.getNick() + " welcome to " + channel.getName());
     }
 
