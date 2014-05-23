@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.Random;
 
 import com.colacelli.irclib.Rawable.RawCode;
@@ -15,21 +16,26 @@ public final class IrcConnection {
     private IrcServer server;
     
     private IrcUser user;
+    private HashMap<String, IrcChannel> channels = new HashMap<String, IrcChannel>();
     
     private Socket socket;
     private BufferedWriter writer;
     private BufferedReader reader;
     private IrcConnectionHandler handler;
     
-    public IrcConnection(IrcConnectionHandler handler) {
-        this.handler = handler;
-        this.handler.setTransport(this);
+    public IrcConnection(IrcConnectionHandler newHandler) {
+        handler = newHandler;
+        handler.setTransport(this);
     }
     
-    public void connectToServer(IrcServer server, IrcUser user) throws IOException {
-        try {
-            this.user   = user;
-            this.server = server;
+    public void connectToServer(String hostname, int port, String password, String nick, String login) throws IOException {
+        connectToServer(new IrcServer(hostname, port, password), new IrcUser(nick, login));
+    }
+    
+    private void connectToServer(IrcServer newServer, IrcUser newUser) throws IOException {
+//        try {
+            user   = newUser;
+            server = newServer;
             
             socket = new Socket(server.getHostname(), server.getPort());
             writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -40,21 +46,28 @@ public final class IrcConnection {
                 writer.flush();    
             }
             
-            loginToServer(this.user);
-        } catch(Exception e) {
-            reconnectToServer();
-        }
+            loginToServer(user);
+//        } catch(Exception e) {
+//            reconnectToServer();
+//        }
     }
     
     public void disconnectFromServer() throws IOException {
         socket.close();
         
-        handler.onDisconnect(this.server);
+        handler.onDisconnect(server);
     }
     
-    public void joinChannel(IrcChannel channel) throws IOException {
+    public void joinChannel(String channelName) throws IOException {
+        joinChannel(new IrcChannel(channelName));
+    }
+    
+    private void joinChannel(IrcChannel channel) throws IOException {
         writer.write("JOIN " + channel.getName() + ENTER);
         writer.flush();
+        
+        if(channels.get(channel.getName()) == null)
+            channels.put(channel.getName(), channel);    
     }
     
     private void listenServer() throws IOException {
@@ -81,34 +94,42 @@ public final class IrcConnection {
                 
                 handler.onPing();
             } else {
+                IrcChannel channel = null;
+                
+                if(splittedLine[2].indexOf("#") != -1)
+                    channel = channels.get(splittedLine[2]);
+                
                 switch(splittedLine[1]) {
                     case "PRIVMSG":
                         int senderIndex  = line.indexOf("!");
                         int messageIndex = line.indexOf(":", 1);
                         
                         if(senderIndex != -1 && messageIndex != -1) {
-                            String privmsgSender  = line.substring(1, senderIndex);
-                            String privmsgText    = line.substring(messageIndex + 1);
-                            String privmsgChannel = "";
+                            String sender  = line.substring(1, senderIndex);
+                            String text    = line.substring(messageIndex + 1);
+                            IrcMessage ircMessage = new IrcMessage(new IrcUser(sender), text, channel);
                             
-                            if(splittedLine[2].indexOf("#") != -1)
-                                privmsgChannel    = splittedLine[2];
-                            
-                            handler.onMessage(new IrcMessage(new IrcUser(privmsgSender), privmsgText, new IrcChannel(privmsgChannel)));
+                            if(channel != null)
+                                handler.onMessage(ircMessage);
+                            else
+                                handler.onPrivateMessage(ircMessage);
                         }
                         
                         break;
                     case "JOIN":
-                        handler.onJoin(new IrcUser(line.substring(1, line.indexOf("!"))), new IrcChannel(splittedLine[2]));
+                        if(channel != null)
+                            handler.onJoin(new IrcUser(line.substring(1, line.indexOf("!"))), channel);
 
                         break;
                     case "KICK":
-                        handler.onKick(new IrcUser(splittedLine[3]), new IrcChannel(splittedLine[2]));
+                        if(channel != null)
+                            handler.onKick(new IrcUser(splittedLine[3]), channel);
                         
                         break;
                     case "MODE":
                         // FIXME: Mode is uncompleted, it just sends the first parameter.
-                        handler.onMode(new IrcChannel(splittedLine[2]), splittedLine[3]);
+                        if(channel != null)
+                            handler.onMode(channel, splittedLine[3]);
                         
                         break;
                     case "NICK":
@@ -120,7 +141,8 @@ public final class IrcConnection {
 
                         break;
                     case "PART":
-                        handler.onPart(new IrcUser(line.substring(1, line.indexOf("!"))), new IrcChannel(splittedLine[2]));
+                        if(channel != null)
+                            handler.onPart(new IrcUser(line.substring(1, line.indexOf("!"))), channel);
 
                         break;
                 }
@@ -129,25 +151,46 @@ public final class IrcConnection {
     }
     
     private void loginToServer(IrcUser user) throws IOException {
-        this.changeNick(user.getNick());
+        changeNick(user.getNick());
         
         writer.write("USER " + user.getLogin() + " 8 * : " + user.getLogin() + ENTER);
         writer.flush();
         
         listenServer();
     }
+    
+    
+    public void sendMessage(String channelName, String messageText) throws IOException {
+        IrcChannel channel = channels.get(channelName);
+        
+        if(channel != null) {
+            sendMessage(new IrcMessage(channel, messageText));
+        }
+    }
+    
+    public void sendPrivateMessage(String receiverNick, String messageText) throws IOException {
+        sendMessage(new IrcMessage(new IrcUser(receiverNick), messageText));
+    }
 
-    public void sendMessage(IrcMessage message) throws IOException {
+    private void sendMessage(IrcMessage message) throws IOException {
         writer.write("PRIVMSG " + (message.isPrivate() ? message.getChannel().getName() : message.getReceiver().getNick()) + " :" + message.getText() + ENTER);
         writer.flush();
         
         if(message.getSender() == null)
-        	message.setSender(user);
+            message.setSender(user);
 
         handler.onMessage(message);
     }
     
-    public void changeMode(IrcChannel channel, String mode) throws IOException {
+    public void changeMode(String channelName, String mode) throws IOException {
+        IrcChannel channel = channels.get(channelName);
+        
+        if(channel != null) {
+            changeMode(channel, mode);
+        }
+    }
+    
+    private void changeMode(IrcChannel channel, String mode) throws IOException {
         writer.write("MODE " + channel.getName() + " " + mode + ENTER);
         writer.flush();
         
@@ -163,11 +206,22 @@ public final class IrcConnection {
         handler.onNickChange(user);
     }
 
-    public void partFromChannel(IrcChannel channel) throws IOException {
-        writer.write("PART " + channel + ENTER);
+    public void partFromChannel(String channelName) throws IOException {
+        IrcChannel channel = channels.get(channelName);
+        
+        if(channel != null) {
+            partFromChannel(channel);
+        }
+    }
+    
+    private void partFromChannel(IrcChannel channel) throws IOException {
+        writer.write("PART " + channel.getName() + ENTER);
         writer.flush();
         
-        handler.onPart(user, channel);
+        if(channels.get(channel.getName()) != null)
+            channels.remove(channel.getName());
+        
+        handler.onPart(user, channel);    
     }
     
     public void reconnectToServer() throws IOException {
@@ -176,6 +230,6 @@ public final class IrcConnection {
     }
     
     public IrcUser getUser() {
-    	return user;
+        return user;
     }
 }

@@ -6,44 +6,44 @@ public class IrcMessage {
     private String text;
     private IrcChannel channel;
     
-    public IrcMessage(IrcUser user, String text, IrcChannel channel) {
-        this.sender  = user;
-        this.text    = text;
-        this.channel = channel;
+    public IrcMessage(IrcUser newUser, String newText, IrcChannel newChannel) {
+        sender  = newUser;
+        text    = newText;
+        channel = newChannel;
     }
     
-    public IrcMessage(IrcChannel channel, String text) {
-        this.channel = channel;
-    	this.text    = text;
+    public IrcMessage(IrcChannel newChannel, String newText) {
+        channel = newChannel;
+        text    = newText;
     }
     
-    public IrcMessage(IrcUser receiver, String text) {
-        this.receiver = receiver;
-        this.text     = text;
+    public IrcMessage(IrcUser newReceiver, String newText) {
+        receiver = newReceiver;
+        text     = newText;
     }
     
     public IrcUser getSender() {
-        return this.sender;
+        return sender;
     }
     
     public String getText() {
-        return this.text;
+        return text;
     }
         
     public IrcChannel getChannel() {
-        return this.channel;
+        return channel;
     }
     
     
     public IrcUser getReceiver() {
-        return this.receiver;
+        return receiver;
     }
     
     public Boolean isPrivate() {
-        return this.channel != null;
+        return channel != null;
     }
     
-    public void setSender(IrcUser sender) {
-    	this.sender = sender;
+    public void setSender(IrcUser newSender) {
+        sender = newSender;
     }
 }

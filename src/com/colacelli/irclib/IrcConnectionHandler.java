@@ -18,4 +18,5 @@ public abstract class IrcConnectionHandler {
     public abstract void onNickChange(IrcUser user) throws IOException;
     public abstract void onPart(IrcUser user, IrcChannel channel) throws IOException;
     public abstract void onPing() throws IOException;
+    public abstract void onPrivateMessage(IrcMessage message) throws IOException;
 }

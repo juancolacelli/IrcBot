@@ -5,21 +5,21 @@ public class IrcServer {
     private int port;
     private String password;
     
-    public IrcServer(String hostname, int port, String password) {
-        this.hostname = hostname;
-        this.port     = port;
-        this.password = password;
+    public IrcServer(String newHostname, int newPort, String newPassword) {
+        hostname = newHostname;
+        port     = newPort;
+        password = newPassword;
     }
     
     public String getHostname() {
-        return this.hostname;
+        return hostname;
     }
     
     public int getPort() {
-        return this.port;
+        return port;
     }
     
     public String getPassword() {
-        return this.password;
+        return password;
     }
 }

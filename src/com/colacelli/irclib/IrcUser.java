@@ -5,29 +5,29 @@ public class IrcUser {
     private String login;
     private String oldNick;
     
-    public IrcUser(String nick) {
-        this.nick = nick;
+    public IrcUser(String newNick) {
+        nick = newNick;
     }
     
-    public IrcUser(String nick, String login) {
-        this.nick  = nick;
-        this.login = login;
+    public IrcUser(String newNick, String newLogin) {
+        nick  = newNick;
+        login = newLogin;
     }
     
     public String getNick() {
-        return this.nick;
+        return nick;
     }
     
     public String getLogin() {
-        return this.login;
+        return login;
     }
     
     public String getOldNick() {
-        return this.oldNick;
+        return oldNick;
     }
     
-    public void setNick(String nick) {
-        this.oldNick = this.nick;
-        this.nick    = nick;
+    public void setNick(String newNick) {
+        oldNick = nick;
+        nick    = newNick;
     }
 }

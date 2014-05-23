@@ -7,8 +7,8 @@ public interface Rawable {
         
     private final int code;
     
-    RawCode(int code) {
-        this.code = code;
+    RawCode(int newCode) {
+        code = newCode;
     }
 
     public int getCode() {
