@@ -33,7 +33,7 @@ public final class IrcConnection {
     }
     
     private void connectToServer(IrcServer newServer, IrcUser newUser) throws IOException {
-//        try {
+        try {
             user   = newUser;
             server = newServer;
             
@@ -47,9 +47,9 @@ public final class IrcConnection {
             }
             
             loginToServer(user);
-//        } catch(Exception e) {
-//            reconnectToServer();
-//        }
+        } catch(Exception e) {
+            reconnectToServer();
+        }
     }
     
     public void disconnectFromServer() throws IOException {
