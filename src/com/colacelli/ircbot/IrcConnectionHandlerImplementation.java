@@ -136,7 +136,9 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     public void onPrivateMessage(IrcPrivateMessage message) throws IOException {
         String sender      = message.getSender().getNick();
         String text        = message.getText();
-        
+
         System.out.println("Private message received from " + sender + ": " + text);
+
+        transport.sendPrivateMessage(sender, text);
     }
 }

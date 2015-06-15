@@ -8,7 +8,7 @@ public class IrcUser {
     public IrcUser(String newNick) {
         nick = newNick;
     }
-    
+
     public IrcUser(String newNick, String newLogin) {
         nick  = newNick;
         login = newLogin;

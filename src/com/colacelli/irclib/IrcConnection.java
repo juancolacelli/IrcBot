@@ -86,7 +86,9 @@ public final class IrcConnection {
                     // Re-login with a random ending
                     changeNick(currentUser.getNick() + (new Random()).nextInt(9));
                 }  
-            } catch(NumberFormatException e) {}    
+            } catch(NumberFormatException e) {
+                // Not a RAW code
+            }
             
             if(line.toLowerCase().startsWith("ping ")) {               
                 writer.write("PONG " + line.substring(5) + ENTER);
@@ -101,18 +103,20 @@ public final class IrcConnection {
                 
                 switch(splittedLine[1]) {
                     case "PRIVMSG":
-                        int senderIndex  = line.indexOf("!");
+                        int nickIndex  = line.indexOf("!");
+                        int loginIndex  = line.indexOf("@");
                         int messageIndex = line.indexOf(":", 1);
                         
-                        if(senderIndex != -1 && messageIndex != -1) {
-                            String sender  = line.substring(1, senderIndex);
-                            String text    = line.substring(messageIndex + 1);
+                        if(nickIndex != -1 && messageIndex != -1) {
+                            String nick  = line.substring(1, nickIndex);
+                            String login = line.substring(1, loginIndex);
+                            String text  = line.substring(messageIndex + 1);
                             
                             if(channel != null) {
-                                handler.onChannelMessage(new IrcChannelMessage(new IrcUser(sender), channel, text));
+                                handler.onChannelMessage(new IrcChannelMessage(new IrcUser(nick, login), channel, text));
                             }
                             else {
-                                handler.onPrivateMessage(new IrcPrivateMessage(new IrcUser(sender), text));
+                                handler.onPrivateMessage(new IrcPrivateMessage(new IrcUser(nick, login), currentUser, text));
                             }
                         }
                         
@@ -170,7 +174,7 @@ public final class IrcConnection {
     }
     
     public void sendPrivateMessage(String receiverNick, String messageText) throws IOException {
-        sendPrivateMessage(new IrcPrivateMessage(new IrcUser(receiverNick), messageText));
+        sendPrivateMessage(new IrcPrivateMessage(currentUser, new IrcUser(receiverNick), messageText));
     }
 
     private void sendChannelMessage(IrcChannelMessage ircChannelMessage) throws IOException {
