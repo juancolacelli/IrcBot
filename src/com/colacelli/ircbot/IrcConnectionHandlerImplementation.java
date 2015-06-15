@@ -67,7 +67,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     partChannel = parameters[0];
                 
-                if(partChannel != "") {
+                if(!partChannel.equals("")) {
                     transport.sendPrivateMessage(sender, "Parting from " + partChannel);
                     transport.partFromChannel(partChannel);    
                 }

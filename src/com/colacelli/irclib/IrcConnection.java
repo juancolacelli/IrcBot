@@ -16,7 +16,7 @@ public final class IrcConnection {
     private IrcServer currentServer;
     
     private IrcUser currentUser;
-    private HashMap<String, IrcChannel> channelsJoined = new HashMap<String, IrcChannel>();
+    private HashMap<String, IrcChannel> channelsJoined = new HashMap<>();
     
     private Socket socket;
     private BufferedWriter writer;
@@ -72,7 +72,7 @@ public final class IrcConnection {
     
     private void listenServer() throws IOException {
         // Keep reading lines from the server.
-        String line = null;
+        String line;
         
         while((line = reader.readLine()) != null) {
             System.out.println(line);
@@ -96,7 +96,7 @@ public final class IrcConnection {
             } else {
                 IrcChannel channel = null;
                 
-                if(splittedLine[2].indexOf("#") != -1)
+                if(splittedLine[2].contains("#"))
                     channel = channelsJoined.get(splittedLine[2]);
                 
                 switch(splittedLine[1]) {
