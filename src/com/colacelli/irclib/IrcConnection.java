@@ -25,7 +25,7 @@ public final class IrcConnection {
     
     public IrcConnection(IrcConnectionHandler newHandler) {
         handler = newHandler;
-        handler.setTransport(this);
+        handler.setIrcConnection(this);
     }
 
     public void connectToServer(IrcServer newServer, IrcUser newUser) throws IOException {

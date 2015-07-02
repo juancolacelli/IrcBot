@@ -3,10 +3,10 @@ package com.colacelli.irclib;
 import java.io.IOException;
 
 public abstract class IrcConnectionHandler {
-    protected IrcConnection transport;
+    protected IrcConnection ircConnection;
     
-    public void setTransport(IrcConnection transport) {
-        this.transport = transport;
+    public void setIrcConnection(IrcConnection ircConnection) {
+        this.ircConnection = ircConnection;
     }
     
     protected abstract void onChannelMessage(IrcChannelMessage message) throws IOException;

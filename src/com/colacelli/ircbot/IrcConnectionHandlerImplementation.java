@@ -15,7 +15,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     public void onConnect(IrcServer server, IrcUser user) throws IOException {
         System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + user.getNick() + ":" + user.getLogin());
         
-        transport.joinChannel(new IrcChannel(Configurable.CHANNEL));
+        ircConnection.joinChannel(new IrcChannel(Configurable.CHANNEL));
     }
 
     @Override
@@ -27,9 +27,9 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     public void onJoin(IrcUser user, IrcChannel channel) throws IOException {
         System.out.println(user.getNick() + " joined " + channel.getName());
         
-        if(!user.getNick().equals(transport.getCurrentUser().getNick()))
-            transport.sendChannelMessage(new IrcChannelMessage(
-                    transport.getCurrentUser(),
+        if(!user.getNick().equals(ircConnection.getCurrentUser().getNick()))
+            ircConnection.sendChannelMessage(new IrcChannelMessage(
+                    ircConnection.getCurrentUser(),
                     channel,
                     "Hello " + user.getNick() + " welcome to " + channel.getName()
             ));
@@ -39,7 +39,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     public void onKick(IrcUser user, IrcChannel channel) throws IOException {
         System.out.println(user.getNick() + " has been kicked from " + channel.getName());
         
-        transport.joinChannel(new IrcChannel(Configurable.CHANNEL));
+        ircConnection.joinChannel(new IrcChannel(Configurable.CHANNEL));
     }
 
     @Override
@@ -60,12 +60,12 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
         switch(command) {
             case "!join":
                 if(parameters != null) {
-                    transport.sendPrivateMessage(new IrcPrivateMessage(
-                            transport.getCurrentUser(),
+                    ircConnection.sendPrivateMessage(new IrcPrivateMessage(
+                            ircConnection.getCurrentUser(),
                             new IrcUser(sender),
                             "Joining " + parameters[0]
                     ));
-                    transport.joinChannel(new IrcChannel(parameters[0].toString()));
+                    ircConnection.joinChannel(new IrcChannel(parameters[0].toString()));
                 }
                 
                 break;
@@ -76,12 +76,12 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                     partChannel = parameters[0];
                 
                 if(!partChannel.equals("")) {
-                    transport.sendPrivateMessage(new IrcPrivateMessage(
-                        transport.getCurrentUser(),
+                    ircConnection.sendPrivateMessage(new IrcPrivateMessage(
+                        ircConnection.getCurrentUser(),
                         new IrcUser(sender),
                         "Parting from " + partChannel)
                     );
-                    transport.partFromChannel(new IrcChannel(partChannel));
+                    ircConnection.partFromChannel(new IrcChannel(partChannel));
                 }
                 
                 break;
@@ -90,12 +90,12 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     opNick    = parameters[0];
                 
-                transport.sendPrivateMessage(new IrcPrivateMessage(
-                        transport.getCurrentUser(),
+                ircConnection.sendPrivateMessage(new IrcPrivateMessage(
+                        ircConnection.getCurrentUser(),
                         new IrcUser(sender),
                         "Giving OP to " + opNick + " in " + channel.getName()
                 ));
-                transport.changeMode(channel, "+o " + opNick);
+                ircConnection.changeMode(channel, "+o " + opNick);
                 
                 break;
             case "!deop":
@@ -103,12 +103,12 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     deopNick    = parameters[0];
                 
-                transport.sendPrivateMessage(new IrcPrivateMessage(
-                        transport.getCurrentUser(),
+                ircConnection.sendPrivateMessage(new IrcPrivateMessage(
+                        ircConnection.getCurrentUser(),
                         new IrcUser(sender),
                         "Removing OP to " + deopNick + " in " + channel.getName()
                 ));
-                transport.changeMode(channel, "-o " + deopNick);
+                ircConnection.changeMode(channel, "-o " + deopNick);
                 
                 break;
             case "!voice":
@@ -116,12 +116,12 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     voiceNick    = parameters[0];
                 
-                transport.sendPrivateMessage(new IrcPrivateMessage(
-                        transport.getCurrentUser(),
+                ircConnection.sendPrivateMessage(new IrcPrivateMessage(
+                        ircConnection.getCurrentUser(),
                         new IrcUser(sender),
                         "Giving VOICE to " + voiceNick + " in " + channel.getName()
                 ));
-                transport.changeMode(channel, "+v " + voiceNick);
+                ircConnection.changeMode(channel, "+v " + voiceNick);
                 
                 break;
             case "!devoice":
@@ -129,12 +129,12 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                 if(parameters != null)
                     devoiceNick    = parameters[0];
                 
-                transport.sendPrivateMessage(new IrcPrivateMessage(
-                        transport.getCurrentUser(),
+                ircConnection.sendPrivateMessage(new IrcPrivateMessage(
+                        ircConnection.getCurrentUser(),
                         new IrcUser(sender),
                         "Removing VOICE to " + devoiceNick + " in " + channel.getName()
                 ));
-                transport.changeMode(channel, "-v " + devoiceNick);
+                ircConnection.changeMode(channel, "-v " + devoiceNick);
                 
                 break;
         }
@@ -162,13 +162,13 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
 
     @Override
     public void onPrivateMessage(IrcPrivateMessage message) throws IOException {
-        String sender      = message.getSender().getNick();
-        String text        = message.getText();
+        String sender = message.getSender().getNick();
+        String text   = message.getText();
 
         System.out.println("Private message received from " + sender + ": " + text);
 
-        transport.sendPrivateMessage(new IrcPrivateMessage(
-                transport.getCurrentUser(),
+        ircConnection.sendPrivateMessage(new IrcPrivateMessage(
+                ircConnection.getCurrentUser(),
                 new IrcUser(sender),
                 text
         ));
