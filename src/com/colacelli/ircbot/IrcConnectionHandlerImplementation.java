@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 import com.colacelli.irclib.IrcChannel;
 import com.colacelli.irclib.IrcChannelMessage;
+import com.colacelli.irclib.IrcConnection;
 import com.colacelli.irclib.IrcConnectionHandler;
 import com.colacelli.irclib.IrcPrivateMessage;
 import com.colacelli.irclib.IrcServer;
@@ -12,19 +13,19 @@ import com.colacelli.irclib.IrcUser;
 
 public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     @Override
-    public void onConnect(IrcServer server, IrcUser user) throws IOException {
+    public void onConnect(IrcConnection ircConnection, IrcServer server, IrcUser user) throws IOException {
         System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + user.getNick() + ":" + user.getLogin());
         
         ircConnection.joinChannel(new IrcChannel(Configurable.CHANNEL));
     }
 
     @Override
-    public void onDisconnect(IrcServer server) throws IOException {
+    public void onDisconnect(IrcConnection ircConnection, IrcServer server) throws IOException {
         System.out.println("Disconnecting from " + server.getHostname() + ":" + server.getPort());
     }
 
     @Override
-    public void onJoin(IrcUser user, IrcChannel channel) throws IOException {
+    public void onJoin(IrcConnection ircConnection, IrcUser user, IrcChannel channel) throws IOException {
         System.out.println(user.getNick() + " joined " + channel.getName());
         
         if(!user.getNick().equals(ircConnection.getCurrentUser().getNick()))
@@ -36,14 +37,14 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     }
 
     @Override
-    public void onKick(IrcUser user, IrcChannel channel) throws IOException {
+    public void onKick(IrcConnection ircConnection, IrcUser user, IrcChannel channel) throws IOException {
         System.out.println(user.getNick() + " has been kicked from " + channel.getName());
         
         ircConnection.joinChannel(new IrcChannel(Configurable.CHANNEL));
     }
 
     @Override
-    public void onChannelMessage(IrcChannelMessage message) throws IOException {
+    public void onChannelMessage(IrcConnection ircConnection, IrcChannelMessage message) throws IOException {
         String sender      = message.getSender().getNick();
         String text        = message.getText();
         IrcChannel channel = message.getChannel();
@@ -65,7 +66,7 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
                             new IrcUser(sender),
                             "Joining " + parameters[0]
                     ));
-                    ircConnection.joinChannel(new IrcChannel(parameters[0].toString()));
+                    ircConnection.joinChannel(new IrcChannel(parameters[0]));
                 }
                 
                 break;
@@ -141,27 +142,27 @@ public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     }
 
     @Override
-    public void onMode(IrcChannel channel, String mode) throws IOException {
+    public void onMode(IrcConnection ircConnection, IrcChannel channel, String mode) throws IOException {
         System.out.println("Mode changed to " + mode + " in " + channel.getName());
     }
 
     @Override
-    public void onNickChange(IrcUser user) throws IOException {
+    public void onNickChange(IrcConnection ircConnection, IrcUser user) throws IOException {
         System.out.println(user.getOldNick() + " changed nickname to " + user.getNick());
     }
 
     @Override
-    public void onPart(IrcUser user, IrcChannel channel) throws IOException {
+    public void onPart(IrcConnection ircConnection, IrcUser user, IrcChannel channel) throws IOException {
         System.out.println(user.getNick() + " parted from " + channel.getName());
     }
 
     @Override
-    public void onPing() {
+    public void onPing(IrcConnection ircConnection) {
         System.out.println("PING!");
     }
 
     @Override
-    public void onPrivateMessage(IrcPrivateMessage message) throws IOException {
+    public void onPrivateMessage(IrcConnection ircConnection, IrcPrivateMessage message) throws IOException {
         String sender = message.getSender().getNick();
         String text   = message.getText();
 

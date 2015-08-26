@@ -25,7 +25,6 @@ public final class IrcConnection {
     
     public IrcConnection(IrcConnectionHandler newHandler) {
         handler = newHandler;
-        handler.setIrcConnection(this);
     }
 
     public void connectToServer(IrcServer newServer, IrcUser newUser) throws IOException {
@@ -51,7 +50,7 @@ public final class IrcConnection {
     public void disconnectFromServer() throws IOException {
         socket.close();
         
-        handler.onDisconnect(currentServer);
+        handler.onDisconnect(this, currentServer);
     }
 
     public void joinChannel(IrcChannel channel) throws IOException {
@@ -73,7 +72,7 @@ public final class IrcConnection {
             try {
                 int rawCode = Integer.parseInt(splittedLine[1]);
                 if(rawCode == RawCode.LOGGED_IN.getCode()) {
-                    handler.onConnect(currentServer, currentUser);
+                    handler.onConnect(this, currentServer, currentUser);
                 } else if(rawCode == RawCode.NICKNAME_IN_USE.getCode()) {
                     // Re-login with a random ending
                     changeNick(currentUser.getNick() + (new Random()).nextInt(9));
@@ -86,7 +85,7 @@ public final class IrcConnection {
                 writer.write("PONG " + line.substring(5) + ENTER);
                 writer.flush();
                 
-                handler.onPing();
+                handler.onPing(this);
             } else {
                 IrcChannel channel = null;
                 
@@ -105,28 +104,28 @@ public final class IrcConnection {
                             String text  = line.substring(messageIndex + 1);
                             
                             if(channel != null) {
-                                handler.onChannelMessage(new IrcChannelMessage(new IrcUser(nick, login), channel, text));
+                                handler.onChannelMessage(this, new IrcChannelMessage(new IrcUser(nick, login), channel, text));
                             }
                             else {
-                                handler.onPrivateMessage(new IrcPrivateMessage(new IrcUser(nick, login), currentUser, text));
+                                handler.onPrivateMessage(this, new IrcPrivateMessage(new IrcUser(nick, login), currentUser, text));
                             }
                         }
                         
                         break;
                     case "JOIN":
                         if(channel != null)
-                            handler.onJoin(new IrcUser(line.substring(1, line.indexOf("!"))), channel);
+                            handler.onJoin(this, new IrcUser(line.substring(1, line.indexOf("!"))), channel);
 
                         break;
                     case "KICK":
                         if(channel != null)
-                            handler.onKick(new IrcUser(splittedLine[3]), channel);
+                            handler.onKick(this, new IrcUser(splittedLine[3]), channel);
                         
                         break;
                     case "MODE":
                         // FIXME: Mode is uncompleted, it just sends the first parameter.
                         if(channel != null)
-                            handler.onMode(channel, splittedLine[3]);
+                            handler.onMode(this, channel, splittedLine[3]);
                         
                         break;
                     case "NICK":
@@ -134,12 +133,12 @@ public final class IrcConnection {
                         IrcUser nickUser = new IrcUser(oldNick);
                         nickUser.setNick(splittedLine[2].substring(1));
 
-                        handler.onNickChange(nickUser);
+                        handler.onNickChange(this, nickUser);
 
                         break;
                     case "PART":
                         if(channel != null)
-                            handler.onPart(new IrcUser(line.substring(1, line.indexOf("!"))), channel);
+                            handler.onPart(this, new IrcUser(line.substring(1, line.indexOf("!"))), channel);
 
                         break;
                 }
