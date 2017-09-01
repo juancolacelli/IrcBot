@@ -1,4 +1,9 @@
-package com.colacelli.irclib;
+package com.colacelli.irclib.connection;
+
+import com.colacelli.irclib.actor.IrcChannel;
+import com.colacelli.irclib.message.IrcChannelMessage;
+import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.message.IrcPrivateMessage;
 
 import java.io.IOException;
 

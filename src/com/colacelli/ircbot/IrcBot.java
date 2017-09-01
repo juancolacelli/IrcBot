@@ -1,8 +1,8 @@
 package com.colacelli.ircbot;
 
-import com.colacelli.irclib.IrcConnection;
-import com.colacelli.irclib.IrcServer;
-import com.colacelli.irclib.IrcUser;
+import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.connection.IrcConnection;
+import com.colacelli.irclib.connection.IrcServer;
 
 public class IrcBot {
     public static void main(String[] args) throws Exception {

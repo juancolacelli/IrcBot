@@ -1,4 +1,4 @@
-package com.colacelli.irclib;
+package com.colacelli.irclib.connection;
 
 public class IrcServer {
     private String hostname;

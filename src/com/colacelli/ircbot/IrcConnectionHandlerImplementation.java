@@ -3,13 +3,13 @@ package com.colacelli.ircbot;
 import java.io.IOException;
 import java.util.Arrays;
 
-import com.colacelli.irclib.IrcChannel;
-import com.colacelli.irclib.IrcChannelMessage;
-import com.colacelli.irclib.IrcConnection;
-import com.colacelli.irclib.IrcConnectionHandler;
-import com.colacelli.irclib.IrcPrivateMessage;
-import com.colacelli.irclib.IrcServer;
-import com.colacelli.irclib.IrcUser;
+import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.actor.IrcChannel;
+import com.colacelli.irclib.message.IrcChannelMessage;
+import com.colacelli.irclib.connection.IrcConnection;
+import com.colacelli.irclib.connection.IrcConnectionHandler;
+import com.colacelli.irclib.connection.IrcServer;
+import com.colacelli.irclib.message.IrcPrivateMessage;
 
 public class IrcConnectionHandlerImplementation extends IrcConnectionHandler {
     @Override

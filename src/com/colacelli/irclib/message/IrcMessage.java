@@ -1,4 +1,6 @@
-package com.colacelli.irclib;
+package com.colacelli.irclib.message;
+
+import com.colacelli.irclib.actor.IrcUser;
 
 public class IrcMessage {
     protected IrcUser sender;

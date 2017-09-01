@@ -1,13 +1,12 @@
-package com.colacelli.irclib.connectors;
+package com.colacelli.irclib.connection.connector;
 
-import com.colacelli.irclib.IrcServer;
-import com.colacelli.irclib.IrcUser;
+import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.connection.IrcServer;
 
 import javax.net.ssl.*;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.net.Socket;
 import java.security.GeneralSecurityException;
 import java.security.cert.X509Certificate;
 

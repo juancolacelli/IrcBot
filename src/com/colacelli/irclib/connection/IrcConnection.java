@@ -1,18 +1,17 @@
-package com.colacelli.irclib;
+package com.colacelli.irclib.connection;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
 import java.util.HashMap;
 import java.util.Random;
 
-import com.colacelli.irclib.Rawable.RawCode;
-import com.colacelli.irclib.connectors.IrcConnector;
-import com.colacelli.irclib.connectors.IrcSecureConnector;
-import com.colacelli.irclib.connectors.IrcUnsecureConnector;
+import com.colacelli.irclib.actor.IrcChannel;
+import com.colacelli.irclib.message.IrcChannelMessage;
+import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.connection.Rawable.RawCode;
+import com.colacelli.irclib.connection.connector.IrcConnector;
+import com.colacelli.irclib.connection.connector.IrcSecureConnector;
+import com.colacelli.irclib.connection.connector.IrcUnsecureConnector;
+import com.colacelli.irclib.message.IrcPrivateMessage;
 
 public final class IrcConnection {
     private IrcServer currentServer;
