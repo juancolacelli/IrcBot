@@ -3,11 +3,13 @@ package com.colacelli.irclib;
 public class IrcServer {
     private String hostname;
     private int port;
+    private boolean secure;
     private String password;
     
-    public IrcServer(String newHostname, int newPort, String newPassword) {
+    public IrcServer(String newHostname, int newPort, boolean newSecure, String newPassword) {
         hostname = newHostname;
         port     = newPort;
+        secure   = newSecure;
         password = newPassword;
     }
     
@@ -21,5 +23,9 @@ public class IrcServer {
     
     public String getPassword() {
         return password;
+    }
+
+    public boolean isSecure() {
+        return secure;
     }
 }

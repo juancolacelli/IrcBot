@@ -8,7 +8,7 @@ public class IrcBot {
     public static void main(String[] args) throws Exception {
         IrcConnection ircConnection = new IrcConnection(new IrcConnectionHandlerImplementation());
         ircConnection.connectToServer(
-                new IrcServer(Configurable.SERVER, Configurable.PORT, Configurable.PASSWORD),
+                new IrcServer(Configurable.SERVER, Configurable.PORT, Configurable.SECURE, Configurable.PASSWORD),
                 new IrcUser(Configurable.NICK, Configurable.LOGIN)
         );
     }
