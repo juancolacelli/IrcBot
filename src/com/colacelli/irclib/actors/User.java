@@ -1,11 +1,11 @@
 package com.colacelli.irclib.actors;
 
-public class IrcUser {
+public class User {
     private String nick;
     private String login;
     private String oldNick;
 
-    private IrcUser(Builder builder) {
+    private User(Builder builder) {
         nick = builder.nick;
         login = builder.login;
     }
@@ -41,8 +41,8 @@ public class IrcUser {
             return this;
         }
 
-        public IrcUser build() {
-            return new IrcUser(this);
+        public User build() {
+            return new User(this);
         }
     }
 }

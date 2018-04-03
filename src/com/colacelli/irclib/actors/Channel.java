@@ -1,9 +1,9 @@
 package com.colacelli.irclib.actors;
 
-public class IrcChannel {
+public class Channel {
     private String name;
 
-    public IrcChannel(String newName) {
+    public Channel(String newName) {
         name = newName;
     }
 

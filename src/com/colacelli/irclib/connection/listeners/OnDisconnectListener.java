@@ -1,8 +1,8 @@
 package com.colacelli.irclib.connection.listeners;
 
-import com.colacelli.irclib.connection.IrcConnection;
-import com.colacelli.irclib.connection.IrcServer;
+import com.colacelli.irclib.connection.Connection;
+import com.colacelli.irclib.connection.Server;
 
 public interface OnDisconnectListener {
-    void onDisconnect(IrcConnection ircConnection, IrcServer server);
+    void onDisconnect(Connection connection, Server server);
 }

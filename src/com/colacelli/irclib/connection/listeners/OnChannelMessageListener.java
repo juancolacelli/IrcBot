@@ -1,8 +1,8 @@
 package com.colacelli.irclib.connection.listeners;
 
-import com.colacelli.irclib.connection.IrcConnection;
-import com.colacelli.irclib.messages.IrcChannelMessage;
+import com.colacelli.irclib.connection.Connection;
+import com.colacelli.irclib.messages.ChannelMessage;
 
 public interface OnChannelMessageListener {
-    void onChannelMessage(IrcConnection ircConnection, IrcChannelMessage message);
+    void onChannelMessage(Connection connection, ChannelMessage message);
 }

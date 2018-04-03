@@ -1,18 +1,18 @@
 package com.colacelli.irclib.connection.connectors;
 
-import com.colacelli.irclib.actors.IrcUser;
-import com.colacelli.irclib.connection.IrcServer;
+import com.colacelli.irclib.actors.User;
+import com.colacelli.irclib.connection.Server;
 
 import java.io.*;
 import java.net.Socket;
 
-public class IrcUnsecureConnector extends IrcConnector {
+public class UnsecureConnector extends Connector {
     private Socket socket;
     private BufferedWriter writer;
     private BufferedReader reader;
 
     @Override
-    public void connect(IrcServer newServer, IrcUser newUser) throws IOException {
+    public void connect(Server newServer, User newUser) throws IOException {
         socket = new Socket(newServer.getHostname(), newServer.getPort());
         writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));

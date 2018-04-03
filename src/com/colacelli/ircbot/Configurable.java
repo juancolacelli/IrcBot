@@ -6,7 +6,7 @@ public interface Configurable {
     boolean SECURE = true;
     String PASSWORD = "";
 
-    String NICK = "IrcBot";
-    String LOGIN = "IrcBot";
+    String NICK = "ircbot";
+    String LOGIN = "ircbot";
     String CHANNEL = "#debug";
 }

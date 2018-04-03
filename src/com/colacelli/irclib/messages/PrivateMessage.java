@@ -1,35 +1,35 @@
 package com.colacelli.irclib.messages;
 
-import com.colacelli.irclib.actors.IrcUser;
+import com.colacelli.irclib.actors.User;
 
-public class IrcPrivateMessage extends IrcMessage {
-    protected IrcUser receiver;
+public class PrivateMessage extends Message {
+    protected User receiver;
 
-    private IrcPrivateMessage(Builder builder) {
+    private PrivateMessage(Builder builder) {
         sender = builder.sender;
         receiver = builder.receiver;
         text = builder.text;
     }
 
-    public IrcUser getReceiver() {
+    public User getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(IrcUser receiver) {
+    public void setReceiver(User receiver) {
         this.receiver = receiver;
     }
 
     public static class Builder {
-        private IrcUser sender;
-        private IrcUser receiver;
+        private User sender;
+        private User receiver;
         private String text;
 
-        public Builder setSender(IrcUser sender) {
+        public Builder setSender(User sender) {
             this.sender = sender;
             return this;
         }
 
-        public Builder setReceiver(IrcUser receiver) {
+        public Builder setReceiver(User receiver) {
             this.receiver = receiver;
             return this;
         }
@@ -39,8 +39,8 @@ public class IrcPrivateMessage extends IrcMessage {
             return this;
         }
 
-        public IrcPrivateMessage build() {
-            return new IrcPrivateMessage(this);
+        public PrivateMessage build() {
+            return new PrivateMessage(this);
         }
     }
 }

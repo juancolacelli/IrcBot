@@ -1,8 +1,8 @@
 package com.colacelli.irclib.connection.listeners;
 
-import com.colacelli.irclib.actors.IrcChannel;
-import com.colacelli.irclib.connection.IrcConnection;
+import com.colacelli.irclib.actors.Channel;
+import com.colacelli.irclib.connection.Connection;
 
 public interface OnChannelModeListener {
-    void onChannelMode(IrcConnection ircConnection, IrcChannel channel, String mode);
+    void onChannelMode(Connection connection, Channel channel, String mode);
 }

@@ -1,7 +1,7 @@
 package com.colacelli.irclib.connection.connectors;
 
-import com.colacelli.irclib.actors.IrcUser;
-import com.colacelli.irclib.connection.IrcServer;
+import com.colacelli.irclib.actors.User;
+import com.colacelli.irclib.connection.Server;
 
 import javax.net.ssl.*;
 import java.io.DataInputStream;
@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.cert.X509Certificate;
 
-public class IrcSecureConnector extends IrcConnector {
+public class SecureConnector extends Connector {
     final TrustManager[] trustAllCerts = new TrustManager[]{
             new X509TrustManager() {
                 public X509Certificate[] getAcceptedIssuers() {
@@ -29,7 +29,7 @@ public class IrcSecureConnector extends IrcConnector {
     private DataInputStream reader;
 
     @Override
-    public void connect(IrcServer newServer, IrcUser newUser) throws IOException {
+    public void connect(Server newServer, User newUser) throws IOException {
         SSLSocketFactory factory = (SSLSocketFactory) SSLSocketFactory.getDefault();
         socket = (SSLSocket) factory.createSocket(newServer.getHostname(), newServer.getPort());
         writer = new DataOutputStream(socket.getOutputStream());

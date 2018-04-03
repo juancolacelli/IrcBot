@@ -1,8 +1,8 @@
 package com.colacelli.irclib.connection.listeners;
 
-import com.colacelli.irclib.actors.IrcUser;
-import com.colacelli.irclib.connection.IrcConnection;
+import com.colacelli.irclib.actors.User;
+import com.colacelli.irclib.connection.Connection;
 
 public interface OnNickChangeListener {
-    void onNickChange(IrcConnection ircConnection, IrcUser user);
+    void onNickChange(Connection connection, User user);
 }

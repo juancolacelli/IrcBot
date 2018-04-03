@@ -1,16 +1,16 @@
 package com.colacelli.irclib.messages;
 
-import com.colacelli.irclib.actors.IrcUser;
+import com.colacelli.irclib.actors.User;
 
-public abstract class IrcMessage {
-    protected IrcUser sender;
+public abstract class Message {
+    protected User sender;
     protected String text;
 
-    public IrcUser getSender() {
+    public User getSender() {
         return sender;
     }
 
-    public void setSender(IrcUser newSender) {
+    public void setSender(User newSender) {
         sender = newSender;
     }
 

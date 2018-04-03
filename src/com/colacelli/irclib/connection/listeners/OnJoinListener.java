@@ -1,9 +1,9 @@
 package com.colacelli.irclib.connection.listeners;
 
-import com.colacelli.irclib.actors.IrcChannel;
-import com.colacelli.irclib.actors.IrcUser;
-import com.colacelli.irclib.connection.IrcConnection;
+import com.colacelli.irclib.actors.Channel;
+import com.colacelli.irclib.actors.User;
+import com.colacelli.irclib.connection.Connection;
 
 public interface OnJoinListener {
-    void onJoin(IrcConnection ircConnection, IrcUser user, IrcChannel channel);
+    void onJoin(Connection connection, User user, Channel channel);
 }

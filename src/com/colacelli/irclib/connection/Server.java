@@ -1,12 +1,12 @@
 package com.colacelli.irclib.connection;
 
-public class IrcServer {
+public class Server {
     private String hostname;
     private int port;
     private boolean secure;
     private String password;
 
-    private IrcServer(Builder builder) {
+    private Server(Builder builder) {
         hostname = builder.hostname;
         port = builder.port;
         secure = builder.secure;
@@ -55,8 +55,8 @@ public class IrcServer {
             return this;
         }
 
-        public IrcServer build() {
-            return new IrcServer(this);
+        public Server build() {
+            return new Server(this);
         }
     }
 }
