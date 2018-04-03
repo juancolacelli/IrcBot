@@ -4,6 +4,6 @@ import com.colacelli.irclib.actors.IrcChannel;
 import com.colacelli.irclib.actors.IrcUser;
 import com.colacelli.irclib.connection.IrcConnection;
 
-public abstract class OnKickListener {
-    public abstract void onKick(IrcConnection ircConnection, IrcUser user, IrcChannel channel);
+public interface OnKickListener {
+    void onKick(IrcConnection ircConnection, IrcUser user, IrcChannel channel);
 }
