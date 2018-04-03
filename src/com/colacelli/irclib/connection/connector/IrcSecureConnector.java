@@ -11,20 +11,22 @@ import java.security.GeneralSecurityException;
 import java.security.cert.X509Certificate;
 
 public class IrcSecureConnector extends IrcConnector {
+    final TrustManager[] trustAllCerts = new TrustManager[]{
+            new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return new X509Certificate[0];
+                }
+
+                public void checkClientTrusted(X509Certificate[] chain, String authType) {
+                }
+
+                public void checkServerTrusted(X509Certificate[] chain, String authType) {
+                }
+            }
+    };
     private SSLSocket socket;
     private DataOutputStream writer;
     private DataInputStream reader;
-
-    final TrustManager[] trustAllCerts=new TrustManager[]{
-        new X509TrustManager() {
-            public X509Certificate[] getAcceptedIssuers(){
-                return new X509Certificate[0];
-            }
-
-            public void checkClientTrusted(X509Certificate[] chain, String authType) {}
-            public void checkServerTrusted(X509Certificate[] chain, String authType) {}
-        }
-    };
 
     @Override
     public void connect(IrcServer newServer, IrcUser newUser) throws IOException {

@@ -7,9 +7,22 @@ import com.colacelli.irclib.connection.IrcServer;
 public class IrcBot {
     public static void main(String[] args) throws Exception {
         IrcConnection ircConnection = new IrcConnection(new IrcConnectionHandlerImplementation());
+
+        IrcServer.Builder ircServerBuilder = new IrcServer.Builder();
+        ircServerBuilder
+                .setHostname(Configurable.SERVER)
+                .setPort(Configurable.PORT)
+                .setSecure(Configurable.SECURE)
+                .setPassword(Configurable.PASSWORD);
+
+        IrcUser.Builder ircUserBuilder = new IrcUser.Builder();
+        ircUserBuilder
+                .setNick(Configurable.NICK)
+                .setLogin(Configurable.LOGIN);
+
         ircConnection.connectToServer(
-                new IrcServer(Configurable.SERVER, Configurable.PORT, Configurable.SECURE, Configurable.PASSWORD),
-                new IrcUser(Configurable.NICK, Configurable.LOGIN)
+                ircServerBuilder.build(),
+                ircUserBuilder.build()
         );
     }
 }

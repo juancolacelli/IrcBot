@@ -6,13 +6,38 @@ import com.colacelli.irclib.actor.IrcUser;
 public class IrcChannelMessage extends IrcMessage {
     protected IrcChannel channel;
 
-    public IrcChannelMessage(IrcUser newUser, IrcChannel newChannel, String newText) {
-        sender  = newUser;
-        text    = newText;
-        channel = newChannel;
+    public IrcChannelMessage(Builder builder) {
+        sender = builder.sender;
+        channel = builder.channel;
+        text = builder.text;
     }
 
     public IrcChannel getChannel() {
         return channel;
+    }
+
+    public static class Builder {
+        private IrcUser sender;
+        private IrcChannel channel;
+        private String text;
+
+        public Builder setSender(IrcUser sender) {
+            this.sender = sender;
+            return this;
+        }
+
+        public Builder setChannel(IrcChannel channel) {
+            this.channel = channel;
+            return this;
+        }
+
+        public Builder setText(String text) {
+            this.text = text;
+            return this;
+        }
+
+        public IrcChannelMessage build() {
+            return new IrcChannelMessage(this);
+        }
     }
 }

@@ -6,7 +6,7 @@ import com.colacelli.irclib.connection.IrcServer;
 import java.io.IOException;
 
 public abstract class IrcConnector {
-    protected static final String ENTER =  "\r\n";
+    protected static final String ENTER = "\r\n";
 
     public abstract void connect(IrcServer newServer, IrcUser newUser) throws IOException;
 
