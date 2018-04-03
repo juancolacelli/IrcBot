@@ -1,12 +1,12 @@
 package com.colacelli.ircbot;
 
-import com.colacelli.irclib.actor.IrcChannel;
-import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.actors.IrcChannel;
+import com.colacelli.irclib.actors.IrcUser;
 import com.colacelli.irclib.connection.IrcConnection;
 import com.colacelli.irclib.connection.IrcServer;
 import com.colacelli.irclib.connection.listeners.*;
-import com.colacelli.irclib.message.IrcChannelMessage;
-import com.colacelli.irclib.message.IrcPrivateMessage;
+import com.colacelli.irclib.messages.IrcChannelMessage;
+import com.colacelli.irclib.messages.IrcPrivateMessage;
 
 import java.io.IOException;
 import java.util.Arrays;

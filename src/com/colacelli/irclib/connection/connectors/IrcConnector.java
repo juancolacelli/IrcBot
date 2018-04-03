@@ -1,6 +1,6 @@
-package com.colacelli.irclib.connection.connector;
+package com.colacelli.irclib.connection.connectors;
 
-import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.actors.IrcUser;
 import com.colacelli.irclib.connection.IrcServer;
 
 import java.io.IOException;

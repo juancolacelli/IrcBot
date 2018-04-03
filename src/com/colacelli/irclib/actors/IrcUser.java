@@ -1,4 +1,4 @@
-package com.colacelli.irclib.actor;
+package com.colacelli.irclib.actors;
 
 public class IrcUser {
     private String nick;

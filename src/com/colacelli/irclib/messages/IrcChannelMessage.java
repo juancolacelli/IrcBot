@@ -1,7 +1,7 @@
-package com.colacelli.irclib.message;
+package com.colacelli.irclib.messages;
 
-import com.colacelli.irclib.actor.IrcChannel;
-import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.actors.IrcChannel;
+import com.colacelli.irclib.actors.IrcUser;
 
 public class IrcChannelMessage extends IrcMessage {
     protected IrcChannel channel;

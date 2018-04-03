@@ -1,4 +1,4 @@
-package com.colacelli.irclib.actor;
+package com.colacelli.irclib.actors;
 
 public class IrcChannel {
     private String name;

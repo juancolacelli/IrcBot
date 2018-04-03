@@ -1,14 +1,14 @@
 package com.colacelli.irclib.connection;
 
-import com.colacelli.irclib.actor.IrcChannel;
-import com.colacelli.irclib.actor.IrcUser;
+import com.colacelli.irclib.actors.IrcChannel;
+import com.colacelli.irclib.actors.IrcUser;
 import com.colacelli.irclib.connection.Rawable.RawCode;
-import com.colacelli.irclib.connection.connector.IrcConnector;
-import com.colacelli.irclib.connection.connector.IrcSecureConnector;
-import com.colacelli.irclib.connection.connector.IrcUnsecureConnector;
+import com.colacelli.irclib.connection.connectors.IrcConnector;
+import com.colacelli.irclib.connection.connectors.IrcSecureConnector;
+import com.colacelli.irclib.connection.connectors.IrcUnsecureConnector;
 import com.colacelli.irclib.connection.listeners.*;
-import com.colacelli.irclib.message.IrcChannelMessage;
-import com.colacelli.irclib.message.IrcPrivateMessage;
+import com.colacelli.irclib.messages.IrcChannelMessage;
+import com.colacelli.irclib.messages.IrcPrivateMessage;
 
 import java.io.IOException;
 import java.util.ArrayList;
