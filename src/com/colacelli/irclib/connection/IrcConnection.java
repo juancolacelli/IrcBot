@@ -6,10 +6,12 @@ import com.colacelli.irclib.connection.Rawable.RawCode;
 import com.colacelli.irclib.connection.connector.IrcConnector;
 import com.colacelli.irclib.connection.connector.IrcSecureConnector;
 import com.colacelli.irclib.connection.connector.IrcUnsecureConnector;
+import com.colacelli.irclib.connection.listeners.*;
 import com.colacelli.irclib.message.IrcChannelMessage;
 import com.colacelli.irclib.message.IrcPrivateMessage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -19,12 +21,30 @@ public final class IrcConnection {
     private IrcUser currentUser;
     private HashMap<String, IrcChannel> channelsJoined = new HashMap<>();
 
-    private IrcConnectionHandler handler;
-
     private IrcConnector ircConnector;
 
-    public IrcConnection(IrcConnectionHandler newHandler) {
-        handler = newHandler;
+    private ArrayList<OnConnectListener> onConnectListeners;
+    private ArrayList<OnDisconnectListener> onDisconnectListeners;
+    private ArrayList<OnPingListener> onPingListeners;
+    private ArrayList<OnJoinListener> onJoinListeners;
+    private ArrayList<OnPartListener> onPartListeners;
+    private ArrayList<OnKickListener> onKickListeners;
+    private ArrayList<OnChannelModeListener> onChannelModeListeners;
+    private ArrayList<OnChannelMessageListener> onChannelMessageListeners;
+    private ArrayList<OnPrivateMessageListener> onPrivateMessageListeners;
+    private ArrayList<OnNickChangeListener> onNickChangeListeners;
+
+    public IrcConnection() {
+        onConnectListeners = new ArrayList<>();
+        onDisconnectListeners = new ArrayList<>();
+        onPingListeners = new ArrayList<>();
+        onJoinListeners = new ArrayList<>();
+        onPartListeners = new ArrayList<>();
+        onKickListeners = new ArrayList<>();
+        onChannelModeListeners = new ArrayList<>();
+        onChannelMessageListeners = new ArrayList<>();
+        onPrivateMessageListeners = new ArrayList<>();
+        onNickChangeListeners = new ArrayList<>();
     }
 
     public void connectToServer(IrcServer newServer, IrcUser newUser) throws IOException {
@@ -51,8 +71,8 @@ public final class IrcConnection {
         }
     }
 
-    public void disconnectFromServer() throws IOException {
-        handler.onDisconnect(this, currentServer);
+    public void disconnectFromServer() {
+        onDisconnectListeners.forEach((listener) -> listener.onDisconnect(this, currentServer));
     }
 
     public void joinChannel(IrcChannel channel) throws IOException {
@@ -72,7 +92,7 @@ public final class IrcConnection {
             try {
                 int rawCode = Integer.parseInt(splittedLine[1]);
                 if (rawCode == RawCode.LOGGED_IN.getCode()) {
-                    handler.onConnect(this, currentServer, currentUser);
+                    onConnectListeners.forEach((listener) -> listener.onConnect(this, currentServer, currentUser));
                 } else if (rawCode == RawCode.NICKNAME_IN_USE.getCode()) {
                     // Re-login with a random ending
                     changeNick(currentUser.getNick() + (new Random()).nextInt(9));
@@ -83,14 +103,15 @@ public final class IrcConnection {
 
             if (line.toLowerCase().startsWith("ping ")) {
                 ircConnector.send("PONG " + line.substring(5));
-
-                handler.onPing(this);
+                onPingListeners.forEach((listener) -> listener.onPing(this));
             } else {
                 IrcChannel channel = null;
                 IrcUser.Builder ircUserBuilder = new IrcUser.Builder();
 
                 if (splittedLine[2].contains("#"))
                     channel = channelsJoined.get(splittedLine[2]);
+
+                final IrcChannel ircChannel = channel;
 
                 switch (splittedLine[1]) {
                     case "PRIVMSG":
@@ -114,49 +135,57 @@ public final class IrcConnection {
                                         .setChannel(channel)
                                         .setText(text);
 
-                                handler.onChannelMessage(this, ircChannelMessageBuilder.build());
+                                onChannelMessageListeners.forEach((listener) -> listener.onChannelMessage(this, ircChannelMessageBuilder.build()));
                             } else {
                                 IrcPrivateMessage.Builder ircPrivateMessageBuilder = new IrcPrivateMessage.Builder();
                                 ircPrivateMessageBuilder
                                         .setSender(ircUserBuilder.build())
                                         .setReceiver(currentUser)
                                         .setText(text);
-                                handler.onPrivateMessage(this, ircPrivateMessageBuilder.build());
+                                onPrivateMessageListeners.forEach((listener) -> listener.onPrivateMessage(this, ircPrivateMessageBuilder.build()));
                             }
                         }
 
                         break;
+
                     case "JOIN":
-                        if (channel != null)
+                        if (channel != null) {
                             ircUserBuilder.setNick(line.substring(1, line.indexOf("!")));
-                        handler.onJoin(this, ircUserBuilder.build(), channel);
+                            onJoinListeners.forEach((listener) -> listener.onJoin(this, ircUserBuilder.build(), ircChannel));
+                        }
 
                         break;
+
                     case "KICK":
-                        if (channel != null)
+                        if (channel != null) {
                             ircUserBuilder.setNick(splittedLine[3]);
-                        handler.onKick(this, ircUserBuilder.build(), channel);
+                            onKickListeners.forEach((listener) -> listener.onKick(this, ircUserBuilder.build(), ircChannel));
+                        }
 
                         break;
+
                     case "MODE":
                         // FIXME: Mode is uncompleted, it just sends the first parameter.
-                        if (channel != null)
-                            handler.onMode(this, channel, splittedLine[3]);
+                        if (channel != null) {
+                            onChannelModeListeners.forEach((listener) -> listener.onChannelMode(this, ircChannel, splittedLine[3]));
+                        }
 
                         break;
+
                     case "NICK":
                         String oldNick = line.substring(1, line.indexOf("!"));
                         ircUserBuilder.setNick(oldNick);
                         IrcUser nickUser = ircUserBuilder.build();
                         nickUser.setNick(splittedLine[2].substring(1));
 
-                        handler.onNickChange(this, nickUser);
+                        onNickChangeListeners.forEach((listener) -> listener.onNickChange(this, nickUser));
 
                         break;
                     case "PART":
-                        if (channel != null)
+                        if (channel != null) {
                             ircUserBuilder.setNick(line.substring(1, line.indexOf("!")));
-                        handler.onPart(this, ircUserBuilder.build(), channel);
+                            onPartListeners.forEach((listener) -> listener.onPart(this, ircUserBuilder.build(), ircChannel));
+                        }
 
                         break;
                 }
@@ -208,5 +237,45 @@ public final class IrcConnection {
 
     public IrcUser getCurrentUser() {
         return currentUser;
+    }
+
+    public void addListener(OnConnectListener listener) {
+        onConnectListeners.add(listener);
+    }
+
+    public void addListener(OnDisconnectListener listener) {
+        onDisconnectListeners.add(listener);
+    }
+
+    public void addListener(OnPingListener listener) {
+        onPingListeners.add(listener);
+    }
+
+    public void addListener(OnJoinListener listener) {
+        onJoinListeners.add(listener);
+    }
+
+    public void addListener(OnPartListener listener) {
+        onPartListeners.add(listener);
+    }
+
+    public void addListener(OnKickListener listener) {
+        onKickListeners.add(listener);
+    }
+
+    public void addListener(OnChannelModeListener listener) {
+        onChannelModeListeners.add(listener);
+    }
+
+    public void addListener(OnChannelMessageListener listener) {
+        onChannelMessageListeners.add(listener);
+    }
+
+    public void addListener(OnPrivateMessageListener listener) {
+        onPrivateMessageListeners.add(listener);
+    }
+
+    public void addListener(OnNickChangeListener listener) {
+        onNickChangeListeners.add(listener);
     }
 }
