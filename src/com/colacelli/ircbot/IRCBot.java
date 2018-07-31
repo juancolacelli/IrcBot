@@ -6,82 +6,80 @@ import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.Server;
 import com.colacelli.irclib.connection.listeners.*;
 import com.colacelli.irclib.messages.ChannelMessage;
-import com.colacelli.irclib.messages.PrivateMessage;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class IRCBot {
     static Connection connection = new Connection();
 
     public static void main(String[] args) throws Exception {
 
-        Server.Builder ircServerBuilder = new Server.Builder();
-        ircServerBuilder
+        Server.Builder serverBuilder = new Server.Builder();
+        serverBuilder
                 .setHostname(Configurable.SERVER)
                 .setPort(Configurable.PORT)
                 .setSecure(Configurable.SECURE)
                 .setPassword(Configurable.PASSWORD);
 
-        User.Builder ircUserBuilder = new User.Builder();
-        ircUserBuilder
+        User.Builder userBuilder = new User.Builder();
+        userBuilder
                 .setNick(Configurable.NICK)
                 .setLogin(Configurable.LOGIN);
 
         addListeners();
 
         connection.connect(
-                ircServerBuilder.build(),
-                ircUserBuilder.build()
+                serverBuilder.build(),
+                userBuilder.build()
         );
     }
 
     private static void addListeners() {
-        connection.addListener((OnConnectListener) (ircConnection, server, user) -> {
+        connection.addListener((OnConnectListener) (connection, server, user) -> {
             System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + user.getNick() + ":" + user.getLogin());
 
             try {
-                ircConnection.join(new Channel(Configurable.CHANNEL));
+                connection.join(new Channel(Configurable.CHANNEL));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
-        connection.addListener((OnDisconnectListener) (ircConnection, server) -> System.out.println("Disconnected from " + server.getHostname() + ":" + server.getPort()));
+        connection.addListener((OnDisconnectListener) (connection, server) -> System.out.println("Disconnected from " + server.getHostname() + ":" + server.getPort()));
 
-        connection.addListener(ircConnection -> System.out.println("PING!"));
+        connection.addListener(connection -> System.out.println("PING!"));
 
-        connection.addListener((OnJoinListener) (ircConnection, user, channel) -> {
+        connection.addListener((OnJoinListener) (connection, user, channel) -> {
             System.out.println(user.getNick() + " joined " + channel.getName());
 
-            ChannelMessage.Builder ircChannelMessageBuilder = new ChannelMessage.Builder();
-            ircChannelMessageBuilder
-                    .setSender(ircConnection.getUser())
+            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+            channelMessageBuilder
+                    .setSender(connection.getUser())
                     .setChannel(channel)
                     .setText("Hello " + user.getNick() + " welcome to " + channel.getName());
 
-            if (!user.getNick().equals(ircConnection.getUser().getNick())) {
+            if (!user.getNick().equals(connection.getUser().getNick())) {
                 try {
-                    ircConnection.send(ircChannelMessageBuilder.build());
+                    connection.send(channelMessageBuilder.build());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
 
-        connection.addListener((OnPartListener) (ircConnection, user, channel) -> System.out.println(user.getNick() + " parted from " + channel.getName()));
+        connection.addListener((OnPartListener) (connection, user, channel) -> System.out.println(user.getNick() + " parted from " + channel.getName()));
 
-        connection.addListener((OnKickListener) (ircConnection, user, channel) -> {
+        connection.addListener((OnKickListener) (connection, user, channel) -> {
             System.out.println(user.getNick() + " has been kicked from " + channel.getName());
 
             try {
-                ircConnection.join(new Channel(Configurable.CHANNEL));
+                connection.join(new Channel(Configurable.CHANNEL));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
-        connection.addListener((OnChannelModeListener) (ircConnection, channel, mode) -> System.out.println("Mode changed to " + mode + " in " + channel.getName()));
+        connection.addListener((OnChannelModeListener) (connection, channel, mode) -> System.out.println("Mode changed to " + mode + " in " + channel.getName()));
 
         connection.addListener("!op", (connection, message, command, args) -> {
             String nick = message.getSender().getNick();
@@ -150,8 +148,8 @@ public class IRCBot {
             }
         });
 
-        connection.addListener((OnPrivateMessageListener) (ircConnection, message) -> System.out.println("Private message received from " + message.getSender().getNick() + ": " + message.getText()));
+        connection.addListener((OnPrivateMessageListener) (connection, message) -> System.out.println("Private message received from " + message.getSender().getNick() + ": " + message.getText()));
 
-        connection.addListener((OnNickChangeListener) (ircConnection, user) -> System.out.println(user.getOldNick() + " changed nickname to " + user.getNick()));
+        connection.addListener((OnNickChangeListener) (connection, user) -> System.out.println(user.getOldNick() + " changed nickname to " + user.getNick()));
     }
 }
