@@ -14,9 +14,9 @@ public class User {
         return nick;
     }
 
-    public void setNick(String newNick) {
-        oldNick = nick;
-        nick = newNick;
+    public void setNick(String nick) {
+        oldNick = this.nick;
+        this.nick = nick;
     }
 
     public String getLogin() {
