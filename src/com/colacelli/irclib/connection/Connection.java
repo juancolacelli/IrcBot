@@ -11,7 +11,9 @@ import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.irclib.messages.PrivateMessage;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -31,6 +33,7 @@ public final class Connection {
     private ArrayList<OnKickListener> onKickListeners;
     private ArrayList<OnChannelModeListener> onChannelModeListeners;
     private ArrayList<OnChannelMessageListener> onChannelMessageListeners;
+    private HashMap<String, ArrayList<OnChannelCommandListener>> onChannelCommandListeners;
     private ArrayList<OnPrivateMessageListener> onPrivateMessageListeners;
     private ArrayList<OnNickChangeListener> onNickChangeListeners;
 
@@ -43,8 +46,25 @@ public final class Connection {
         onKickListeners = new ArrayList<>();
         onChannelModeListeners = new ArrayList<>();
         onChannelMessageListeners = new ArrayList<>();
+        onChannelCommandListeners = new HashMap<>();
         onPrivateMessageListeners = new ArrayList<>();
         onNickChangeListeners = new ArrayList<>();
+
+        addListener((OnChannelMessageListener) (connection, message) -> {
+            String[] splittedMessage = message.getText().split(" ");
+            String command = splittedMessage[0].toUpperCase();
+
+            if (!onChannelCommandListeners.isEmpty()) {
+                String[] args = null;
+                if (splittedMessage.length > 1) args = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
+                String[] finalArgs = args;
+
+                ArrayList<OnChannelCommandListener> listeners = onChannelCommandListeners.get(command);
+                if (!listeners.isEmpty()) {
+                    listeners.forEach((listener) -> listener.onChannelCommand(connection, message, command, finalArgs));
+                }
+            }
+        });
     }
 
     public void connect(Server newServer, User newUser) throws IOException {
@@ -268,6 +288,20 @@ public final class Connection {
 
     public void addListener(OnChannelMessageListener listener) {
         onChannelMessageListeners.add(listener);
+    }
+
+    public void addListener(String command, OnChannelCommandListener listener) {
+        command = command.toUpperCase();
+
+        ArrayList<OnChannelCommandListener> currentListeners = onChannelCommandListeners.get(command);
+
+        if (currentListeners == null) {
+            currentListeners = new ArrayList<>();
+        }
+
+        currentListeners.add(listener);
+
+        onChannelCommandListeners.put(command, currentListeners);
     }
 
     public void addListener(OnPrivateMessageListener listener) {

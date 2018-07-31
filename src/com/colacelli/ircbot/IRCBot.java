@@ -83,141 +83,70 @@ public class IRCBot {
 
         connection.addListener((OnChannelModeListener) (ircConnection, channel, mode) -> System.out.println("Mode changed to " + mode + " in " + channel.getName()));
 
-        connection.addListener((OnChannelMessageListener) (ircConnection, message) -> {
-            String sender = message.getSender().getNick();
-            String text = message.getText();
+        connection.addListener("!op", (connection, message, command, args) -> {
+            String nick = message.getSender().getNick();
+            if (args != null) nick = args[0];
+
+            try {
+                connection.mode(message.getChannel(), "+o " + nick);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        connection.addListener("!deop", (connection, message, command, args) -> {
+            String nick = message.getSender().getNick();
+            if (args != null) nick = args[0];
+
+            try {
+                connection.mode(message.getChannel(), "-o " + nick);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        connection.addListener("!voice", (connection, message, command, args) -> {
+            String nick = message.getSender().getNick();
+            if (args != null) nick = args[0];
+
+            try {
+                connection.mode(message.getChannel(), "+v " + nick);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        connection.addListener("!devoice", (connection, message, command, args) -> {
+            String nick = message.getSender().getNick();
+            if (args != null) nick = args[0];
+
+            try {
+                connection.mode(message.getChannel(), "-v " + nick);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        connection.addListener("!join", (connection, message, command, args) -> {
+            if (args != null) {
+                String channel = args[0];
+
+                try {
+                    connection.join(new Channel(channel));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        connection.addListener("!part", (connection, message, command, args) -> {
             Channel channel = message.getChannel();
+            if (args != null) channel = new Channel(args[0]);
 
-            System.out.println("Message received from " + sender + ": " + text + " in " + channel.getName());
-
-            String[] splittedMessage = text.split(" ");
-            String command = splittedMessage[0];
-            String[] parameters = null;
-
-            if (splittedMessage.length > 1)
-                parameters = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
-
-            PrivateMessage.Builder ircPrivateMessageBuilder = new PrivateMessage.Builder();
-            ircPrivateMessageBuilder
-                    .setSender(ircConnection.getUser())
-                    .setReceiver(message.getSender());
-
-            switch (command) {
-                case "!join":
-                    if (parameters != null) {
-                        ircPrivateMessageBuilder.setText("Joining " + parameters[0]);
-                        try {
-                            ircConnection.send(ircPrivateMessageBuilder.build());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        try {
-                            ircConnection.join(new Channel(parameters[0]));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    break;
-                case "!part":
-                    String partChannel = channel.getName();
-
-                    if (parameters != null)
-                        partChannel = parameters[0];
-
-                    if (!partChannel.equals("")) {
-                        ircPrivateMessageBuilder.setText("Parting from " + partChannel);
-                        try {
-                            ircConnection.send(ircPrivateMessageBuilder.build());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
-                        try {
-                            ircConnection.part(new Channel(partChannel));
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-
-                    break;
-                case "!op":
-                    String opNick = sender;
-                    if (parameters != null)
-                        opNick = parameters[0];
-
-                    ircPrivateMessageBuilder.setText("Giving OP to " + opNick + " in " + channel.getName());
-                    try {
-                        ircConnection.send(ircPrivateMessageBuilder.build());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    try {
-                        ircConnection.mode(channel, "+o " + opNick);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    break;
-                case "!deop":
-                    String deopNick = sender;
-                    if (parameters != null)
-                        deopNick = parameters[0];
-
-                    ircPrivateMessageBuilder.setText("Removing OP to " + deopNick + " in " + channel.getName());
-                    try {
-                        ircConnection.send(ircPrivateMessageBuilder.build());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    try {
-                        ircConnection.mode(channel, "-o " + deopNick);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    break;
-                case "!voice":
-                    String voiceNick = sender;
-                    if (parameters != null)
-                        voiceNick = parameters[0];
-
-                    ircPrivateMessageBuilder.setText("Giving VOICE to " + voiceNick + " in " + channel.getName());
-                    try {
-                        ircConnection.send(ircPrivateMessageBuilder.build());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    try {
-                        ircConnection.mode(channel, "+v " + voiceNick);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    break;
-                case "!devoice":
-                    String devoiceNick = sender;
-                    if (parameters != null)
-                        devoiceNick = parameters[0];
-
-                    ircPrivateMessageBuilder.setText("Removing VOICE to " + devoiceNick + " in " + channel.getName());
-                    try {
-                        ircConnection.send(ircPrivateMessageBuilder.build());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    try {
-                        ircConnection.mode(channel, "-v " + devoiceNick);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
-                    break;
+            try {
+                connection.part(channel);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         });
 

@@ -1,9 +1,9 @@
 package com.colacelli.ircbot;
 
 public interface Configurable {
-    String SERVER = "irc.freenode.net";
-    int PORT = 6697;
-    boolean SECURE = true;
+    String SERVER = "irc.tencrux.com";
+    int PORT = 6667;
+    boolean SECURE = false;
     String PASSWORD = "";
 
     String NICK = "ircbot";
