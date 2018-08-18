@@ -8,9 +8,12 @@ import com.colacelli.irclib.connection.listeners.*;
 import com.colacelli.irclib.messages.ChannelMessage;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class IRCBot {
     static Connection connection = new Connection();
+    static EsperantoTranslator esperantoTranslator = new EsperantoTranslator();
 
     public static void main(String[] args) throws Exception {
 
@@ -145,6 +148,30 @@ public class IRCBot {
                 connection.part(channel);
             } catch (IOException e) {
                 e.printStackTrace();
+            }
+        });
+
+        connection.addListener("!eo", (connection, message, command, args) -> {
+            String word = EsperantoTranslator.purgeWord(args[0]);
+            HashMap<String, String> translations = esperantoTranslator.translate(word);
+
+            if (!translations.isEmpty()) {
+                for(Map.Entry<String, String> entry : translations.entrySet()) {
+                    word = entry.getKey();
+                    String translation = entry.getValue();
+
+                    ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                    channelMessageBuilder
+                            .setSender(connection.getUser())
+                            .setChannel(message.getChannel())
+                            .setText(word + ": " + translation);
+
+                    try {
+                        connection.send(channelMessageBuilder.build());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         });
 

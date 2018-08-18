@@ -59,7 +59,7 @@ public final class Connection {
                 String[] finalArgs = args;
 
                 ArrayList<OnChannelCommandListener> listeners = onChannelCommandListeners.get(command);
-                if (!listeners.isEmpty()) {
+                if (listeners != null) {
                     listeners.forEach((listener) -> listener.onChannelCommand(connection, message, command, finalArgs));
                 }
             }

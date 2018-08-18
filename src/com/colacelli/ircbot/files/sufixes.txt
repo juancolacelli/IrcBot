@@ -1,0 +1,11 @@
+as : i
+os : i
+is : i
+u : i
+oj : o
+ojn : o
+on : o
+aj : a
+ajn : a
+an : a
+en : e
