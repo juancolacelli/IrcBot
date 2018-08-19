@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Random;
 
-public final class Connection {
+public final class Connection implements Listenable {
     private Server server;
 
     private User user;
@@ -32,7 +32,6 @@ public final class Connection {
     private ArrayList<OnKickListener> onKickListeners;
     private ArrayList<OnChannelModeListener> onChannelModeListeners;
     private ArrayList<OnChannelMessageListener> onChannelMessageListeners;
-    private HashMap<String, ArrayList<OnChannelCommandListener>> onChannelCommandListeners;
     private ArrayList<OnPrivateMessageListener> onPrivateMessageListeners;
     private ArrayList<OnNickChangeListener> onNickChangeListeners;
 
@@ -45,25 +44,8 @@ public final class Connection {
         onKickListeners = new ArrayList<>();
         onChannelModeListeners = new ArrayList<>();
         onChannelMessageListeners = new ArrayList<>();
-        onChannelCommandListeners = new HashMap<>();
         onPrivateMessageListeners = new ArrayList<>();
         onNickChangeListeners = new ArrayList<>();
-
-        addListener((OnChannelMessageListener) (connection, message) -> {
-            String[] splittedMessage = message.getText().split(" ");
-            String command = splittedMessage[0].toUpperCase();
-
-            if (!onChannelCommandListeners.isEmpty()) {
-                String[] args = null;
-                if (splittedMessage.length > 1) args = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
-                String[] finalArgs = args;
-
-                ArrayList<OnChannelCommandListener> listeners = onChannelCommandListeners.get(command);
-                if (listeners != null) {
-                    listeners.forEach((listener) -> listener.onChannelCommand(connection, message, command, finalArgs));
-                }
-            }
-        });
     }
 
     public void connect(Server newServer, User newUser) throws IOException {
@@ -257,56 +239,52 @@ public final class Connection {
         return user;
     }
 
+    @Override
     public void addListener(OnConnectListener listener) {
         onConnectListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnDisconnectListener listener) {
         onDisconnectListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnPingListener listener) {
         onPingListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnJoinListener listener) {
         onJoinListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnPartListener listener) {
         onPartListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnKickListener listener) {
         onKickListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnChannelModeListener listener) {
         onChannelModeListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnChannelMessageListener listener) {
         onChannelMessageListeners.add(listener);
     }
 
-    public void addListener(String command, OnChannelCommandListener listener) {
-        command = command.toUpperCase();
-
-        ArrayList<OnChannelCommandListener> currentListeners = onChannelCommandListeners.get(command);
-
-        if (currentListeners == null) {
-            currentListeners = new ArrayList<>();
-        }
-
-        currentListeners.add(listener);
-
-        onChannelCommandListeners.put(command, currentListeners);
-    }
-
+    @Override
     public void addListener(OnPrivateMessageListener listener) {
         onPrivateMessageListeners.add(listener);
     }
 
+    @Override
     public void addListener(OnNickChangeListener listener) {
         onNickChangeListeners.add(listener);
     }

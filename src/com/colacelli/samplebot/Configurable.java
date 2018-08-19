@@ -1,4 +1,4 @@
-package com.colacelli.ircbot;
+package com.colacelli.samplebot;
 
 public interface Configurable {
     String SERVER = "irc.tencrux.com";

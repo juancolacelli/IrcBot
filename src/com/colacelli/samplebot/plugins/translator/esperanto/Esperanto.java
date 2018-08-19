@@ -1,4 +1,4 @@
-package com.colacelli.ircbot;
+package com.colacelli.samplebot.plugins.translator.esperanto;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -7,19 +7,20 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EsperantoTranslator {
+public class Esperanto {
     private static final String SEPARATOR = " : ";
 
     // Downloaded from: https://gitlab.com/sstangl/tuja-vortaro/raw/master/espdic/espdic.txt
-    private static final String DICTIONARY_FILE = "src/com/colacelli/ircbot/files/espdic.txt";
-    private static final String REPLACEMENTS_FILE = "src/com/colacelli/ircbot/files/replacements.txt";
-    private static final String SUFIXES_FILE = "src/com/colacelli/ircbot/files/sufixes.txt";
+    private static final String FILES_PATH = "src/com/colacelli/samplebot/plugins/translator/esperanto/files/";
+    private static final String DICTIONARY_FILE = FILES_PATH + "/espdic.txt";
+    private static final String REPLACEMENTS_FILE = FILES_PATH + "/replacements.txt";
+    private static final String SUFIXES_FILE = FILES_PATH + "sufixes.txt";
 
     private static HashMap<String, String> dictionary;
     private static HashMap<String, String> replacements;
     private static HashMap<String, String> sufixes;
 
-    public EsperantoTranslator() {
+    public Esperanto() {
         dictionary = new HashMap<>();
         replacements = new HashMap<>();
         sufixes = new HashMap<>();
@@ -103,14 +104,14 @@ public class EsperantoTranslator {
         return translations;
     }
 
-    public static String purgeWord(String word) {
+    private static String purgeWord(String word) {
         word = word.toLowerCase();
         word = word.replaceAll("[^a-z]", "");
 
         return word;
     }
 
-    public static String normalizeWord(String word) {
+    private static String normalizeWord(String word) {
         for(Map.Entry<String, String> entry : replacements.entrySet()) {
             String part = entry.getKey();
             String replacement = entry.getValue();
