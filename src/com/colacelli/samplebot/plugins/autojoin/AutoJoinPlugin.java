@@ -5,7 +5,6 @@ import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.connection.listeners.OnConnectListener;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class AutoJoinPlugin implements Plugin {
@@ -18,15 +17,9 @@ public class AutoJoinPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         bot.addListener((OnConnectListener) (connection, server, user) -> {
-            try {
-                for (Channel channel : channels) {
-                    connection.join(channel);
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
+            for (Channel channel : channels) {
+                connection.join(channel);
             }
         });
-
-
     }
 }

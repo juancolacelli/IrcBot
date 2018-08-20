@@ -5,7 +5,6 @@ import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.samplebot.plugins.translator.esperanto.Esperanto;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,11 +28,7 @@ public class TranslatorPlugin implements Plugin {
                             .setChannel(message.getChannel())
                             .setText(word + ": " + translation);
 
-                    try {
-                        connection.send(channelMessageBuilder.build());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    connection.send(channelMessageBuilder.build());
                 }
             }
         });

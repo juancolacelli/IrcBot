@@ -29,7 +29,7 @@ public class SampleBot {
         IRCBot bot = new IRCBot();
 
         ArrayList<Channel> channels = new ArrayList<>();
-        for(String channel : Configurable.CHANNELS) {
+        for (String channel : Configurable.CHANNELS) {
             channels.add(new Channel(channel));
         }
 

@@ -7,7 +7,6 @@ import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.Server;
 import com.colacelli.irclib.connection.listeners.*;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -39,7 +38,7 @@ public class IRCBot implements Listenable {
         });
     }
 
-    public void connect(Server server, User user) throws IOException {
+    public void connect(Server server, User user) {
         connection.connect(server, user);
     }
 

@@ -57,19 +57,11 @@ public final class Connection implements Listenable {
         });
 
         addListener(RawCode.NICKNAME_IN_USE, (connection, message, rawCode, args) -> {
-            try {
-                nick(user.getNick() + (new Random()).nextInt(9));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            nick(user.getNick() + (new Random()).nextInt(9));
         });
 
         addListener("ping", (connection, message, command, args) -> {
-            try {
-                send("PONG " + message.substring(5));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            send("PONG " + message.substring(5));
 
             onPingListeners.forEach((listener) -> listener.onPing(this));
         });
@@ -159,7 +151,7 @@ public final class Connection implements Listenable {
         });
     }
 
-    public void connect(Server newServer, User newUser) throws IOException {
+    public void connect(Server newServer, User newUser) {
         try {
             user = newUser;
             server = newServer;
@@ -187,7 +179,7 @@ public final class Connection implements Listenable {
         onDisconnectListeners.forEach((listener) -> listener.onDisconnect(this, server));
     }
 
-    public void join(Channel channel) throws IOException {
+    public void join(Channel channel) {
         send("JOIN " + channel.getName());
 
         channels.putIfAbsent(channel.getName(), channel);
@@ -236,44 +228,58 @@ public final class Connection implements Listenable {
         listen();
     }
 
-    private void send(String message) throws IOException {
+    private void send(String message) {
         System.out.println(message);
 
-        connector.send(message);
+        try {
+            connector.send(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+            reconnect();
+        }
     }
 
-    public void send(ChannelMessage channelMessage) throws IOException {
+    public void send(ChannelMessage channelMessage) {
         send("PRIVMSG " + channelMessage.getChannel().getName() + " :" + channelMessage.getText());
 
         channelMessage.setSender(user);
     }
 
-    public void send(PrivateMessage privateMessage) throws IOException {
+    public void send(PrivateMessage privateMessage) {
         send("PRIVMSG " + privateMessage.getReceiver().getNick() + " :" + privateMessage.getText());
 
         privateMessage.setSender(user);
     }
 
-    public void mode(Channel channel, String mode) throws IOException {
+    public void mode(Channel channel, String mode) {
         send("MODE " + channel.getName() + " " + mode);
     }
 
-    public void nick(String nick) throws IOException {
+    public void nick(String nick) {
         user.setNick(nick);
 
         send("NICK " + nick);
     }
 
-    public void part(Channel channel) throws IOException {
+    public void part(Channel channel) {
         send("PART " + channel.getName());
 
         if (channels.get(channel.getName()) != null)
             channels.remove(channel.getName());
     }
 
-    public void reconnect() throws IOException {
-        connector.disconnect();
-        connector.connect(server, user);
+    private void reconnect() {
+        try {
+            connector.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            connector.connect(server, user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public User getUser() {
