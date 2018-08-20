@@ -23,6 +23,7 @@ public final class Connection implements Listenable {
 
     private Connector connector;
 
+    private HashMap<String, ArrayList<OnServerMessageListener>> onServerMessageListeners;
     private ArrayList<OnConnectListener> onConnectListeners;
     private ArrayList<OnDisconnectListener> onDisconnectListeners;
     private ArrayList<OnPingListener> onPingListeners;
@@ -35,6 +36,8 @@ public final class Connection implements Listenable {
     private ArrayList<OnNickChangeListener> onNickChangeListeners;
 
     public Connection() {
+        onServerMessageListeners = new HashMap<>();
+
         onConnectListeners = new ArrayList<>();
         onDisconnectListeners = new ArrayList<>();
         onPingListeners = new ArrayList<>();
@@ -45,6 +48,100 @@ public final class Connection implements Listenable {
         onChannelMessageListeners = new ArrayList<>();
         onPrivateMessageListeners = new ArrayList<>();
         onNickChangeListeners = new ArrayList<>();
+
+        addListener("ping", (connection, message, command, args) -> {
+            try {
+                connector.send("PONG " + message.substring(5));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            onPingListeners.forEach((listener) -> listener.onPing(this));
+        });
+
+        addListener("privmsg", (connection, message, command, args) -> {
+            int nickIndex = message.indexOf("!");
+            int messageIndex = message.indexOf(":", 1);
+
+            if (nickIndex != -1 && messageIndex != -1) {
+                String nick = message.substring(1, nickIndex);
+                String login = message.substring(nickIndex + 1, message.indexOf("@"));
+                String text = message.substring(messageIndex + 1);
+
+                User.Builder userBuilder = new User.Builder();
+                userBuilder
+                        .setNick(nick)
+                        .setLogin(login);
+
+                Channel channel = channels.get(args[2]);
+                if (channel != null) {
+                    ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                    channelMessageBuilder
+                            .setSender(userBuilder.build())
+                            .setChannel(channel)
+                            .setText(text);
+
+                    onChannelMessageListeners.forEach((listener) -> listener.onChannelMessage(this, channelMessageBuilder.build()));
+                } else {
+                    PrivateMessage.Builder privateMessageBuilder = new PrivateMessage.Builder();
+                    privateMessageBuilder
+                            .setSender(userBuilder.build())
+                            .setReceiver(user)
+                            .setText(text);
+                    onPrivateMessageListeners.forEach((listener) -> listener.onPrivateMessage(this, privateMessageBuilder.build()));
+                }
+            }
+        });
+
+        addListener("join", (connection, message, command, args) -> {
+            Channel channel = channels.get(args[2].substring(1));
+
+            if (channel != null) {
+                User.Builder userBuilder = new User.Builder();
+                userBuilder.setNick(message.substring(1, message.indexOf("!")));
+                onJoinListeners.forEach((listener) -> listener.onJoin(this, userBuilder.build(), channel));
+            }
+        });
+
+        addListener("kick", (connection, message, command, args) -> {
+            Channel channel = channels.get(args[2]);
+
+            if (channel != null) {
+                User.Builder userBuilder = new User.Builder();
+                userBuilder.setNick(args[3]);
+                onKickListeners.forEach((listener) -> listener.onKick(this, userBuilder.build(), channel));
+            }
+        });
+
+        addListener("mode", (connection, message, command, args) -> {
+            Channel channel = channels.get(args[2]);
+
+            if (channel != null) {
+                onChannelModeListeners.forEach((listener) -> listener.onChannelMode(this, channel, args[3]));
+            }
+        });
+
+        addListener("nick", (connection, message, command, args) -> {
+            String oldNick = message.substring(1, message.indexOf("!"));
+
+            User.Builder userBuilder = new User.Builder();
+            userBuilder.setNick(oldNick);
+
+            User nickUser = userBuilder.build();
+            nickUser.setNick(args[2].substring(1));
+
+            onNickChangeListeners.forEach((listener) -> listener.onNickChange(this, nickUser));
+        });
+
+        addListener("part", (connection, message, command, args) -> {
+            Channel channel = channels.get(args[2]);
+
+            if (channel != null) {
+                User.Builder userBuilder = new User.Builder();
+                userBuilder.setNick(command.substring(1, command.indexOf("!")));
+                onPartListeners.forEach((listener) -> listener.onPart(this, userBuilder.build(), channel));
+            }
+        });
     }
 
     public void connect(Server newServer, User newUser) throws IOException {
@@ -101,93 +198,9 @@ public final class Connection implements Listenable {
                 // Not a RAW code
             }
 
-            if (line.toLowerCase().startsWith("ping ")) {
-                connector.send("PONG " + line.substring(5));
-                onPingListeners.forEach((listener) -> listener.onPing(this));
-            } else {
-                Channel channel = null;
-                User.Builder ircUserBuilder = new User.Builder();
-
-                if (splittedLine[2].contains("#"))
-                    channel = channels.get(splittedLine[2]);
-
-                final Channel ircChannel = channel;
-
-                switch (splittedLine[1]) {
-                    case "PRIVMSG":
-                        int nickIndex = line.indexOf("!");
-                        int messageIndex = line.indexOf(":", 1);
-
-                        if (nickIndex != -1 && messageIndex != -1) {
-                            String nick = line.substring(1, nickIndex);
-                            String login = line.substring(1, line.indexOf("@"));
-                            String text = line.substring(messageIndex + 1);
-
-                            ircUserBuilder
-                                    .setNick(nick)
-                                    .setLogin(login);
-
-                            if (channel != null) {
-                                ChannelMessage.Builder ircChannelMessageBuilder = new ChannelMessage.Builder();
-                                ircChannelMessageBuilder
-                                        .setSender(ircUserBuilder.build())
-                                        .setChannel(channel)
-                                        .setText(text);
-
-                                onChannelMessageListeners.forEach((listener) -> listener.onChannelMessage(this, ircChannelMessageBuilder.build()));
-                            } else {
-                                PrivateMessage.Builder ircPrivateMessageBuilder = new PrivateMessage.Builder();
-                                ircPrivateMessageBuilder
-                                        .setSender(ircUserBuilder.build())
-                                        .setReceiver(user)
-                                        .setText(text);
-                                onPrivateMessageListeners.forEach((listener) -> listener.onPrivateMessage(this, ircPrivateMessageBuilder.build()));
-                            }
-                        }
-
-                        break;
-
-                    case "JOIN":
-                        if (channel != null) {
-                            ircUserBuilder.setNick(line.substring(1, line.indexOf("!")));
-                            onJoinListeners.forEach((listener) -> listener.onJoin(this, ircUserBuilder.build(), ircChannel));
-                        }
-
-                        break;
-
-                    case "KICK":
-                        if (channel != null) {
-                            ircUserBuilder.setNick(splittedLine[3]);
-                            onKickListeners.forEach((listener) -> listener.onKick(this, ircUserBuilder.build(), ircChannel));
-                        }
-
-                        break;
-
-                    case "MODE":
-                        // FIXME: It just sends the first parameter.
-                        if (channel != null) {
-                            onChannelModeListeners.forEach((listener) -> listener.onChannelMode(this, ircChannel, splittedLine[3]));
-                        }
-
-                        break;
-
-                    case "NICK":
-                        String oldNick = line.substring(1, line.indexOf("!"));
-                        ircUserBuilder.setNick(oldNick);
-                        User nickUser = ircUserBuilder.build();
-                        nickUser.setNick(splittedLine[2].substring(1));
-
-                        onNickChangeListeners.forEach((listener) -> listener.onNickChange(this, nickUser));
-
-                        break;
-                    case "PART":
-                        if (channel != null) {
-                            ircUserBuilder.setNick(line.substring(1, line.indexOf("!")));
-                            onPartListeners.forEach((listener) -> listener.onPart(this, ircUserBuilder.build(), ircChannel));
-                        }
-
-                        break;
-                }
+            ArrayList<OnServerMessageListener> serverMessageListeners = onServerMessageListeners.get(splittedLine[1].toUpperCase());
+            if (serverMessageListeners != null) for(OnServerMessageListener onServerMessageListener : serverMessageListeners) {
+                onServerMessageListener.onServerMessage(this, line, splittedLine[2], splittedLine);
             }
         }
     }
@@ -236,6 +249,20 @@ public final class Connection implements Listenable {
 
     public User getUser() {
         return user;
+    }
+
+    private void addListener(String command, OnServerMessageListener listener) {
+        command = command.toUpperCase();
+
+        ArrayList<OnServerMessageListener> currentListeners = onServerMessageListeners.get(command);
+
+        if (currentListeners == null) {
+            currentListeners = new ArrayList<>();
+        }
+
+        currentListeners.add(listener);
+
+        onServerMessageListeners.put(command, currentListeners);
     }
 
     @Override
