@@ -12,17 +12,19 @@ public class OperatorPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         bot.addListener((OnJoinListener) (connection, user, channel) -> {
-            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-            channelMessageBuilder
-                    .setSender(connection.getUser())
-                    .setChannel(channel)
-                    .setText("Hello " + user.getNick() + " welcome to " + channel.getName());
+            if (user.getNick() != connection.getUser().getNick()) {
+                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                channelMessageBuilder
+                        .setSender(connection.getUser())
+                        .setChannel(channel)
+                        .setText("Hello " + user.getNick() + " welcome to " + channel.getName());
 
-            if (!user.getNick().equals(connection.getUser().getNick())) {
-                try {
-                    connection.send(channelMessageBuilder.build());
-                } catch (IOException e) {
-                    e.printStackTrace();
+                if (!user.getNick().equals(connection.getUser().getNick())) {
+                    try {
+                        connection.send(channelMessageBuilder.build());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });

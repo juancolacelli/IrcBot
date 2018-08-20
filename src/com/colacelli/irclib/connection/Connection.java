@@ -23,7 +23,9 @@ public final class Connection implements Listenable {
 
     private Connector connector;
 
+    private HashMap<Integer, ArrayList<OnRawCodeListener>> onRawCodeListeners;
     private HashMap<String, ArrayList<OnServerMessageListener>> onServerMessageListeners;
+
     private ArrayList<OnConnectListener> onConnectListeners;
     private ArrayList<OnDisconnectListener> onDisconnectListeners;
     private ArrayList<OnPingListener> onPingListeners;
@@ -36,6 +38,7 @@ public final class Connection implements Listenable {
     private ArrayList<OnNickChangeListener> onNickChangeListeners;
 
     public Connection() {
+        onRawCodeListeners = new HashMap<>();
         onServerMessageListeners = new HashMap<>();
 
         onConnectListeners = new ArrayList<>();
@@ -57,6 +60,18 @@ public final class Connection implements Listenable {
             }
 
             onPingListeners.forEach((listener) -> listener.onPing(this));
+        });
+
+        addListener(RawCode.LOGGED_IN, (connection, message, rawCode, args) -> {
+            onConnectListeners.forEach((listener) -> listener.onConnect(this, server, user));
+        });
+
+        addListener(RawCode.NICKNAME_IN_USE, (connection, message, rawCode, args) -> {
+            try {
+                nick(user.getNick() + (new Random()).nextInt(9));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
 
         addListener("privmsg", (connection, message, command, args) -> {
@@ -187,20 +202,19 @@ public final class Connection implements Listenable {
 
             String[] splittedLine = line.split(" ");
             try {
+                // Raw code
                 int rawCode = Integer.parseInt(splittedLine[1]);
-                if (rawCode == RawCode.LOGGED_IN.getCode()) {
-                    onConnectListeners.forEach((listener) -> listener.onConnect(this, server, user));
-                } else if (rawCode == RawCode.NICKNAME_IN_USE.getCode()) {
-                    // Re-login with a random ending
-                    nick(user.getNick() + (new Random()).nextInt(9));
+
+                ArrayList<OnRawCodeListener> rawCodeListeners = onRawCodeListeners.get(rawCode);
+                if (rawCodeListeners != null) for(OnRawCodeListener onRawCodeListener : rawCodeListeners) {
+                    onRawCodeListener.onRawCode(this, line, rawCode, splittedLine);
                 }
             } catch (NumberFormatException e) {
-                // Not a RAW code
-            }
-
-            ArrayList<OnServerMessageListener> serverMessageListeners = onServerMessageListeners.get(splittedLine[1].toUpperCase());
-            if (serverMessageListeners != null) for(OnServerMessageListener onServerMessageListener : serverMessageListeners) {
-                onServerMessageListener.onServerMessage(this, line, splittedLine[2], splittedLine);
+                // Not a Raw code
+                ArrayList<OnServerMessageListener> serverMessageListeners = onServerMessageListeners.get(splittedLine[1].toUpperCase());
+                if (serverMessageListeners != null) for(OnServerMessageListener onServerMessageListener : serverMessageListeners) {
+                    onServerMessageListener.onServerMessage(this, line, splittedLine[2], splittedLine);
+                }
             }
         }
     }
@@ -249,6 +263,18 @@ public final class Connection implements Listenable {
 
     public User getUser() {
         return user;
+    }
+
+    private void addListener(RawCode rawCode, OnRawCodeListener listener) {
+        ArrayList<OnRawCodeListener> currentListeners = onRawCodeListeners.get(rawCode.getCode());
+
+        if (currentListeners == null) {
+            currentListeners = new ArrayList<>();
+        }
+
+        currentListeners.add(listener);
+
+        onRawCodeListeners.put(rawCode.getCode(), currentListeners);
     }
 
     private void addListener(String command, OnServerMessageListener listener) {
