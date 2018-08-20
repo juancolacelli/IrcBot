@@ -1,6 +1,6 @@
 package com.colacelli.samplebot.plugins.translator.esperanto;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.HashMap;
@@ -10,9 +10,9 @@ public class Esperanto {
     private static final String SEPARATOR = " : ";
 
     // Downloaded from: https://gitlab.com/sstangl/tuja-vortaro/raw/master/espdic/espdic.txt
-    private static final String FILES_PATH = "src/com/colacelli/samplebot/plugins/translator/esperanto/files/";
-    private static final String DICTIONARY_FILE = FILES_PATH + "/espdic.txt";
-    private static final String REPLACEMENTS_FILE = FILES_PATH + "/replacements.txt";
+    private static final String FILES_PATH = "com/colacelli/samplebot/plugins/translator/esperanto/resources/";
+    private static final String DICTIONARY_FILE = FILES_PATH + "espdic.txt";
+    private static final String REPLACEMENTS_FILE = FILES_PATH + "replacements.txt";
     private static final String SUFIXES_FILE = FILES_PATH + "sufixes.txt";
 
     private static HashMap<String, String> dictionary;
@@ -26,7 +26,12 @@ public class Esperanto {
 
         // Loading dictionary
         try {
-            for (String line : Files.readAllLines(Paths.get(DICTIONARY_FILE))) {
+            InputStream inputStream = ClassLoader.getSystemResourceAsStream(DICTIONARY_FILE);
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line;
+            while((line = bufferedReader.readLine()) != null) {
                 int separatorIndex = line.indexOf(SEPARATOR);
                 if (separatorIndex > -1) {
                     String word = line.substring(0, separatorIndex);
@@ -45,7 +50,11 @@ public class Esperanto {
 
         // Loading replacements
         try {
-            for (String line : Files.readAllLines(Paths.get(REPLACEMENTS_FILE))) {
+            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(REPLACEMENTS_FILE));
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line;
+            while((line = bufferedReader.readLine()) != null) {
                 int separatorIndex = line.indexOf(SEPARATOR);
                 if (separatorIndex > -1) {
                     String part = line.substring(0, separatorIndex);
@@ -59,7 +68,11 @@ public class Esperanto {
 
         // Loading sufixes
         try {
-            for (String line : Files.readAllLines(Paths.get(SUFIXES_FILE))) {
+            InputStreamReader inputStreamReader = new InputStreamReader(getClass().getClassLoader().getResourceAsStream(SUFIXES_FILE));
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+            String line;
+            while((line = bufferedReader.readLine()) != null) {
                 int separatorIndex = line.indexOf(SEPARATOR);
                 if (separatorIndex > -1) {
                     String sufix = line.substring(0, separatorIndex);
