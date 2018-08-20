@@ -8,5 +8,5 @@ public interface Configurable {
 
     String NICK = "ircbot";
     String LOGIN = "ircbot";
-    String[] CHANNELS = {"#debug", "#debug1"};
+    String[] CHANNELS = {"#debug"};
 }
