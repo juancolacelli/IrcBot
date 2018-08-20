@@ -66,7 +66,7 @@ public final class Connection implements Listenable {
 
         addListener("ping", (connection, message, command, args) -> {
             try {
-                connector.send("PONG " + message.substring(5));
+                send("PONG " + message.substring(5));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -173,7 +173,7 @@ public final class Connection implements Listenable {
             connector.connect(server, user);
 
             if (!server.getPassword().equals("")) {
-                connector.send("PASS " + server.getPassword());
+                send("PASS " + server.getPassword());
             }
 
             login(user);
@@ -188,7 +188,7 @@ public final class Connection implements Listenable {
     }
 
     public void join(Channel channel) throws IOException {
-        connector.send("JOIN " + channel.getName());
+        send("JOIN " + channel.getName());
 
         channels.putIfAbsent(channel.getName(), channel);
     }
@@ -211,10 +211,18 @@ public final class Connection implements Listenable {
                 }
             } catch (NumberFormatException e) {
                 // Not a Raw code
-                ArrayList<OnServerMessageListener> serverMessageListeners = onServerMessageListeners.get(splittedLine[1].toUpperCase());
+                String command = splittedLine[1].toUpperCase();
+
+                // Try with first string (e.g, for PING)
+                if (!onServerMessageListeners.containsKey(command)) {
+                    command = splittedLine[0].toUpperCase();
+                }
+
+                ArrayList<OnServerMessageListener> serverMessageListeners = onServerMessageListeners.get(command);
+
                 if (serverMessageListeners != null)
                     for (OnServerMessageListener onServerMessageListener : serverMessageListeners) {
-                        onServerMessageListener.onServerMessage(this, line, splittedLine[2], splittedLine);
+                        onServerMessageListener.onServerMessage(this, line, command, splittedLine);
                     }
             }
         }
@@ -223,35 +231,41 @@ public final class Connection implements Listenable {
     private void login(User user) throws IOException {
         nick(user.getNick());
 
-        connector.send("USER " + user.getLogin() + " 8 * : " + user.getLogin());
+        send("USER " + user.getLogin() + " 8 * : " + user.getLogin());
 
         listen();
     }
 
+    private void send(String message) throws IOException {
+        System.out.println(message);
+
+        connector.send(message);
+    }
+
     public void send(ChannelMessage channelMessage) throws IOException {
-        connector.send("PRIVMSG " + channelMessage.getChannel().getName() + " :" + channelMessage.getText());
+        send("PRIVMSG " + channelMessage.getChannel().getName() + " :" + channelMessage.getText());
 
         channelMessage.setSender(user);
     }
 
-    public void send(PrivateMessage ircPrivateMessage) throws IOException {
-        connector.send("PRIVMSG " + ircPrivateMessage.getReceiver().getNick() + " :" + ircPrivateMessage.getText());
+    public void send(PrivateMessage privateMessage) throws IOException {
+        send("PRIVMSG " + privateMessage.getReceiver().getNick() + " :" + privateMessage.getText());
 
-        ircPrivateMessage.setSender(user);
+        privateMessage.setSender(user);
     }
 
     public void mode(Channel channel, String mode) throws IOException {
-        connector.send("MODE " + channel.getName() + " " + mode);
+        send("MODE " + channel.getName() + " " + mode);
     }
 
     public void nick(String nick) throws IOException {
         user.setNick(nick);
 
-        connector.send("NICK " + nick);
+        send("NICK " + nick);
     }
 
     public void part(Channel channel) throws IOException {
-        connector.send("PART " + channel.getName());
+        send("PART " + channel.getName());
 
         if (channels.get(channel.getName()) != null)
             channels.remove(channel.getName());

@@ -18,8 +18,6 @@ public class AutoJoinPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         bot.addListener((OnConnectListener) (connection, server, user) -> {
-            System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + user.getNick() + ":" + user.getLogin());
-
             try {
                 for (Channel channel : channels) {
                     connection.join(channel);
