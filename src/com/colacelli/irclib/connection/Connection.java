@@ -52,16 +52,6 @@ public final class Connection implements Listenable {
         onPrivateMessageListeners = new ArrayList<>();
         onNickChangeListeners = new ArrayList<>();
 
-        addListener("ping", (connection, message, command, args) -> {
-            try {
-                connector.send("PONG " + message.substring(5));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            onPingListeners.forEach((listener) -> listener.onPing(this));
-        });
-
         addListener(RawCode.LOGGED_IN, (connection, message, rawCode, args) -> {
             onConnectListeners.forEach((listener) -> listener.onConnect(this, server, user));
         });
@@ -72,6 +62,16 @@ public final class Connection implements Listenable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        });
+
+        addListener("ping", (connection, message, command, args) -> {
+            try {
+                connector.send("PONG " + message.substring(5));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            onPingListeners.forEach((listener) -> listener.onPing(this));
         });
 
         addListener("privmsg", (connection, message, command, args) -> {

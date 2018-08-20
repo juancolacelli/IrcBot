@@ -28,9 +28,10 @@ public class SampleBot {
 
         IRCBot bot = new IRCBot();
 
-        // FIXME: Support multiple channels
         ArrayList<Channel> channels = new ArrayList<>();
-        channels.add(new Channel(Configurable.CHANNEL));
+        for(String channel : Configurable.CHANNELS) {
+            channels.add(new Channel(channel));
+        }
 
         bot.addPlugin(new OperatorPlugin());
         bot.addPlugin(new AutoJoinPlugin(channels));
