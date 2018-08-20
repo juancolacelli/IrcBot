@@ -3,13 +3,17 @@ package com.colacelli.samplebot;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.actors.User;
+import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.Server;
 import com.colacelli.irclib.connection.listeners.OnConnectListener;
 import com.colacelli.irclib.connection.listeners.OnDisconnectListener;
+import com.colacelli.samplebot.plugins.autojoin.AutoJoinPlugin;
 import com.colacelli.samplebot.plugins.operator.OperatorPlugin;
+import com.colacelli.samplebot.plugins.rejoinonkick.RejoinOnKickPlugin;
 import com.colacelli.samplebot.plugins.translator.TranslatorPlugin;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SampleBot {
     public static void main(String[] args) throws Exception {
@@ -28,31 +32,18 @@ public class SampleBot {
 
         IRCBot bot = new IRCBot();
 
-        addListeners(bot);
+        // FIXME: Support multiple channels
+        ArrayList<Channel> channels = new ArrayList<>();
+        channels.add(new Channel(Configurable.CHANNEL));
 
-        bot.addPlugin(new TranslatorPlugin());
         bot.addPlugin(new OperatorPlugin());
+        bot.addPlugin(new AutoJoinPlugin(channels));
+        bot.addPlugin(new RejoinOnKickPlugin());
+        bot.addPlugin(new TranslatorPlugin());
 
         bot.connect(
                 serverBuilder.build(),
                 userBuilder.build()
         );
-    }
-
-    private static void addListeners(IRCBot bot) {
-        // FIXME: Auto-join channel must be on IRCBot logic
-        bot.addListener((OnConnectListener) (connection, server, user) -> {
-            System.out.println("Connected to " + server.getHostname() + ":" + server.getPort() + " as: " + user.getNick() + ":" + user.getLogin());
-
-            try {
-                connection.join(new Channel(Configurable.CHANNEL));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        bot.addListener((OnDisconnectListener) (connection, server) -> System.out.println("Disconnected from " + server.getHostname() + ":" + server.getPort()));
-
-        bot.addListener(connection -> System.out.println("PING!"));
     }
 }

@@ -12,8 +12,6 @@ public class OperatorPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         bot.addListener((OnJoinListener) (connection, user, channel) -> {
-            System.out.println(user.getNick() + " joined " + channel.getName());
-
             ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
             channelMessageBuilder
                     .setSender(connection.getUser())
@@ -28,21 +26,6 @@ public class OperatorPlugin implements Plugin {
                 }
             }
         });
-
-        bot.addListener((OnPartListener) (connection, user, channel) -> System.out.println(user.getNick() + " parted from " + channel.getName()));
-
-        bot.addListener((OnKickListener) (connection, user, channel) -> {
-            System.out.println(user.getNick() + " has been kicked from " + channel.getName());
-
-            try {
-                // FIXME: Auto-rejoin must be on IRCBot logic
-                connection.join(new Channel(channel.getName()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        bot.addListener((OnChannelModeListener) (connection, channel, mode) -> System.out.println("Mode changed to " + mode + " in " + channel.getName()));
 
         bot.addListener("!op", (connection, message, command, args) -> {
             String nick = message.getSender().getNick();
@@ -110,9 +93,5 @@ public class OperatorPlugin implements Plugin {
                 e.printStackTrace();
             }
         });
-
-        bot.addListener((OnPrivateMessageListener) (connection, message) -> System.out.println("Private message received from " + message.getSender().getNick() + ": " + message.getText()));
-
-        bot.addListener((OnNickChangeListener) (connection, user) -> System.out.println(user.getOldNick() + " changed nickname to " + user.getNick()));
     }
 }
