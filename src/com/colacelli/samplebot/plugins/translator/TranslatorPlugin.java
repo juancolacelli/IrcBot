@@ -19,7 +19,7 @@ public class TranslatorPlugin implements Plugin {
             HashMap<String, String> translations = esperanto.translate(word);
 
             if (!translations.isEmpty()) {
-                for(Map.Entry<String, String> entry : translations.entrySet()) {
+                for (Map.Entry<String, String> entry : translations.entrySet()) {
                     word = entry.getKey();
                     String translation = entry.getValue();
 

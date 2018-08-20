@@ -3,7 +3,7 @@ package com.colacelli.samplebot.plugins.operator;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.actors.Channel;
-import com.colacelli.irclib.connection.listeners.*;
+import com.colacelli.irclib.connection.listeners.OnJoinListener;
 import com.colacelli.irclib.messages.ChannelMessage;
 
 import java.io.IOException;
