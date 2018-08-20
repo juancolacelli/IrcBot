@@ -206,15 +206,16 @@ public final class Connection implements Listenable {
                 int rawCode = Integer.parseInt(splittedLine[1]);
 
                 ArrayList<OnRawCodeListener> rawCodeListeners = onRawCodeListeners.get(rawCode);
-                if (rawCodeListeners != null) for(OnRawCodeListener onRawCodeListener : rawCodeListeners) {
+                if (rawCodeListeners != null) for (OnRawCodeListener onRawCodeListener : rawCodeListeners) {
                     onRawCodeListener.onRawCode(this, line, rawCode, splittedLine);
                 }
             } catch (NumberFormatException e) {
                 // Not a Raw code
                 ArrayList<OnServerMessageListener> serverMessageListeners = onServerMessageListeners.get(splittedLine[1].toUpperCase());
-                if (serverMessageListeners != null) for(OnServerMessageListener onServerMessageListener : serverMessageListeners) {
-                    onServerMessageListener.onServerMessage(this, line, splittedLine[2], splittedLine);
-                }
+                if (serverMessageListeners != null)
+                    for (OnServerMessageListener onServerMessageListener : serverMessageListeners) {
+                        onServerMessageListener.onServerMessage(this, line, splittedLine[2], splittedLine);
+                    }
             }
         }
     }
