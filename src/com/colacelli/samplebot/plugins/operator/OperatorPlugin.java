@@ -6,6 +6,9 @@ import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.connection.listeners.OnJoinListener;
 import com.colacelli.irclib.messages.ChannelMessage;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class OperatorPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
@@ -23,33 +26,33 @@ public class OperatorPlugin implements Plugin {
             }
         });
 
-        bot.addListener("!op", (connection, message, command, args) -> {
-            String nick = message.getSender().getNick();
-            if (args != null) nick = args[0];
+        HashMap<String, String> commandModes = new HashMap<>();
+        commandModes.put("!owner", "+q");
+        commandModes.put("!deowner", "-q");
+        commandModes.put("!protect", "+a");
+        commandModes.put("!deprotect", "-a");
+        commandModes.put("!op", "+o");
+        commandModes.put("!deop", "-o");
+        commandModes.put("!halfop", "+h");
+        commandModes.put("!dehalfop", "-h");
+        commandModes.put("!voice", "+v");
+        commandModes.put("!devoice", "-v");
 
-            connection.mode(message.getChannel(), "+o " + nick);
-        });
+        for(Map.Entry<String, String> entry : commandModes.entrySet()) {
+            String text = entry.getKey();
+            String mode = entry.getValue();
 
-        bot.addListener("!deop", (connection, message, command, args) -> {
-            String nick = message.getSender().getNick();
-            if (args != null) nick = args[0];
+            bot.addListener(text, (connection, message, command, args) -> {
+                String nick = message.getSender().getNick();
 
-            connection.mode(message.getChannel(), "-o " + nick);
-        });
+                if (args != null) nick = args[0];
 
-        bot.addListener("!voice", (connection, message, command, args) -> {
-            String nick = message.getSender().getNick();
-            if (args != null) nick = args[0];
-
-            connection.mode(message.getChannel(), "+v " + nick);
-        });
-
-        bot.addListener("!devoice", (connection, message, command, args) -> {
-            String nick = message.getSender().getNick();
-            if (args != null) nick = args[0];
-
-            connection.mode(message.getChannel(), "-v " + nick);
-        });
+                // Bot can't change it's own modes
+                if (!nick.equals(connection.getUser().getNick())) {
+                    connection.mode(message.getChannel(), mode + " " + nick);
+                }
+            });
+        }
 
         bot.addListener("!join", (connection, message, command, args) -> {
             if (args != null) {
@@ -64,6 +67,14 @@ public class OperatorPlugin implements Plugin {
             if (args != null) channel = new Channel(args[0]);
 
             connection.part(channel);
+        });
+
+        bot.addListener("!mode", (connection, message, command, args) -> {
+            String modes = String.join(" ", args);
+
+            if (modes != null) {
+                connection.mode(message.getChannel(), modes);
+            }
         });
     }
 }
