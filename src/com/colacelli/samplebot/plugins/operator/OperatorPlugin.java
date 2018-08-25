@@ -24,7 +24,7 @@ public class OperatorPlugin implements Plugin {
         commandModes.put("!voice", "+v");
         commandModes.put("!devoice", "-v");
 
-        for(Map.Entry<String, String> entry : commandModes.entrySet()) {
+        for (Map.Entry<String, String> entry : commandModes.entrySet()) {
             String text = entry.getKey();
             String mode = entry.getValue();
 
@@ -32,9 +32,9 @@ public class OperatorPlugin implements Plugin {
                 String nicks[] = {message.getSender().getNick()};
                 if (args != null) nicks = args;
 
-                String repeatedMode = "";
-                for(String nick : nicks) {
-                    repeatedMode += mode;
+                StringBuilder repeatedMode = new StringBuilder();
+                for (String ignored : nicks) {
+                    repeatedMode.append(mode);
                 }
 
                 connection.mode(message.getChannel(), repeatedMode + " " + String.join(" ", nicks));

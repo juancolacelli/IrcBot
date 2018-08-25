@@ -1,8 +1,9 @@
 package com.colacelli.samplebot.plugins.translator.esperanto;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,7 +32,7 @@ public class Esperanto {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             String line;
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 int separatorIndex = line.indexOf(SEPARATOR);
                 if (separatorIndex > -1) {
                     String word = line.substring(0, separatorIndex);
@@ -54,7 +55,7 @@ public class Esperanto {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             String line;
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 int separatorIndex = line.indexOf(SEPARATOR);
                 if (separatorIndex > -1) {
                     String part = line.substring(0, separatorIndex);
@@ -72,7 +73,7 @@ public class Esperanto {
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
             String line;
-            while((line = bufferedReader.readLine()) != null) {
+            while ((line = bufferedReader.readLine()) != null) {
                 int separatorIndex = line.indexOf(SEPARATOR);
                 if (separatorIndex > -1) {
                     String sufix = line.substring(0, separatorIndex);

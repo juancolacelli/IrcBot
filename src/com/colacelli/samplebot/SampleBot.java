@@ -13,7 +13,7 @@ import com.colacelli.samplebot.plugins.uptime.UptimePlugin;
 import java.util.ArrayList;
 
 public class SampleBot {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         Server.Builder serverBuilder = new Server.Builder();
         serverBuilder
