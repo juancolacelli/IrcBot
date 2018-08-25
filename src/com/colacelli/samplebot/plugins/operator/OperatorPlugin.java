@@ -29,8 +29,15 @@ public class OperatorPlugin implements Plugin {
             String mode = entry.getValue();
 
             bot.addListener(text, (connection, message, command, args) -> {
-                String nick = args == null ? message.getSender().getNick() : args[0];
-                connection.mode(message.getChannel(), mode + " " + nick);
+                String nicks[] = {message.getSender().getNick()};
+                if (args != null) nicks = args;
+
+                String repeatedMode = "";
+                for(String nick : nicks) {
+                    repeatedMode += mode;
+                }
+
+                connection.mode(message.getChannel(), repeatedMode + " " + String.join(" ", nicks));
             });
         }
 
