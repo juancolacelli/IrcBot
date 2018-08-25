@@ -9,7 +9,7 @@ public class RejoinOnKickPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         bot.addListener((OnKickListener) (connection, user, channel) -> {
-            connection.join(new Channel(channel.getName()));
+            if (user.getNick().equals(connection.getUser().getNick())) connection.join(new Channel(channel.getName()));
         });
     }
 }

@@ -14,21 +14,23 @@ public class TranslatorPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         bot.addListener("!eo", (connection, message, command, args) -> {
-            String word = args[0];
-            HashMap<String, String> translations = esperanto.translate(word);
+            if (args != null) {
+                String word = args[0];
+                HashMap<String, String> translations = esperanto.translate(word);
 
-            if (!translations.isEmpty()) {
-                for (Map.Entry<String, String> entry : translations.entrySet()) {
-                    word = entry.getKey();
-                    String translation = entry.getValue();
+                if (!translations.isEmpty()) {
+                    for (Map.Entry<String, String> entry : translations.entrySet()) {
+                        word = entry.getKey();
+                        String translation = entry.getValue();
 
-                    ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                    channelMessageBuilder
-                            .setSender(connection.getUser())
-                            .setChannel(message.getChannel())
-                            .setText(word + ": " + translation);
+                        ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                        channelMessageBuilder
+                                .setSender(connection.getUser())
+                                .setChannel(message.getChannel())
+                                .setText(word + ": " + translation);
 
-                    connection.send(channelMessageBuilder.build());
+                        connection.send(channelMessageBuilder.build());
+                    }
                 }
             }
         });

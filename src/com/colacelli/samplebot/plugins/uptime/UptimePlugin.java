@@ -20,11 +20,12 @@ public class UptimePlugin implements Plugin {
             long startMillis = startDate.getTime();
 
             long diff = currentTimeMillis - startMillis;
-            long seconds = diff / 1000;
-            long minutes = diff / (60 * 1000);
-            long hours = diff / (60 * 60 * 1000);
+            long seconds = diff / 1000 % 60;
+            long minutes = diff / (60 * 1000) % 60;
+            long hours = diff / (60 * 60 * 1000) % 24;
+            long days = diff / (60 * 60 * 1000 * 24);
 
-            String uptime = String.format("%02d:%02d:%02d", hours, minutes, seconds);
+            String uptime = String.format("%dd %02d:%02d:%02d", days, hours, minutes, seconds);
 
             ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
             channelMessageBuilder

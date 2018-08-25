@@ -3,29 +3,15 @@ package com.colacelli.samplebot.plugins.operator;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.actors.Channel;
-import com.colacelli.irclib.connection.listeners.OnJoinListener;
-import com.colacelli.irclib.messages.ChannelMessage;
+import com.colacelli.irclib.actors.User;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class OperatorPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
-        bot.addListener((OnJoinListener) (connection, user, channel) -> {
-            if (user.getNick() != connection.getUser().getNick()) {
-                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                channelMessageBuilder
-                        .setSender(connection.getUser())
-                        .setChannel(channel)
-                        .setText("Hello " + user.getNick() + " welcome to " + channel.getName());
-
-                if (!user.getNick().equals(connection.getUser().getNick())) {
-                    connection.send(channelMessageBuilder.build());
-                }
-            }
-        });
-
         HashMap<String, String> commandModes = new HashMap<>();
         commandModes.put("!owner", "+q");
         commandModes.put("!deowner", "-q");
@@ -43,37 +29,34 @@ public class OperatorPlugin implements Plugin {
             String mode = entry.getValue();
 
             bot.addListener(text, (connection, message, command, args) -> {
-                String nick = message.getSender().getNick();
-
-                if (args != null) nick = args[0];
-
-                // Bot can't change it's own modes
-                if (!nick.equals(connection.getUser().getNick())) {
-                    connection.mode(message.getChannel(), mode + " " + nick);
-                }
+                String nick = args == null ? message.getSender().getNick() : args[0];
+                connection.mode(message.getChannel(), mode + " " + nick);
             });
         }
 
         bot.addListener("!join", (connection, message, command, args) -> {
             if (args != null) {
-                String channel = args[0];
-
-                connection.join(new Channel(channel));
+                connection.join(new Channel(args[0]));
             }
         });
 
         bot.addListener("!part", (connection, message, command, args) -> {
-            Channel channel = message.getChannel();
-            if (args != null) channel = new Channel(args[0]);
-
+            Channel channel = args == null ? message.getChannel() : new Channel(args[0]);
             connection.part(channel);
         });
 
         bot.addListener("!mode", (connection, message, command, args) -> {
-            String modes = String.join(" ", args);
-
-            if (modes != null) {
+            if (args != null) {
+                String modes = String.join(" ", args);
                 connection.mode(message.getChannel(), modes);
+            }
+        });
+
+        bot.addListener("!kick", (connection, message, command, args) -> {
+            if (args != null) {
+                String nick = args[0];
+                String reason = args.length > 1 ? String.join(" ", Arrays.copyOfRange(args, 1, args.length)) : "...";
+                connection.kick(message.getChannel(), new User(nick), reason);
             }
         });
     }

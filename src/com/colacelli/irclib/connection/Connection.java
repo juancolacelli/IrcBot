@@ -104,9 +104,8 @@ public final class Connection implements Listenable {
             Channel channel = channels.get(args[2].substring(1));
 
             if (channel != null) {
-                User.Builder userBuilder = new User.Builder();
-                userBuilder.setNick(message.substring(1, message.indexOf("!")));
-                onJoinListeners.forEach((listener) -> listener.onJoin(this, userBuilder.build(), channel));
+                User user = new User(message.substring(1, message.indexOf("!")));
+                onJoinListeners.forEach((listener) -> listener.onJoin(this, user, channel));
             }
         });
 
@@ -114,9 +113,8 @@ public final class Connection implements Listenable {
             Channel channel = channels.get(args[2]);
 
             if (channel != null) {
-                User.Builder userBuilder = new User.Builder();
-                userBuilder.setNick(args[3]);
-                onKickListeners.forEach((listener) -> listener.onKick(this, userBuilder.build(), channel));
+                User user = new User(args[3]);
+                onKickListeners.forEach((listener) -> listener.onKick(this, user, channel));
             }
         });
 
@@ -144,9 +142,8 @@ public final class Connection implements Listenable {
             Channel channel = channels.get(args[2]);
 
             if (channel != null) {
-                User.Builder userBuilder = new User.Builder();
-                userBuilder.setNick(command.substring(1, command.indexOf("!")));
-                onPartListeners.forEach((listener) -> listener.onPart(this, userBuilder.build(), channel));
+                User user = new User(command.substring(1, command.indexOf("!")));
+                onPartListeners.forEach((listener) -> listener.onPart(this, user, channel));
             }
         });
     }
@@ -251,8 +248,16 @@ public final class Connection implements Listenable {
         privateMessage.setSender(user);
     }
 
+    public void mode(String mode) {
+        send("MODE " + mode);
+    }
+
     public void mode(Channel channel, String mode) {
         send("MODE " + channel.getName() + " " + mode);
+    }
+
+    public void kick(Channel channel, User user, String reason) {
+        send("KICK " + channel.getName() + " " + user.getNick() + " " + reason);
     }
 
     public void nick(String nick) {

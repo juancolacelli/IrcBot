@@ -5,6 +5,10 @@ public class User {
     private String login;
     private String oldNick;
 
+    public User(String nick) {
+        this.nick = nick;
+    }
+
     private User(Builder builder) {
         nick = builder.nick;
         login = builder.login;
