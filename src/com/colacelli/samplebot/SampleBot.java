@@ -8,6 +8,7 @@ import com.colacelli.samplebot.plugins.autojoin.AutoJoinPlugin;
 import com.colacelli.samplebot.plugins.operator.OperatorPlugin;
 import com.colacelli.samplebot.plugins.rejoinonkick.RejoinOnKickPlugin;
 import com.colacelli.samplebot.plugins.translator.TranslatorPlugin;
+import com.colacelli.samplebot.plugins.uptime.UptimePlugin;
 
 import java.util.ArrayList;
 
@@ -33,6 +34,7 @@ public class SampleBot {
             channels.add(new Channel(channel));
         }
 
+        bot.addPlugin(new UptimePlugin());
         bot.addPlugin(new OperatorPlugin());
         bot.addPlugin(new AutoJoinPlugin(channels));
         bot.addPlugin(new RejoinOnKickPlugin());
