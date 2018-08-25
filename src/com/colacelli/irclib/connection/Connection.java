@@ -256,6 +256,10 @@ public final class Connection implements Listenable {
         send("MODE " + channel.getName() + " " + mode);
     }
 
+    public void topic(Channel channel, String topic) {
+        send("TOPIC " + channel.getName() + " " + topic);
+    }
+
     public void kick(Channel channel, User user, String reason) {
         send("KICK " + channel.getName() + " " + user.getNick() + " " + reason);
     }

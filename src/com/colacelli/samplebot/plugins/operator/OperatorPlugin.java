@@ -66,5 +66,12 @@ public class OperatorPlugin implements Plugin {
                 connection.kick(message.getChannel(), new User(nick), reason);
             }
         });
+
+        bot.addListener("!topic", (connection, message, command, args) -> {
+            if (args != null) {
+                String topic = String.join(" ", args);
+                connection.topic(message.getChannel(), topic);
+            }
+        });
     }
 }
