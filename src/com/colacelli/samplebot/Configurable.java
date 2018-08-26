@@ -1,9 +1,9 @@
 package com.colacelli.samplebot;
 
 public interface Configurable {
-    String SERVER = "irc.tencrux.com";
-    int PORT = 6667;
-    boolean SECURE = false;
+    String SERVER = "irc.kernelpanic.com.ar";
+    int PORT = 6697;
+    boolean SECURE = true;
     String PASSWORD = "";
 
     String NICK = "ircbot";
