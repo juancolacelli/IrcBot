@@ -1,0 +1,7 @@
+SERVER=irc.freenode.net
+PORT=6697
+SECURE=true
+PASSWORD=
+NICK=ircbot
+LOGIN=ircbot
+CHANNELS=#debug

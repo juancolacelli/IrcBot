@@ -22,3 +22,5 @@ hs_err_pid*
 # Idea esperanto and folders
 *.iml
 .idea/
+
+src/com/colacelli/samplebot/samplebot.properties
