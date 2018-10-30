@@ -6,10 +6,10 @@ import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.listeners.OnConnectListener;
 import com.colacelli.irclib.messages.PrivateMessage;
 
-public class NickservPlugin implements Plugin {
+public class NickServPlugin implements Plugin {
     private String password;
 
-    public NickservPlugin(String password) {
+    public NickServPlugin(String password) {
         this.password = password;
     }
 

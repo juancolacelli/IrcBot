@@ -6,7 +6,7 @@ import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.Server;
 import com.colacelli.samplebot.plugins.autojoin.AutoJoinPlugin;
 import com.colacelli.samplebot.plugins.help.HelpPlugin;
-import com.colacelli.samplebot.plugins.nickserv.NickservPlugin;
+import com.colacelli.samplebot.plugins.nickserv.NickServPlugin;
 import com.colacelli.samplebot.plugins.operator.OperatorPlugin;
 import com.colacelli.samplebot.plugins.rejoinonkick.RejoinOnKickPlugin;
 import com.colacelli.samplebot.plugins.translator.TranslatorPlugin;
@@ -76,7 +76,7 @@ public class SampleBot {
         // Behaviour
         bot.addPlugin(new AutoJoinPlugin(channels));
         bot.addPlugin(new RejoinOnKickPlugin());
-        bot.addPlugin(new NickservPlugin(properties.getProperty("NICKSERV_PASSWORD")));
+        bot.addPlugin(new NickServPlugin(properties.getProperty("NICKSERV_PASSWORD")));
 
         // Commands
         bot.addPlugin(new UptimePlugin());

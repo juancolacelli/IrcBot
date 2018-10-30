@@ -50,3 +50,24 @@ It's a basic but powerful bot, that includes the following plugins:
     * **uptime**: Shows bot uptime.
 * Help
     * **help**: Bot help.
+
+### Configuration
+samplebot.properties.sample: *(you need to rename it to samplebot.properties)*
+```java
+SERVER=irc.freenode.net
+PORT=6697
+SECURE=true
+PASSWORD=
+NICK=ircbot
+LOGIN=ircbot
+CHANNELS=#debug
+NICKSERV_PASSWORD=
+```
+* **SERVER**: IRC server hostname
+* **PORT**: IRC server port
+* **SECURE**: Activate/Deactivate SSL
+* **PASSWORD**: IRC server password
+* **NICK**: IRCBot nick
+* **LOGIN**: IRCBot login
+* **CHANNELS**: Channels to auto-join (comma separated without spaces i.e., #debug,##esperanto)
+* **NICKSERV_PASSWORD**: NickServ authentication password
