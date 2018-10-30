@@ -69,5 +69,5 @@ NICKSERV_PASSWORD=
 * **PASSWORD**: IRC server password
 * **NICK**: IRCBot nick
 * **LOGIN**: IRCBot login
-* **CHANNELS**: Channels to auto-join (comma separated without spaces i.e., #debug,##esperanto)
+* **CHANNELS**: Channels to auto-join (comma separated without spaces i.e, #debug,##esperanto)
 * **NICKSERV_PASSWORD**: NickServ authentication password
