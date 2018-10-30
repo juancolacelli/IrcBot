@@ -5,3 +5,4 @@ PASSWORD=
 NICK=ircbot
 LOGIN=ircbot
 CHANNELS=#debug
+NICKSERV_PASSWORD=
