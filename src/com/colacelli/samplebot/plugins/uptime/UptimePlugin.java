@@ -1,7 +1,6 @@
 package com.colacelli.samplebot.plugins.uptime;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.samplebot.plugins.help.PluginWithHelp;
 

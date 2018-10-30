@@ -17,14 +17,14 @@ public class HelpPlugin implements Plugin {
 
     @Override
     public void setup(IRCBot bot) {
-        for(Plugin plugin : bot.getPlugins()) {
+        for (Plugin plugin : bot.getPlugins()) {
             try {
                 String[] pluginHelps = ((PluginWithHelp) plugin).getHelp();
 
                 for (String help : pluginHelps) {
                     helps.add(help);
                 }
-            } catch(ClassCastException e) {
+            } catch (ClassCastException e) {
                 // Plugins can choose to extend Plugin or PluginWithHelp
             }
         }
@@ -33,7 +33,7 @@ public class HelpPlugin implements Plugin {
     }
 
     private void showHelp(Connection connection, ChannelMessage message, String command, String... args) {
-        for(String help : helps) {
+        for (String help : helps) {
             PrivateMessage.Builder privateMessageBuilder = new PrivateMessage.Builder();
             privateMessageBuilder
                     .setSender(connection.getUser())

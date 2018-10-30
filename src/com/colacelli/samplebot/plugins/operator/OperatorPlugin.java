@@ -1,7 +1,6 @@
 package com.colacelli.samplebot.plugins.operator;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.actors.User;
 import com.colacelli.samplebot.plugins.help.PluginWithHelp;
