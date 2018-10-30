@@ -47,6 +47,10 @@ public class IRCBot implements Listenable {
         plugins.add(plugin);
     }
 
+    public ArrayList<Plugin> getPlugins() {
+        return plugins;
+    }
+
     @Override
     public void addListener(OnConnectListener listener) {
         connection.addListener(listener);

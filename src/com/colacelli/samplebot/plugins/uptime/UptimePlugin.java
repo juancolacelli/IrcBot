@@ -3,10 +3,11 @@ package com.colacelli.samplebot.plugins.uptime;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.messages.ChannelMessage;
+import com.colacelli.samplebot.plugins.help.PluginWithHelp;
 
 import java.util.Date;
 
-public class UptimePlugin implements Plugin {
+public class UptimePlugin implements PluginWithHelp {
     private final Date startDate;
 
     public UptimePlugin() {
@@ -35,5 +36,10 @@ public class UptimePlugin implements Plugin {
 
             connection.send(channelMessageBuilder.build());
         });
+    }
+
+    @Override
+    public String[] getHelp() {
+        return new String[]{"!uptime: Shows bot uptime"};
     }
 }

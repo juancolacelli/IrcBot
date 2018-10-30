@@ -3,12 +3,13 @@ package com.colacelli.samplebot.plugins.translator;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.messages.ChannelMessage;
+import com.colacelli.samplebot.plugins.help.PluginWithHelp;
 import com.colacelli.samplebot.plugins.translator.esperanto.Esperanto;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class TranslatorPlugin implements Plugin {
+public class TranslatorPlugin implements PluginWithHelp {
     private final Esperanto esperanto = new Esperanto();
 
     @Override
@@ -34,5 +35,10 @@ public class TranslatorPlugin implements Plugin {
                 }
             }
         });
+    }
+
+    @Override
+    public String[] getHelp() {
+        return new String[]{"!eo <word>: Esperanto/English translator"};
     }
 }

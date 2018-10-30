@@ -4,12 +4,13 @@ import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.plugins.Plugin;
 import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.actors.User;
+import com.colacelli.samplebot.plugins.help.PluginWithHelp;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OperatorPlugin implements Plugin {
+public class OperatorPlugin implements PluginWithHelp {
     @Override
     public void setup(IRCBot bot) {
         HashMap<String, String> commandModes = new HashMap<>();
@@ -73,5 +74,21 @@ public class OperatorPlugin implements Plugin {
                 connection.topic(message.getChannel(), topic);
             }
         });
+    }
+
+    @Override
+    public String[] getHelp() {
+        return new String[]{
+                "!owner/!deowner ?<nick>: Gives/Removes +q mode",
+                "!protect/!deprotect ?<nick>: Gives/Removes +a mode",
+                "!op/!deop ?<nick>: Gives/Removes +o mode",
+                "!halfop/!dehalfop ?<nick>: Gives/Removes +h mode",
+                "!voice/!devoice ?<nick>: Gives/Removes +v mode",
+                "!join <channel>: Joins a channel",
+                "!part ?<channel>: Parts from channel",
+                "!mode <modes>: Sets modes on current channel",
+                "!kick <user> ?<reason>: Kicks a user from current channel",
+                "!topic <topic>: Changes current channel topic"
+        };
     }
 }

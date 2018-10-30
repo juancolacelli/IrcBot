@@ -5,6 +5,7 @@ import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.Server;
 import com.colacelli.samplebot.plugins.autojoin.AutoJoinPlugin;
+import com.colacelli.samplebot.plugins.help.HelpPlugin;
 import com.colacelli.samplebot.plugins.operator.OperatorPlugin;
 import com.colacelli.samplebot.plugins.rejoinonkick.RejoinOnKickPlugin;
 import com.colacelli.samplebot.plugins.translator.TranslatorPlugin;
@@ -39,6 +40,8 @@ public class SampleBot {
         bot.addPlugin(new AutoJoinPlugin(channels));
         bot.addPlugin(new RejoinOnKickPlugin());
         bot.addPlugin(new TranslatorPlugin());
+
+        bot.addPlugin(new HelpPlugin());
 
         bot.connect(
                 serverBuilder.build(),
