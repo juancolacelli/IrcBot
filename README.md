@@ -1,9 +1,9 @@
-#IRC Bot
+# IRC Bot
 
-##Dependencies
-* irclib: https://gitlab.com/jic/irclib
+## Dependencies
+* **irclib**: https://gitlab.com/jic/irclib
 
-##Basic usage
+## Basic usage
 ```java
 IRCBot bot = new IRCBot();
 
@@ -21,7 +21,7 @@ serverBuilder
 bot.connect(serverBuilder.build(), userBuilder.build());
 ```
 
-##Basic plugin definition
+## Basic plugin definition
 ```java
 public class BasicPlugin implements Plugin {
     @Override
@@ -38,7 +38,7 @@ IRCBot bot = new IRCBot();
 bot.addPlugin(new BasicPlugin());
 ```
 
-##Samplebot
+## Samplebot
 It's a basic but powerful bot, that includes the following plugins:
 * Behaviour
     * **autojoin**: Auto-join channels on connect.
