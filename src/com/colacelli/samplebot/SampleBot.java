@@ -12,6 +12,7 @@ import com.colacelli.samplebot.plugins.operator.OperatorPlugin;
 import com.colacelli.samplebot.plugins.rejoinonkick.RejoinOnKickPlugin;
 import com.colacelli.samplebot.plugins.translator.TranslatorPlugin;
 import com.colacelli.samplebot.plugins.uptime.UptimePlugin;
+import com.colacelli.samplebot.plugins.websitetitle.WebsiteTitlePlugin;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,6 +80,7 @@ public class SampleBot {
         bot.addPlugin(new AutoJoinPlugin(channels));
         bot.addPlugin(new RejoinOnKickPlugin());
         bot.addPlugin(new NickServPlugin(properties.getProperty("NICKSERV_PASSWORD")));
+        bot.addPlugin(new WebsiteTitlePlugin());
 
         // Commands
         bot.addPlugin(new UptimePlugin());
