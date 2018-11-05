@@ -41,6 +41,7 @@ bot.addPlugin(new BasicPlugin());
 ## Samplebot
 It's a basic but powerful bot, that includes the following plugins:
 * Behaviour
+    * **autoreconnect**: Auto-reconnect on disconnection.
     * **autojoin**: Auto-join channels on connect.
     * **rejoinonkick**: Re-join channels on kick.
     * **nickserv**: NickServ authentication.
