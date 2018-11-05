@@ -101,6 +101,11 @@ public class IRCBot implements Listenable {
         connection.addListener(listener);
     }
 
+    @Override
+    public void addListener(int rawCode, OnRawCodeListener listener) {
+        connection.addListener(rawCode, listener);
+    }
+
     public void addListener(String command, OnChannelCommandListener listener) {
         command = command.toUpperCase();
 
