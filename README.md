@@ -45,6 +45,7 @@ It's a basic but powerful bot, that includes the following plugins:
     * **autojoin**: Auto-join channels on connect.
     * **rejoinonkick**: Re-join channels on kick.
     * **nickserv**: NickServ authentication.
+    * **websitetitle**: Get website title when an url is detected.
 * Commands
     * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
     * **translator**: Esperato / English translator.
