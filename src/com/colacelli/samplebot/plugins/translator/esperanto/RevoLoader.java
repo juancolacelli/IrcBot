@@ -60,8 +60,11 @@ class RevoLoader {
     class RevoFileLoader implements Runnable {
         private static final String BASE_WORD_TAG = "rad";
         private static final String BASE_WORD_NODES = "tld";
+
         private static final String DEFINITION_TAG = "drv";
+        private static final String SUB_DEFINITION_TAG = "snc";
         private static final String WORD_TAG = "kap";
+        private static final String TRANSLATION_GROUP_TAG = "trdgrp";
         private static final String TRANSLATION_TAG = "trd";
         File file;
 
@@ -70,10 +73,74 @@ class RevoLoader {
         }
 
         private String purgeWord(String word) {
+            word = word.toLowerCase();
+            word = word.replaceAll("\\(.+", "");
             word = word.replaceAll("(\\*|\n|\r|\t)", "");
+            word = word.replaceAll(",.+", "");
             word = word.replaceAll("^( )+", "");
             word = word.replaceAll("( )+$", "");
-            return word.toLowerCase();
+            word = word.replaceAll("( )+", " ");
+            return word;
+        }
+
+        private String purgeTranslation(String translation) {
+            translation = translation.toLowerCase();
+            translation = translation.replaceAll("(\n|\r|\t)", "");
+            translation = translation.replaceAll("^( )+", "");
+            translation = translation.replaceAll("( )+$", "");
+            translation = translation.replaceAll("( )+", " ");
+            return translation;
+        }
+
+        private void addTranslation(String locale, String word, String translation) {
+            EsperantoTranslator.getInstance().addTranslation("eo-" + locale, word, purgeTranslation(translation));
+
+            // Ignore translations with spaces
+            translation = purgeWord(translation);
+            if (translation.indexOf(" ") == -1) {
+                EsperantoTranslator.getInstance().addTranslation(locale + "-eo", translation, word);
+            }
+        }
+
+        private void parseTranslationGroup(String word, Node group) {
+            NodeList nodes = group.getChildNodes();
+            String locale = group.getAttributes().item(0).getTextContent();
+
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+
+                if (node.getNodeName().equals(TRANSLATION_TAG)) {
+                    addTranslation(locale, word, node.getTextContent());
+                }
+            }
+        }
+
+        private void parseNodes(String word, NodeList nodes) {
+            for (int i = 0; i < nodes.getLength(); i++) {
+                Node node = nodes.item(i);
+
+                switch (node.getNodeName()) {
+                    case DEFINITION_TAG:
+                    case SUB_DEFINITION_TAG:
+                        parseNodes(word, node.getChildNodes());
+                        break;
+
+                    case WORD_TAG:
+                        word = purgeWord(node.getTextContent());
+                        break;
+
+                    case TRANSLATION_GROUP_TAG:
+                        parseTranslationGroup(word, node);
+                        break;
+
+                    case TRANSLATION_TAG:
+                        String locale = node.getAttributes().item(0).getTextContent();
+                        String translation = node.getTextContent();
+
+                        addTranslation(locale, word, translation);
+                        break;
+                }
+            }
         }
 
         @Override
@@ -83,39 +150,29 @@ class RevoLoader {
                 DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
                 Document document = documentBuilder.parse(file);
 
+                // Finding base word <rad>bezon</rad>
                 String baseWord = document.getElementsByTagName(BASE_WORD_TAG).item(0).getTextContent();
 
+                // Replacing <tld/> with <tld>bezon</tld>
                 NodeList baseWordNodes = document.getElementsByTagName(BASE_WORD_NODES);
                 for (int i = 0; i < baseWordNodes.getLength(); i++) {
                     baseWordNodes.item(i).setTextContent(baseWord);
                 }
 
-                // <drv><kap><tld/>i<trd lng="es">necesitar...
+                /*
+                    <drv>
+                        <kap><tld/>i</kap>
+                        <snc>
+                            <trdgrp lng="en">
+                                <trd>want</trd>
+                            </trdgrp>
+                            <trd lng="en">need</trd>
+                        </snc>
+                        <trd lng="es">necesitar</trd>
+                    </drv>
+                */
                 NodeList drvs = document.getElementsByTagName(DEFINITION_TAG);
-                String word = null;
-                for (int i = 0; i < drvs.getLength(); i++) {
-                    Node drv = drvs.item(i);
-                    NodeList drvNodes = drv.getChildNodes();
-
-                    for (int j = 0; j < drvNodes.getLength(); j++) {
-                        Node drvNode = drvNodes.item(j);
-
-                        if (drvNode.getNodeName().equals(WORD_TAG)) {
-                            // Word
-                            word = purgeWord(drvNode.getTextContent());
-                        } else if (drvNode.getNodeName().equals(TRANSLATION_TAG)) {
-                            // Translation
-                            String translation = purgeWord(drvNode.getTextContent());
-                            String locale = drvNode.getAttributes().item(0).getTextContent();
-
-                            final String eoLocale = "eo-" + locale;
-                            final String localeEo = locale + "-eo";
-
-                            EsperantoTranslator.getInstance().addTranslation(eoLocale, word, translation);
-                            EsperantoTranslator.getInstance().addTranslation(localeEo, translation, word);
-                        }
-                    }
-                }
+                parseNodes(null, drvs);
             } catch (ParserConfigurationException | SAXException | IOException e) {
                 e.printStackTrace();
             }

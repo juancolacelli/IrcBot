@@ -1,10 +1,11 @@
 package com.colacelli.samplebot.plugins.translator.esperanto;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class EsperantoTranslator {
     private static EsperantoTranslator instance;
-    private static HashMap<String, HashMap<String, String>> translations;
+    private static HashMap<String, HashMap<String, ArrayList<String>>> translations;
     private boolean loaded = false;
 
     public EsperantoTranslator() {
@@ -30,10 +31,15 @@ public class EsperantoTranslator {
 
     void addTranslation(String locale, String word, String translation) {
         translations.putIfAbsent(locale, new HashMap<>());
-        translations.get(locale).put(word, translation);
+        translations.get(locale).putIfAbsent(word, new ArrayList<>());
+
+
+        if(!translations.get(locale).get(word).contains(translation)) {
+            translations.get(locale).get(word).add(translation);
+        }
     }
 
-    public String translate(String locale, String word) {
+    public ArrayList<String> translate(String locale, String word) {
         if (translations.containsKey(locale) && translations.get(locale).containsKey(word)) {
             return translations.get(locale).get(word);
         } else {

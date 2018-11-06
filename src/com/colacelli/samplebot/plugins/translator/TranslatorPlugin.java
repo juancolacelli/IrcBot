@@ -5,6 +5,8 @@ import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.samplebot.plugins.help.PluginWithHelp;
 import com.colacelli.samplebot.plugins.translator.esperanto.EsperantoTranslator;
 
+import java.util.ArrayList;
+
 public class TranslatorPlugin implements PluginWithHelp {
     private final EsperantoTranslator esperantoTranslator = EsperantoTranslator.getInstance();
 
@@ -18,25 +20,27 @@ public class TranslatorPlugin implements PluginWithHelp {
                         String locale = args[0];
                         String word = args[1];
 
-                        String translation = esperantoTranslator.translate(locale, word);
+                        ArrayList<String> translations = esperantoTranslator.translate(locale, word);
 
-                        if (translation != null && !translation.isEmpty()) {
-                            String[] locales = locale.split("-");
+                        if (translations != null && !translations.isEmpty()) {
+                            for (String translation : translations) {
+                                String[] locales = locale.split("-");
 
-                            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                            channelMessageBuilder
-                                    .setSender(connection.getUser())
-                                    .setChannel(message.getChannel())
-                                    .setText("[" + locales[0] + "] " + word + " ~ " + "[" + locales[1] + "] " + translation);
+                                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                                channelMessageBuilder
+                                        .setSender(connection.getUser())
+                                        .setChannel(message.getChannel())
+                                        .setText("[" + locales[0] + "] " + word + " ~ " + "[" + locales[1] + "] " + translation);
 
-                            connection.send(channelMessageBuilder.build());
+                                connection.send(channelMessageBuilder.build());
+                            }
                         }
                     } else {
                         ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
                         channelMessageBuilder
                                 .setSender(connection.getUser())
                                 .setChannel(message.getChannel())
-                                .setText("Loading Esperanto dictionary, please try again later...");
+                                .setText("Loading Esperanto translations, please try again later...");
 
                         connection.send(channelMessageBuilder.build());
                     }
