@@ -41,10 +41,10 @@ bot.addPlugin(new BasicPlugin());
 ## Samplebot
 It's a basic but powerful bot, that includes the following plugins:
 * Behaviour
-    * **autoreconnect**: Auto-reconnect on disconnection.
     * **autojoin**: Auto-join channels on connect.
-    * **rejoinonkick**: Re-join channels on kick.
+    * **autoreconnect**: Auto-reconnect on disconnection.
     * **nickserv**: NickServ authentication.
+    * **rejoinonkick**: Re-join channels on kick.
     * **websitetitle**: Get website title when an url is detected.
 * Commands
     * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
