@@ -8,7 +8,14 @@ import com.colacelli.samplebot.plugins.translator.esperanto.EsperantoTranslator;
 import java.util.ArrayList;
 
 public class TranslatorPlugin implements PluginWithHelp {
-    private final EsperantoTranslator esperantoTranslator = EsperantoTranslator.getInstance();
+    private final String revoPath;
+    private final EsperantoTranslator esperantoTranslator;
+
+    public TranslatorPlugin(String revoPath) {
+        this.revoPath = revoPath;
+        this.esperantoTranslator = EsperantoTranslator.getInstance();
+        this.esperantoTranslator.load(revoPath);
+    }
 
     @Override
     public void setup(IRCBot bot) {

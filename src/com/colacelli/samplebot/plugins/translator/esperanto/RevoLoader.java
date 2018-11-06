@@ -10,8 +10,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 
 class RevoLoader {
@@ -21,8 +19,8 @@ class RevoLoader {
         threads = new ArrayList<>();
     }
 
-    void load() {
-        Runnable task = new RevoFolderLoader();
+    void load(String path) {
+        Runnable task = new RevoFolderLoader(path);
         Thread worker = new Thread(task);
         worker.setName("RevoFolderLoader");
         worker.start();
@@ -31,29 +29,28 @@ class RevoLoader {
     }
 
     class RevoFolderLoader implements Runnable {
-        private static final String REVO_PATH = "com/colacelli/samplebot/plugins/translator/esperanto/revo/xml/";
+        private String path;
+
+        public RevoFolderLoader(String path) {
+            this.path = path + "/xml";
+        }
 
         @Override
         public void run() {
-            try {
-                URL resource = getClass().getClassLoader().getResource(REVO_PATH);
-                File folder = new File(resource.toURI());
+            File folder = new File(path);
 
-                for (File file : folder.listFiles()) {
-                    if (file.isFile()) {
-                        Runnable task = new RevoFileLoader(file);
-                        Thread worker = new Thread(task);
-                        worker.setName(file.getName());
-                        worker.start();
+            for (File file : folder.listFiles()) {
+                if (file.isFile()) {
+                    Runnable task = new RevoFileLoader(file);
+                    Thread worker = new Thread(task);
+                    worker.setName(file.getName());
+                    worker.start();
 
-                        threads.add(worker);
-                    }
+                    threads.add(worker);
                 }
-
-                EsperantoTranslator.getInstance().setLoaded(true);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
             }
+
+            EsperantoTranslator.getInstance().setLoaded(true);
         }
     }
 

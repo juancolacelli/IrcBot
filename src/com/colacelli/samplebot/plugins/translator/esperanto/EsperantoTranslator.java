@@ -10,15 +10,17 @@ public class EsperantoTranslator {
 
     public EsperantoTranslator() {
         translations = new HashMap<>();
-
-        RevoLoader revoLoader = new RevoLoader();
-        revoLoader.load();
     }
 
     public static EsperantoTranslator getInstance() {
         if (instance == null) instance = new EsperantoTranslator();
 
         return instance;
+    }
+
+    public void load(String revoPath) {
+        RevoLoader revoLoader = new RevoLoader();
+        revoLoader.load(revoPath);
     }
 
     public boolean isLoaded() {

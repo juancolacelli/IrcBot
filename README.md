@@ -2,6 +2,7 @@
 
 ## Dependencies
 * **irclib**: https://gitlab.com/jic/irclib
+* **revo**: http://www.reta-vortaro.de/tgz/
 
 ## Basic usage
 ```java
@@ -64,6 +65,7 @@ NICK=ircbot
 LOGIN=ircbot
 CHANNELS=#debug
 NICKSERV_PASSWORD=
+REVO_PATH=
 ```
 * **SERVER**: IRC server hostname
 * **PORT**: IRC server port
@@ -73,3 +75,4 @@ NICKSERV_PASSWORD=
 * **LOGIN**: IRCBot login
 * **CHANNELS**: Channels to auto-join (comma separated without spaces i.e, #debug,##esperanto)
 * **NICKSERV_PASSWORD**: NickServ authentication password
+* **REVO_PATH**: Unzipped revo path

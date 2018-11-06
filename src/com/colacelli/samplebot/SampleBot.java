@@ -85,7 +85,7 @@ public class SampleBot {
         // Commands
         bot.addPlugin(new UptimePlugin());
         bot.addPlugin(new OperatorPlugin());
-        bot.addPlugin(new TranslatorPlugin());
+        bot.addPlugin(new TranslatorPlugin(properties.getProperty("REVO_PATH")));
 
         // Help
         bot.addPlugin(new HelpPlugin());

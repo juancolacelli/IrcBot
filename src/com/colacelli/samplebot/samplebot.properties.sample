@@ -6,3 +6,4 @@ NICK=ircbot
 LOGIN=ircbot
 CHANNELS=#debug
 NICKSERV_PASSWORD=
+REVO_PATH=
