@@ -1,0 +1,505 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: koncer.xml,v 1.25 2017/11/03 19:10:18 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>koncern</rad>/i  <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="koncer.0i">
+  <kap><ofc>*</ofc><tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc>
+    <uzo tip="klr">(io)</uzo>
+    <dif>
+      Esti la afero de iu, la temo de io;
+      aparte tu&scirc;i, interesi iun a&ubreve; ion:
+      <ekz>
+        <ind>tio ne <tld/>as vin</ind>
+        <klr>(<ref tip="vid" cel="naz.0o">nazo</ref>)</klr>;
+        <trdgrp lng="es">
+          <trd>no le <ind>concierne</ind> para nada</trd>,
+          <trd>no es <ind>asunto</ind> tuyo</trd>
+        </trdgrp>
+        <trdgrp lng="fr">
+          <trd>cela ne vous <ind>concerne</ind> pas</trd>,
+          <trd>cela ne vous <ind>regarde</ind> pas</trd>,
+          <trd>ce n'est pas votre <ind>affaire</ind></trd>,
+          <trd>ce ne sont pas vos <ind>oignon</ind>s</trd>
+        </trdgrp>
+        <trd lng="hu">nem tartozik r&aacute;d</trd>
+        <trd lng="nl"><ind><klr tip="ind">aangaan: </klr></ind>dat gaat
+        je niets aan</trd>
+      </ekz>
+      <ekz>
+        mi <klr>[&#8230;]</klr> tro malmulte atentis <klr>[&#8230;]</klr> 
+        la aferoj<klr>[n]</klr>, kiuj ne koncernis min persone
+        <fnt>
+          <bib>Marta</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        tiu gaja ekkrio <tld/>is grupon da personoj, kiuj plenumis tre originalan taskon
+        <fnt>
+          <bib>Far1</bib>
+          <lok>&Ccirc;apitro XII</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la redaktado de la raporto <tld/>as la sekretarion;
+      </ekz>
+      <ekz>
+        la uzado de la akuzativo <tld/>as la sintakson;
+      </ekz>
+      <ekz>
+        le&gcirc;o <tld/>anta la teatrojn;
+      </ekz>
+      <ekz>
+        ni silentas, &ccirc;ar ni ne sentas nin <ind><tld/>ata</ind>j
+        <klr>(tio ne estas nia afero)</klr>;
+        <trdgrp lng="es">
+          <trd>preocupado</trd>,
+          <trd>interesado</trd>
+        </trdgrp>
+        <trdgrp lng="fr">
+          <trd>concern&eacute;</trd>,
+          <trd>interess&eacute;</trd>,
+          <trd>impliqu&eacute;</trd>,
+          <trd>touch&eacute;</trd>,
+          <trd>vis&eacute;</trd>
+        </trdgrp>
+        <trd lng="nl">betrokken</trd>
+        <trd lng="hu">&eacute;rintett</trd>
+      </ekz>
+      <ekz>
+        la regnoj ne <tld/>ataj en la konflikto;
+      </ekz>
+      <ekz>
+        la <tld/>ata objekto <klr>(priparolata)</klr>;
+      </ekz>
+      <ekz>
+        &ccirc;iuj miaj ordonoj <tld/>is ekskluzive la militajn aferojn
+        <fnt>
+          <bib>Far3</bib>
+          <lok>&Ccirc;apitro VI</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        lia tuta parolado <tld/>is 
+        <klr>(temis pri)</klr> nur aferojn agrikulturajn
+        <fnt>
+          <bib>Fab4</bib>
+          <lok>Dekdu per la po&scirc;to</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        li rakontadis al ili historiojn, kiuj &ccirc;iuj <tld/>is la mar&ccirc;on
+        <fnt>
+          <bib>Fab1</bib>
+          <lok>Cikonioj</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="intere.0i.pro_graveco">interesi<sncref/></ref>,
+      <ref cel="rilat.0i">rilati</ref>,
+      <ref cel="tem.0i">temi</ref>,
+      <ref cel="tusx.0i.koncerni">tu&scirc;i<sncref/></ref>
+    </refgrp>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_t;&c_y;&c_ch;&c_y;&c_c;&c_c;&c_a;</trd>,
+    <trd>&c_z;&c_a;&c_k;&c_r;&c_a;&c_n;&c_a;&c_c;&c_mol;</trd>,
+    <trd>&c_m;&c_je;&c_c;&c_mol; <ind>&c_d;&c_a;&c_ch;&c_y;&c_n;&c_je;&c_n;&c_mol;&c_n;&c_je;</ind></trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>t&yacute;kat se</trd>,
+    <trd>vztahovat se</trd>
+  </trdgrp>
+  <trd lng="de">betreffen</trd>
+  <trd lng="en">concern</trd>
+  <trdgrp lng="es">
+    <trd>concernir</trd>,
+    <trd>interesar</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>concerner</trd>,
+    <trd>avoir <ind>rapport</ind> &agrave;</trd>,
+    <trd>avoir <ind>trait</ind> &agrave;</trd>,
+    <trd>&ecirc;tre l'<ind>affaire</ind> de</trd>,
+    <trd>&ecirc;tre du <ind>ressort</ind> de</trd>,
+    <trd>int&eacute;resser<klr tip="ind"> (concerner)</klr></trd>,
+    <trd>porter (sur)</trd>,
+    <trd>regarder<klr tip="ind"> (concerner)</klr></trd>,
+    <trd>relever (de)</trd>,
+    <trd>se <ind>rapporter</ind> (&agrave;)</trd>,
+    <trd>toucher (&agrave;)</trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>&eacute;rint</trd>,
+    <trd>vonatkozik r&aacute;</trd>,
+    <trd>tartozik r&aacute;</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>aanbelangen</trd>,
+    <trd>betreffen</trd>
+  </trdgrp>
+  <trdgrp lng="pt">
+    <trd>concernir</trd>,
+    <trd>dizer <ind>respeito</ind> a</trd>,
+    <trd>interessar</trd>,        
+    <trd>competir</trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_z;&c_a;&c_t;&c_r;&c_a;&c_g;&c_i;&c_v;&c_a;&c_t;&c_mol;</trd>,
+    <trd>&c_k;&c_a;&c_s;&c_a;&c_t;&c_mol;&c_s;&c_ja;</trd>,
+    <trd>&c_o;&c_t;&c_n;&c_o;&c_s;&c_i;&c_t;&c_mol;&c_s;&c_ja;</trd>
+  </trdgrp>
+  <trd lng="sk">t&yacute;ka&tcaron; sa</trd>
+</drv>
+
+<drv mrk="koncer.0a">
+  <kap><tld/>a</kap>
+  <snc mrk="koncer.0a.0ata">
+    <dif>
+      <tld lit="K"/>ata:
+    </dif>
+    <subsnc>
+      <uzo tip="klr">(tiutema, supredirita, pri kio temas)</uzo>
+      <ekz>
+        pro tro malfrua ekscio pri la <tld/>a aran&gcirc;o,
+        ni povis nenion provi;
+      </ekz>
+      <ekz>
+        la bela landa scenejo, kie okazos la <tld/>a solena&jcirc;o, certe
+        venigos
+        multajn samideanojn;
+      </ekz>
+      <ekz>
+        la patro de la <tld/>a knabino kaj de la kulpulo rifuzis agnoski la rilaton de 
+        sia filino kun &scirc;ia turk-kurda amiko kaj &scirc;ajne instigis la filon 
+        &leftquot;savi la honoron de la familio&rightquot; en tradicia maniero
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Gerrit Berverling</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/006808.html">Etnaj Rilatoj: Kiam honoro fari&gcirc;as hororo</url></vrk>
+        </fnt>.
+      </ekz>
+      <trd lng="hu">sz&oacute;ban forg&oacute;</trd>
+    </subsnc>
+    <subsnc>
+      <uzo tip="klr">(tiucela, konvena, kompetenta,
+      kies afero &gcirc;i estas)</uzo>
+      <ekz>
+        nia komitato, interkonsente kun la <tld/>aj societoj, intervenis
+        en 21 kongresoj;
+      </ekz>
+      <ekz>
+        klerigan laboron oni povis komenci nur kiam jam estis <tld/>a
+        literaturo;
+      </ekz>
+      <ekz>
+        la <tld/>aj organiza&jcirc;oj de nia movado provu fari la unuajn
+        pa&scirc;ojn;
+      </ekz>
+      <ekz>
+        geedzi&gcirc;o registrata en <tld/>a institucio;
+      </ekz>
+      <ekz>
+        la&ubreve; kalkulo de la <tld/>a fako, la nombro de a&ccirc;etantoj de loteriaj biletoj jam superas tiun de la &ccirc;inaj akciuloj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Mu Binghua</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/006920.html">Loterioj</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la&ubreve; la <tld/>a ministro eksplodis polvokarba miksa&jcirc;o
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Araneo</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/006949.html">Ukrainio: Subtera katastrofo</url></vrk>
+        </fnt>.
+      </ekz>
+    </subsnc>
+    <trdgrp lng="es">
+      <trd>preocupado</trd>,
+      <trd>interesado</trd>
+    </trdgrp>
+    <trdgrp lng="fr">
+      <trd>concern&eacute;</trd>,
+      <trd>&agrave; cet <ind>effet</ind></trd>,
+      <trd>interess&eacute;</trd>,
+      <trd>impliqu&eacute;</trd>,
+      <trd>touch&eacute;</trd>,
+      <trd>vis&eacute;</trd>
+    </trdgrp>
+    <trdgrp lng="hu">
+      <trd>illet&eacute;kes</trd>,
+      <trd>&eacute;rintett</trd>
+    </trdgrp>
+  </snc>
+  <snc mrk="koncer.0a.responda">
+    <dif>
+      Responda, respektiva:
+      <ekz>
+        tiuj nomoj estas skribitaj la&ubreve; la <tld/>a nacia skribmaniero;
+      </ekz>
+      <ekz>
+        &ccirc;iu sendinto ricevos <tld/>an kvanton da belaj po&scirc;tkartoj;
+      </ekz>
+      <ekz>
+        en la pasinteco la arboj estis gravegaj por la homa vivo, kaj e&ccirc; al la literoj alfabetaj oni havigis arbajn nomojn, komenci&gcirc;antajn per la <tld/>a litero
+        <fnt>
+          <bib>Monato</bib>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/006878.html">Dommastrumo: &Gcirc;ardenumi</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trdgrp lng="es">
+      <trd>respectivo</trd>
+    </trdgrp>
+    <trdgrp lng="fr">
+      <trd>concern&eacute;</trd>,
+      <trd>correspondant<klr tip="ind"> (adj.)</klr></trd>,
+      <trd>respectif</trd>
+    </trdgrp>
+    <trdgrp lng="hu">
+      <trd>megfelel&odblac;</trd>,
+      <trd>vonatkoz&oacute;</trd>
+    </trdgrp>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_d;&c_a;&c_t;&c_y;&c_ch;&c_n;&c_y;</trd>,
+    <trd>&c_ja;&c_k;&c_ib; &c_m;&c_a;&c_je; <ind>&c_d;&c_a;&c_ch;&c_y;&c_n;&c_je;&c_n;&c_mol;&c_n;&c_je;</ind></trd>,
+    <trd>&c_a;&c_d;&c_p;&c_a;&c_v;&c_je;&c_d;&c_n;&c_y;</trd>,
+    <trd>&c_z;&c_a;&c_c;&c_ib;&c_k;&c_a;&c_w;&c_l;&c_je;&c_n;&c_y;</trd>
+  </trdgrp>
+  <trd lng="cs">doty&ccaron;n&yacute;</trd>
+  <trdgrp lng="de">
+     <trd>jeweilig</trd>,
+     <trd>entsprechend</trd>,
+     <trd>zust&auml;ndig</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+      <trd>betreffend</trd>,
+      <trd>betrokken<klr tip="ind"> (betreffend)</klr></trd>
+    </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_k;&c_a;&c_s;&c_a;&c_ju;&c_shch;&c_i;&c_j;&c_s;&c_ja;</trd>,
+    <trd>&c_o;&c_t;&c_n;&c_o;&c_s;&c_ja;&c_shch;&c_i;&c_j;&c_s;&c_ja;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>doty&ccaron;n&yacute;</trd>,
+    <trd>patri&ccaron;n&yacute;</trd>,
+    <trd>pr&iacute;slu&scaron;n&yacute;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="koncer.0eal">
+  <kap><tld/>e al,
+  <var><kap><tld/>e... -n</kap></var>
+  </kap>
+  <gra><vspec>prepozicia&jcirc;o</vspec></gra>
+  <snc mrk="koncer.0eal.KOMUNE">
+    <dif>
+      En rilato kun,
+      <ref tip="vid" cel="rilat.0eal.KOMUNE">rilate al</ref>:
+      <ekz>
+        li skribis al mi <tld/>e tiun aferon;
+      </ekz>
+      <ekz>
+        li eble ne pretis akcepti grandan influon
+        de virino <tld/>e al decido grava pri familia
+        problemo
+        <fnt>
+          <aut>J. Codjo</aut>,
+          <vrk>Aventuro en Mondo de &Scirc;ajnigado</vrk>,
+          <lok>2009</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        ili sidis, plenkreskuloj kaj tamen infanoj <tld/>e sian
+        koron
+        <fnt>
+          <bib>Fab2</bib>
+          <lok>Ne&gcirc;a re&gcirc;ino</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        <tld/>e vian proponon pri drapoj, mi beda&ubreve;ras, ke mi ne povas profiti &gcirc;in, 
+        &ccirc;ar mi tute ne okupas min je tiuj komerca&jcirc;oj
+        <fnt>
+          <bib>FK</bib>
+        </fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="pri.0">pri</ref>.
+    </refgrp>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_a;&c_d;&c_n;&c_o;&c_s;&c_n;&c_a;</trd>,
+    <trd>&c_d;&c_a;&c_t;&c_y;&c_ch;&c_n;&c_a;</trd>,
+    <trd>&c_u; <ind>&c_d;&c_a;&c_ch;&c_y;&c_n;&c_je;&c_n;&c_mol;&c_n;&c_ib;</ind> <klr>(&c_ch;&c_a;&c_g;&c_o;&c_s;&c_mol;&c_c;&c_ib; /
+    &c_k;&c_a;&c_g;&c_o;&c_s;&c_mol;&c_c;&c_ib;)</klr></trd>
+  </trdgrp>
+  <trd lng="de">betreffend</trd>
+  <trdgrp lng="es">
+    <trd>en lo que concierne</trd>,
+    <trd>relativo a</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>en ce qui <ind>concerne</ind></trd>,
+    <trd>au <ind>sujet</ind> de</trd>,
+    <trd>concernant<klr tip="ind"> (pr&eacute;p.)</klr></trd>,
+    <trd>pour ce qui <ind>concerne</ind></trd>,
+    <trd>pour ce qui <ind>est</ind> de</trd>,
+    <trd><ind>quant</ind> &agrave;</trd>,
+    <trd><ind>relativement</ind> &agrave;</trd>,
+    <trd>touchant<klr tip="ind"> (pr&eacute;p.)</klr></trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>vmit <ind>illet&odblac;en</ind></trd>,
+    <trd>vmi <ind>vonatkoz&aacute;s&aacute;ban</ind></trd>
+  </trdgrp>
+  <trd lng="nl">betreffende</trd>
+  <trdgrp lng="ru">
+    <trd>&c_v; &c_o;&c_t;&c_n;&c_o;&c_sh;&c_je;&c_n;&c_i;&c_i; <klr>(&c_ch;&c_je;&c_g;&c_o;-&c_l;.,
+    &c_k;&c_o;&c_g;&c_o;-&c_l;.)</klr></trd>,
+    <trd>&c_p;&c_o; &c_o;&c_t;&c_n;&c_o;&c_sh;&c_je;&c_n;&c_i;&c_ju; &c_k; <klr>(&c_ch;&c_je;&c_m;&c_u;-&c_l;.,
+    &c_k;&c_o;&c_m;&c_u;-&c_l;.)</klr></trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="koncer.0o">
+  <kap><tld/>o</kap>
+  <snc>
+    <dif>
+      <ref tip="dif" cel="koncer.0ajxo"><tld lit="K"/>a&jcirc;o</ref>:
+      <ekz>
+        alispecan miksa&jcirc;on de personaj <tld/>oj kun politikaj
+        motivoj oni trovas en la soveta romano de Vladimir Varankin,
+        <ctl>Metropoliteno</ctl>
+        <fnt><bib>Plumamikoj</bib><lok>Prozo fikcia</lok></fnt>;
+      </ekz>
+      <ekz>
+        tial krei&gcirc;is laborgrupoj <klr>[pri]</klr> diversaj kernaj
+        <tld/>oj de la vivo
+        <fnt>
+        <aut>E. Byelongo</aut>
+        <vrk>La monda pintkonferenco pri da&ubreve;rigebla disvolvi&gcirc;o</vrk>
+        <lok><url
+        ref="http://www.esperanto.za.org/eo/wssd-raporto_eo.html">http://www.esperanto.za.org/eo/wssd-raporto_eo.html</url></lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la &scirc;tatoj devos rekonsideri sian internacian politikon kaj la sekurecajn <tld/>ojn ka&ubreve;zatajn de la tutmonda varmi&gcirc;o
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Lenio Marobin</aut>
+          <vrk><url ref="http://www.monato.net/2014/011272.php">Klimata &scirc;an&gcirc;i&gcirc;o kaj konfliktoj: kia interrilato?</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+    <rim>
+      Malgra&ubreve; la verba karaktero de la radiko la o-deriva&jcirc;o
+      neniam montras agan sencon, cetere malfacile koncepteblan.
+    </rim>
+    <rim>
+      Oni ne uzu <ctl><tld/>o</ctl> por signifi <ref
+      cel="zorg.0o">zorgo</ref>
+      pro imito al la angla.
+    </rim>
+    <rim>
+      Ne konfuzu kun
+      <ref tip="vid" cel="konzer.0o">konzerno</ref> <klr> (entreprenaro)</klr>.
+    </rim>
+  </snc>
+  <trd lng="cs">koncern</trd>
+  <trd lng="de">Zust&auml;ndigkeit</trd>
+  <trd lng="es">responsabilidad</trd>
+  <trdgrp lng="hu">
+    <trd>vonatkoz&aacute;s</trd>,
+    <trd>&eacute;rintetts&eacute;g</trd>
+  </trdgrp>
+  <trd lng="nl">betrokkenheid</trd>
+  <trd lng="sk">koncern</trd>
+</drv>
+
+<drv mrk="koncer.0ajxo">
+  <kap><tld/>a&jcirc;o</kap>
+  <snc>
+    <dif>
+      Io, kio <tld/>as:
+      <ekz>
+        <klr>[la oligarkiulo]</klr> havas virabelajn trajtojn,
+        almozulajn
+        kaj anka&ubreve; krimulajn, neenvivigitajn nur pro liaj aliaj
+        <tld/>a&jcirc;oj
+        <fnt>
+        <aut>Platono trad. D. Broadribb</aut>
+        <vrk>La Respubliko</vrk><lok>Parto 8</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="de">Angelegenheit</trd>
+  <trd lng="es">asunto</trd>
+  <trdgrp lng="fr">
+    <trd>affaire<klr tip="ind"> (ce qui regarde qn)</klr></trd>,
+    <trd>ce qui <ind>regarde</ind> qn</trd>,
+    <trd>sujet</trd>
+  </trdgrp>
+  <trd lng="nl">betrokkenheid</trd>
+  <trd lng="hu">vonatkoz&oacute; dolog</trd>  
+</drv>
+
+<drv mrk="koncer.0igxo">
+  <kap><tld/>i&gcirc;o</kap>
+  <snc mrk="koncer.0igxo.KOMUNE">
+    <dif>
+      Malindiferento, intereso, zorgo:
+      <ekz>
+        Koreio esprimis sian ne-<tld/>i&gcirc;on al la evento
+        <fnt>
+          <aut>&Ccirc;ina Radio Internacia</aut>,
+          <vrk><url
+          ref="http://esperanto.cri.cn/581/2010/07/10/1s113787.htm">
+          SK de UN pasigis deklaron de prezidanto pri evento de
+          Cheonan</url></vrk>,
+          <lok>2010-07-10</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="es">preocupaci&oacute;n</trd>
+  <trd lng="fr">souci<klr> (de qqch)</klr></trd>
+</drv>
+</art>
+<!--
+$Log: koncer.xml,v $
+Revision 1.25  2017/11/03 19:10:18  revo
+Wolfram Diestel: strukturaj modifetoj, prilaboris ekz-ojn
+
+Revision 1.24  2017/07/26 10:10:13  revo
+Jeromo Vasxe: ~*e* al
+
+Revision 1.23  2017/07/24 13:10:14  revo
+Jeromo Vasxe: + 1 ref
+
+Revision 1.22  2015/10/27 11:10:35  revo
+Guillermo Molleda Jimena: trd es
+
+Revision 1.21  2015/07/04 08:37:37  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.20  2015/06/29 16:33:17  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.19  2015/03/12 23:10:16  revo
+Jeromo Vasxe: + ~igxo
+
+Revision 1.18  2014/07/05 20:10:10  revo
+-->
+</vortaro>

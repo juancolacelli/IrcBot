@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: bergam.xml,v 1.24 2018/10/16 17:10:18 revo Exp $">
+<kap>
+<rad>bergamot</rad>/o
+<fnt>Z</fnt>
+</kap>
+<drv mrk="bergam.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="bergam.0o.BOT">
+    <uzo tip="fak">BOT</uzo>
+    <dif>
+      <ref tip="super" cel="frukt.0o.BOT">Frukto</ref>
+      de <ref tip="malprt" cel="bergam.0ujo"><tld/>ujo</ref>,
+      el kies &scirc;elo oni ekstraktas bonodoran oleon.
+    </dif>
+  </snc>
+  <trd lng="be">&c_b;&c_e;&c_r;&c_g;&c_a;&c_m;&c_o;&c_t;</trd>
+  <trd lng="ca">bergamota</trd>
+  <trdgrp lng="cs">
+    <trd>Sevillsk&yacute; pomeran&ccaron;</trd>,
+    <trd>ho&rcaron;k&yacute; pomeran&ccaron;</trd>,
+    <trd>mo&rcaron;sk&yacute; pomeran&ccaron;</trd>
+  </trdgrp>
+  <trd lng="de">Bergamottefrucht</trd>
+  <trd lng="en">bergamot orange</trd>
+  <trd lng="es">bergamota</trd>
+  <trd lng="fr">bergamote</trd>
+  <trd lng="hu">bergamott</trd>
+  <trdgrp lng="nl">
+    <trd>bergamot</trd>,
+    <trd>maatjespeer</trd>
+  </trdgrp>
+  <trd lng="pl">bergamota</trd>
+  <trd lng="pt">bergamota</trd>
+  <trd lng="ru">&c_b;&c_je;&c_r;&c_g;&c_a;&c_m;&c_o;&c_t;</trd>
+  <trdgrp lng="sk">
+    <trd>bergamota</trd>,
+    <trd>druh citr&oacute;novn&iacute;ka</trd>
+  </trdgrp>
+  <trd lng="sv">bergamott</trd>
+</drv>
+
+<drv mrk="bergam.0ujo">
+  <kap><tld/>ujo</kap>
+  <snc mrk="bergam.0ujo.BOT">
+    <uzo tip="fak">BOT</uzo>
+    <dif>
+      Varia&jcirc;o de <ref tip="super" cel="citrus.0o">citruso</ref>
+      (<trd lng="la">Citrus x aurantium bergamia</trd>):
+      <ekz>
+        <tld/>ujo <klr>[&#8230;]</klr>, arbo kun fruktoj malpli grandaj
+        ol oran&gcirc;o, pir- a&ubreve; glob-formaj (<tld/>o), kun tre acida,
+        verdete flava karno kaj amara, bonodora flava &scirc;elo
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=188573">Bergamotujo</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <bld
+      lok="&WCU;/thumb/f/f2/Bergamottepflanze.jpg/360px-Bergamottepflanze.jpg"
+      prm="CC-BY-SA-3.0"
+      ><tld/>oj kaj folioj
+        <fnt>
+          <aut>K reger</aut>
+          <lok><url ref="https://commons.wikimedia.org/wiki/File:Bergamottepflanze.jpg"
+              >https://commons.wikimedia.org/wiki/File:Bergamottepflanze.jpg</url></lok>
+        </fnt>
+    </bld>
+  </snc>
+  <trd lng="cs">bergamot strom</trd>
+  <trd lng="de">Bergamotte</trd>
+  <trd lng="en">bergamot tree</trd>
+  <trdgrp lng="nl">
+    <trd>bergamotboom</trd>,
+    <trd>maatjesperenboom</trd>
+  </trdgrp>
+  <trdgrp lng="pl">
+    <trd>bergamota</trd>,
+    <trd>bergamotka</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>bergamot</trd>,
+    <trd>strom</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: bergam.xml,v $
+Revision 1.24  2018/10/16 17:10:18  revo
+Wolfram Diestel: kor. dif, +ekz-o, +bld
+
+Revision 1.23  2015/10/21 14:10:21  revo
+Cindy Moon McKee: +trd en
+
+Revision 1.22  2015/07/04 08:37:31  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.21  2015/06/29 16:29:35  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.20  2009/07/01 17:20:27  revo
+Paul Peeraerts: +trd nl
+
+Revision 1.19  2009/03/09 17:31:38  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.18  2009/01/03 17:30:41  revo
+Wieland Pusch: +drv ~ujo
+
+Revision 1.17  2008/12/14 17:30:39  revo
+-->
+</vortaro>

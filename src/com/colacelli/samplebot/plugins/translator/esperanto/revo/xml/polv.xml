@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: polv.xml,v 1.23 2018/06/17 16:10:18 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>polv</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+
+<drv mrk="polv.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <snc mrk="polv.0o.KOMUNE">
+    <dif>
+      Subtilaj eretoj el tero facile levataj de vento. Anka&ubreve;
+      subtilaj
+eretoj de faruno, karbono, malpura&jcirc;o kaj aliaj sekaj
+      materialoj:
+      <ekz>
+        vi&scirc;i <tld/>on de sur la mebloj;
+      </ekz>
+      <ekz>
+        vi estas <tld/>o kaj refari&gcirc;os <tld/>o<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        <ind>&jcirc;eti, &scirc;uti al iu <tld/>on en la
+okulojn</ind><fnt>Z</fnt>
+        <trd lng="fr">jeter de la <ind>poudre</ind> aux yeux</trd>
+        <klr>(f: mirblindigi, iluzii. <ref tip="sin"
+        cel="bluf.0i">blufi</ref>.
+        <ref tip="vid" cel="sabl.0o">sablo</ref>)</klr>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="pulv.0o">pulvo</ref>,
+      <ref cel="pulvor.0o">pulvoro</ref>.
+    </refgrp>
+  </snc>
+  <trd lng="bg">&c_p;&c_r;&c_a;&c_h;</trd>
+  <trd lng="cs">prach</trd>
+  <trdgrp lng="de">
+    <trd>Staub</trd>,
+    <trd>Pulver</trd>
+  </trdgrp>
+  <trd lng="en">dust</trd>
+  <trd lng="es">polvo</trd>
+  <trd lng="fr">poussi&egrave;re<klr tip="ind"> (collectif)</klr></trd>
+  <trd lng="hu">por</trd>
+  <trd lng="nl">stof</trd>
+  <trdgrp lng="pl">
+    <trd>py&lstroke;</trd>,
+    <trd>kurz</trd>,
+    <trd>proch<klr> (g&lstroke;&oacute;wnie w wyra&zdot;eniu: "z prochu
+powsta&lstroke;e&sacute;, w proch
+    si&eogonek; obr&oacute;cisz)</klr></trd>
+  </trdgrp>
+  <trd lng="pt">p&oacute;</trd>
+  <trdgrp lng="ru">
+    <trd>&c_p;&c_y;&c_l;&c_mol;</trd>,
+    <trd>&c_p;&c_r;&c_a;&c_h;</trd>
+  </trdgrp>
+  <trd lng="sk">prach</trd>
+  <trd lng="sv">damm</trd>
+</drv>
+
+<drv mrk="polv.0a">
+  <kap><tld/>a</kap>
+  <snc>
+    <dif>
+      El <tld/>o:
+      <ekz>
+        <tld/>a nubo.
+      </ekz>
+    </dif>
+    <trd lng="de">pulvrig</trd>
+    <trd lng="fr">de <ind>poussi&egrave;re</ind></trd>
+    <trd lng="hu">por-</trd>
+    <trd lng="nl">stof-</trd>
+	<trdgrp lng="pl">
+      <trd>zapylony</trd>,
+      <trd>zakurzony</trd>
+  	</trdgrp>
+    <trd lng="ru">&c_p;&c_y;&c_l;&c_je;&c_v;&c_o;&c_j;</trd>
+    <trd lng="sv">damm-</trd>
+  </snc>
+  <snc>
+    <dif>
+      <tld lit="P"/>oplena:
+      <ekz>
+        <tld/>a breto<fnt>Z</fnt>.
+      </ekz>
+    </dif>
+    <trd lng="bg">&c_p;&c_r;&c_a;&c_sh;&c_je;&c_n;</trd>
+    <trd lng="de">staubig</trd>
+    <trd lng="fr">poussi&eacute;reux</trd>
+    <trd lng="hu">poros</trd>
+    <trd lng="nl">stoffig</trd>
+    <trd lng="ru">&c_p;&c_y;&c_l;&c_mol;&c_n;&c_y;&c_j;</trd>
+    <trd lng="sv">dammig</trd>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>upr&aacute;&scaron;en&yacute;</trd>,
+    <trd>zapr&aacute;&scaron;en&yacute;</trd>
+  </trdgrp>
+  <trd lng="en">dusty</trd>
+  <trd lng="sk">zapr&aacute;&scaron;en&yacute;</trd>
+</drv>
+
+<drv mrk="polv.0ero">
+  <kap><tld/>ero</kap>
+  <snc mrk="polv.0ero.KOMUNE">
+    <dif>
+      Unuopa ero de <tld/>o:
+      <ekz>
+        e&ccirc; unu <tld/>eron vi ne trovos sur lia
+        vesto<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        la komencaj <tld/>eroj de la mondo
+        <fnt><bib>MT</bib>, <lok>&Sen; 8:26</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="fr">
+    <trd>grain de poussi&egrave;re</trd>,
+    <trd>poussi&egrave;re<klr tip="ind"> (grain)</klr></trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="polv.0igi">
+  <kap><tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="polv.0igi.KOMUNE">
+    <dif>
+      Fari, ke io i&gcirc;u <tld/>o.
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="frakas.0i">frakasi</ref>,
+      <ref cel="pec">pecetigi</ref>,
+      <ref cel="pist.0i">pisti</ref>.
+    </refgrp>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>rozm&ecaron;lnit na prach</trd>,
+    <trd>rozpr&aacute;&scaron;it</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>pulverisieren</trd>,
+    <trd>in <ind>Staub</ind> <ind>verwandeln</ind></trd>
+  </trdgrp>
+  <trd lng="en">dust</trd>
+  <trdgrp lng="fr">
+    <trd>pulv&eacute;riser<klr tip="ind"> (r&eacute;duire en
+poussi&egrave;re)</klr></trd>,
+    <trd>r&eacute;duire en <ind>poussi&egrave;re</ind></trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>por&iacute;t</trd>,
+    <trd>porr&aacute; z&uacute;z</trd>
+  </trdgrp>
+  <trd lng="nl">verpulveren</trd>
+  <trdgrp lng="pl">
+      <trd>rozpyli&cacute;</trd>,
+      <trd>zetrze&cacute; na py&lstroke;</trd>,
+      <trd>zproszkowa&cacute;</trd>
+  	</trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_r;&c_a;&c_s;&c_p;&c_y;&c_l;&c_i;&c_t;&c_mol;</trd>,
+    <trd>&c_o;&c_b;&c_r;&c_a;&c_t;&c_i;&c_t;&c_mol; &c_v;
+&c_p;&c_r;&c_a;&c_h;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>rozt&lacute;c&tcaron; na prach</trd>,
+    <trd>urobi&tcaron; prach z nie&ccaron;oho</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="polv.dis0igxi">
+  <kap>dis<tld/>i&gcirc;i,
+  <var><kap><tld/>i&gcirc;i</kap></var></kap>
+  <gra><vspec>ntr</vspec></gra>
+  <snc mrk="polv.dis0igxi.FIG">
+    <uzo tip="stl">FIG</uzo>
+    <dif>
+      <ref tip="vid" cel="er.dis0igxi">Diseri&gcirc;i</ref>,
+      <ref tip="vid" cel="fal.dis0i">disfali</ref>,
+      nenii&gcirc;i:
+      <ekz>
+        &scirc;vebas super niaj kapoj <klr>...</klr> milito,
+        en kies unua tago &ccirc;iuj dokumente garantiitaj
+        princaj aliancoj dis<tld/>i&gcirc;os
+        <fnt>
+          <aut>K. Markso, trad. V. Lutermano</aut>,
+          <vrk>La interna milito en francio (1871)</vrk>,
+          <lok>2005</lok>
+        </fnt>;
+      </ekz> 
+        <ekz>
+         Mia bela revo pri la libereco polvi&gcirc;is
+         <fnt><aut>Stellan Engholm</aut>: <vrk>Al Torento</vrk>,
+         <lok>&ccirc;apitro IV, 1930</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="fr">
+    <trd>se <ind>dissiper</ind></trd>,
+    <trd>voler en &eacute;clats</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="polv.sen0igi">
+  <kap>sen<tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="polv.sen0igi.HEJM">
+    <dif>
+      Senigi ion je <tld/>o,
+      <ref tip="super" cel="pur.0igi">purige</ref>:
+      <ekz>
+        sen<tld/>igi &scirc;uojn.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>opr&aacute;&scaron;it</trd>,
+    <trd>sm&yacute;&ccaron;it</trd>,
+    <trd>vypr&aacute;&scaron;it</trd>,
+    <trd>zbavit prachu</trd>
+  </trdgrp>
+  <trd lng="de">entstauben</trd>
+  <trd lng="en">dust</trd>
+  <trd lng="es">quitar el polvo a</trd>
+  <trd lng="fr">d&eacute;poussi&eacute;rer</trd>
+  <trdgrp lng="hu">
+    <trd>portalan&iacute;t</trd>,
+    <trd>port t&ouml;r&ouml;l</trd>
+  </trdgrp>
+  <trd lng="nl">afstoffen</trd>
+  <trdgrp lng="pl">
+      <trd>odkurza&cacute;</trd>,
+      <trd>odpyla&cacute;</trd>,
+      <trd>&sacute;ciera&cacute; kurze</trd>,
+      <trd>wyciera&cacute; kurze</trd>
+  	</trdgrp>
+  <trd lng="ru">&c_v;&c_y;&c_b;&c_i;&c_t;&c_mol;
+  &c_p;&c_y;&c_l;&c_mol;</trd>
+  <trdgrp lng="sk">
+    <trd>opr&aacute;&scaron;i&tcaron;</trd>,
+    <trd>zbavi&tcaron; prachu</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="polv.0sucxi">
+  <kap><tld/>osu&ccirc;i</kap>
+  <fnt><bib>HejmVort</bib></fnt>
+  <snc>
+    <dif>
+      Purigi per <tld/>osu&ccirc;ilo.
+    </dif>
+  </snc>
+  <trd lng="bg">&c_ch;&c_i;&c_s;&c_t;&c_ja; &c_s;
+  &c_p;&c_r;&c_a;&c_h;&c_o;&c_s;&c_m;&c_u;&c_k;&c_a;&c_ch;&c_k;&c_a;</trd>
+  <trd lng="de">staubsaugen</trd>
+  <trd lng="en">vacuum clean</trd>
+  <trd lng="fr">aspirer la poussi&egrave;re</trd>
+  <trd lng="hu">porsz&iacute;v&oacute;zik</trd>
+  <trd lng="nl">stofzuigen</trd>
+  <trd lng="pl">odkurza&cacute;</trd>
+  <trd
+  lng="ru">&c_p;&c_y;&c_l;&c_je;&c_s;&c_o;&c_s;&c_i;&c_t;&c_mol;</trd>
+  <trd lng="sv">dammsuga</trd>
+</drv>
+
+<drv mrk="polv.0sucxilo">
+  <kap><tld/>osu&ccirc;ilo</kap>
+  <snc>
+    <dif>
+      Aparato per kiu oni senigas ion je <tld/>o.
+    </dif>
+  </snc>
+  <trd
+  lng="bg">&c_p;&c_r;&c_a;&c_h;&c_o;&c_s;&c_m;&c_u;&c_k;&c_a;&c_ch;&c_k;&c_a;</trd>
+  <trd lng="de">Staubsauger</trd>
+  <trd lng="en">vacuum cleaner</trd>
+  <trd lng="es">aspiradora</trd>
+  <trd lng="fr">aspirateur</trd>
+  <trd lng="hu">porsz&iacute;v&oacute;</trd>
+  <trd lng="nl">stofzuiger</trd>
+  <trd lng="pl">odkurzacz</trd>
+  <trd lng="ru">&c_p;&c_y;&c_l;&c_je;&c_s;&c_o;&c_s;</trd>
+</drv>
+
+<drv mrk="polv.0sxovelilo">
+  <kap><tld/>o&scirc;ovelilo</kap>
+  <fnt><bib>HejmVort</bib></fnt>
+  <snc>
+    <dif>
+      &Scirc;ovelilo, kun longa a&ubreve; mallonga tenilo,
+      por forporti <tld/>on kaj
+      aliajn balaa&jcirc;ojn post balaado.
+    </dif>
+  </snc>
+  <trd lng="en">dustpan</trd>
+  <trd lng="de">Kehrblech</trd>
+  <trd lng="fr">pelle<klr> (&agrave; poussi&egrave;re)</klr></trd>
+  <trd lng="hu">szem&eacute;tlap&aacute;t</trd>
+  <trd lng="nl">stofblik</trd>
+  <trd lng="pl">miote&lstroke;ka<klr> do kurzu</klr></trd>
+  <trd lng="ru">&c_s;&c_o;&c_v;&c_o;&c_k;</trd>
+  <trd lng="sv">sopskyffel</trd>
+</drv>
+</art>
+<!--
+$Log: polv.xml,v $
+Revision 1.23  2018/06/17 16:10:18  revo
+Dusan Juretic: +trd es
+
+Revision 1.22  2018/01/16 17:10:17  revo
+Michel Cantigneaux: polvigxi (aldono al dispolvigxi) + fonto
+
+Revision 1.21  2017/10/10 17:10:13  revo
+Jeromo Vasxe: + ~ero, + dis~igxi
+
+Revision 1.20  2015/07/04 08:37:41  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.19  2015/06/29 16:40:18  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.18  2014/01/09 02:10:28  revo
+Jeromo Vasxe: - ~ovisxilo -> visx.xml
+
+Revision 1.17  2008/07/07 16:30:16  revo
+Russ Williams: +trd en
+
+Revision 1.16  2007/12/12 17:30:29  revo
+-->
+</vortaro>

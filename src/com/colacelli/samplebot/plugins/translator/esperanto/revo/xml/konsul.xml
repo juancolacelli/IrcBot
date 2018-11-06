@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: konsul.xml,v 1.26 2017/10/04 14:10:17 revo Exp $">
+<kap>
+  <ofc>2</ofc>
+  <rad>konsul</rad>/o <fnt>Z</fnt> <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="konsul.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="konsul.0o.POL">
+    <uzo tip="fak">POL</uzo>
+    <dif>
+      Diplomatia agento komisiita por protekti en fremda lando la
+      aferojn de la tieaj regnanoj:
+      <ekz>
+        &Gcirc;on fari&gcirc;is Konsulo por Sovetaj Aferoj en Britujo la 1an de 
+        februaro, 1918, kaj tuj aktivis helpe al rusoj arestitaj 
+        <fnt>
+          <aut>J. Francis</aut>,
+          <vrk>La Granda Kaldrono</vrk>,
+          <lok>1978</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <snc mrk="konsul.0o.HIS">
+    <uzo tip="fak">HIS</uzo>
+    <dif>
+      &Ccirc;iu el la du unujaraj regnestroj de la antikva roma
+      respubliko.
+    </dif>
+  </snc>
+  <trd lng="be">&c_k;&c_o;&c_n;&c_s;&c_u;&c_l;</trd>
+  <trd lng="bg">&c_k;&c_o;&c_n;&c_s;&c_u;&c_l;</trd>
+  <trd lng="ca">c&ograve;nsol</trd>
+  <trdgrp lng="cs">
+    <trd>konzul</trd>,
+    <trd>konzul&aacute;r</trd>
+  </trdgrp>
+  <trd lng="de">Konsul</trd>
+  <trd lng="en">consul</trd>
+  <trd lng="es">C&oacute;nsul</trd>
+  <trd lng="fa">&f_k;&a_n;&a_s;&a_w;&a_l;</trd>
+  <trdgrp lng="fr">
+    <trd>consul</trd>
+  </trdgrp>
+  <trd lng="hu">konzul</trd>
+  <trd lng="nl">consul</trd>
+  <trd lng="pl">konsul</trd>
+  <trd lng="pt">c&ocirc;nsul</trd>
+  <trd lng="ro">consul</trd>
+  <trd lng="ru">&c_k;&c_o;&c_n;&c_s;&c_u;&c_l;</trd>
+  <trd lng="sk">konzul</trd>
+</drv>
+
+<drv mrk="konsul.0ejo">
+  <kap><tld/>ejo</kap>
+  <snc mrk="konsul.0o.ejo">
+    <uzo tip="fak">POL</uzo>
+    <dif>
+      Administraciejo kaj laborloko de <tld/>o en fremda lando,
+      kie samregnanoj de la <tld/>o povas viziti lin:
+      <ekz>
+        samtage estis malfermita en Edinburgo <tld/>ejo de la Irlanda
+        Respubliko<fnt><aut>Irl</aut>: <vrk>Historia pa&scirc;o</vrk>,
+        <bib>Monato</bib><lok>jaro 1999a, numero 7a, p. 6a</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_k;&c_o;&c_n;&c_s;&c_u;&c_l;&c_mol;&c_s;&c_t;&c_v;&c_a;</trd>,
+    <trd>&c_k;&c_a;&c_n;&c_s;&c_u;&c_l;&c_ja;&c_t;</trd>
+  </trdgrp>
+  <trd lng="bg">&c_k;&c_o;&c_n;&c_s;&c_u;&c_l;&c_s;&c_t;&c_v;&c_o;</trd>
+  <trd lng="ca">consolat</trd>
+  <trdgrp lng="cs">
+    <trd>konzul&aacute;rn&iacute; &uacute;&rcaron;ad</trd>,
+    <trd>konzul&aacute;t</trd>
+  </trdgrp>
+  <trd lng="de">Konsulat</trd>
+  <trd lng="en">consulate</trd>
+  <trd lng="es">Consulado</trd>
+  <trd lng="fa">&f_k;&a_n;&a_s;&a_w;&a_l;&f_g;&a_r;&f_y;</trd>
+  <trdgrp lng="fr">
+    <trd>consulat</trd>
+  </trdgrp>
+  <trd lng="hu">konzul&aacute;tus</trd>
+  <trd lng="nl">consulaat</trd>
+  <trd lng="pl">konsulat</trd>
+  <trd lng="ru">&c_k;&c_o;&c_n;&c_s;&c_u;&c_l;&c_mol;&c_s;&c_t;&c_v;&c_o;</trd>
+  <trd lng="sk">konzul&aacute;t</trd>
+  <trd lng="zh">&#39046;&#20107;&#39302;</trd>
+</drv>
+</art>
+<!--
+$Log: konsul.xml,v $
+Revision 1.26  2017/10/04 14:10:17  revo
+Jeromo Vasxe: + ekz
+
+Revision 1.25  2017/08/06 23:10:11  revo
+Vito Redsky: +trd pl +trd ro
+
+Revision 1.24  2016/11/05 14:10:21  revo
+Darcy Shen: +trd zh
+
+Revision 1.23  2015/07/04 08:37:37  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.22  2015/06/29 16:33:18  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.21  2013/08/16 07:10:13  revo
+Joop Eggen: +trd bg
+
+Revision 1.20  2012/07/17 11:10:22  revo
+Marc Rausell: + trd ca
+
+Revision 1.19  2010/12/16 17:30:37  revo
+-->
+</vortaro>

@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: uzur.xml,v 1.21 2018/08/15 20:10:16 revo Exp $">
+<kap>
+   <ofc>4</ofc>
+   <rad>uzur</rad>/o
+</kap>
+<drv mrk="uzur.0o">
+   <kap><tld/>o</kap>
+   <uzo tip="fak">EKON</uzo>
+   <snc>
+     <dif>
+      <ref tip="sin" cel="procen.0ego">Procentego</ref>,
+      fi-<ref tip="vid" cel="intere1.0o">interezo</ref>:
+      <ekz>
+        la negativan sintenon al interezo oni retrovas longan tempon poste <klr>[&#8230;]</klr> 
+        &ccirc;e la skolastikuloj en la mezepoko, kaj &gcirc;i longe pluvivis en la 
+        romkatolika eklezio, kie interezo estis konsiderata <tld/>o
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Roland Rotsaert</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/007279.html">Anta&ubreve;merkantilisma ekonomia pensado</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        neniu el ili posedas proprieta&jcirc;on, do ne okazas &scirc;telado, <tld/>o a&ubreve; krimo
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Garvan Makaj'</aut>
+          <vrk><url ref="http://www.monato.net/2015/011355.php">Komunika&jcirc;o de Ikaro</url></vrk>
+        </fnt>.
+      </ekz>
+     </dif>
+     <refgrp tip="vid">
+       <ref cel="ung.0ego">ungego</ref>.
+     </refgrp>
+   </snc>
+  <trd lng="be">&c_l;&c_ib;&c_h;&c_v;&c_ja;&c_r;&c_s;&c_t;&c_v;&c_a;</trd>
+  <trdgrp lng="cs">
+    <trd>opot&rcaron;ebov&aacute;n&iacute;</trd>,
+    <trd>uzura</trd>,
+    <trd>&ccaron;&aacute;ste&ccaron;n&eacute; zni&ccaron;en&iacute;</trd>
+  </trdgrp>
+  <trd lng="de">Wucher</trd>
+  <trd lng="en">usury</trd>
+  <trd lng="es">usura</trd>
+  <trd lng="fa">&a_r;&a_kasra;&a_b;&a_A;</trd>
+  <trd lng="fi">koronkiskonta</trd>
+  <trd lng="fr">usure <klr>(finances)</klr></trd>
+  <trd lng="hu">uzsora <klr>(kamat)</klr></trd>
+  <trd lng="it">usura</trd>
+  <trd lng="nl">woekerwinst</trd>
+  <trdgrp lng="pt">
+    <trd>usura</trd>
+   </trdgrp>
+  <trd 
+lng="ru">&c_r;&c_o;&c_s;&c_t;&c_o;&c_v;&c_shch;&c_i;&c_ch;&c_je;&c_s;&c_t;&c_v;&c_o;</trd>
+  <trdgrp lng="sk">
+    <trd>opotrebovanie</trd>,
+    <trd>uz&uacute;ra</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: uzur.xml,v $
+Revision 1.21  2018/08/15 20:10:16  revo
+Wolfram Diestel: +ekzoj, ref interezo
+
+Revision 1.20  2017/12/20 12:10:14  revo
+Michel Cantigneaux: ligilo al
+
+Revision 1.19  2015/07/04 08:37:45  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.18  2015/06/28 12:03:41  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.17  2010/02/21 17:30:48  revo
+Russ Williams: +trd en
+
+Revision 1.16  2009/09/13 16:56:47  revo
+Behnam Tabatabai: +trd fa
+
+Revision 1.15  2009/08/18 19:20:20  revo
+Antonio Codazzi: +trd it
+
+Revision 1.14  2007/07/06 18:04:38  revo
+-->
+</vortaro>

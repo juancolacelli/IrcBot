@@ -1,0 +1,809 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: sekret.xml,v 1.32 2018/06/13 03:10:20 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>sekret</rad>/o
+</kap>
+<drv mrk="sekret.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <snc mrk="sekret.0o.KOMUNE">
+    <dif>
+      Io, kio restas a&ubreve; devas resti ka&scirc;ita kaj ne de
+      &ccirc;iu
+      ajn konata:
+      <ekz>
+        nenia peketo restas longe <tld/>o
+        <fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+        <ind>teni ion en <tld/>o</ind>
+        <fnt>
+          <bib>Hamlet</bib>
+        </fnt>
+        <klr>(teni tion <tld/>a,
+        <ref cel="sekret.0igi"><tld/>igi</ref> &gcirc;in)</klr>:
+        <trdgrp lng="fr">
+          <trd>tenir qc secret</trd>,
+          <trd>celer qc</trd>
+        </trdgrp>
+        <trd lng="hu">titokban tart vmit</trd>
+      </ekz>
+      <ekz>
+        teni fabrikprocedon en plej granda <tld/>o;
+      </ekz>
+      <ekz>
+        en mia vivo mi nenian <tld/>on povis teni &ccirc;e mi
+        <fnt>
+          <bib>BdV</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        <ind>gardi (la) <tld/>on pri io</ind> <klr>(teni tion
+        <tld/>a)</klr>
+        <fnt><bib>Revadoj</bib>, <lok>Kvara promenado</lok></fnt>;
+        <trd lng="fr">garder le secret</trd>
+        <trd lng="hu">meg&odblac;rzi a titkot</trd>
+      </ekz>
+      <ekz>
+        konfidi la <tld/>on
+        <fnt>
+          <bib>Far3</bib>
+          <lok>&Ccirc;apitro VI</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        malka&scirc;i <tld/>on
+        <fnt>
+          <bib>MT</bib>
+          <lok>Amos 3:7</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        kiu iras kun kalumnioj, tiu elperfidas <tld/>on
+        <fnt>
+          <bib>MT</bib>
+          <lok>Sentencoj 11:13</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        se do vi perfidus la <tld/>on, la dioj punus vin
+        <fnt>
+          <bib>Far3</bib>
+          <lok>&Ccirc;apitro XII</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        <ind>babili <tld/>on</ind>
+        <fnt>
+          <bib>Far2</bib>
+          <lok>&Ccirc;apitro XV</lok>
+        </fnt>.
+        <trdgrp lng="fr">
+          <trd>&eacute;venter un secret</trd>,
+          <trd>trahir un secret</trd>
+        </trdgrp>
+        <trd lng="hu">titkot kikotyog</trd>
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_s;&c_a;&c_k;&c_r;&c_e;&c_t;</trd>,
+    <trd>&c_t;&c_a;&c_j;&c_n;&c_a;</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>tajemstv&iacute;</trd>,
+    <trd>tajnost</trd>
+  </trdgrp>
+  <trd lng="de">Geheimnis</trd>
+  <trd lng="en">secret</trd>
+  <trd lng="es">secreto</trd>
+  <trd lng="fr">secret<klr tip="ind"> (subst.)</klr></trd>
+  <trd lng="hu">titok</trd>
+  <trd lng="id">rahasia</trd>
+  <trd lng="it">segreto<klr tip="ind"> (sost.)</klr></trd>
+  <trd lng="nl">geheim</trd>
+  <trdgrp lng="ru">
+    <trd>&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;</trd>,
+    <trd>&c_t;&c_a;&c_j;&c_n;&c_a;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>tajnos&tcaron;</trd>,
+    <trd>tajomstvo</trd>
+  </trdgrp>
+  <trd lng="sv">hemlighet</trd>
+</drv>
+
+<drv mrk="sekret.0a">
+  <kap><tld/>a</kap>
+  <snc mrk="sekret.0a.KOMUNE">
+    <dif>
+      Restanta a&ubreve; devanta resti ka&scirc;ita:
+      <ekz>
+        <tld/>a donaco
+        <fnt>
+          <bib>MT</bib>
+          <lok>Sentencoj 21:14</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        vundo <tld/>a doloras plej multe
+        <fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+        <tld/>a amo;
+      </ekz>
+      <ekz>
+         <tld/>a adoratino de liaj revoj
+        <fnt>
+          <bib>FK</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        liaj gepatroj nutris la <tld/>an esperon fari el li pastron
+        <fnt><bib>UrdHadda</bib>, <lok>p. 9a</lok></fnt>;
+      </ekz>
+      <ekz>
+        <tld/>a pordo <klr>(kies ekzisto estas nesuspektebla
+        por nekonanto)</klr>
+        <fnt><bib>UrdHadda</bib>, <lok>p. 4a</lok></fnt>;
+      </ekz>
+      <ekz>
+        &scirc;i rememoris la principojn de tiu <tld/>a lingvo,
+        kaj &scirc;i sukcesis kompreni &ccirc;ion
+        <fnt><bib>Gerda</bib>, <lok>&ccirc;ap. 18a</lok></fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="enigm.0a">enigma</ref>,
+      <ref cel="mister.0a">mistera</ref>
+    </refgrp>
+  </snc>
+  <adm>
+    En "Lasu min paroli plu" Piron havas ankaux "~a servo". Samsence
+    Pola Radio uzas "invigilservo".
+    <aut>MB</aut>
+  </adm>
+  <trdgrp lng="be">
+    <trd>&c_s;&c_a;&c_k;&c_r;&c_e;&c_t;&c_n;&c_y;</trd>,
+    <trd>&c_t;&c_a;&c_je;&c_m;&c_n;&c_y;</trd>
+  </trdgrp>
+  <trd lng="de">geheim</trd>
+  <trd lng="en">secret</trd>
+  <trd lng="es">secreto</trd>
+  <trdgrp lng="fr">
+    <trd>cach&eacute;</trd>,
+    <trd>dissimul&eacute;<klr tip="ind"> (cach&eacute;)</klr></trd>,
+    <trd>d&eacute;rob&eacute;<klr tip="ind"> (cach&eacute;)</klr></trd>,
+    <trd>occulte</trd>,
+    <trd>secret<klr tip="ind"> (adj.)</klr></trd>
+  </trdgrp>
+  <trd lng="hu">titkos</trd>
+  <trd lng="it">segreto<klr tip="ind"> (agg.)</klr></trd>
+  <trd lng="nl">geheim</trd>
+  <trdgrp lng="ru">
+    <trd>&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_n;&c_y;&c_j;</trd>,
+    <trd>&c_t;&c_a;&c_j;&c_n;&c_y;&c_j;</trd>
+  </trdgrp>
+  <trd lng="sk">tajn&yacute;</trd>
+  <trd lng="sv">hemlig</trd>
+  <trd lng="sk">tajn&yacute;, skryt&yacute;</trd>
+  <trd lng="sk">tajn&yacute;, skryt&yacute;</trd>
+  <trdgrp lng="cs">
+    <trd>skryt&yacute;</trd>,
+    <trd>tajn&yacute;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="sekret.0e">
+  <kap><tld/>e</kap>
+  <snc mrk="sekret.0e.KOMUNE">
+    <dif>
+      En <tld/>a maniero,
+      <ref tip="vid" cel="kasx">ka&scirc;e</ref>:
+      <ekz>
+        kial vi forkuris <tld/>e kaj ka&scirc;e de mi, kaj ne 
+        diris al mi &#8208; mi foririgus vin en gajeco kaj kun kantoj
+        <fnt>
+          <bib>MT</bib>
+          <lok>Genezo 31:27</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        ili <tld/>e konspiras
+        <fnt>
+          <bib>MT</bib>
+          <lok>Psalmaro 83:3</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        mi ne povas teni &gcirc;in <tld/>e
+        <fnt>
+          <bib>BdV</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        mi <tld/>e a&ubreve;skultis la interkonsenton
+        <fnt>
+          <bib>Far3</bib>
+          <lok>&Ccirc;apitro VI</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        mortigi <tld/>e homon
+        <fnt>
+          <bib>Far1</bib>
+          <lok>&Ccirc;apitro XIV</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        vi <tld/>e vorton diros, &gcirc;i tra l' tuta mondo iros
+        <fnt><bib>PrV</bib></fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="plank.0o">planko</ref>.
+    </refgrp>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_s;&c_a;&c_k;&c_r;&c_e;&c_t;&c_n;&c_a;</trd>,
+    <trd>&c_t;&c_a;&c_je;&c_m;&c_n;&c_a;</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>potaj&iacute;</trd>,
+    <trd>tajn&ecaron;</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>im <ind>Geheimen</ind></trd>,
+    <trd>heimlich</trd>
+  </trdgrp>
+  <trd lng="en">secretly</trd>
+  <trd lng="es">secretamente</trd>
+  <trdgrp lng="fr">
+    <trd>en <ind>cachette</ind></trd>,
+    <trd>&agrave; la <ind>d&eacute;rob&eacute;e</ind></trd>,
+    <trd>secr&egrave;tement</trd>,
+    <trd>en <ind>secret</ind></trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>titokban</trd>,
+    <trd>titkosan</trd>
+  </trdgrp>
+  <trd lng="it">segretamente</trd>
+  <trdgrp lng="nl">
+    <trd>heimelijk</trd>,
+    <trd>in het <ind>geheim</ind></trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_n;&c_o;</trd>,
+    <trd>&c_p;&c_o;
+    <ind>&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_u;</ind></trd>,
+    <trd>&c_t;&c_a;&c_j;&c_n;&c_o;</trd>,
+    <trd>&c_v; <ind>&c_t;&c_a;&c_j;&c_n;&c_je;</ind></trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>potajomky</trd>,
+    <trd>tajne</trd>
+  </trdgrp>
+  <trd lng="sv">i <ind>hemlighet</ind></trd>
+</drv>
+
+<drv mrk="sekret.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>x</vspec></gra>
+  <snc mrk="sekret.0i.prisekreti">
+    <dif>
+      Gardi <tld/>on pri io:
+      <ekz>
+        pri kio amikoj <tld/>as, ili vian ju&gcirc;on ne petas
+        <fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+        la ekzakta nombro de viktimoj ne estas konata: GDR <tld/>is ofte
+        pri novaj viktimoj
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=16421">Berlina
+          muro</url></lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        unu el ili <klr>[&#8230;]</klr> <tld/>as &ccirc;i tion
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url
+          ref="https://eo.wikipedia.org/?curid=424735">Heinrich
+          M&uuml;ller</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trd lng="de">geheim halten</trd>
+    <trdgrp lng="fr">
+      <trd>avoir un secret</trd>,
+      <trd>garder le secret</trd>
+    </trdgrp>
+    <trdgrp lng="hu">
+      <trd>titkol&oacute;dzik</trd>,
+      <trd>eltitkol</trd>
+    </trdgrp>
+    <trd lng="id">[<ind>rahasia</ind>] merahasiakan</trd>
+    <trdgrp lng="it">
+      <trd>avere un <ind>segreto</ind></trd>,
+      <trd>conservare un <ind>segreto</ind></trd>
+    </trdgrp>
+    <trd lng="sv">h&aring;lla en <ind>hemlighet</ind></trd>
+  </snc>
+  <snc mrk="sekret.0i.konfidi">
+    <dif>
+     <ref tip="dif" cel="sekret.en0igi">En<tld/>igi</ref>:
+      <ekz>
+        vi <tld/>os al edzino, &scirc;i <tld/>os al fratino,
+        kaj tiel la <tld/>o promenados sen fino
+        <fnt><bib>PrV</bib></fnt>.
+      </ekz>
+    </dif>
+    <trd lng="de">ein <ind>Geheimnis</ind> anvertrauen</trd>
+    <trd lng="fr">confier un secret</trd>
+    <trd lng="it">confidare un <ind>segreto</ind></trd>
+    <trd lng="sv">anf&ouml;rtro en <ind>hemlighet</ind></trd>
+  </snc>
+  <snc mrk="sekret.0i.esti">
+    <dif>
+      Esti <tld/>o:
+      <ekz>
+        kiamaniere ili protektos <klr>[ilin]</klr>, <klr>[tio]</klr>
+        sekretas
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Paul Gubbins</aut>
+          <vrk><url ref="http://www.monato.net/2007/009240.php">Sango
+          kaj rango</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la baloto <tld/>as
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=461839">Germana
+          Film-Premio</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trd lng="de">geheim sein</trd>
+  </snc>
+  <adm>
+    Pro manko de ekzemploj la senco ne tre certas. La unua redakto (diri
+    sekreton kun peto ne rediri) estas tro malvasta. &Ccirc;i tiu senco
+    tamen aperas,
+    kiam estas "al"-komplemento, sed &scirc;ajnas al mi, ke sekreti pri
+    io ne implicas,
+    ke oni la sekreton dividas kun aliaj homoj (vd dif de ~ema en PIV2).
+    Kontroli la tradukojn be, nl, ru, faritajn anta&ubreve; modifo de la
+    difino.
+    <aut>MB</aut>
+  </adm>
+  <trd lng="be">&c_s;&c_k;&c_a;&c_z;&c_a;&c_c;&c_mol; &c_p;&c_a;&c_d;
+  <ind>&c_s;&c_a;&c_k;&c_r;&c_e;&c_t;&c_a;&c_m;</ind></trd>
+  <trd lng="nl">toevertrouwen</trd>
+  <trdgrp lng="ru">
+    <trd>&c_s;&c_k;&c_a;&c_z;&c_a;&c_t;&c_mol; &c_p;&c_o;
+    <ind>&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_u;</ind></trd>,
+    <trd>&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_n;&c_i;&c_ch;&c_a;&c_t;&c_mol;</trd>
+  </trdgrp>
+  <trd lng="sk">jedna&tcaron; tajne</trd>
+  <trdgrp lng="cs">
+    <trd>jednat tajn&ecaron;</trd>,
+    <trd>tajn&uring;stka&rcaron;it</trd>,
+    <trd>zaml&ccaron;ovat</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="sekret.0igi">
+  <kap><tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="sekret.0igi.KOMUNE">
+    <dif>
+      Certigi, ke io restu <tld/>a:
+      <ekz>
+        e&ccirc; kiam oni rimarkis tiun &ccirc;i fatalan eraron, oni
+        <klr>[&#8230;]</klr> anstata&ubreve; 
+        averti konsumantojn pri la riskoj, ka&scirc;is kaj <tld/>igis
+        sciencistajn ekkonojn
+        <fnt>
+          <bib>Monato</bib>
+          <aut>S. Maul</aut>
+        </fnt>;
+      </ekz>
+      <ekz>
+         <tld/>igi la ekzistadon de ekstertera civilizo
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=258784">Fox
+          Mulder</url></lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        por nura <tld/>igo de mesa&gcirc;oj tiaj unudirektaj
+        &ccirc;ifroj
+        estas ege utilaj
+        <fnt>
+        <aut>R. F&ouml;&szlig;meier</aut>,
+        <vrk><url
+        ref="http://www.forst.uni-muenchen.de/EXT/AIS/acta/cxifrado/cxif.html">&Ccirc;ifrado
+        kaj &gcirc;ia rolo en la nova komunikado</url></vrk>,
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_z;&c_a;&c_s;&c_a;&c_k;&c_r;&c_e;&c_c;&c_ib;&c_c;&c_mol;</trd>,
+    <trd>&c_t;&c_r;&c_y;&c_m;&c_a;&c_c;&c_mol; &c_u;
+    <ind>&c_s;&c_a;&c_k;&c_r;&c_e;&c_c;&c_je;</ind></trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>geheim halten</trd>,
+    <trd>verheimlichen</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>tenir secret</trd>,
+    <trd>celer</trd>
+  </trdgrp>
+  <trd lng="hu">titkos&iacute;t</trd>
+  <trdgrp lng="it">
+    <trd>segretare</trd>, 
+    <trd>tenere <ind>segreto</ind></trd>, 
+    <trd>imporre il <ind>segreto</ind></trd>,
+    <trd>celare<klr> (secretare)</klr></trd>
+  </trdgrp>
+  <trd lng="nl">geheim houden</trd>
+  <trdgrp lng="ru">
+    <trd>&c_z;&c_a;&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_i;&c_t;&c_mol;</trd>,
+    <trd>&c_d;&c_je;&c_r;&c_zh;&c_a;&c_t;&c_mol; &c_v;
+    <ind>&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_je;</ind></trd>,
+    <trd>&c_d;&c_je;&c_r;&c_zh;&c_a;&c_t;&c_mol; &c_v;
+    <ind>&c_t;&c_a;&c_j;&c_n;&c_je;</ind></trd>,
+    <trd>&c_t;&c_a;&c_i;&c_t;&c_mol;</trd>,
+    <trd>&c_u;&c_t;&c_a;&c_i;&c_t;&c_mol;</trd>
+  </trdgrp>
+  <trd lng="sk">utaji&tcaron;</trd>
+  <trd lng="sv">hemligh&aring;lla</trd>
+  <trdgrp lng="sk">
+    <trd>taji&tcaron;</trd>,
+    <trd>utajova&tcaron;</trd>,
+    <trd>ututla&tcaron;</trd>,
+    <trd>zaml&ccaron;a&tcaron;</trd>,
+    <trd>zataji&tcaron;</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>tajit</trd>,
+    <trd>tutlat</trd>,
+    <trd>utajit</trd>,
+    <trd>utajovat</trd>,
+    <trd>ututlat</trd>,
+    <trd>zaml&ccaron;et</trd>,
+    <trd>zatajit</trd>,
+    <trd>zatajovat</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="sekret.0ema">
+  <kap><tld/>ema</kap>
+  <snc mrk="sekret.0ema.KOMUNE">
+    <dif>
+      Ege diskreta, ema <tld/>i:
+      <ekz>
+        devenon vian anta&ubreve; li ne ka&scirc;u &#8208; pastrino devas
+        esti <tld/>ema
+        <fnt>
+          <bib>Ifigenio</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        katoj <tld/>emas, studemas, sed anka&ubreve; komunikas
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Paul Gubbins</aut>
+          <vrk><url
+          ref="http://www.monato.net/2015/011509.php">Esperantistoj
+          &ccirc;u kat-enitaj?</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        <nom>Nikola Tesla</nom> estis <tld/>ema homo, kio ka&ubreve;zis
+        fantaziajn onidirojn pri lia laboro
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=35166">Nikola
+          Tesla</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_s;&c_k;&c_r;&c_y;&c_t;&c_n;&c_y;</trd>
+  <trdgrp lng="cs">
+    <trd>d&uring;v&ecaron;rn&yacute;</trd>,
+    <trd>ml&ccaron;enliv&yacute;</trd>,
+    <trd>tajn&uring;stk&aacute;&rcaron;sk&yacute;</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>diskret</trd>,
+    <trd>heimlichtuerisch</trd>,
+    <trd>geheimniskr&auml;merisch</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>cachottier</trd>,
+    <trd>dissimul&eacute;<klr tip="ind"> (cachottier)</klr></trd>,
+    <trd>myst&eacute;rieux<klr tip="ind"> (cachottier)</klr></trd>,
+    <trd>secret<klr tip="ind"> (adj., enclin au secret)</klr></trd>
+  </trdgrp>
+  <trd lng="hu">titkol&oacute;dz&oacute;</trd>
+  <trd lng="nl">discreet</trd>
+  <trd lng="ru">&c_s;&c_k;&c_r;&c_y;&c_t;&c_n;&c_y;&c_j;</trd>
+  <trdgrp lng="sk">
+    <trd>d&ocirc;vern&yacute;</trd>,
+    <trd>ml&ccaron;anliv&yacute;</trd>,
+    <trd>tajnostk&aacute;rsky</trd>
+  </trdgrp>
+  <trd lng="sv">hemlighetsfull</trd>
+</drv>
+
+<drv mrk="sekret.en0igi">
+  <kap>en<tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="sekret.en0igi.KOMUNE">
+    <dif>
+      Sciigi pri <tld/>o:
+      <ekz>
+        tiam mi certe ne pensis, ke <klr>[&#8230;]</klr> mi estos
+        en<tld/>igita en la pretigadon <klr>[de la supo]</klr>
+        <fnt><bib>Fab3</bib>, <lok>Supo el kolbasaj
+        bastonetoj</lok></fnt>;
+      </ekz>
+      <ekz>
+        Via Sankta Spirito da&ubreve;rigu en<tld/>igi nin en la veron
+        <fnt>
+          <vrk><url
+          ref="http://www.ikue.org/unueco2011/index.htm">Pre&gcirc;osemajno
+          
+          Por La Unueco De La Kristanoj 2011</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="sin">
+      <ref cel="konfid.0i.pro_honesteco">konfidi<sncref/></ref>,
+      <ref cel="sekret.0i.konfidi"><tld/>i<sncref/></ref>.
+    </refgrp>
+    <refgrp tip="vid">
+      <ref cel="inic.0i">inici</ref>,
+    </refgrp>
+  </snc>
+  <adm>
+    PIV2 citas la saman ekzemplon, sed senakuzativigis "pretigadon".
+    La PIV-a difino enhavas la esprimon "meti en la ~on", kiu, se
+    sufi&ccirc;e internacia, meritus aperi en ekz-o sub ~o.
+    <aut>MB</aut>
+  </adm>
+  <trd lng="de">einweihen</trd>
+  <trdgrp lng="fr">
+    <trd>mettre au <ind>parfum</ind></trd>,
+    <trd>mettre dans le <ind>secret</ind></trd>
+  </trdgrp>
+  <trd lng="hu">titokba beavat</trd>
+  <trdgrp lng="it">
+    <trd>confidare<klr> un segreto</klr></trd>,
+    <trd>mettere a parte di un <ind>segreto</ind></trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_p;&c_o;&c_s;&c_v;&c_ja;&c_t;&c_i;&c_t;&c_mol; &c_v;
+    &c_t;&c_a;&c_j;&c_n;&c_u;</trd>,
+    <trd>&c_p;&c_o;&c_s;&c_v;&c_ja;&c_t;&c_i;&c_t;&c_mol; &c_v;
+    &c_s;&c_je;&c_k;&c_r;&c_je;&c_t;</trd>
+  </trdgrp>
+  <trd lng="sk">zasv&auml;ti&tcaron; do tajomstva</trd>
+  <trd lng="cs">zasv&ecaron;tit do tajemstv&iacute;</trd>
+</drv>
+
+<drv mrk="sekret.for0igi">
+  <kap>for<tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="sekret.for0igi.KOMUNE">
+    <dif>
+      Ka&scirc;i, forigante <tld/>igi:
+      <ekz>
+        <nom>Zir-Nana</nom> <klr>[&#8230;]</klr> konsentigis la
+        re&gcirc;inon
+        for<tld/>igi lin en la arbara &ccirc;asdomo de la re&gcirc;o
+        <fnt><bib>I&scirc;tar</bib>, <lok>&ccirc;ap. 19a</lok></fnt>.
+      </ekz>
+    </dif>
+    <ref tip="sin" cel="kasx.0i">ka&scirc;i</ref>
+  </snc>
+  <trdgrp lng="de">
+    <trd>verstecken</trd>,
+    <trd>verbergen</trd>
+  </trdgrp>
+  <trd lng="fr">d&eacute;rober aux regards</trd>
+</drv>
+
+<drv mrk="sekret.mal0igi">
+  <kap>mal<tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="sekret.mal0igi.KOMUNE">
+    <dif>
+      <ref tip="super" cel="kasx.mal0i">Malka&scirc;i</ref>, konigi ion
+      <tld/>an:
+      <ekz>
+        beda&ubreve;rinde, la a&ubreve;torino ne mal<tld/>igis la
+        &leftquot;&gcirc;ustan&rightquot; signifon, tiel ke nun e&ccirc;
+        
+        la recenzanto mem senelire plu cerbumas pri tiu &ccirc;i
+        volapuka&jcirc;o
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Boris Kolker</aut>
+          <vrk><url
+          ref="http://steloj.de/esperanto/monato2/006813.html">Sa&gcirc;a
+          kapo duonvorton komprenas</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        ili devigis Dolonon mal<tld/>igi planojn de la defendantoj de
+        Trojo
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url
+          ref="https://eo.wikipedia.org/?curid=426822">Dolono</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd
+  lng="be">&c_r;&c_a;&c_z;&c_s;&c_a;&c_k;&c_r;&c_e;&c_c;&c_ib;&c_c;&c_mol;</trd>
+  <trdgrp lng="cs">
+    <trd>odhalit</trd>,
+    <trd>prozradit</trd>,
+    <trd>vyjevit</trd>
+  </trdgrp>
+  <trd lng="de">verraten</trd>
+  <trd lng="fr">d&eacute;voiler<klr tip="ind"> (un secret)</klr></trd>
+  <trdgrp lng="hu">
+    <trd>felfed <klr tip="ind">(titkot)</klr></trd>,
+    <trd>nyilv&aacute;noss&aacute;gra hoz</trd>
+  </trdgrp>
+  <trdgrp lng="id">
+    <trd>[<ind>buka</ind>] membuka (rahasia)</trd>,
+    <trd>[<ind>bongkar</ind>] membongkar (rahasia)</trd>,
+    <trd>[<ind>kuak</ind>] menguak (rahasia)</trd>,
+    <trd>[<ind>ungkap</ind>] mengungkapkan (rahasia)</trd>
+  </trdgrp>
+  <trdgrp lng="it">
+    <trd>svelare un <ind>segreto</ind></trd>,
+    <trd>scoprire un <ind>segreto</ind></trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>verklappen</trd>,
+    <trd>ruchtbaar maken</trd>
+  </trdgrp>
+  <trd
+  lng="ru">&c_r;&c_a;&c_s;&c_s;&c_je;&c_k;&c_r;&c_je;&c_t;&c_i;&c_t;&c_mol;</trd>
+  <trdgrp lng="sk">
+    <trd>prezradi&tcaron;</trd>,
+    <trd>vyzradi&tcaron;</trd>
+  </trdgrp>
+  <trd lng="sv">avsl&ouml;ja<klr tip="ind"> (en hemlighet)</klr></trd>
+</drv>
+
+<drv mrk="sekret.publika0o">
+  <kap>publika <tld/>o,
+  <var><kap>pul&ccirc;inela <tld/>o</kap></var></kap>
+  <uzo tip="stl">FRAZ</uzo>
+  <snc mrk="sekret.publika0o.KOMUNE">
+    <dif>
+      De &ccirc;iuj konata afero, nur &scirc;ajne sekreta:
+      <ekz>
+        la dikaj feraj stangoj estas tiel malproksimaj unu de la alia,
+        ke, 
+        kio estas publika sekreto, multaj maldikaj lo&gcirc;antoj de tiu
+        institucio sin trapremas
+        <fnt>
+          <bib>Fab1</bib>
+          <lok>Galo&scirc;oj de feli&ccirc;o</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        eble vi intence &scirc;atus <tld/>igi la nomon de tiu persono,
+        sed &gcirc;i estas pul&ccirc;inela <tld/>o
+        <fnt>
+        <bib>LOdE</bib>,
+        <lok><url
+        ref="http://www.sezonoj.itgo.com/55-lode.htm">1999:5(55)</url></lok></fnt>;
+      </ekz>
+      <ekz>
+        francaj idiotismoj <klr>[&#8230;]</klr> pul&ccirc;inela <tld/>o
+        &#8208;
+        <tld/>o kiu estas konata de &ccirc;iuj
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=1338">Francaj
+          idiotismoj</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="de">&ouml;ffentliches <ind>Geheimnis</ind></trd>
+  <trd lng="fr">secret de Polichinelle</trd>
+  <trd lng="hu">ny&iacute;lt <ind>titok</ind></trd>
+  <trd lng="id"><ind>rahasia</ind> umum</trd>
+  <trd lng="it"><ind>segreto</ind> di Pulcinella</trd>
+</drv>
+
+<drv mrk="sekret.sxtat0o">
+  <kap>&scirc;tat<tld/>o,
+    <var><kap>&scirc;tata <tld/>o</kap></var>
+  </kap>
+  <snc mrk="sekret.sxtat0o.POL">
+    <uzo tip="fak">POL</uzo>
+    <dif>
+      Informo, kiun &scirc;tato ne publikigas sed
+      konservas <tld/>a:
+      <ekz>
+        ekzistas &scirc;tataj <tld/>oj, kiujn konas apena&ubreve; kelke
+        da &scirc;tataj &ccirc;efoj
+        <fnt>
+          <bib>Far2</bib>
+          <lok>&Ccirc;apitro X</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        tiele oni fakte ekscias, kio longe estis &scirc;tataj <tld/>oj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Boris Kolker</aut>
+          <vrk><url
+          ref="http://steloj.de/esperanto/monato2/007107.html">Libro
+          leg-enda pri tempo legend-a</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        temas pri &scirc;tat<tld/>oj, kaj mi ne rajtas diri al vi 
+        &ccirc;ion sen plua permeso 
+        <fnt><aut>C. Piron</aut>, <vrk>&Ccirc;u ni kunvenis 
+        vane?</vrk>, <lok>1982</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="de">
+    <trd>Verschlusssache</trd>,
+    <trd>Staatsgeheimnis</trd>
+  </trdgrp>
+  <trd lng="fr">secret d'&eacute;tat</trd>
+</drv>
+</art>
+<!--
+$Log: sekret.xml,v $
+Revision 1.32  2018/06/13 03:10:20  revo
+Dusan Juretic: +trd es
+
+Revision 1.31  2018/05/26 09:10:13  revo
+Wolfram Diestel: prilaboris ekz-ojn, germ trd-ojn
+
+Revision 1.30  2018/05/25 18:10:13  revo
+Wolfram Diestel: ~e, ~i: prilbaoris ekz-ojn
+
+Revision 1.29  2018/05/23 18:10:13  revo
+Wolfram Diestel: ~o, ~a: ekz-oj/fnt-oj
+
+Revision 1.28  2015/07/04 08:37:43  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.27  2015/06/29 16:40:19  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.26  2015/06/29 16:33:23  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.25  2014/12/09 03:11:15  revo
+-->
+</vortaro>

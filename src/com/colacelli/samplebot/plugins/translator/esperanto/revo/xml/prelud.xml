@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: prelud.xml,v 1.22 2018/06/21 16:10:15 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  <rad>prelud</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+
+<drv mrk="prelud.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="prelud.0o.MUZ">
+    <uzo tip="fak">MUZ</uzo>
+    <dif>
+      Ordinare mallonga, enkonduka
+      <ref tip="super" cel="muzik.0ajxo.MUZ">muzika&jcirc;o</ref>,
+      ofte por unu muzikilo, kun libera enhavo,
+      anka&ubreve; memstare ludebla:
+      <ekz>
+        la <ctl><tld/>o al Posttagmezo de Fa&ubreve;no</ctl>,
+        de Debussy, kaj la poemo sur kiu &gcirc;i bazi&gcirc;as,
+        estigas la same revigan, eteran, sed ne malpli
+        pasian senton
+        <fnt>
+          <aut>GrizaLeono</aut>
+          <vrk><url
+          ref="https://tatoeba.org/epo/sentences/show/1436497">
+          Tatoeba, frazo n-ro 1436497</url></vrk>
+          <lok>2012-02-15</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <refgrp tip="vid">
+    <ref cel="uvertu.0o">uverturo</ref>
+  </refgrp>
+  <trd lng="be">&c_p;&c_r;&c_e;&c_l;&c_ju;&c_d;&c_y;&c_ja;</trd>
+  <trd lng="bg">&c_p;&c_r;&c_je;&c_l;&c_ju;&c_d;&c_i;&c_ja;</trd>
+  <trd lng="ca">preludi</trd>
+  <trdgrp lng="de">
+    <trd>Pr&auml;ludium</trd>,
+    <trd>Vorspiel</trd>
+  </trdgrp>
+  <trd lng="en">prelude</trd>
+  <trdgrp lng="fr">
+    <trd>pr&eacute;lude</trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>prel&uacute;dium</trd>,
+    <trd>el&odblac;j&aacute;t&eacute;k</trd>
+  </trdgrp>
+  <trd lng="it">preludio<klr> (mus.)</klr></trd>
+  <trdgrp lng="nl">
+    <trd>prelude</trd>,
+    <trd>voorspel</trd>
+  </trdgrp>
+  <trd lng="pl">preludium</trd>
+  <trd lng="pt">prel&uacute;dio</trd>
+  <trd lng="ru">&c_p;&c_r;&c_je;&c_l;&c_ju;&c_d;&c_i;&c_ja;</trd>
+  <trdgrp lng="sv">
+    <trd>preludium</trd>,
+    <trd>f&ouml;rspel</trd>
+  </trdgrp>
+  <trd lng="sk">predohra</trd>
+  <trdgrp lng="cs">
+    <trd>preludium</trd>,
+    <trd>p&rcaron;edehra</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="prelud.0eal">
+  <kap><tld/>e al</kap>
+  <gra><vspec>prepozicia&jcirc;o</vspec></gra>
+  <snc mrk="prelud.0eal.TEMP">
+    <dif>
+      <ref tip="super" cel="antaux.0.tempe">Anta&ubreve;<sncref/></ref>,
+      <ref tip="vid" cel="prepar.0eal.KOMUNE">prepare al</ref>:
+      <ekz>
+        grupoj da soldatoj kaj amikoj <klr>...</klr> dise staris 
+        parolante, foje serioze, foje kun afekta gajo, <tld/>e al 
+        adia&ubreve;o
+        <fnt>
+          <aut>J. Francis</aut>
+          <vrk>La Granda Kaldrono</vrk>
+          <lok>1978</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+</drv>
+</art>
+<!--
+$Log: prelud.xml,v $
+Revision 1.22  2018/06/21 16:10:15  revo
+Jeromo Vasxe: + ~e al
+
+Revision 1.21  2018/03/02 12:10:19  revo
+Jeromo Vasxe: mod dif, + ekz
+
+Revision 1.20  2015/07/04 08:37:41  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.19  2015/06/29 16:40:18  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.18  2013/04/19 05:10:22  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.17  2012/01/01 23:10:44  revo
+Marc Rausell: +trd ca
+
+Revision 1.16  2010/05/28 16:30:49  revo
+Antonio Codazzi: +trd it
+
+Revision 1.15  2010/01/14 18:27:26  revo
+-->
+</vortaro>

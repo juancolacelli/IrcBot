@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: karmin.xml,v 1.20 2018/04/18 09:10:14 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>karmin</rad>/o
+</kap>
+<drv mrk="karmin.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <snc>
+    <dif>
+      Iom viole ru&gcirc;a kolorilo, ekstraktata el 
+      <ref cel="kocxen.0o.ZOO">ko&ccirc;enilo <sncref/></ref>, ekz-e per
+      precipitado de flua&jcirc;a prepara&jcirc;o el ili:
+      <ekz>
+        <ind><tld/>a</ind> koloro de la lipoj
+        <fnt><bib>Marta</bib></fnt>.
+        <trd lng="fr">carmin<klr tip="ind"> (adj.)</klr></trd>
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_k;&c_a;&c_r;&c_m;&c_ib;&c_n;</trd>
+  <trd lng="bg">&c_k;&c_a;&c_r;&c_m;&c_i;&c_n;</trd>
+  <trd lng="br">ruz-tane</trd>
+  <trd lng="ca">carm&iacute;</trd>
+  <trd lng="cs">karm&iacute;n</trd>
+  <trd lng="de">Karminrot</trd>
+  <trd lng="en">carmine</trd>
+  <trd lng="es">carm&iacute;n</trd>
+  <trd lng="fr">carmin<klr tip="ind"> (subst., colorant)</klr></trd>
+  <trdgrp lng="hu">
+    <trd>k&aacute;rmin</trd>,
+    <trd>b&iacute;borv&ouml;r&ouml;s fest&eacute;k</trd>
+  </trdgrp>
+  <trd lng="nl">karmijn</trd>
+  <trd lng="ru">&c_k;&c_a;&c_r;&c_m;&c_i;&c_n;</trd>
+  <trd lng="sk">karm&iacute;n</trd>
+</drv>
+</art>
+<!--
+$Log: karmin.xml,v $
+Revision 1.20  2018/04/18 09:10:14  revo
+Guillermo Molleda Jimena: trd es
+
+Revision 1.19  2015/07/04 08:37:37  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.18  2015/06/29 16:33:17  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.17  2013/08/12 17:10:12  revo
+Joop Eggen: +trd bg
+
+Revision 1.16  2012/07/31 16:10:21  revo
+Marc Rausell: + trd ca
+
+Revision 1.15  2005/04/28 16:33:17  revo
+Alan ar Gall: +trd br
+
+Revision 1.14  2004/12/18 19:19:43  revo
+Marc Bavant: mod dif, mod ekz
+
+Revision 1.13  2004/12/05 17:32:29  revo
+-->
+</vortaro>

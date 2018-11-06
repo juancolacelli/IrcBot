@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: plum.xml,v 1.32 2017/12/19 10:10:29 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>plum</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="plum.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <snc mrk="plum.0o.ZOO">
+    <uzo tip="fak">ZOO</uzo>
+    <dif>
+      &Ccirc;iu el la kornecaj tubetoj garnitaj per lanugo, kiuj kovras
+      la korpon de birdoj:
+      <ekz>
+        &ccirc;apelo ornamita per <tld/>oj;
+      </ekz>
+      <ekz>
+        malpeza kiel <tld/>o;
+      </ekz>
+      <ekz>
+        kokete <tld/>ita <klr>(<tld/>ornamita)</klr> bireto<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        <uzo tip="stl">FIG</uzo>
+        sin ornami per fremdaj <tld/>oj
+        <klr>(pretendi kvalitojn kaj meritojn ne reale havatajn)</klr>.
+      </ekz>
+    </dif>
+  <trd lng="en">feather</trd>    
+  <trdgrp lng="pt">
+    <trd>pena</trd>,
+    <trd>pluma</trd>
+  </trdgrp>
+  </snc>
+  <snc mrk="plum.0o.skribilo">
+    <uzo tip="fak">TIP</uzo>
+    <dif>
+      <ref tip="super" cel="skrib.0ilo.KOMUNE">Skribilo</ref> farita el
+      tubeto de <tld/>o, kies ekstremon oni pintigis, a&ubreve; el
+      similforma
+      metallameno tenata per <tld/>ingo:
+      <ekz>
+        de la patro mi ricevis libron, kaj de la frato mi ricevis
+        <tld/>on
+        <fnt><bib>F</bib>, <lok>&FE; 9</lok></fnt>;
+      </ekz>
+      <ekz>
+        &scirc;tal<tld/>o <klr>...</klr> estas tro rigida
+        <fnt><bib>Fab4</bib>, <lok>turgardisto Ole, unua
+        vizito</lok></fnt>.
+      </ekz>
+    </dif>
+    <trd lng="en">pen</trd>
+    <trdgrp lng="pt">
+      <trd>pena</trd>,
+      <trd>caneta</trd>  
+    </trdgrp>
+  </snc>
+  <snc mrk="plum.0o.FIG">
+    <uzo tip="stl">FIG</uzo>
+    <dif>
+      A&ubreve;toreco, verkmaniero de iu:
+      <ekz>
+        &ccirc;u artikolon, verkitan de la talenta <tld/>o
+        de mia bofrato, oni ne volis akcepti
+        <fnt><bib>Marta</bib></fnt>?
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_p;&c_ja;&c_r;&c_o;</trd>
+  <trd lng="bg">&c_h;&c_i;&c_m;&c_i;&c_k;&c_a;&c_l;</trd>
+  <trdgrp lng="cs">
+    <trd>pe&rcaron;&iacute;</trd>,
+    <trd>pta&ccaron;&iacute; pero</trd>
+  </trdgrp>
+  <trd lng="de">Feder</trd>
+  <trd lng="es">pluma</trd>
+  <trd lng="fr">plume</trd>
+  <trd lng="hu">toll</trd>
+  <trd lng="nl">pen</trd>
+  <trd lng="pl">pi&oacute;ro</trd>
+  <trd lng="ro">pan&abreve;</trd>
+  <trd lng="ru">&c_p;&c_je;&c_r;&c_o;</trd>
+  <trd lng="sk">pero <klr>(vt&aacute;&ccaron;ie i na
+  p&iacute;sanie)</klr></trd>
+</drv>
+
+<drv mrk="plum.0aro">
+  <kap><tld/>aro</kap>
+  <snc mrk="plum.0aro.ZOO">
+    <dif>
+      Tuto da <tld/>oj, ekzemple de unu birdo:
+      <ekz>
+        en la lumo de la luno li vidis flugantan birdon, kies ora
+        <tld/>aro brile radiis
+        <fnt><bib>ElektFab</bib>, <lok>La ora birdo</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>ope&rcaron;en&iacute;</trd>,
+    <trd>pe&rcaron;&iacute;</trd>
+  </trdgrp>
+  <trd lng="en"> plumage</trd>
+  <trd lng="es">plumaje</trd>
+  <trd lng="fr">plumage</trd>
+  <trd lng="sk">perie</trd>
+</drv>
+
+<drv mrk="plum.0ingo">
+  <kap><ofc>*</ofc><tld/>ingo
+  <fnt><bib>F</bib>, <lok>Universala Vortaro, -ing'</lok></fnt></kap>
+  <snc mrk="plum.0ingo.skribilo">
+    <dif>
+      Bastoneto, al kiu oni adaptas skribo<tld/>on:
+      <ekz>
+        bastoneto, sur kiu oni tenas <tld/>on por skribado,
+        estas <tld/>ingo
+        <fnt><bib>F</bib>, <lok>&FE; 40</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_r;&c_u;&c_ch;&c_k;&c_a; <klr>(&c_u;
+  &c_ja;&c_k;&c_u;&c_ju;
+  &c_w;&c_s;&c_t;&c_a;&c_w;&c_l;&c_ja;&c_je;&c_c;&c_c;&c_a;
+  &c_p;&c_ja;&c_r;&c_o;)</klr></trd>
+  <trd lng="cs">n&aacute;sadka na pero</trd>
+  <trd lng="de">Federhalter</trd>
+  <trd lng="es">porta-pluma</trd>
+  <trd lng="fr">porte-plume</trd>
+  <trd lng="hu">tollsz&aacute;r</trd>
+  <trdgrp lng="nl">
+    <trd>pennenstok</trd>,
+    <trd>pennenhouder</trd>
+  </trdgrp>
+  <trd lng="ru">&c_r;&c_u;&c_ch;&c_k;&c_a; <klr>(&c_v;
+  &c_k;&c_o;&c_t;&c_o;&c_r;&c_u;&c_ju;
+  &c_v;&c_s;&c_t;&c_a;&c_v;&c_l;&c_ja;&c_ju;&c_t;
+  &c_p;&c_je;&c_r;&c_o;)</klr></trd>
+  <trd lng="sk">r&uacute;&ccaron;ka na pero</trd>
+</drv>
+
+<drv mrk="plum.0ujo">
+  <kap><ofc>*</ofc><tld/>ujo</kap>
+  <snc mrk="plum.0ujo.TIP">
+    <uzo tip="fak">TIP</uzo>
+    <dif>
+      Skatoleto, por teni skribo<tld/>ojn:
+      <ekz>
+        skatolo, en kiu oni tenas <tld/>ojn, estas <tld/>ujo
+        <fnt><bib>F</bib>, <lok>&FE; 40</lok></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="es">estuche de l&aacute;pices</trd>
+  <trd lng="fr">plumier</trd>
+</drv>
+
+<drv mrk="plum.fonto0o">
+  <kap>fonto<tld/>o, <var><kap>font<tld/>o</kap></var></kap>
+  <snc mrk="plum.fonto0o.skribilo">
+    <dif>
+      <ref tip="super" cel="skrib.0ilo.KOMUNE">Skribilo</ref>,
+      <tld/>ingo kun inkorezervujo:
+      <ekz>
+        &leftquot;bonvolu subskribi vian nomon &ccirc;i tie.&rightquot;
+        la &scirc;ipestro transdonis font<tld/>on al mi
+        <fnt><bib>Mortul&Scirc;ip</bib>, <lok>dua libro, &ccirc;apitro
+        26a</lok></fnt>.
+      </ekz>
+    </dif>
+    <trd lng="ro">stilou</trd>
+  </snc>
+  <trd lng="be">&c_a;&c_w;&c_t;&c_a;&c_r;&c_u;&c_ch;&c_k;&c_a;</trd>
+  <trd lng="cs">plnic&iacute; pero</trd>
+  <trdgrp lng="de">
+    <trd>F&uuml;llfederhalter</trd>;
+    <trd>F&uuml;ller</trd>
+  </trdgrp>
+  <trd lng="en">fountain pen</trd>
+  <trdgrp lng="es">
+    <trd>pluma estilogr&aacute;fica</trd>,
+    <trd>estilogr&aacute;fica</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>stylographe</trd>,
+    <trd>stylo-plume</trd>
+  </trdgrp>
+  <trd lng="hu">t&ouml;lt&odblac;toll</trd>
+  <trd lng="nl">vulpen</trd>
+  <trd lng="ru">&c_a;&c_v;&c_t;&c_o;&c_r;&c_u;&c_ch;&c_k;&c_a;</trd>
+  <trd lng="sk">plniace pero</trd>
+</drv>
+
+<drv mrk="plum.sen0igi">
+  <kap>sen<tld/>igi</kap>
+  <snc mrk="plum.sen0igi.KUI">
+    <uzo tip="fak">KUI</uzo>
+    <dif>
+      Forigi la <tld/>ojn, ekzemple de birdo preparata por kuiro:
+      <ekz>
+        sen<tld/>igi kokinon, ne vekante mastrinon
+        <klr>(lerte &scirc;teli)</klr>
+        <fnt><bib>PrV</bib></fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>o&scaron;kubat pe&rcaron;&iacute;</trd>,
+    <trd>&scaron;kubat pe&rcaron;&iacute;</trd>
+  </trdgrp>
+  <trd lng="es">desplumar</trd>
+  <trd lng="fr">plumer</trd>
+  <trd lng="sk">o&scaron;klba&tcaron; perie
+  <klr>(vt&aacute;kom)</klr></trd>
+</drv>
+</art>
+<!--
+$Log: plum.xml,v $
+Revision 1.32  2017/12/19 10:10:29  revo
+Michel Cantigneaux: fundamenta "plumingo" el la U.V.
+
+Revision 1.31  2017/05/05 19:10:13  revo
+Jeromo Vasxe: kor. ekz, -o + snc fig
+
+Revision 1.30  2016/11/13 00:10:17  revo
+Carlos Garcia: +trd ro -o fonto-, es fonto-
+
+Revision 1.29  2016/07/25 16:10:15  revo
+Guillermo Molleda Jimena: trd es
+
+Revision 1.28  2016/04/14 07:10:18  revo
+Jessica Grasso: +tr en
+
+Revision 1.27  2015/07/04 08:37:41  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.26  2015/06/29 16:40:18  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.25  2015/01/04 04:11:10  revo
+-->
+</vortaro>

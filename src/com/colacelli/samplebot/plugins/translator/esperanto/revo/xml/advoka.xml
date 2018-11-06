@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: advoka.xml,v 1.33 2018/04/27 03:10:15 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  <rad>advokat</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="advoka.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="advoka.0o.JUR">
+    <uzo tip="fak">JUR</uzo>
+    <dif>
+      Persono oficiale rajtigita por defendi en ju&gcirc;ejo la interesojn
+      de procesanto a&ubreve; akuzato:
+      <ekz>
+        le&gcirc;o estas bona se <tld/>o &gcirc;in helpas
+        <fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+        pastro vivas de pre&gcirc;oj <tld/>o de le&gcirc;oj
+        <fnt><bib>PrV</bib></fnt>.
+      </ekz>
+    </dif>
+    <trdgrp lng="de">
+      <trd>Verteidiger</trd>,
+      <trd>Anwalt</trd>,
+      <trd>Advokat [arkaika]</trd>
+    </trdgrp>
+    <trdgrp lng="en">
+      <trd>barrister</trd>,
+      <trd>attorney</trd>,
+      <trd>lawyer</trd>
+    </trdgrp>
+    <trd lng="es">abogado</trd>
+    <trdgrp lng="fr">
+      <trd>avocat<klr tip="ind"> (juriste)</klr></trd>,
+      <trd>d&eacute;fenseur<klr tip="ind"> (juriste)</klr></trd>
+    </trdgrp>
+    <trdgrp lng="id">
+      <trd>[<ind>acara</ind>] pengacara</trd>,
+      <trd>advokat</trd>
+    </trdgrp>
+    <trdgrp lng="it">
+      <trd>avvocato</trd>,
+      <trd>difensore<klr> (avvocato)</klr></trd>
+    </trdgrp>
+    <trdgrp lng="pt">
+      <trd>advogado</trd>,
+      <trd>defensor</trd>
+    </trdgrp>
+    <trd lng="sk">advok&aacute;t</trd>
+    <trd lng="sv">advokat</trd>
+  </snc>
+  <snc mrk="advoka.0o.porparolanto">
+    <uzo tip="stl">FIG</uzo>
+    <dif>
+      <ref tip="dif" cel="parol.por0anto.advokato">Porparolanto</ref>:
+      <ekz>
+        estu mia <tld/>o anta&ubreve; mia edzino<fnt>B</fnt>.
+      </ekz>
+    </dif>
+    <trdgrp lng="de">
+      <trd>Anwalt</trd>
+    </trdgrp>
+    <trd lng="en">advocate</trd>
+    <trdgrp lng="fr">
+      <trd>avocat<klr tip="ind"> (intercesseur)</klr></trd>,
+      <trd>d&eacute;fenseur<klr tip="ind"> (intercesseur)</klr></trd>,
+      <trd>intercesseur</trd>
+    </trdgrp>
+    <trdgrp lng="it">
+      <trd>avvocato<klr> (fig.)</klr></trd>,
+      <trd>difensore<klr> (intercessore)</klr></trd>,
+      <trd>intercessore</trd>
+    </trdgrp>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_a;&c_d;&c_v;&c_a;&c_k;&c_a;&c_t;</trd>,
+    <trd>&c_a;&c_b;&c_a;&c_r;&c_o;&c_n;&c_c;&c_a; <klr>(&c_s;&c_u;&c_d;&c_o;&c_v;&c_y;)</klr></trd>
+  </trdgrp>
+  <trd lng="bg">&c_a;&c_d;&c_v;&c_o;&c_k;&c_a;&c_t;</trd>
+  <trdgrp lng="cs">
+    <trd>advok&aacute;t</trd>,
+    <trd>obh&aacute;jce</trd>,
+    <trd>pr&aacute;vn&iacute; z&aacute;stupce</trd>
+  </trdgrp>
+  <trd lng="de">Anwalt</trd>
+  <trd lng="hu">&uuml;gyv&eacute;d</trd>
+  <trd lng="nl">advocaat</trd>
+  <trdgrp lng="pl">
+    <trd>adwokat</trd>,
+    <trd>obro&nacute;ca</trd>
+  </trdgrp> 
+  <trdgrp lng="ro">
+    <trd>avocat</trd>,
+    <trd>campion</trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_a;&c_d;&c_v;&c_o;&c_k;&c_a;&c_t;</trd>,
+    <trd>&c_z;&c_a;&c_shch;&c_i;&c_t;&c_n;&c_i;&c_k;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>advok&aacute;t, obhajca</trd>,
+    <trd>obhajca</trd>
+  </trdgrp>
+  <trd lng="sv">f&ouml;rsvarare</trd>
+  <trdgrp lng="zh">
+    <trd>&#24459;&#24072;</trd>,
+    <trd><klr>tr. </klr>&#24459;&#24107;<klr> [l&#476;sh&#299;]</klr></trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: advoka.xml,v $
+Revision 1.33  2018/04/27 03:10:15  revo
+Eko Nur Syah Hidayat: eta sxangxo
+
+Revision 1.32  2017/11/26 16:10:15  revo
+Vito Redsky: +trd pl +trd ro
+
+Revision 1.31  2017/07/04 22:10:14  revo
+Vito Redsky: +trd ro
+
+Revision 1.30  2016/05/21 07:10:20  revo
+Eko Nur Syah Hidayat: +id
+
+Revision 1.29  2015/07/04 08:37:29  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.28  2015/06/29 16:39:29  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.27  2015/06/28 12:03:35  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.26  2015/01/22 20:10:17  revo
+-->
+</vortaro>

@@ -1,0 +1,173 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: kamufl.xml,v 1.17 2018/03/26 17:10:16 revo Exp $">
+<kap>
+  <rad>kamufl</rad>/i <fnt><bib>SPV</bib></fnt>
+</kap>
+<drv mrk="kamufl.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <uzo tip="fak">MIL</uzo>
+  <snc>
+    <dif>
+      Maski militobjekton, donante al &gcirc;i la aspekton, koloron a&ubreve;
+      formon
+      de la &ccirc;irka&ubreve;a&jcirc;oj:
+      <ekz>
+        la aviadisto ne povis distingi la <tld/>itajn kanonojn.
+      </ekz>
+    </dif>
+    <trd lng="en">camouflage</trd>
+    <trd lng="de">tarnen</trd>
+    <trdgrp lng="it">
+      <trd>mimetizzare</trd>,
+      <trd>camuffare</trd>
+    </trdgrp>
+    <trd lng="pt">camuflar</trd>
+  </snc>
+  <snc>
+    <dif>
+      (f) Ka&scirc;maski (p.p. sento ks.)
+    </dif>
+    <trd lng="be">&c_k;&c_a;&c_m;&c_u;&c_f;&c_l;&c_ja;&c_v;&c_a;&c_c;&c_mol;</trd>
+    <trd lng="de">verkleiden</trd>
+    <trdgrp lng="it">
+      <trd>travestire</trd>,
+      <trd>camuffare</trd>
+    </trdgrp>
+    <trd lng="pt">camuflar</trd>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>fingovat</trd>,
+    <trd>kamuflovat</trd>,
+    <trd>maskovat</trd>,
+    <trd>p&rcaron;edst&iacute;rat</trd>
+  </trdgrp>
+  <trd lng="es">camuflar</trd>
+  <trd lng="fr">camoufler</trd>
+  <trd lng="hu">&aacute;lc&aacute;z</trd>
+  <trd lng="nl">camoufleren</trd>
+  <trdgrp lng="pl">
+    <trd>maskowa&cacute;</trd>,
+    <trd>kamuflowa&cacute;</trd>
+  </trdgrp>   
+  <trd lng="pt">camuflar</trd>
+  <trdgrp lng="ro">
+    <trd>masca</trd>,
+    <trd>camuflaj</trd>
+  </trdgrp>   
+  <trdgrp lng="ru">
+    <trd>&c_k;&c_a;&c_m;&c_u;&c_f;&c_l;&c_i;&c_r;&c_o;&c_v;&c_a;&c_t;&c_mol;</trd>,
+    <trd>&c_m;&c_a;&c_s;&c_k;&c_i;&c_r;&c_o;&c_v;&c_a;&c_t;&c_mol;</trd>
+  </trdgrp>
+  <trd lng="sk">maskova&tcaron;</trd>
+</drv>
+
+<drv mrk="kamufl.0ado">
+  <kap><tld/>ado</kap>
+  <snc>
+    <dif>
+      Ago <tld/>i.
+    </dif>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>kamufl&aacute;&zcaron;</trd>,
+    <trd>zast&iacute;r&aacute;n&iacute;</trd>
+  </trdgrp>
+  <trd lng="de">Tarnen</trd>
+  <trd lng="fr">camouflage<klr tip="ind"> (action)</klr></trd>
+  <trdgrp lng="it">
+    <trd>mimetizzazione</trd>,
+    <trd>camuffamento</trd>,
+    <trd>mascheramento</trd>,
+    <trd>travestimento</trd>
+   </trdgrp>
+  <trd lng="nl">het <ind>camoufleren</ind></trd>
+  <trd lng="pl">maskowanie</trd>
+  <trd lng="pt">camuflagem</trd>
+  <trd lng="ro">camuflaj</trd>
+  <trdgrp lng="sk">
+    <trd>kamufl&aacute;&zcaron;</trd>,
+    <trd>maskovanie</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="kamufl.0ajxo">
+  <kap><tld/>a&jcirc;o</kap>
+  <snc>
+    <dif>
+      Io <tld/>ita.
+    </dif>
+  </snc>
+  <trd lng="de">Tarnung</trd>
+  <trd lng="en">camouflage</trd>
+  <trdgrp lng="it">
+    <trd>mimetizzazione</trd>,
+    <trd>camuffamento</trd>,
+    <trd>mascheramento</trd>,
+    <trd>travestimento</trd>
+  </trdgrp>
+  <trd lng="nl">camouflage</trd>
+  <trd lng="pl">maska</trd> 
+  <trd lng="pt">camuflagem</trd>
+  <trd lng="ro">masca</trd>
+</drv>
+
+<drv mrk="kamufl.0ilo">
+  <kap><tld/>ilo</kap>
+  <snc>
+    <dif>
+      Tio, kio servas por <tld/>i (retoj, bran&ccirc;oj ktp).
+    </dif>
+  </snc>
+  <trd lng="be">&c_k;&c_a;&c_m;&c_u;&c_f;&c_l;&c_ja;&c_zh;</trd>
+  <trd lng="cs">kamufl&aacute;&zcaron;</trd>
+  <trd lng="de">Tarnmaterial</trd>
+  <trd lng="en">camouflage material</trd>
+  <trdgrp lng="fr">
+    <trd><klr tip="ind">(moyen de) </klr>camouflage</trd>
+   </trdgrp>
+  <trd lng="hu">&aacute;lc&aacute;z&oacute;eszk&ouml;z</trd>
+  <trdgrp lng="it">
+    <trd>materiale <ind>mimetico</ind></trd>,
+    <trd>materiale <ind>scenografico</ind><klr> (mil.)</klr></trd>
+  </trdgrp>
+  <trd lng="nl">camouflagemateriaal</trd>
+  <trd lng="pl">kamufla&zdot;</trd>
+  <trd lng="pt">camuflagem</trd>
+  <trd lng="ro">camuflaj</trd>
+  <trd lng="ru">&c_k;&c_a;&c_m;&c_u;&c_f;&c_l;&c_ja;&c_zh;</trd>
+  <trdgrp lng="sk">
+    <trd>kamufl&aacute;&zcaron;</trd>,
+    <trd>maskovanie</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: kamufl.xml,v $
+Revision 1.17  2018/03/26 17:10:16  revo
+Vito Redsky: +trd ro +trd pl
+
+Revision 1.16  2015/07/04 08:37:36  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.15  2015/06/29 16:33:16  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.14  2010/06/06 16:30:48  revo
+Antonio Codazzi: +trd it
+
+Revision 1.13  2009/07/05 16:39:19  revo
+Paul Peeraerts: +trd nl
+
+Revision 1.12  2007/09/23 16:30:56  revo
+Tulio Flores: +tr pt
+
+Revision 1.11  2006/09/06 15:15:52  revo
+Wieland Pusch: +trd de en
+
+Revision 1.10  2004/11/02 17:31:44  revo
+-->
+</vortaro>

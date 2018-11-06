@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: ald.xml,v 1.25 2017/02/21 13:10:14 revo Exp $">
+<kap>
+  <ofc>2</ofc>
+  <rad>ald</rad>/o
+</kap>
+<drv mrk="ald.0o">
+  <kap><tld/>o</kap>
+  <uzo tip="fak">MUZ</uzo>
+  <snc>
+    <dif>
+      La plej malalta virina vo&ccirc;o:
+      <ekz>
+        la vo&ccirc;kategorio <tld/>o signifas en la muziko la pli malaltan
+        vo&ccirc;on de amba&ubreve; inaj a&ubreve; knabovo&ccirc;oj (knab<tld/>o)
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url
+          ref='https://eo.wikipedia.org/?curid=253595'>Aldo</url></lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        <ref tip="vid" cel="sopran.0o.registro">soprano<sncref/></ref>,
+        mezosoprano, <tld/>o, 
+        <ref tip="vid" cel="tenor.0o.vocxo">tenoro<sncref/></ref>, 
+        <ref tip="vid" cel="barito.0o.registro">baritono<sncref/></ref>,
+        
+        <ref tip="vid"
+        
+        cel="bas.0o.registro">baso<sncref/></ref> 
+        estas la malsamaj <ref tip="vid"
+        cel="regist.0o.MUZ">registro<sncref/></ref>j 
+        de kantistoj kaj kantistinoj
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url
+          ref='https://eo.wikipedia.org/?curid=30970'>Vo&ccirc;o</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trd lng="ca">contralt</trd>
+    <trdgrp lng="de">
+     <trd>Altstimme</trd>,
+     <trd>Alt</trd>
+    </trdgrp>
+    <trd lng="en">alto</trd>
+    <trd lng="hu">alt</trd>
+    <trd lng="it">contralto</trd>
+    <trd lng="nl">alt</trd>
+    <trd lng="pl">alt</trd>
+    <trd lng="pt">contralto</trd>
+    <trd lng="sk">alt</trd>
+  </snc>
+  <snc>
+    <dif>
+      <ref tip="dif" cel="violon.ald0o">Aldviolono</ref>:
+      <ekz>
+        violon&ccirc;elo estas granda violono, malsupra je unu okto al
+        <tld/>o.
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url
+          ref='https://eo.wikipedia.org/?curid=254736'>Violonisto</url></lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        sur violono a&ubreve; <tld/>violono (<tld/>o) kutime trovi&gcirc;as
+        menton-apogilo
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url
+          ref='https://eo.wikipedia.org/?curid=30966'>Aldviolono</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <ref tip="lst" cel="instru2.kord0o.MUZ"
+    lst="voko:kordinstrumentoj">kordinstrumento</ref>
+    <trd lng="ca">viola</trd>
+    <trd lng="en">viola</trd>
+    <trd lng="nl">altviool</trd>
+  </snc>
+  <trd lng="be">&c_a;&c_l;&c_mol;&c_t;</trd>
+  <trd lng="cs">viola</trd>
+  <trd lng="fr">alto</trd>
+  <trd lng="hu">m&eacute;lyheged&udblac;</trd>
+  <trd lng="it">viola</trd>
+  <trd lng="pl">alt&oacute;wka</trd>
+  <trd lng="pt">violeta</trd>
+  <trd lng="ru">&c_a;&c_l;&c_mol;&c_t;</trd>
+  <trd lng="sk">viola</trd>
+</drv>
+</art>
+<!--
+$Log: ald.xml,v $
+Revision 1.25  2017/02/21 13:10:14  revo
+Damien Brucker: -eraro cxe cel en ref
+
+Revision 1.24  2016/11/20 18:10:15  revo
+Wolfram Diestel: prilaboris, ref-ojn, ekz-ojn...
+
+Revision 1.23  2015/07/04 08:37:30  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.22  2013/09/08 19:10:27  revo
+Wolfram Diestel: ref al listo kordinstrumentoj
+
+Revision 1.21  2012/10/23 00:11:25  revo
+Neil Roberts: aldonu la etikedon <var>
+
+Revision 1.20  2011/12/31 10:10:15  revo
+Marc Rausell: +trd ca
+
+Revision 1.19  2010/05/28 16:30:30  revo
+Antonio Codazzi: +trd it
+
+Revision 1.18  2009/04/02 16:30:30  revo
+-->
+</vortaro>

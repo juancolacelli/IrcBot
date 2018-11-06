@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: zoolog.xml,v 1.23 2018/08/15 22:10:14 revo Exp $">
+<kap>
+<ofc>7</ofc> <rad>zoolog</rad>/o
+  <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="zoolog.0o">
+  <kap><tld/>o</kap>
+  <snc>
+    <dif>
+      <ref tip="dif" cel="zoolog1.0isto">Zoologiisto</ref>:
+      <ekz>
+        anka&ubreve; &scirc;arko en akvario povas esti dan&gcirc;era, tion konstatis la
+        <tld/>o kaj 
+        subakvisto <nom>Tadas Laurinavi&ccaron;ius</nom>, kiu zorgas pri
+        akvariaj vivuloj 
+        <fnt>
+          <bib>Monato</bib>
+          <aut>last</aut>
+          <vrk><url
+          ref="http://www.monato.net/2007/009350.php">&Scirc;arko-&scirc;oko</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        forpasis la 10an de marto 2012 doktoro <nom>Wim De Smet</nom>,
+        flandra <tld/>o
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Cyreen Knockaert</aut>
+          <vrk><url
+          ref="http://www.monato.net/2013/010992.php">Nomenklaturo: &ccirc;u
+          kroma esperanta finvenko?</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_z;&c_a;&c_o;&c_l;&c_ja;&c_g;</trd>
+  <trd lng="bg">&c_z;&c_o;&c_o;&c_l;&c_o;&c_g;</trd>
+  <trd lng="ca">zo&ograve;leg</trd>
+  <trd lng="cs">zoolog</trd>
+  <trdgrp lng="de">
+   <trd>Zoologe</trd>,
+   <trd>Zoologin</trd></trdgrp>
+  <trd lng="en">zoologist</trd>
+  <trd lng="es">zo&oacute;logo</trd>
+  <trd lng="fr">zoologiste</trd>
+  <trd lng="it">zoologo</trd>
+  <trdgrp lng="nl">
+   <trd>zo&ouml;loog</trd>,
+   <trd>dierkundige</trd></trdgrp>
+  <trdgrp lng="pt">
+   <trd>zo&oacute;logo</trd>,
+   <trd>zoologista</trd>
+  </trdgrp>
+  <trd lng="ru">&c_z;&c_o;&c_o;&c_l;&c_o;&c_g;</trd>
+  <trdgrp lng="sk">
+    <trd>zool&oacute;g</trd>,
+    <trd>zool&oacute;g</trd>
+  </trdgrp>
+  <trd lng="sv">zoolog</trd>
+</drv>
+</art>
+<!--
+$Log: zoolog.xml,v $
+Revision 1.23  2018/08/15 22:10:14  revo
+Wolfram Diestel: +PV
+
+Revision 1.22  2018/08/13 20:10:16  revo
+Wolfram Diestel: +ekz-oj
+
+Revision 1.21  2018/08/10 15:10:15  revo
+Michel Cantigneaux: aperas unue en PV (1934), oficiala en 7OA (1958)
+
+Revision 1.20  2015/07/04 08:37:46  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.19  2015/06/28 10:33:41  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.18  2012/08/11 17:10:12  revo
+Marc Rausell: + trd ca
+
+Revision 1.17  2009/03/12 17:31:44  revo
+Wieland Pusch: +trd bg
+
+Revision 1.16  2009/03/09 17:31:25  revo
+-->
+</vortaro>

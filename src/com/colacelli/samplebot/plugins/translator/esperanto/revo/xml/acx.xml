@@ -1,0 +1,344 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: acx.xml,v 1.31 2018/09/17 15:10:13 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  -<rad>a&ccirc;</rad>/ <fnt><bib>PV</bib></fnt>
+</kap>
+
+<subart>
+  <drv mrk="acx.0.sufikso">
+    <kap>-<tld/></kap>
+  <gra><vspec>sufikso</vspec></gra>
+  <snc>
+  <dif>
+    Malbona, malbonkvalita:
+  </dif>
+    <ekz>
+      mizera &ccirc;eval<tld/>o
+      <fnt><bib>Fab1</bib>, <lok>Sova&gcirc;aj cignoj</lok></fnt>;
+    </ekz>
+    <ekz>
+      dom<tld/>o <klr>(malbela domo)</klr>;
+    </ekz>
+    <ekz>
+      rigard<tld/>i kiel bovido
+      <klr>(gapi, stultmiene rigardi)</klr>
+      <fnt><bib>PrV</bib></fnt>;
+    </ekz>
+    <ekz>
+      babil<tld/>i
+      <klr>(stulte, vante a&ubreve; malice paroli)</klr>.
+    </ekz>
+    <refgrp tip="vid">
+      <ref cel="fi">fi</ref>
+    </refgrp>
+    <trdgrp lng="de">
+      <trd>Schei&szlig;-<klr> [pref]</klr></trd>,
+      <trd>Mist-<klr> [pref]</klr></trd>,
+      <trd>Drecks-<klr> [pref]</klr></trd>
+    </trdgrp>
+    <trdgrp lng="es">
+      <trd>-aco<klr> (sufijo peyorativo)</klr></trd>,
+      <trd>-ucho<klr> (sufijo peyorativo)</klr></trd>
+    </trdgrp>
+    <trdgrp lng="fr">
+      <trd>-asse<klr> (suffixe p&eacute;joratif)</klr></trd>,
+      <trd>-&acirc;tre<klr> (suffixe p&eacute;joratif)</klr></trd>
+    </trdgrp>
+    <trd lng="io">-ach</trd>
+    <trd lng="vo">lu-</trd>
+  </snc>
+  <rim>
+  Vidu la <ref cel="fi.0.RIM">rimarkon &ccirc;e fi</ref>.
+  </rim>
+    <trdgrp lng="th">
+      <trd>&#3652;&#3617;&#3656;&#3604;&#3637;</trd>,
+      <trd>&#3588;&#3640;&#3603;&#3616;&#3634;&#3614;&#3649;&#3618;&#3656;</trd>,
+      <trd>&#3627;&#3618;&#3634;&#3610;&#3588;&#3634;&#3618;</trd>
+    </trdgrp>
+  </drv>
+</subart>
+
+<subart>
+  <dif>
+    Vortero memstara samsignifa:
+  </dif>
+  <drv mrk="acx.0">
+    <kap><tld/></kap>
+    <gra><vspec>ekkrio</vspec></gra>
+    <snc mrk="acx.0.KOMUNE">
+      <dif>
+        Malbone! malagrable!:
+        <ekz>
+          Mozilo ne plu funkcias bone <klr>...</klr> pro la nura 
+          &ccirc;eesto de tiu Fajrovulpo en la sama komputilo! <tld/>!
+          <fnt>
+            <aut>R. Platteau</aut>,
+            <vrk><url ref="http://www.liberafolio.org/2007/fajrovulpo/">
+            Mozilo...</url></vrk>,
+            <lok>libera folio, 2007-10-02</lok>
+          </fnt>.
+        </ekz>
+      </dif>
+    </snc>
+    <trdgrp lng="es">
+      <trd>puaj</trd>,
+      <trd>qu&eacute; asco</trd>
+    </trdgrp>
+    <trdgrp lng="fr">
+      <trd>saloperie !</trd>,
+      <trd>zut !</trd>
+    </trdgrp>
+  </drv>
+  <drv mrk="acx.0a">
+    <kap><tld/>a</kap>
+    <snc mrk="acx.0a.KOMUNE">
+      <dif>
+        Malbona, malbela, malagrabla:
+        <ekz>
+          <tld/>a, senvalora vo&ccirc;o de publikulino.
+        </ekz>
+      </dif>
+    </snc>
+    <trdgrp lng="be">
+      <trd>&c_b;&c_r;&c_y;&c_d;&c_k;&c_ib;</trd>,
+      <trd>&c_g;&c_ib;&c_d;&c_k;&c_ib;</trd>,
+      <trd>&c_n;&c_je;&c_p;&c_r;&c_y;&c_g;&c_o;&c_zh;&c_y;</trd>,
+      <trd>&c_n;&c_ja;&c_d;&c_o;&c_b;&c_r;&c_y;</trd>
+    </trdgrp>
+    <trdgrp lng="de">
+      <trd>schei&szlig;e</trd>,
+      <trd>schlecht</trd>,
+      <trd>klapprig</trd>,
+      <trd>&uuml;bel</trd>
+    </trdgrp>
+    <trdgrp lng="es">
+      <trd>malo</trd>,
+      <trd>feo</trd>,
+      <trd>desagradable</trd>,
+      <trd>asqueroso</trd>,
+      <trd>asquerosa</trd>
+    </trdgrp>
+    <trdgrp lng="fr">
+      <trd>d&eacute;gueulasse</trd>,
+      <trd>horrible</trd>,
+      <trd>mauvais</trd>
+    </trdgrp>
+    <trdgrp lng="hu">
+      <trd>&oacute;cska</trd>,
+      <trd>vacak</trd>,
+      <trd>sil&aacute;ny</trd>
+    </trdgrp>
+    <trdgrp lng="nl">
+      <trd>lelijk</trd>,
+      <trd>vuil</trd>,
+      <trd>miezerig</trd>,
+      <trd>schamel</trd>,
+      <trd>minderwaardig</trd>
+    </trdgrp>
+    <trdgrp lng="ro">
+      <trd>de dispre&tcedil;uit</trd>,
+      <trd>josnic</trd>
+    </trdgrp>
+    <trd lng="tp">ike</trd>
+  </drv>
+  <drv mrk="acx.0ajxo">
+    <kap><tld/>a&jcirc;o</kap>
+    <snc mrk="acx.0ajxo.KOMUNE">
+      <dif>
+        Io tre malpla&ccirc;a, malbona:
+        <ekz>
+          &scirc;i <klr>...</klr> ne lasis ian <tld/>a&jcirc;on ie por
+          la 
+          purigistino
+          <fnt>
+            <aut>M. Boulton</aut>,
+            <vrk><url
+            ref="http://donh.best.vwh.net/Esperanto/Literaturo/Revuoj/nlr/nlr33/ebrivirgecou.html">
+            Ebrivirgeco</url></vrk>,
+            <lok>Nica Literatura Revuo, 1958-01 &gcirc;is 02, numero
+            3/3, p.
+            99-107a</lok>
+          </fnt>.
+        </ekz>
+      </dif>
+    </snc>
+    <trdgrp lng="be">
+      <trd>&c_b;&c_r;&c_y;&c_d;&c_o;&c_t;&c_a;</trd>,
+      <trd>&c_g;&c_ib;&c_d;&c_o;&c_t;&c_a;</trd>
+    </trdgrp>
+    <trdgrp lng="es">
+      <trd>suciedad</trd>,
+      <trd>porquer&iacute;a</trd>,
+      <trd>bodrio</trd>,
+      <trd>birria</trd>,
+      <trd>chapuza</trd>,
+      <trd>cutrez</trd>,
+      <trd>chorrada</trd>
+    </trdgrp>
+    <trdgrp lng="fr">
+      <trd>cochonnerie</trd>,
+      <trd>saloperie</trd>
+    </trdgrp>
+    <trdgrp lng="nl">
+      <trd>lelijk ding</trd>,
+      <trd>waardeloos ding</trd>
+    </trdgrp>
+    <trdgrp lng="ro">
+      <trd>un lucru dezgust&abreve;tor</trd>,
+      <trd>situa&tcedil;ie dezgust&abreve;toare</trd>
+    </trdgrp>
+  </drv>
+  <drv mrk="acx.0igxi">
+    <kap><tld/>i&gcirc;i</kap>
+    <gra><vspec>ntr</vspec></gra>
+    <snc mrk="acx.0igxi.KOMUNE">
+      <dif>
+        Malboni&gcirc;i, malagrabli&gcirc;i, difekti&gcirc;i:
+        <ekz>
+          lia stato pli kaj pli <tld/>i&gcirc;as.
+        </ekz>
+      </dif>
+    </snc>
+    <trdgrp lng="be">
+      <trd>&c_p;&c_a;&c_g;&c_a;&c_r;&c_sh;&c_a;&c_c;&c_c;&c_a;</trd>,
+      <trd>&c_p;&c_s;&c_a;&c_v;&c_a;&c_c;&c_c;&c_a;</trd>
+    </trdgrp>
+    <trd lng="fr">se <ind>d&eacute;grader</ind></trd>
+    <trdgrp lng="es">
+      <trd>degradarse</trd>,
+      <trd>estropearse</trd>
+    </trdgrp>
+    <trd lng="ro">a se face r&abreve;u</trd> 
+  </drv>
+  <drv mrk="acx.0ulo">
+    <kap><tld/>ulo</kap>
+    <snc mrk="acx.0ulo.KOMUNE">
+      <dif>
+        Homo malbona, malagrabla, malpla&ccirc;a:
+        <ekz>
+          Vi <tld/>ulo! Vi perfidulo! Kiel vi a&ubreve;dacis trompi min,
+          kanajla fripono?!
+          <fnt>
+            <aut>S&aacute;ndor Szathm&aacute;ri</aut>,
+            <vrk><url
+            ref="http://www.esperanto.mv.ru/Szathmari/perfekta_civitano.html">
+            Perfekta civitano (1956)</url></vrk>,
+            <lok>Satiraj rakontoj</lok>
+          </fnt>.
+        </ekz>
+      </dif>
+      <trdgrp lng="th">
+        <trd>&#3588;&#3609;&#3652;&#3617;&#3656;&#3604;&#3637;</trd>,
+        <trd>&#3588;&#3609;&#3607;&#3637;&#3656;&#3652;&#3617;&#3656;&#3609;&#3656;&#3634;&#3588;&#3610;&#3627;&#3634;</trd>
+      </trdgrp>
+    </snc>
+    <trdgrp lng="es">
+      <trd>canalla</trd>,
+      <trd>desgraciado</trd>,
+      <trd>miserable</trd>,
+      <trd>tipejo</trd>,
+      <trd>tiparraco</trd>,
+      <trd>mamarracho</trd>
+    </trdgrp>
+    <trd lng="fr">salaud</trd>
+    <trdgrp lng="nl">
+      <trd>lelijkerd</trd>,
+      <trd>lelijkaard</trd>,
+      <trd>stinkerd</trd>,
+      <trd>vuilaard</trd>,
+      <trd>vuilik</trd>
+    </trdgrp>
+    <trdgrp lng="ro">
+      <trd>fiin&tcedil;&abreve; netrebnica</trd>,
+      <trd>pr&abreve;p&abreve;dit&abreve;</trd>,
+      <trd>mizerabila</trd>,
+      <trd>josnica</trd>
+    </trdgrp>
+    <trd lng="zh">&#22351;&#20154;</trd>
+  </drv>
+</subart>
+
+</art>
+<!--fi
+$Log: acx.xml,v $
+Revision 1.31  2018/09/17 15:10:13  revo
+Bart Demeyere: +trd nl
+
+Revision 1.30  2017/04/10 07:10:13  revo
+Guillermo Molleda Jimena: es acxo : sucidad -> suciedad
+
+Revision 1.29  2016/12/04 15:10:17  revo
+Robin van der Vliet: +trd
+
+Revision 1.28  2016/11/10 15:10:17  revo
+Carlos Garcia: +trd ro ~a ~ajxo ~igxi ~ulo,es ~ulo ~igxi ~ajxo ~a ~
+
+Revision 1.27  2016/11/05 14:10:25  revo
+Darcy Shen: +trd zh
+
+Revision 1.26  2016/07/30 11:10:19  revo
+Warut Bunprasert: +trd th
+
+Revision 1.25  2015/09/17 08:10:17  revo
+Damien Brucker: Alilokigo de la rim por PReVo
+
+Revision 1.24  2014/08/01 01:10:10  revo
+Alain Gerard: aldonis sufikson
+
+Revision 1.23  2014/02/16 10:10:14  revo
+Damien Brucker: +rim
+
+Revision 1.22  2014/02/04 14:10:19  revo
+Damien Brucker: +kap
+
+Revision 1.21  2013/04/03 08:10:10  revo
+Dmitri Gabinski: redakto: +trd be
+
+Revision 1.20  2013/03/01 07:10:13  revo
+Dmitri Gabinski: redakto: +trd be
+
+Revision 1.19  2011/11/26 00:10:08  revo
+Eduardo Navas: korekto de traduko
+
+Revision 1.18  2010/07/15 16:30:25  revo
+Agustin Garcia Lopez: +trd es (-igxi)
+
+Revision 1.17  2008/03/20 17:30:16  revo
+Wieland Pusch: korekto
+
+Revision 1.16  2008/03/17 17:30:18  revo
+Wieland Pusch: aldono mrk por prefikso
+
+Revision 1.15  2007/12/18 17:30:12  revo
+-->
+
+<!--
+$Log: acx.xml,v $
+Revision 1.31  2018/09/17 15:10:13  revo
+Bart Demeyere: +trd nl
+
+Revision 1.30  2017/04/10 07:10:13  revo
+Guillermo Molleda Jimena: es acxo : sucidad -> suciedad
+
+Revision 1.29  2016/12/04 15:10:17  revo
+Robin van der Vliet: +trd
+
+Revision 1.28  2016/11/10 15:10:17  revo
+Carlos Garcia: +trd ro ~a ~ajxo ~igxi ~ulo,es ~ulo ~igxi ~ajxo ~a ~
+
+Revision 1.27  2016/11/05 14:10:25  revo
+Darcy Shen: +trd zh
+
+Revision 1.26  2016/07/30 11:10:19  revo
+Warut Bunprasert: +trd th
+
+Revision 1.25  2015/09/17 08:10:17  revo
+Damien Brucker: Alilokigo de la rim por PReVo
+
+Revision 1.24  2014/08/01 01:10:10  revo
+-->
+</vortaro>

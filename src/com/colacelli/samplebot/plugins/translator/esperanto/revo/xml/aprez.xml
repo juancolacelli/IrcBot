@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: aprez.xml,v 1.22 2017/10/17 17:10:14 revo Exp $">
+<kap>
+  <rad>aprez</rad>/i <fnt><bib>PIV1</bib></fnt>
+</kap>
+
+<drv mrk="aprez.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="aprez.0i.KOMUNE">
+    <dif>
+      <ref tip="sin" cel="sxat.0i.aprezi">&Scirc;ati<sncref/></ref>,
+      pozitive <ref tip="super" cel="taks.0i">taksi</ref>
+      la valoron a&ubreve; gravecon de io, la kapablojn de iu;
+      rigardi kiel atentindan, valoran, gravan a&ubreve; multkapablan;
+      <ref tip="sin" cel="aprec.0i.KOMUNE">apreci</ref>:
+      <ekz>
+        sed vi estis malfeli&ccirc;a, kaj mi oferis min, esperante
+        ke iam vi <tld/>os mian oferon
+        <fnt><bib>Mary</bib>, <lok>P.64</lok></fnt>;
+      </ekz>
+      <ekz>
+        dudek fojojn mian vivon, e&ccirc; la honoron, mi metos
+        sur la karton... sed mian liberon mi ne vendos. Kial
+        mi tiel <tld/>as &gcirc;in?
+        <fnt><bib>Mary</bib>, <lok>p. 48a</lok></fnt>;
+      </ekz>
+      <ekz>
+        nur en tiu supera stato de l' memkono la homo povas
+        <tld/>i la justecon de Dio
+        <fnt><bib>Mary</bib>, <lok>p. 33a</lok></fnt>;
+      </ekz>
+      <ekz>
+        ni bezonas tiom da intelekto por toleri la mankojn de la
+        aliuloj kiom necesas por <tld/>i iliajn bonkvalitojn
+        <fnt>
+          <aut>Markizino de Sabl&eacute;,
+            trad. W. Kirschstein</aut>,
+          <vrk>Maksimoj de sinjorino de Sabl&eacute;</vrk>,
+          <bib>LOdE</bib>, <lok>1998:11 (49)</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <ref tip="vid" cel="estim.0i">estimi</ref>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_c;&c_a;&c_n;&c_ib;&c_c;&c_mol;</trd>, 
+    <trd>&c_sh;&c_a;&c_n;&c_a;&c_v;&c_a;&c_c;&c_mol;</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>hodnotit</trd>,
+    <trd>ocenit</trd>,
+    <trd>odhadnout</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>w&uuml;rdigen</trd>,
+    <trd><klr>zu </klr>w&uuml;rdigen <ind>wissen</ind></trd>,
+    <trd>anerkennen</trd>,
+    <trd>sch&auml;tzen</trd>
+  </trdgrp>
+  <trdgrp lng="en">
+    <trd>appreciate</trd>
+  </trdgrp>
+  <trd lng="es">apreciar</trd>
+  <trdgrp lng="fa">
+    <trd>&a_q;&a_d;&a_r; &a_d;&a_A;&a_n;&a_s;&a_t;&a_n;</trd>,
+    <trd>&a_A;&a_r;&a_j; &a_n;&a_h;&a_A;&a_d;&a_n;</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>appr&eacute;cier</trd>,
+    <trd>gouter<klr> (appr&eacute;cier)</klr></trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>becs&uuml;l</trd>,
+    <trd>nagyra <ind>&eacute;rt&eacute;kel</ind></trd>
+  </trdgrp>
+  <trdgrp lng="pl">
+    <trd>ceni&cacute; <klr>(sobie)</klr></trd>,
+    <trd>docenia&cacute;</trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_c;&c_je;&c_n;&c_i;&c_t;&c_mol;</trd>,
+    <trd>&c_o;&c_c;&c_je;&c_n;&c_i;&c_t;&c_mol;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>ceni&tcaron;</trd>,
+    <trd>hodnoti&tcaron;</trd>,
+    <trd>uzn&aacute;va&tcaron;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="aprez.0o">
+  <kap><tld/>o,
+  <var><kap><tld/>ado</kap></var></kap>
+  <snc mrk="aprez.0o.KOMUNE">
+    <dif>
+      &Scirc;ata konsidero de io rigardata kiel valora, grava,
+      bela, kaj pro tio atentinda;
+      <ref tip="sin" cel="aprec.0o.KOMUNE">apreco</ref>:
+      <ekz>
+        s-ro Newell prelegis pri <ctl>la <tld/>o literatura</ctl>
+        &ndash; temo pri kiu li plene rajtas doni konsilojn
+        <fnt>
+          <aut>-</aut>,
+          <vrk>Kroniko de l' Esperanto-movado</vrk>,
+          <lok>Esperanto Triumfonta, 1930:46 (594), p. 3a</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="gust.0o.priVerko">gusto<sncref/></ref>
+    </refgrp>
+  </snc>
+  <trd lng="fr">appr&eacute;ciation</trd>
+</drv>
+</art>
+<!--
+$Log: aprez.xml,v $
+Revision 1.22  2017/10/17 17:10:14  revo
+Jeromo Vasxe: + ~o
+
+Revision 1.21  2017/03/26 03:10:13  revo
+Sergio Pokrovskij: kor dif
+
+Revision 1.20  2016/09/30 12:10:30  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.19  2015/07/04 08:37:30  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.18  2015/06/28 12:03:35  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.17  2013/04/19 10:10:11  revo
+Jeromo Vasxe: preciz. fnt
+
+Revision 1.16  2009/08/18 19:18:10  revo
+Behnam Tabatabai: +trd fa
+
+Revision 1.15  2005/06/05 16:57:14  revo
+-->
+</vortaro>

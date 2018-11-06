@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: blazon.xml,v 1.21 2017/08/31 18:10:19 revo Exp $">
+<kap>
+  <ofc>1</ofc>
+  <rad>blazon</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+
+<drv mrk="blazon.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="blazon.0o.HER">
+    <uzo tip="fak">HER</uzo>
+    <dif>
+      Tuto de la <ref tip="super" cel="insign.0o.signo">insignoj</ref>
+      de homo, familio, urbo, korporacio, regno:
+      <ekz>
+        la unuaj <tld/>oj aperis en E&ubreve;ropo en la dua duono de la
+        12a jarcento
+        <fnt>
+        <aut>Radio Polonia</aut>,
+        <vrk><url
+        ref="http://www.polskieradio.pl/polonia/article.asp?tId=36134">
+        Ekspozicio de blazonoj</url></vrk>,
+        <lok>2006-05-04</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="vid">
+      <ref cel="sxild.blazon0o">blazon&scirc;ildo</ref>
+    </refgrp>
+  </snc>
+  <trd lng="be">&c_g;&c_je;&c_r;&c_b;</trd>
+  <trd lng="bg">&c_g;&c_je;&c_r;&c_b;</trd>
+  <trd lng="ca">blas&oacute;</trd>
+  <trdgrp lng="cs">
+    <trd>erb</trd>,
+    <trd>znak</trd>
+  </trdgrp>
+  <trd lng="de">Wappen</trd>
+  <trdgrp lng="en">
+    <trd>coat of arms</trd>
+    <trd>blazon</trd>,
+  </trdgrp>
+  <trd lng="es">blas&oacute;n</trd>
+  <trdgrp lng="fr">
+    <trd>armes<klr> (h&eacute;raldique)</klr></trd>,
+    <trd>armoiries</trd>
+  </trdgrp>
+  <trd lng="hu">c&iacute;mer</trd>
+  <trdgrp lng="it">
+    <trd>arma<klr> (araldica)</klr></trd>,
+    <trd>stemma</trd>,
+    <trd>emblema<klr> (araldico)</klr></trd>,
+    <trd>blasone</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>wapen</trd>,
+    <trd>blazoen</trd>
+  </trdgrp>
+  <trd lng="pl">herb</trd>
+  <trdgrp lng="pt">
+    <trd>bras&atilde;o</trd>,
+    <trd>emblema</trd>,
+    <trd>escudo de armas</trd>
+  </trdgrp>
+  <trd lng="ru">&c_g;&c_je;&c_r;&c_b;</trd>
+  <trdgrp lng="sk">
+    <trd>erb c&iacute;mer</trd>,
+    <trd>rodov&yacute; znak</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="blazon.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="blazon.0i.HER">
+    <dif>
+      Marki per <tld/>o:
+      <ekz>
+        ambulancaj trajnoj <klr>...</klr> <tld/>itaj de la ru&gcirc;a 
+        kruco
+        <fnt>
+          <aut>J. Francis</aut>,
+          <vrk>La Granda Kaldrono</vrk>,
+          <lok>1978</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="fr">armorier</trd>
+</drv>
+</art>
+<!--
+$Log: blazon.xml,v $
+Revision 1.21  2017/08/31 18:10:19  revo
+Jeromo Vasxe: kor ref
+
+Revision 1.20  2017/08/30 15:10:13  revo
+Jeromo Vasxe: + ~i
+
+Revision 1.19  2015/07/04 08:37:31  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.18  2015/06/29 16:29:35  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.17  2010/06/07 16:30:21  revo
+Antonio Codazzi: +trd it
+
+Revision 1.16  2009/06/27 16:31:03  revo
+Russ Williams: +trd en
+
+Revision 1.15  2009/03/13 17:30:31  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.14  2008/01/31 17:30:31  revo
+-->
+</vortaro>

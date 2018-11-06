@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: cirkel.xml,v 1.30 2018/09/24 16:10:14 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>cirkel</rad>/o
+</kap>
+<drv mrk="cirkel.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <uzo tip="fak">TEK</uzo>
+  <uzo tip="fak">MAT</uzo>
+  <snc>
+    <dif>
+      <ref tip="super" cel="il.0o">Ilo</ref>
+      kun du moveblaj, &ccirc;arnire kunigitaj brakoj, uzata por
+      desegni rondojn, a&ubreve; mezuri liniojn:
+      <ekz>
+        alia hakas lignon, mezuras &gcirc;in per &scirc;nuro, faras konturojn per
+        grifelo, rabotas per rabotilo, &ccirc;irka&ubreve;signas per <tld/>o, kaj faras el &gcirc;i bildon de homo
+        <fnt>
+          <bib>MT</bib>
+          <lok>Jesaja 44:13</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        anta&ubreve; la vicoj, &ccirc;iun kelkdekon da pa&scirc;oj, staris la majstroj: &ccirc;iu havis
+        en la mano dikan bastonon a&ubreve; lignan <tld/>on, a&ubreve; ortilon
+        <fnt>
+          <bib>Far1</bib>
+          <lok>&Ccirc;apitro XXIV</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        <nom>Carl Friedrich Gauss</nom> <klr>[&#8230;]</klr>
+        montris ke regula plurlatero povas esti konstruita pere de rektilo kaj 
+        <tld/>o se kaj nur se la nombro de lateroj estas la produto de diferencaj Fermat-primoj kaj potenco de 2
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=28739">Carl Friedrich Gauss</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_c;&c_y;&c_r;&c_k;&c_u;&c_l;&c_mol;</trd>
+  <trd lng="br">kelc'hier</trd>
+  <trd lng="ca">comp&agrave;s</trd>
+  <trdgrp lng="cs">
+    <trd>kru&zcaron;idlo</trd>,
+    <trd>kru&zcaron;&iacute;tko</trd>
+  </trdgrp>
+  <trd lng="de">Zirkel</trd>
+  <trd lng="en">(pair of) <ind>compasses</ind></trd>
+  <trd lng="es">comp&aacute;s</trd>
+  <trd lng="fr">compas<klr tip="ind"> (pour dessiner)</klr></trd>
+  <trd lng="hu">k&ouml;rz&odblac;</trd>
+  <trd lng="it">compasso</trd>
+  <trd lng="nl">passer</trd>
+  <trd lng="pl">cyrkiel</trd>
+  <trd lng="pt">compasso</trd>
+  <trd lng="ru">&c_c;&c_i;&c_r;&c_k;&c_u;&c_l;&c_mol;</trd>
+  <trd lng="sk">kru&zcaron;idlo</trd>
+  <trd lng="sv">passare</trd>
+</drv>
+
+<drv mrk="cirkel.C0o">
+  <kap><tld lit="C"/>o
+    <fnt>
+      <aut>Galad&iacute;-Enr&iacute;quez, David; Wandel, Amri</aut>:
+      <vrk>La kosmo kaj ni. Galaksioj, planedoj kaj vivo en la
+      universo</vrk>.
+      <lok>FEL, Antverpeno, 2005</lok>
+    </fnt></kap>
+    <mlg>Cir</mlg>
+  <snc>
+    <uzo tip="fak">AST</uzo>
+    <dif>
+      Sud-hemisfera <ref tip="lst" cel="stel.0figuro"
+      lst="voko:stelfiguroj">stelfiguro</ref>
+      (<trd lng="la">Circinus</trd>):
+      <ekz>
+        NGC 5288 estas malfermita stelamaso en konstelacio <tld lit="C"/>o
+        <fnt>
+          <bib>Viki</bib>
+          <lok><url ref="https://eo.wikipedia.org/?curid=118313">NGC 5288</url></lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="ca">el <ind>Comp&agrave;s</ind></trd>
+  <trdgrp lng="cs">
+    <trd>kru&zcaron;idlo</trd>,
+    <trd>kru&zcaron;&iacute;tko</trd>
+  </trdgrp>
+  <trd lng="de">Zirkel</trd>
+  <trd lng="en">Circinus</trd>
+  <trd lng="es">Circinus</trd>
+  <trd lng="fr">Compas<klr tip="ind"> (constellation)</klr></trd>
+  <trd lng="it">Compasso</trd>
+  <trd lng="nl">Passer<klr tip="ind"> (sterrenbeeld)</klr></trd>
+  <trd lng="sk">kru&zcaron;idlo</trd>
+  <trd lng="sv">Cirkelpassaren</trd>
+</drv>
+
+</art>
+<!--
+$Log: cirkel.xml,v $
+Revision 1.30  2018/09/24 16:10:14  revo
+Wolfram Diestel: +ekz-oj
+
+Revision 1.29  2017/04/19 20:10:29  revo
+Ludoviko Francisco: +tip klr trd fr
+
+Revision 1.28  2017/04/18 12:10:37  revo
+Ludoviko Francisco: +fnt
+
+Revision 1.27  2017/04/06 10:10:21  revo
+Ludoviko Francisco: +trd fr
+
+Revision 1.26  2016/05/01 08:10:19  revo
+Guillermo Molleda Jimena: trd es
+
+Revision 1.25  2015/07/04 08:37:32  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.24  2015/06/29 16:29:36  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.23  2013/08/25 08:10:23  revo
+-->
+</vortaro>

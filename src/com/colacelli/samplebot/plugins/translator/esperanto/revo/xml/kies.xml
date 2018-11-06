@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: kies.xml,v 1.22 2017/09/15 15:10:16 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>kies</rad> <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="kies.0">
+  <kap><ofc>*</ofc><tld/></kap>
+  <snc>
+    <dif>
+      Demanda senfleksia pronomo, signifanta &leftquot;de kiu, de kiuj?&rightquot;
+      kaj montranta la apartenecon:
+      <ekz>
+        <tld/> tombo tio &ccirc;i estas?<fnt>Z</fnt>
+      </ekz>
+      <ekz>
+        <tld/> tiuj &ccirc;i soldatoj? - De la Norvego<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        pri <tld/> morto vi plendas?
+      </ekz>
+    </dif>
+    <trd lng="de">wessen</trd>
+    <trdgrp lng="es">
+      <trd>&#191;de qui&eacute;n?</trd>,
+      <trd>&#191;de qui&eacute;nes?</trd>
+    </trdgrp>
+    <trd lng="hu">kinek a</trd>
+    <trd lng="id"><ind>milik</ind> siapa</trd>
+    <trdgrp lng="tr">
+      <trd>kimden</trd>,
+      <trd>hangisinden</trd>
+    </trdgrp>
+  </snc>
+  <snc>
+    <dif>
+      Nerekte demanda pronomo, kun sama signifo:
+      <ekz>
+        scias la kato, <tld/> lardon &gcirc;i man&gcirc;is
+        <fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+        mi demandos lin, <tld/> verkon li tradukis.
+      </ekz>
+    </dif>
+    <trd lng="de">wessen</trd>
+    <trd lng="es">cuyo</trd>
+    <trd lng="hu">kinek a</trd>
+    <trd lng="tr">kimin</trd>
+  </snc>
+  <snc>
+    <dif>
+      Relativa pronomo signifanta &leftquot;de kiu, de kiuj&rightquot;, kaj montranta
+      apartenecon:
+      <ekz>
+        la lando, <tld/> gastoj ni estas<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        <tld/> panon oni man&gcirc;as, ties agojn oni la&ubreve;das;
+      </ekz>
+      <ekz>
+        malproksimaj landoj, <tld/> lingvojn ni ne
+        komprenas<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        por kio do tiuj reformoj, <tld/> sola propono estas jam dan&gcirc;era
+        por nia afero<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        dum 3 jaroj, post <tld/> fini&gcirc;o ili estis
+        komencontaj<fnt>Z</fnt>.
+      </ekz>
+    </dif>
+    <trdgrp lng="de">
+      <trd>dessen</trd>,
+      <trd>deren</trd>
+    </trdgrp>
+    <trdgrp lng="es">
+      <trd>de quien</trd>,
+      <trd>de quienes</trd>
+    </trdgrp>
+    <trd lng="hu">akinek a</trd>
+  </snc>
+    <rim num="1">
+      <em>Kies</em> ne estas ordinare sekvata de la artikolo; tamen oni
+      trovas &ccirc;e &Z;:
+      <ekz>
+        de mi, <tld/> la amo estis sankta <klr>...</klr>;
+        <fnt>
+          <aut>W. Shakespeare, trad. L. L. Zamenhof</aut>
+          <vrk><url
+          ref='https://eo.wikisource.org/wiki/Hamleto,_re%C4%9Dido_de_Danujo/Akto_I'>
+          Hamleto, Re&gcirc;ido de Danujo</url></vrk>
+          <lok>1906</lok>
+        </fnt>.
+      </ekz>
+    </rim>
+    <rim num="2">
+      Kiam <em><tld/></em> estas komplemento de substantivo dependanta
+      de
+      prepozicio, oni metas &gcirc;in inter la prepozicio kaj 
+      la substantivo:
+      <ekz>
+        jen estas la signoj, per <tld/> potenco ni atingos la
+        celon<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        la serpento, de <tld/> mordo mortis via patro, nun portas lian
+        kronon<fnt>Z</fnt>.
+      </ekz>
+    </rim>
+    <rim num="3">
+      En la <em>es</em>-serio nur <em>kies</em> kaj <em>ties</em> povas
+      egale resendi al personoj a&ubreve; objektoj, dum <em>ies, nenies,
+      &ccirc;ies</em>
+      resendas ordinare nur al personoj:
+      <ekz>
+        mi travivis minuton, <tld/>
+        terurecon mi ne povas priskribi al vi.
+      </ekz>
+    </rim>
+    <rim num="4">
+      En tiu sama serio <em>kies</em> kaj <em>ties</em> povas esti
+      indiferente singularaj a&ubreve; pluralaj, dum <em>ies</em> estas
+      ordinare
+      nur singulara kaj <em>&ccirc;ies</em> nur plurala:
+      <ekz>
+        jen montri&gcirc;is altaj
+        bluaj montoj, sur <tld/> suproj brilis la ne&gcirc;o<fnt>Z</fnt>;
+      </ekz>
+      <ekz>
+        niaj samideanoj, <tld/> vortoj eble &scirc;ajnis al vi tro
+        fabelaj<fnt>Z</fnt>.
+      </ekz>
+    </rim>
+  <trd lng="be">&c_ch;&c_y;&c_j;</trd>
+  <trdgrp lng="fr">
+    <trd>de <ind>qui</ind></trd>,
+    <trd>duquel</trd>,
+    <trd>dont</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>wiens</trd>,
+    <trd>wier</trd>
+  </trdgrp>
+  <trdgrp lng="no">
+    <trd>hvis</trd>,
+    <trd>hvem sin</trd>
+  </trdgrp>
+  <trdgrp lng="pl">
+    <trd>czyj</trd>,
+    <trd>czyja</trd>,
+    <trd>czyje</trd>,
+    <trd>kogo</trd>
+    <trd>kt&oacute;rego</trd>
+  </trdgrp>
+  <trdgrp lng="ro">
+    <trd>cui</trd>,
+    <trd>pe cine</trd>,
+  </trdgrp>
+  <trd lng="ru">&c_ch;&c_je;&c_j;</trd>
+  <trdgrp lng="sk">
+    <trd>koho</trd>,
+    <trd>&ccaron;&iacute;</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>jeho&zcaron;</trd>,
+    <trd>jejich&zcaron;</trd>,
+    <trd>jej&iacute;&zcaron;</trd>,
+    <trd>&ccaron;&iacute;</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: kies.xml,v $
+Revision 1.22  2017/09/15 15:10:16  revo
+Vito Redsky: +trd pl +trd ro
+
+Revision 1.21  2017/02/15 14:10:17  revo
+Jeromo Vasxe: - malalligxis en ekz
+
+Revision 1.20  2015/07/04 08:37:37  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.19  2015/06/29 16:33:17  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.18  2014/10/27 07:10:22  revo
+Eko Nur Syah Hidayat: +trd id
+
+Revision 1.17  2014/08/22 15:10:10  revo
+Guillermo Molleda Jimena: trd es
+
+Revision 1.16  2010/01/31 17:30:52  revo
+ Filip van Laenen: Tradukoj en norvegan
+
+Revision 1.15  2009/08/25 16:33:12  revo
+-->
+</vortaro>

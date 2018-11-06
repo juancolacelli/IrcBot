@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: ruz.xml,v 1.21 2018/01/29 16:10:13 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>ruz</rad>/a
+</kap>
+<drv mrk="ruz.0a">
+  <kap><ofc>*</ofc><tld/>a</kap>
+  <snc>
+    <dif>
+      Artifike kaj lerte trompa:
+      <ekz>
+        <tld/>a homo;
+      </ekz>
+      <ekz>
+        <tld/>a ago;
+      </ekz>
+      <ekz>
+        e&ccirc; vulpo plej <tld/>a fine estas kaptata
+        <fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+        <tld/>miena.
+      </ekz>
+    </dif>
+    <refgrp tip="sin">
+      <ref cel="subtil.0a">subtila</ref>,
+      <ref cel="sagac.0a">sagaca</ref>.
+    </refgrp>
+  </snc>
+  <trd lng="be">&c_h;&c_ib;&c_t;&c_r;&c_y;</trd>
+  <trd lng="bg">&c_h;&c_i;&c_t;&c_malmol;&c_r;</trd>
+  <trdgrp lng="cs">
+    <trd>chytr&aacute;ck&yacute;</trd>,
+    <trd>lstiv&yacute;</trd>,
+    <trd>lstn&yacute;</trd>,
+    <trd>prohnan&yacute;</trd>,
+    <trd>vychytral&yacute;</trd>,
+    <trd>&uacute;lisn&yacute;</trd>,
+    <trd>&uacute;sko&ccaron;n&yacute;</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>schlau</trd>,
+    <trd>listig</trd>
+  </trdgrp>
+  <trdgrp lng="en">
+    <trd>cunning</trd>,
+    <trd>crafty</trd>,
+    <trd>sly</trd>
+  </trdgrp>
+  <trd lng="fr">rus&eacute;</trd>
+  <trdgrp lng="he">
+    <trd>&ayin;&resh;&mem;&vav;&mem;&yod;</trd>,
+    <trd>&ayin;&resh;&vav;&fmem;</trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>ravasz</trd>,
+    <trd>cseles</trd>
+  </trdgrp>
+  <trdgrp lng="ja">
+    <trd>&#12378;&#12427;&#12356;</trd>,
+    <trd>&#24746;&#36066;&#12356; [<ind>&#12431;&#12427;&#12364;&#12375;&#12371;&#12356;</ind>]</trd>,
+    <trd>&#29409;&#29502;&#12394; [<ind>&#12371;&#12358;&#12363;&#12388;&#12394;</ind>]</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>sluw</trd>,
+    <trd>listig</trd>,
+    <trd>doortrapt</trd>
+  </trdgrp>
+  <trdgrp lng="pt">
+    <trd>astucioso</trd>,
+    <trd>astuto</trd>,    
+    <trd>ardiloso</trd>,    
+    <trd>fin&oacute;rio</trd>,    
+    <trd>ladino</trd>,    
+    <trd>manhoso</trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_h;&c_i;&c_t;&c_r;&c_y;&c_j;</trd>,
+    <trd>&c_l;&c_u;&c_k;&c_a;&c_v;&c_y;&c_j;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>chytr&yacute;</trd>,
+    <trd>pref&iacute;kan&yacute;</trd>,
+    <trd>&uacute;lisn&yacute;</trd>,
+    <trd>&lcaron;stiv&yacute;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="ruz.0o0ajxo">
+  <kap><tld/>o, <var><kap><tld/>a&jcirc;o</kap></var></kap>
+  <snc>
+    <dif>
+      <tld lit="R"/>a rimedo.
+    </dif>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_h;&c_ib;&c_t;&c_r;&c_a;&c_s;&c_mol;&c_c;&c_mol;</trd>,
+    <trd>&c_h;&c_ib;&c_t;&c_r;&c_y;&c_k;</trd>,
+    <trd>&c_v;&c_y;&c_k;&c_r;&c_u;&c_t;</trd>
+  </trdgrp>
+  <trd lng="bg">&c_h;&c_i;&c_t;&c_r;&c_o;&c_s;&c_t;</trd>
+  <trdgrp lng="de">
+    <trd>List</trd>,
+    <trd>listige Tat</trd>
+  </trdgrp>
+  <trdgrp lng="en">
+    <trd>trick</trd>,
+    <trd>ruse</trd>
+  </trdgrp>
+  <trd lng="fr">ruse</trd>
+  <trdgrp lng="he">
+    <trd>&tav;&kaf;&samekh;&yod;&samekh;</trd>,
+    <trd>&tav;&het;&bet;&vav;&lamed;&he;</trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>furfang</trd>,
+    <trd>csel</trd>,
+    <trd>ravaszs&aacute;g</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>list</trd>,
+    <trd>streek</trd>,
+    <trd>truc</trd>,
+    <trd>slimmigheid</trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_h;&c_i;&c_t;&c_r;&c_o;&c_s;&c_t;&c_mol;</trd>,
+    <trd>&c_u;&c_l;&c_o;&c_v;&c_k;&c_a;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="ruz.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>ntr</vspec></gra>
+  <snc>
+    <dif>
+      Esti <tld/>a.
+    </dif>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_h;&c_ib;&c_t;&c_r;&c_a;&c_v;&c_a;&c_c;&c_mol;</trd>,
+    <trd>&c_m;&c_u;&c_d;&c_r;&c_a;&c_g;&c_je;&c_l;&c_ib;&c_c;&c_mol;</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>b&yacute;t lstiv&yacute;</trd>,
+    <trd>b&yacute;t vychytral&yacute;</trd>,
+    <trd>chytra&ccaron;it</trd>
+  </trdgrp>
+  <trd lng="fr">ruser</trd>
+  <trd lng="hu">ravaszkodik</trd>
+  <trdgrp lng="nl">
+    <trd>sluw zijn</trd>,
+    <trd>listig zijn</trd>
+  </trdgrp>
+  <trd lng="ru">&c_h;&c_i;&c_t;&c_r;&c_i;&c_t;&c_mol;</trd>
+  <trdgrp lng="sk">
+    <trd>by&tcaron; &lcaron;stiv&yacute;</trd>,
+    <trd>chytr&yacute;</trd>,
+    <trd>&uacute;lisn&yacute;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="ruz.super0i">
+  <kap>super<tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc>
+    <dif>
+      Superi per <tld/>o:
+      <ekz>
+        nun tiu &ccirc;i azeno lin super<tld/>as<fnt>Z</fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd
+  lng="be">&c_p;&c_je;&c_r;&c_a;&c_h;&c_ib;&c_t;&c_r;&c_y;&c_c;&c_mol;</trd>
+  <trd lng="bg">&c_n;&c_a;&c_d;&c_h;&c_i;&c_t;&c_r;&c_ja;&c_v;&c_a;&c_m;</trd>
+  <trd lng="cs">p&rcaron;elst&iacute;t</trd>
+  <trd lng="de">&uuml;berlisten</trd>
+  <trd lng="fr">rouler<klr tip="ind"> (quelqu'un)</klr></trd>
+  <trd lng="he">&lamed;&he;<ind>&ayin;&resh;&yod;&fmem;</ind>
+  &ayin;&lamed;</trd>
+  <trdgrp lng="hu">
+    <trd>r&aacute;szed</trd>,
+    <trd>t&uacute;lj&aacute;r az esz&eacute;n</trd>
+  </trdgrp>
+  <trdgrp lng="nl">
+    <trd>te <ind>slim</ind> af zijn</trd>,
+    <trd>belazeren</trd>,
+    <trd>verschalken</trd>
+  </trdgrp>
+  <trd
+  lng="ru">&c_p;&c_je;&c_r;&c_je;&c_h;&c_i;&c_t;&c_r;&c_i;&c_t;&c_mol;</trd>
+  <trd lng="sk">pre&lcaron;sti&tcaron;</trd>
+</drv>
+</art>
+<!--
+$Log: ruz.xml,v $
+Revision 1.21  2018/01/29 16:10:13  revo
+Sam Penter: trd nl,en,ja
+
+Revision 1.20  2017/01/20 15:10:13  revo
+Lyubomir Vasilev: +trd bg
+
+Revision 1.19  2015/07/04 08:37:43  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.18  2015/06/29 16:33:22  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.17  2012/10/23 00:13:38  revo
+Neil Roberts: aldonu la etikedon <var>
+
+Revision 1.16  2006/02/24 17:34:20  revo
+Tulio Flores: +trd pt
+
+Revision 1.15  2004/09/06 16:38:12  revo
+Jozefo Horvath: +trd hu
+
+Revision 1.14  2004/08/12 16:32:12  revo
+-->
+</vortaro>

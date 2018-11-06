@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: analog1.xml,v 1.22 2018/04/27 09:10:23 revo Exp $">
+<kap>
+  <ofc></ofc>
+  <rad>analogi</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="analog1.0o">
+  <kap><tld/>o</kap>
+  <snc>
+    <dif>
+      <ref tip="dif" cel="analog.0eco">Analogeco</ref>.
+    </dif>
+  </snc>
+  <trd lng="be">&c_a;&c_n;&c_a;&c_l;&c_jo;&c_g;&c_ib;&c_ja;</trd>
+  <trd lng="bg">&c_a;&c_n;&c_a;&c_l;&c_o;&c_g;&c_i;&c_ja;</trd>
+  <trd lng="ca">analogia</trd>
+  <trdgrp lng="cs">
+    <trd>analogie</trd>,
+    <trd>obdoba</trd>,
+    <trd>podobnost</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+      <trd>Entsprechung</trd>,
+      <trd>Analogie</trd>
+  </trdgrp>
+  <trd lng="en">analogy</trd>
+  <trd lng="es">analog&iacute;a</trd>
+  <trd lng="fr">analogie</trd>
+  <trd lng="hu">anal&oacute;gia</trd>
+  <trd lng="it">analogia</trd>
+  <trd lng="nl">analogie</trd>
+  <trd lng="pl">analogia</trd>
+  <trd lng="ro">analogie</trd>
+  <trd lng="ru">&c_a;&c_n;&c_a;&c_l;&c_o;&c_g;&c_i;&c_ja;</trd>
+  <trdgrp lng="sk">
+    <trd>anal&oacute;gia</trd>,
+    <trd>anal&oacute;gia</trd>,
+    <trd>&uacute;pln&aacute; podoba</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="analog1.0a">
+  <kap><tld/>a</kap>
+  <snc>
+    <dif>
+      Konforma al <tld/>o; analogeca:
+      <ekz>
+        <tld/>a rezono konkludas, pro simileco de du
+        aferoj la&ubreve; unu rilato, pri ilia simileco anka&ubreve; la&ubreve;
+        aliaj rilatoj.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_a;&c_n;&c_a;&c_l;&c_ja;&c_g;&c_ib;&c_ch;&c_n;&c_y;</trd>
+  <trd lng="bg">&c_a;&c_n;&c_a;&c_l;&c_o;&c_g;&c_i;&c_ch;&c_je;&c_n;</trd>
+  <trd lng="ca">an&agrave;leg</trd>
+  <trdgrp lng="cs">
+    <trd>analogick&yacute;</trd>,
+    <trd>obdobn&yacute;</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+      <trd>entsprechend</trd>,
+      <trd>analog</trd>,
+      <trd>analogisch</trd>
+  </trdgrp>
+  <trd lng="en">analogical</trd>
+  <trdgrp lng="es">
+    <trd>an&aacute;logo</trd>,
+    <trd>anal&oacute;gico</trd>
+  </trdgrp>
+  <trd lng="fr">analogique</trd>
+  <trd lng="hu">anal&oacute;g</trd>
+  <trd lng="nl">analoog</trd>
+  <trd lng="pl">analogiczny</trd>
+  <trd lng="ru">&c_a;&c_n;&c_a;&c_l;&c_o;&c_g;&c_i;&c_ch;&c_n;&c_y;&c_j;</trd>
+  <trd lng="sk">analogick&yacute;</trd>
+</drv>
+</art>
+<!--
+$Log: analog1.xml,v $
+Revision 1.22  2018/04/27 09:10:23  revo
+Jeromo Vasxe: ref dif
+
+Revision 1.21  2017/12/11 10:10:14  revo
+Michel Cantigneaux: Gxi ne estas oficiala vorto laux la Akademia
+Vortaro, nek de la 1OA nek alia ajn
+
+Revision 1.20  2017/05/22 19:10:13  revo
+Vito Redsky: trd pl+trd ro
+
+Revision 1.19  2015/07/04 08:37:30  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.18  2015/06/28 12:03:35  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.17  2013/08/08 16:10:11  revo
+Joop Eggen: +trd bg
+
+Revision 1.16  2005/07/28 19:54:04  revo
+Jozefo Horvath: +trd hu
+
+-->
+</vortaro>

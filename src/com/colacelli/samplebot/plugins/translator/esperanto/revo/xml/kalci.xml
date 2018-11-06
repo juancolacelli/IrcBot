@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: kalci.xml,v 1.28 2018/08/19 09:10:21 revo Exp $">
+<kap>
+   <ofc>9</ofc><rad>kalci</rad>/o 
+   <fnt>Z</fnt> <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="kalci.0o">
+   <kap><tld/>o</kap>
+   <uzo tip="fak">KEM</uzo>
+   <mlg kod="IUPAC">Ca</mlg>
+   <snc>
+     <dif>
+       &Hcirc;emia <ref tip="lst" cel="elemen.0o.KEM"
+       lst="voko:&hcirc;emiaj_elementoj" val="20">elemento</ref>
+       kun atomnumero 20, atompezo 40,08;
+       <ref tip="super" cel="metal.teralkala0o">teralkala metalo</ref>
+       flave blanka, kiun enhavas <ref cel="kalk.0o">kalko</ref>.
+      <ekz>
+        bovina lakto estas la plej bona fonto por <tld/>o, bezonata de la korpo
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Mu Binghua</aut>
+          <vrk><url ref="http://steloj.de/esperanto/monato2/007169.html">Lakto ne &scirc;atata</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        100 gramoj da karobo entenas 350 miligramojn da <tld/>o, dum la sama kvanto de lakto enhavas nur 120
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Roberto Pigro</aut>
+          <vrk><url ref="http://www.monato.net/2011/010535.php">Sanige ... kaj sensukere</url></vrk>
+        </fnt>.
+      </ekz>
+     </dif>
+   </snc>
+  <trd lng="be">&c_k;&c_a;&c_l;&c_mol;&c_c;&c_y;&c_j;</trd>
+  <trd lng="bg">&c_k;&c_a;&c_l;&c_c;&c_i;&c_j;</trd>
+  <trd lng="br">kalsiom</trd>
+  <trd lng="ca">calci</trd>
+  <trdgrp lng="cs">
+    <trd>kalcium</trd>,
+    <trd>v&aacute;pn&iacute;k</trd>
+  </trdgrp>
+  <trd lng="de">Kalzium</trd>
+  <trd lng="en">calcium</trd>
+  <trd lng="es">calcio</trd>
+  <trd lng="fa">&f_k;&a_l;&a_s;&f_y;&a_m;</trd>
+  <trd lng="fi">kalsium</trd>
+  <trd lng="fr">calcium</trd>
+  <trd lng="hu">kalcium</trd>
+  <trd lng="id">kalsium</trd>
+  <trd lng="la">Calcium</trd>
+  <trd lng="nl">calcium</trd>
+  <trd lng="pl">wap&nacute;</trd>
+  <trd lng="pt">c&aacute;lcio</trd>
+  <trd lng="ru">&c_k;&c_a;&c_l;&c_mol;&c_c;&c_i;&c_j;</trd>
+  <trd lng="sk">v&aacute;pnik</trd>
+  <trd lng="sv">kalcium</trd>
+</drv>
+</art>
+<!--
+$Log: kalci.xml,v $
+Revision 1.28  2018/08/19 09:10:21  revo
+Wolfram Diestel: +ekz-oj
+
+Revision 1.27  2018/08/06 22:11:36  revo
+Michel Cantigneaux: aperas unue en PV (1934), oficiala en 9OA (2007)
+
+Revision 1.26  2015/07/04 08:37:36  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.25  2015/06/29 16:33:16  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.24  2014/06/03 09:10:27  revo
+Eko Nur Syah Hidayat: +id
+
+Revision 1.23  2014/01/30 09:10:29  revo
+Joop Eggen: +trd bg
+
+Revision 1.22  2013/09/17 17:10:13  revo
+Wolfram Diestel: simb. lau IUPAC, val
+
+Revision 1.21  2013/08/24 20:11:13  revo
+-->
+</vortaro>

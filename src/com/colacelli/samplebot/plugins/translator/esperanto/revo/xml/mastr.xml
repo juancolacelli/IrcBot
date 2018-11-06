@@ -1,0 +1,473 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: mastr.xml,v 1.30 2017/12/20 00:11:10 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>mastr</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="mastr.0o">
+  <kap><ofc>*</ofc><tld/>o,
+  <var><kap><ofc>*</ofc>ge<tld/>oj
+  <fnt><bib>F</bib>, <lok>Universala Vortaro,
+  ge'</lok></fnt></kap></var></kap>
+  <snc mrk="mastr.0o.KOMUNE">
+    <dif>
+      Tiu, kiu posedas, ordonas kaj disponas:
+      <ekz>
+	bona servisto de bona <tld/>o;
+      </ekz>
+      <ekz>
+	li estas sia propra <tld/>ino
+	<klr>(li vivas fra&ubreve;le)</klr>
+	<fnt><bib>PrV</bib></fnt>;
+      </ekz>
+      <ekz>
+	hundo fidela al sia <tld/>o;
+      </ekz>
+      <ekz>
+	<tld/>o en vojo, servantoj en &gcirc;ojo
+	<klr>(vd <ref tip="vid" cel="kat.0o">kato</ref>)</klr>
+	<fnt><bib>PrV</bib></fnt>
+      </ekz>
+      <ekz>
+	trezoro sen <tld/>o;
+      </ekz>
+      <ekz>
+        li fari&gcirc;os <tld/>o super la trezoroj de oro, ar&gcirc;ento, kaj &ccirc;iuj
+        grandvalora&jcirc;oj de Egiptujo
+        <fnt>
+          <bib>MT</bib>
+          <lok>Daniel 11:43</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+	Romo fari&gcirc;is <tld/>o de la mondo;
+      </ekz>
+      <ekz>
+        materiala <tld/>o de tiu &ccirc;i lingvo estas la tuta mondo
+        <fnt>
+          <vrk><url
+          ref="https://eo.wikipedia.org/wiki/Deklaracio_pri_Esperanto">Deklaracio
+          
+           pri la esenco de la Esperantismo de la 9-a de
+          
+           A&ubreve;gusto
+           1905</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+	la spiritaj <tld/>oj de la lingvo
+        <fnt>
+          <vrk><url
+          ref="https://eo.wikipedia.org/wiki/Deklaracio_pri_Esperanto">Deklaracio
+          
+           pri la esenco de la Esperantismo de la 9-a de
+          
+           A&ubreve;gusto
+           1905</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+	la tutan <tld/>econ pri Esperanto <klr>[Zamenhof]</klr> transdonis al
+	la
+	esperantistoj mem
+        <fnt>
+          <bib>Paroloj</bib>
+          <vrk>Parolado anta&ubreve; la Oka Kongreso Esperantista en Krakow en
+          la 11a de a&ubreve;gusto 1912</vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+    <subsnc mrk="mastr.0o.butika">
+      <dif>
+	Estro de hotelo gastejo, komercejo:
+        <ekz>
+          li trovi&gcirc;is &gcirc;uste anta&ubreve; drinkejo, li volis eniri, sed en la
+          sama momento la drinkej<tld/>o volis eliri
+          <fnt>
+            <bib>Fab4</bib>
+            <lok>Kion la patro faras, estas &ccirc;iam &gcirc;usta</lok>
+          </fnt>;
+        </ekz>
+        <ekz>
+          la gasto pagis sian kalkulon kaj ku&scirc;i&gcirc;is, la <tld/>o nokte
+          &scirc;teliris en la stalon, elkondukis la <klr>[&#8230;]</klr> azenon
+          <fnt>
+            <bib>ElektFab</bib>
+            <lok>Tablo kovru vin, la orazeno kaj bastono el sako</lok>
+          </fnt>;
+        </ekz>
+        <ekz>
+          la knabo eniris en gastejon kaj demandis la <tld/>on, &ccirc;u li
+          povas akcepti la bestojn por la nokto
+          <fnt>
+            <bib>ElektFab</bib>
+            <lok>Du fratoj</lok>
+          </fnt>;
+        </ekz>
+        <ekz>
+          la lo&gcirc;ejoj de la <tld/>o kaj voja&gcirc;antoj okupis tri eta&gcirc;ojn,
+          malsupre estis drinkejo kaj restoracio
+          <fnt>
+            <bib>Far1</bib>
+            <lok>&Ccirc;apitro XIX</lok>
+          </fnt>.
+        </ekz>
+      </dif>
+      <trdgrp lng="de">
+        <trd>Wirt</trd>,
+        <trd>Ladeninhaber</trd>
+      </trdgrp>
+      <trd lng="nl">baas</trd>
+    </subsnc>
+    <subsnc mrk="mastr.0o.fabrika">
+      <dif>
+	Estro de fabriko a&ubreve; laborejo:
+        <ekz>
+          la teksa industrio submeti&gcirc;is al la postuloj de la britaj
+          <tld/>oj 
+          celantaj avide profitigi la proprajn teksejojn en
+          nord-okcidenta Anglio
+          <fnt>
+            <bib>Monato</bib>
+            <aut>Paul GUBBINS</aut>
+            <vrk><url
+            ref="http://www.esperanto.be/fel/2004/008223.html">&Ccirc;e-telefone
+            ... kiu?</url></vrk>
+          </fnt>.
+        </ekz>
+      </dif>
+      <trdgrp lng="de">
+        <trd>Gesch&auml;ftsf&uuml;hrer</trd>,
+        <trd>Betriebswirt</trd>,
+        <trd>Fabrikant</trd>
+      </trdgrp>
+      <trd lng="nl">baas</trd>
+    </subsnc>
+    <subsnc mrk="mastr.ge0oj">
+      <dif>
+      Gemastroj = mastro kaj mastrino kune.
+      </dif>
+      <trd lng="fr">maitres</trd>
+    </subsnc>
+    <trdgrp lng="nl">
+      <trd>heer</trd>,
+      <trd>meester</trd>
+    </trdgrp>
+  </snc>
+  <ref tip="super" cel="estr.0o">estro</ref>
+  <ref tip="sub" cel="ekonom.0o">ekonomo</ref>
+  <trd lng="be">&c_g;&c_a;&c_s;&c_p;&c_a;&c_d;&c_a;&c_r;</trd>
+  <trd lng="br">mestr</trd>
+  <trdgrp lng="cs">
+    <trd>hospod&aacute;&rcaron;</trd>,
+    <trd>hospod&aacute;&rcaron;</trd>,
+    <trd>majitel</trd>,
+    <trd>p&aacute;n</trd>,
+    <trd>vlastn&iacute;k</trd>,
+    <trd>zam&ecaron;stnavatel</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>Meister</trd>,
+    <trd>Chef</trd>,
+    <trd>Herr</trd>
+  </trdgrp>
+  <trd lng="en">master</trd>
+  <trdgrp lng="es">
+    <trd>amo<klr> (se&ntilde;or)</klr></trd>,
+    <trd>capataz</trd>
+  </trdgrp>
+  <trd lng="fr">maitre</trd>
+  <trdgrp lng="pl">
+    <trd>gospodarz</trd>,
+    <trd>zarz&aogonek;dca</trd>,
+    <trd>szef</trd>
+  </trdgrp>
+  <trdgrp lng="pt">
+    <trd>amo</trd>,
+    <trd>senhor</trd>,
+    <trd>dono</trd>,
+    <trd>patr&atilde;o</trd>,
+    <trd>propriet&aacute;rio</trd>
+  </trdgrp>
+  <trd lng="ru">&c_h;&c_o;&c_z;&c_ja;&c_i;&c_n;</trd>
+  <trdgrp lng="sk">
+    <trd>hospod&aacute;r</trd>,
+    <trd>majite&lcaron;</trd>,
+    <trd>p&aacute;n</trd>,
+    <trd>vlastn&iacute;k</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="mastr.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="mastr.0i.KOMUNE">
+    <dif>
+      Esti <tld/>o super, agi kiel <tld/>o de; regi, administri:
+      <ekz>
+        nia nova grafikisto <klr>[&#8230;]</klr> mirinde rapide ek<tld/>is la
+        novan taskon
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Stefan Maul</aut>
+          <vrk><url
+          ref="http://www.monato.net/2005/008662.php">Akurateco</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        en tiuj bone strukturitaj landoj oni relative bone <tld/>is la
+        problemojn, anka&ubreve; ne mankis helpiloj kaj helpantoj
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Stefan Maul</aut>
+          <vrk><url ref="http://www.monato.net/2010/010139.php">&Ccirc;u
+          kulpas nur la naturo?</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        iun tagon, kiam li jam bone <tld/>is la uzadon de la ma&scirc;ineto,
+        li vizitis min por danki min pro mia helpo
+        <fnt>
+          <bib>Monato</bib>
+          <aut>G. O. &Ograve;sh&oacute;-Davies</aut>
+          <vrk><url
+          ref="http://www.monato.net/2012/010421.php">Po&scirc;telefono</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="en">be master over</trd>
+  <trdgrp lng="be">
+    <trd>&c_v;&c_a;&c_l;&c_o;&c_d;&c_a;&c_c;&c_mol;</trd>,
+    <trd>&c_b;&c_y;&c_c;&c_mol; &c_g;&c_a;&c_s;&c_p;&c_a;&c_d;&c_a;&c_r;&c_o;&c_m;</trd>
+  </trdgrp>
+  <trdgrp lng="br">
+    <trd>beza&ntilde; <ind>mestr</ind> (war)</trd>,
+    <trd>mestronia&ntilde;</trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>ovl&aacute;dat</trd>,
+    <trd>&rcaron;&iacute;dit</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+    <trd>leiten</trd>,
+    <trd>f&uuml;hren</trd>,
+    <trd>verwalten</trd>
+  </trdgrp>
+  <trdgrp lng="es">
+    <trd>ser amo</trd>,
+    <trd>ser capataz</trd>
+  </trdgrp>
+  <trd lng="fr">diriger<klr> (administrer)</klr></trd>
+  <trd lng="nl">heersen</trd>
+  <trdgrp lng="pl">
+    <trd>szefowa&cacute;</trd>,
+    <trd>rz&aogonek;dzi&cacute;</trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+    <trd>&c_v;&c_l;&c_a;&c_d;&c_je;&c_t;&c_mol;</trd>,
+    <trd>&c_o;&c_b;&c_l;&c_a;&c_d;&c_a;&c_t;&c_mol;</trd>,
+    <trd>&c_b;&c_y;&c_t;&c_mol; &c_h;&c_o;&c_z;&c_ja;&c_i;&c_n;&c_o;&c_m;</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>ovl&aacute;da&tcaron;</trd>,
+    <trd>riadi&tcaron;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="mastr.0umi">
+  <kap><ofc>*</ofc><tld/>umi <fnt><bib>F</bib>, <lok>Universala Vortaro,
+  <url
+  ref="http://www.akademio-de-esperanto.org/fundamento/universala_vortaro.html#av-5105">mastr'um'</url></lok></fnt></kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="mastr.0umi.KOMUNE">
+    <dif>
+      Zorgi pri &ccirc;io, kio koncernas la ekonomion de hejmo:
+      <ekz>
+        &scirc;i <tld/>umis kaj zorgis pri la ordo en la domo
+        <fnt>
+          <bib>ElektFab</bib>
+          <lok>Ne&gcirc;ulino</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        li <tld/>umis en la princa domo, kvaza&ubreve; en sia
+        <fnt>
+          <bib>IK</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        mi, tute ne sciante <tld/>umi, tiel malbonigis &ccirc;iujn miajn 
+        aferojn, ke fine mia bieno pro &scirc;uldoj estis vendita
+        <fnt>
+          <bib>FK</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+	<tld/>uma progreso de la kapitalismo nenion donas al la
+	laboristaro;
+      </ekz>
+      <ekz>
+	vila&gcirc;<tld/>uma kolektivo.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="en">keep house</trd>
+  <trd lng="be">&c_g;&c_a;&c_s;&c_p;&c_a;&c_d;&c_a;&c_r;&c_y;&c_c;&c_mol;</trd>
+  <trdgrp lng="cs">
+    <trd>hospoda&rcaron;it</trd>,
+    <trd>obhospoda&rcaron;ovat</trd>
+  </trdgrp>
+  <trdgrp lng="de">
+      <trd>haushalten</trd>,
+      <trd>wirtschaften</trd>
+    </trdgrp>
+  <trd lng="fr">tenir<klr> (administrer)</klr></trd>
+  <trd lng="nl">huishouden</trd>
+  <trdgrp lng="pl">
+    <trd>zarz&aogonek;dza&cacute;</trd>,
+    <trd>gospodarzy&cacute;</trd>
+  </trdgrp>
+  <trdgrp lng="ru">
+      <trd>&c_h;&c_o;&c_z;&c_ja;&c_j;&c_n;&c_i;&c_ch;&c_a;&c_t;&c_mol;</trd>,
+      <trd>&c_h;&c_o;&c_z;&c_ja;&c_j;&c_s;&c_t;&c_v;&c_o;&c_v;&c_a;&c_t;&c_mol;</trd>,
+      <trd>&c_v;&c_je;&c_s;&c_t;&c_i; &c_h;&c_o;&c_z;&c_ja;&c_j;&c_s;&c_t;&c_v;&c_o;</trd>
+    </trdgrp>
+  <trdgrp lng="sk">
+    <trd>gazdova&tcaron;</trd>,
+    <trd>hospod&aacute;ri&tcaron;</trd>,
+    <trd>vies&tcaron; dom&aacute;cnos&tcaron;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="mastr.0uma_sistemo">
+  <kap><tld/>uma sistemo</kap>
+  <snc mrk="mastr.0uma_sistemo.KOMP">
+    <uzo tip="fak">KOMP</uzo>
+    <dif>
+      <ref tip="dif" cel="operac.0umo">Operaciumo</ref>:
+      <ekz>
+        En Monato de februaro 1999 aperis artikolo pri la milito de
+        Microsoft, 
+        posedanto de la <tld/>uma sistemo Vindozo, kontra&ubreve; la libera
+        sistemo Linukso
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Roland Rotsaert</aut>
+          <vrk><url
+          ref="http://steloj.de/esperanto/monato2/007217.html">Programaro</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        li ne atendis, ke mondklasa <tld/>uma sistemo kunfandi&gcirc;us kvaza&ubreve;
+        magie 
+        el la partatempa programado de miloj da programistoj dise &ccirc;irka&ubreve;
+        la mondo
+        <fnt>
+          <bib>Monato</bib>
+          <aut>D. E. ROGERS</aut>
+          <vrk><url
+          ref="http://www.esperanto.be/fel/2004/008269.html">Libera  
+           programaro: nova rimedo komerci</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la <tld/>uma sistemo kaj programoj havas uzantinterfacon ta&ubreve;gan
+        por enmana uzo
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Franck Arnaud</aut>
+          <vrk><url ref="http://www.monato.net/2010/010076.php">Parto 3:
+          
+            Apple iPad &#8208; &ccirc;u revolucio a&ubreve;
+          
+            evolucio?</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="be">&c_a;&c_p;&c_e;&c_r;&c_a;&c_c;&c_y;&c_j;&c_n;&c_a;&c_ja; &c_s;&c_y;&c_s;&c_t;&c_e;&c_m;&c_a;</trd>
+  <trd lng="br">sistem oberia&ntilde;</trd>
+  <trdgrp lng="cs">
+    <trd>opera&ccaron;n&iacute; syst&eacute;m</trd>,
+    <trd>syst&eacute;m hospoda&rcaron;en&iacute;</trd>
+  </trdgrp>
+  <trd lng="de">Betriebssystem</trd>
+  <trd lng="en">operating system</trd>
+  <trd lng="es">operador de sistemas</trd>
+  <trd lng="fr">syst&egrave;me d'exploitation</trd>
+  <trd lng="hu">oper&aacute;ci&oacute;s rendszer</trd>
+  <trd lng="pl">system operacyjny</trd>
+  <trd lng="ru">&c_o;&c_p;&c_je;&c_r;&c_a;&c_c;&c_i;&c_o;&c_n;&c_n;&c_a;&c_ja; &c_s;&c_i;&c_s;&c_t;&c_je;&c_m;&c_a;</trd>
+  <trd lng="sk">syst&eacute;m hospod&aacute;rstva</trd>
+  <trd lng="sv">operativsystem</trd>
+</drv>
+
+<drv mrk="mastr.mem0umado">
+  <kap>mem<tld/>umado</kap>
+  <snc mrk="mastr.mem0umado.EKON">
+    <uzo tip="fak">EKON</uzo>
+    <uzo tip="fak">POL</uzo>
+    <dif>
+      Regado de firmao, societo ktp fare de &ccirc;iuj &gcirc;iaj anoj
+      egalrajte:
+      <ekz>
+	laboristo defendas pli ampleksan percepton de mem<tld/>umado,
+	eble pli modernan: &leftquot;Necesas komenci demokratiigi la
+	entreprenon&rightquot;
+	<fnt>
+	<aut>C. Raimbeau, trad. V. Lutermano</aut>,
+	<vrk><url ref="http://eo.mondediplo.com/article1312.html">
+	&Ccirc;u memmastrumado havas estontecon?</url></vrk>,
+	<lok>le Monde diplomatique, 2007-12</lok>
+	</fnt>;
+      </ekz>
+      <ekz>
+        en Jugoslavio funkciis ekonomia mem<tld/>umado kombinita kun
+        politika unupartieco
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Zlatko Ti&scaron;ljar</aut>
+          <vrk><url ref="http://www.monato.net/2006/009014.php">Tolaro
+          ne plu tolerata</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="de">Selbstverwaltung</trd>
+  <trd lng="en">self-governance</trd>
+  <trd lng="cs">veden&iacute; dom&aacute;cnosti bez ciz&iacute; pomoci</trd>
+  <trd lng="fr">autogestion</trd>
+  <trd lng="pl">samozarz&aogonek;d</trd>
+  <trd lng="sk">vedenie dom&aacute;cnosti bez cudzej pomoci</trd>
+</drv>
+</art>
+<!--
+$Log: mastr.xml,v $
+Revision 1.30  2017/12/20 00:11:10  revo
+Michel Cantigneaux: "mastr/um/i" fundamenta kunmetajxo el la U.V.
+
+Revision 1.29  2017/12/19 10:10:19  revo
+Michel Cantigneaux: fundamenta "gemastroj" el la U.V.
+
+Revision 1.28  2017/12/13 21:10:17  revo
+Wolfram Diestel: kor. mrk, citilon
+
+Revision 1.27  2017/12/11 20:10:16  revo
+Wolfram Diestel: prilaboris ekz-ojn, germ trd-ojn
+
+Revision 1.26  2016/11/15 06:10:24  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.25  2015/09/21 06:10:16  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.24  2015/09/12 19:10:25  revo
+Cindy Moon McKee: +trd en
+
+Revision 1.23  2015/07/04 08:37:39  revo
+-->
+</vortaro>

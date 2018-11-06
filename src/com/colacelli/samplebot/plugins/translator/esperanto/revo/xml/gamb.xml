@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: gamb.xml,v 1.26 2018/08/27 18:10:18 revo Exp $">
+<kap>
+  <rad>gamb</rad>/o
+</kap>
+<drv mrk="gamb.0o">
+  <kap><tld/>o</kap>
+<!--
+  <uzo tip="stl">RAR</uzo>
+  <uzo tip="stl">EVI</uzo>
+-->
+  <snc>
+    <uzo tip="fak">ANA</uzo>
+    <dif>
+      <ref tip="dif" cel="krur.0o.tuto">Kruro<sncref/></ref>:
+      <ekz>
+        farante duoblan mortosalton, &scirc;i krude falis kaj rompis al si unu <tld/>on
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Lena Karpunina</aut>
+          <vrk><url ref="http://www.monato.net/2006/008836.php">La revo pri cirko</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        aperis novaj nevusoj sur &scirc;iaj <tld/>oj, brakoj kaj dorso
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Lin Sheng</aut>
+          <vrk><url ref="http://www.monato.net/2006/008670.php">Forpasis mia karulino</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        la&ubreve;aspekte li estis ege sporta, kun fortikaj <tld/>oj kaj kolo kaj kun risorta irmaniero
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Lena Karpunina</aut>
+          <vrk><url ref="http://www.monato.net/2008/009339.php">En granda urbo</url></vrk>
+        </fnt>;
+      </ekz>
+      <ekz>
+        li estis dika kaj X-<tld/>a
+        <fnt>
+          <aut>Michael Ende, trad. Wolfram Diestel</aut>
+          <vrk>La Sen&ccirc;esa Rakonto</vrk>
+          <lok>Perelin', la Noktarbaro</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+</drv>
+</art>
+<!--
+$Log: gamb.xml,v $
+Revision 1.26  2018/08/27 18:10:18  revo
+Wolfram Diestel: +ekz, -rar, evi (ne aplikebla lau mi)
+
+Revision 1.25  2017/08/22 19:10:14  revo
+Robin van der Vliet: +sncref
+
+Revision 1.24  2017/08/22 18:10:20  revo
+Robin van der Vliet: +rar, +evi
+
+Revision 1.23  2015/07/04 08:37:34  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.22  2015/06/29 16:29:39  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.21  2012/08/18 18:10:34  revo
+Marc Rausell: + trd ca
+
+Revision 1.20  2010/11/20 17:30:27  revo
+Antonio Codazzi: +trd it
+
+Revision 1.19  2010/06/10 16:30:30  revo
+-->
+</vortaro>

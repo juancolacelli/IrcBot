@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: plutok.xml,v 1.19 2018/08/18 11:10:16 revo Exp $">
+<kap>
+  <ofc>7</ofc> <rad>plutokrat</rad>/o <fnt><bib>PV</bib></fnt>
+</kap>
+
+<drv mrk="plutok.0o">
+  <kap><tld/>o</kap>
+  <snc>
+    <uzo tip="stl">RAR</uzo>
+    <dif>
+      <ref cel="ricx.0ulo">Ri&ccirc;ulo</ref> rigardata kiel politike potenca:
+      <ekz>
+        ne por povruloj egaleca le&gcirc;o pro supereco de la <tld/>o
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Garvan Makaj</aut>
+          <vrk><url ref="http://www.monato.net/2012/010491.php">Miasmo</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+    <ref tip="super" cel="oligark.0o">oligarko</ref>
+  </snc>
+  <trd lng="be">&c_p;&c_l;&c_ju;&c_t;&c_a;&c_k;&c_r;&c_a;&c_t;</trd>
+  <trd lng="ca">plut&ograve;crata</trd>
+  <trd lng="cs">plutokrat</trd>
+  <trd lng="de">Plutokrat</trd>
+  <trd lng="en">plutocrat</trd>
+  <trd lng="es">plut&oacute;crata</trd>
+  <trd lng="fr">ploutocrate</trd>
+  <trd lng="hu">plutokrata</trd>
+  <trd lng="nl">plutocraat</trd>
+  <trd lng="pl">plutokrata</trd>
+  <trd lng="pt">plutocrata</trd>
+  <trd lng="ru">&c_p;&c_l;&c_u;&c_t;&c_o;&c_k;&c_r;&c_a;&c_t;</trd>
+  <trd lng="sk">plutokrat</trd>
+</drv>
+</art>
+<!--
+$Log: plutok.xml,v $
+Revision 1.19  2018/08/18 11:10:16  revo
+Wolfram Diestel: +ekz, +ref-oj
+
+Revision 1.18  2018/08/10 15:10:17  revo
+Michel Cantigneaux: aperas unue en PV (1934), oficiala en 7OA (1958)
+
+Revision 1.17  2015/07/04 08:37:41  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.16  2015/06/29 16:40:18  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.15  2013/12/02 11:10:19  revo
+Damien Brucker: +trd fr
+
+Revision 1.14  2013/04/08 06:10:27  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.13  2012/02/05 18:10:18  revo
+Cristian Vincenzini: +trd es
+
+Revision 1.12  2011/12/06 12:10:11  revo
+-->
+</vortaro>

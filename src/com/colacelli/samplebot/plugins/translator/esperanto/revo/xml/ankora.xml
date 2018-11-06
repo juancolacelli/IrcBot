@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: ankora.xml,v 1.32 2016/12/21 16:10:13 revo Exp $">
+<kap>
+   <ofc>*</ofc>
+   <rad>ankora&ubreve;</rad> <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="ankora.0">
+   <kap><ofc>*</ofc><tld/></kap>
+   <gra><vspec>adverbo</vspec></gra>
+   <snc mrk="ankora.0.gxisNun">
+     <dif>
+       &Gcirc;is la nuna momento:
+       <ekz>
+         estis <tld/> trankvile kaj varme
+        <fnt>
+          <bib>Fab3</bib>
+          <lok>Malnova tomba &scirc;tono</lok>
+        </fnt>;
+       </ekz>
+       <ekz>
+        fenomeno, kian li vidis <tld/> neniam
+        <fnt>
+          <bib>Far2</bib>
+          <lok>&Ccirc;apitro XX</lok>
+        </fnt>;
+       </ekz>
+       <ekz>
+         la sukceso <tld/> ne estas <ref cel="cert.0a.nedubebla">certa</ref>;
+       </ekz>
+       <ekz>
+         mi lin <tld/> ne konas<fnt>Z</fnt>;
+       </ekz>
+       <ekz>
+          homo <tld/> juna
+          <fnt>
+            <bib>Far3</bib>
+            <lok>&Ccirc;apitro XVI</lok>
+          </fnt>;
+       </ekz>
+       <ekz>
+        ili estis en la distanco de <tld/> unu mejlo de la tero
+        <fnt>
+          <bib>Fab4</bib>
+          <lok>Historio el la dunoj</lok>
+        </fnt>;
+       </ekz>
+       <ekz>
+         nia atendata amiko <tld/> ne venis;
+       </ekz>
+       <ekz>
+         &scirc;iaj fortoj <tld/> ne estis ruinigitaj.
+       </ekz>
+     </dif>
+     <refgrp tip="vid">
+       <ref cel="jam">jam ne</ref>,
+       <ref cel="plu">ne plu</ref>.
+     </refgrp>
+     <rim>
+       Oni metu <em>ankora&ubreve;</em> anta&ubreve; la nea vorto:
+       <ekz>
+        <tld/> neniu pla&ccirc;is al &ccirc;iu<fnt><bib>PrV</bib></fnt>;
+       </ekz>
+       <ekz>
+         <tld/> neniam
+         <fnt><bib>Fab2</bib>, <lok>Malbela anasido</lok></fnt>;
+       </ekz>
+       <ekz>
+        mi scias <tld/> nenion
+        <fnt>
+          <bib>Far1</bib>
+          <lok>&Ccirc;apitro XXI</lok>
+        </fnt>.
+       </ekz>
+     </rim>
+     <trdgrp lng="fi">
+       <trd>viel&auml;</trd>,
+       <trd>yh&auml;</trd>,
+       <trd>edelleen</trd>
+     </trdgrp>
+     <trdgrp lng="es">
+     <trd>a&uacute;n</trd>,
+     <trd>todavia</trd>
+   </trdgrp>
+   <trdgrp lng="pl">
+     <trd>jeszcze</trd>,
+     <trd>wci&aogonek;&zdot;</trd>,
+     <trd>nadal</trd>
+   </trdgrp>
+   </snc>
+   <snc mrk="ankora.0.denove">
+     <dif>
+       <refgrp tip="sin">
+         <ref cel="nov.de0e">Denove</ref>,
+         <ref cel="re.0e">ree</ref>,
+         <ref cel="plu.0e">plue</ref>:
+       </refgrp>
+       <ekz>
+         ripetu la lecionon <tld/> unu fojon;
+       </ekz>
+       <ekz>
+        ili <tld/> unu fojon <klr>[...]</klr>dancis
+        <fnt>
+          <bib>Fab3</bib>
+          <lok>Lino</lok>
+        </fnt>;
+       </ekz>
+       <ekz>
+         li diris <tld/> kelkajn vortojn<fnt>Z</fnt>;
+       </ekz>
+        <ekz>
+          &scirc;i estis <tld/> multe pli bela ol hiera&ubreve;
+          <fnt>
+            <bib>Fab1</bib>
+            <lok>Vojkamarado</lok>
+          </fnt>;
+        </ekz>
+     </dif>
+     <trdgrp lng="fi">
+       <trd>viel&auml;</trd>,
+       <trd>viel&auml;kin</trd>,
+       <trd>lis&auml;ksi</trd>
+     </trdgrp>
+     <trd lng="es">otra vez</trd>
+   </snc>
+   <trd lng="be">&c_ja;&c_sh;&c_ch;&c_e;</trd>
+   <trd lng="br">c'hoazh</trd>
+   <trdgrp lng="en">
+     <trd>still</trd>,
+     <trd>yet</trd>
+   </trdgrp>
+   <trd lng="ca">encara</trd>
+   <trd lng="cs">je&scaron;t&ecaron;</trd>
+   <trd lng="de">noch</trd>
+      <trd lng="fr">encore</trd>
+   <trd lng="hu">m&eacute;g</trd>
+   <trd lng="id">masih</trd>
+   <trd lng="it">ancora</trd>
+   <trd lng="nl">nog</trd>
+   <trdgrp lng="no">
+     <trd>enn&aring;</trd>,
+     <trd>enda</trd>
+   </trdgrp>
+   <trdgrp lng="pl">
+     <trd>jeszcze</trd>,
+     <trd>ponownie</trd>,
+     <trd>znowu</trd>,
+     <trd>zn&oacute;w</trd>
+   </trdgrp>
+   <trdgrp lng="pt">
+    <trd>ainda</trd>,
+    <trd>at&eacute; agora</trd>
+   </trdgrp>
+   <trd lng="ro">&icirc;nc&abreve;</trd>
+   <trd lng="ru">&c_je;&c_shch;&c_jo;</trd>
+   <trd lng="sk">e&scaron;te</trd>
+</drv>
+
+<drv mrk="ankora.0a">
+  <kap><tld/>a</kap>
+  <snc mrk="ankora.0a.KOMUNE">
+    <dif>
+      Plua, da&ubreve;riganta, aldonata:
+      <ekz>
+        ni <klr>...</klr> verkis <tld/>an strofon
+        <fnt>
+          <aut>L. Ganman</aut>,
+          <vrk><url ref="http://www.linusganman.se/j8j.htm">
+          &Gcirc;oja</url></vrk>,
+          <lok>2015</lok>
+        </fnt>;
+      </ekz>
+      <ekz>
+        kion pensi pri la <tld/>a diskriminacio kontra&ubreve; gejaj kaj lesbaj fiduloj, kion pensi pri la ~a malpermeso uzi kondomojn
+        <fnt>
+          <bib>Monato</bib>
+          <vrk><url ref='http://www.esperanto.be/fel/mon/006823.html'>Opinio: Tro senkosta pentemo</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="de"><klr>(ein) </klr> weiterer</trd>
+  <trdgrp lng="es">
+    <trd>suplementario</trd>,
+    <trd>adicional</trd>,
+    <trd>de m&aacute;s</trd>,
+    <trd>de una vez m&aacute;s</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>subsistant</trd>
+    <trd>suppl&eacute;mentaire</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: ankora.xml,v $
+Revision 1.32  2016/12/21 16:10:13  revo
+Wolfram Diestel: ekz-oj kaj fnt-oj
+
+Revision 1.31  2016/08/14 01:10:17  revo
+Alejandro Escobedo: +trd es
+
+Revision 1.30  2016/03/18 19:10:36  revo
+Jeromo Vasxe: vspec adverbo
+
+Revision 1.29  2015/03/22 23:10:20  revo
+Jeromo Vasxe: + ~a
+
+Revision 1.28  2014/12/10 17:10:16  revo
+Filip van Laenen: +trd(no)
+
+Revision 1.27  2014/11/12 09:10:30  revo
+Eko Nur Syah Hidayat: +trd id
+
+Revision 1.26  2011/12/06 13:10:25  revo
+Marc Rausell: kataluna traduko
+
+Revision 1.25  2008/01/15 17:30:40  revo
+-->
+</vortaro>

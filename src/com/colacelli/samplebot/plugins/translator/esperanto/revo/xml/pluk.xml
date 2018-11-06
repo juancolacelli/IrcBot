@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+<vortaro>
+<art mrk="$Id: pluk.xml,v 1.14 2016/09/29 22:10:14 revo Exp $">
+<kap>
+  <rad>pluk</rad>/i <fnt><bib>SPV</bib></fnt>
+</kap>
+<drv mrk="pluk.0i">
+  <kap><tld/>i</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc>
+    <dif>
+      Fingre kapti, eventuale &scirc;ire, per kunprema, pin&ccirc;a movo:
+      <ekz>
+        ili pli multe <tld/>us fruktojn a&ubreve; &scirc;irus florojn en la nomo de
+        iu
+        mastrino
+        <fnt><bib>RugxDom</bib>, <lok>&ccirc;apitro 56a, volumo 2a, p.
+        246a</lok></fnt>;
+      </ekz>
+    </dif>
+    <ekz>
+      <uzo tip="stl">FIG</uzo>
+      <tld/>i el longa teksto a&ubreve; parolado unu solan frazon
+      <fnt>
+      <aut>Stefan Maul</aut>,
+      <vrk>Supra&jcirc;eco super &ccirc;io</vrk>,
+      <bib>Monato</bib>,
+      <lok>jaro 2001a, numero 5a, p. 5a</lok>
+      </fnt>.
+    </ekz>
+  </snc>
+  <trdgrp lng="be">
+    <trd>&c_ib;&c_r;&c_v;&c_a;&c_c;&c_mol;</trd>,
+    <trd>&c_r;&c_v;&c_a;&c_c;&c_mol;</trd>,
+    <trd>&c_z;&c_r;&c_y;&c_v;&c_a;&c_c;&c_mol;</trd>,
+    <trd>&c_z;&c_mol;&c_b;&c_ib;&c_r;&c_a;&c_c;&c_mol; <klr>(&c_z;&c_r;&c_y;&c_v;&c_a;&c_ju;&c_ch;&c_y;)</klr></trd>
+  </trdgrp>
+  <trdgrp lng="ca">
+    <trd>collir</trd>,
+    <trd>recollir<klr> (amb la m&agrave;)</klr></trd>
+  </trdgrp>
+  <trdgrp lng="cs">
+    <trd>sb&iacute;rat</trd>,
+    <trd>trhat <klr>(ovoce)</klr></trd>,
+    <trd>&ccaron;esat</trd>
+  </trdgrp>
+  <trd lng="de">pfl&uuml;cken</trd>
+  <trd lng="en">pluck</trd>
+  <trd lng="es">recolectar</trd>
+  <trdgrp lng="fr">
+    <trd>cueillir</trd>,
+    <trd>ramasser</trd>
+  </trdgrp>
+  <trdgrp lng="hu">
+    <trd>szak&iacute;t<klr tip="ind"> (sz&uuml;retel)</klr></trd>,
+    <trd>szed</trd>,
+    <trd>felcs&iacute;p</trd>
+  </trdgrp>
+  <trd lng="nl">plukken</trd>
+  <trd lng="pt">colher (&ecirc;)</trd>
+</drv>
+<drv mrk="pluk.0o">
+  <kap><tld/>ado, <var><kap><tld/>o</kap></var></kap>
+  <snc>
+    <dif>
+      Fingra kaptado, permana rikoltado.
+    </dif>
+  </snc>
+  <trd lng="ca">collita</trd>
+  <trdgrp lng="cs">
+    <trd>sb&ecaron;r plod&uring;</trd>,
+    <trd>&uacute;rody</trd>
+  </trdgrp>
+  <trd lng="de">Pfl&uuml;cken</trd>
+  <trd lng="en">pluck</trd>
+  <trd lng="es">recolecci&oacute;n</trd>
+  <trd lng="fr">cueillette</trd>
+  <trdgrp lng="nl">
+    <trd>oogst</trd>,
+    <trd>plukken<klr tip="ind"> (zn.)</klr></trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>zber plodov</trd>,
+    <trd>&uacute;rody</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: pluk.xml,v $
+Revision 1.14  2016/09/29 22:10:14  revo
+Alain Gerard: +trd fr
+
+Revision 1.13  2015/12/18 07:10:16  revo
+Alain Gerard: +var
+
+Revision 1.12  2015/07/04 08:37:41  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.11  2015/06/29 16:40:18  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.10  2012/07/30 09:10:23  revo
+Marc Rausell: + trd ca
+
+Revision 1.9  2009/10/25 17:31:18  revo
+Paul Peeraerts: +nl
+
+Revision 1.8  2009/10/24 16:31:59  revo
+Russ Williams: +trd en
+
+Revision 1.7  2006/04/30 16:31:51  revo
+-->
+</vortaro>

@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: aktiv.xml,v 1.34 2018/09/02 20:10:58 revo Exp $">
+<kap>
+  <ofc>*</ofc><ofc>1</ofc><ofc>7</ofc>
+  <rad>aktiv</rad>/a <fnt><bib>PV</bib></fnt>
+</kap>
+<drv mrk="aktiv.0a">
+  <kap><tld/>a</kap>
+  <snc mrk="aktiv.0a.agema">
+    <ref tip="dif" cel="ag.0ema">agema</ref>
+      <ekz>
+        <tld/>a membro;
+      </ekz>
+      <ekz>
+        <tld/>a propagando;
+      </ekz>
+      <ekz>
+        <tld/>aj eksplodoj de pasio<fnt>Z</fnt>.
+      </ekz>
+    <trdgrp lng="ru">
+      <trd>&c_a;&c_k;&c_t;&c_i;&c_v;&c_n;&c_y;&c_j;</trd>,
+      <trd>&c_d;&c_je;&c_ja;&c_t;&c_je;&c_l;&c_mol;&c_n;&c_y;&c_j;</trd>
+    </trdgrp>
+    <trdgrp lng="th">
+      <trd>&#3605;&#3639;&#3656;&#3609;&#3605;&#3633;&#3623;</trd>,
+      <trd>&#3588;&#3621;&#3656;&#3629;&#3591;&#3649;&#3588;&#3621;&#3656;&#3623;</trd>
+    </trdgrp>
+  </snc>
+  <snc mrk="aktiv.0a.aganta">
+    <dif>
+      Aganta, rilata al aganto, manifesti&gcirc;anta per sia ago:
+      <ekz>
+        sep gla&ccirc;eroj kirasas la ne-<tld/>an vulkanon
+        <fnt>
+        <aut>W. Schad</aut>:
+        <vrk>Tondrulo -- montego de la Andoj</vrk>,
+        <bib>Monato</bib>
+        </fnt>;
+      </ekz>
+      <ekz>
+        tio estis donaco de la kompatema libristo, kiu,
+        forrifuzante la neta&ubreve;gan laboron de la virino, deziris
+        tamen doni al &scirc;i <tld/>an pruvon de sia kompato
+        <fnt><bib>Marta</bib></fnt>;
+      </ekz>
+      <ekz>
+        ne<tld/>a firmaano
+        <klr>(ano de komerca societo, kiu pruntedonas kapitalon, ne
+        partoprenante en la administrado de la afero)</klr>;
+      </ekz>
+      <ekz>
+        <ind><tld/>a lingvoposedo</ind>
+        <klr>(kapablo paroli &#8208; kontraste al la pasiva
+        lingvoposedo,
+        kapablo kompreni)</klr>;
+        <trd lng="ru">&c_a;&c_k;&c_t;&c_i;&c_v;&c_n;&c_o;&c_je;
+        &c_v;&c_l;&c_a;&c_d;&c_je;&c_n;&c_i;&c_je;
+        &c_ja;&c_z;&c_y;&c_k;&c_o;&c_m;</trd>
+      </ekz>
+    </dif>
+    <trdgrp lng="ru">
+      <trd>&c_a;&c_k;&c_t;&c_i;&c_v;&c_n;&c_y;&c_j;</trd>,
+      <trd>&c_d;&c_je;&c_j;&c_s;&c_t;&c_v;&c_u;&c_ju;&c_shch;&c_i;&c_j;</trd>
+    </trdgrp>
+  </snc>
+  <snc mrk="aktiv.0a.GRA">
+    <uzo tip="fak">GRA</uzo>
+    <dif>
+      Esprimanta agon, la fonton de ago, rilata al aganto:
+      <ekz>
+        &leftquot;amata&rightquot; estas <ref tip="ant"
+        cel="pasiv.0a.GRA">pasiva</ref>,
+        &leftquot;amanta&rightquot; <tld/>a <ref
+        cel="partic.0o">participo</ref>.
+      </ekz>
+    </dif>
+    <trdgrp lng="ru">
+      <trd>&c_a;&c_k;&c_t;&c_i;&c_v;&c_n;&c_y;&c_j;</trd>,
+      <trd>&c_d;&c_je;&c_j;&c_s;&c_t;&c_v;&c_i;&c_t;&c_je;&c_l;&c_mol;&c_n;&c_y;&c_j;<klr>
+      (&c_z;&c_a;&c_l;&c_o;&c_g;)</klr></trd>
+    </trdgrp>
+  </snc>
+  <trd lng="be">&c_a;&c_k;&c_t;&c_y;&c_w;&c_n;&c_y;</trd>
+  <trd lng="bg">&c_a;&c_k;&c_t;&c_i;&c_v;&c_je;&c_n;</trd>
+  <trd lng="br">oberiant</trd>
+  <trdgrp lng="cs">
+    <trd>aktivn&iacute;</trd>,
+    <trd>reaktivn&iacute;</trd>,
+    <trd>&uacute;&ccaron;inn&yacute;</trd>,
+    <trd>&ccaron;inn&yacute;</trd>
+  </trdgrp>
+  <trd lng="en">active</trd>
+  <trd lng="es">activo</trd>
+  <trd lng="fr">actif</trd>
+  <trd lng="it">attivo</trd>
+  <trd lng="nl">actief</trd>
+  <trd lng="pt">ativo</trd>
+  <trdgrp lng="sk">
+    <trd>akt&iacute;vny</trd>,
+    <trd>reakt&iacute;vny</trd>,
+    <trd>&uacute;&ccaron;inn&yacute;</trd>,
+    <trd>&ccaron;inn&yacute;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="aktiv.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="aktiv.0o.EKON">
+    <uzo tip="fak">EKON</uzo>
+    <dif>
+      Posedataj a&ubreve; ricevotaj sumoj:
+      <ekz>
+        la <tld/>o de tiu banko malsuperas &gcirc;ian pasivon.
+      </ekz>
+    </dif>
+    <trd lng="be">&c_a;&c_k;&c_t;&c_y;&c_w;</trd>
+    <trd lng="bg">&c_a;&c_k;&c_t;&c_i;&c_v;</trd>
+    <trd lng="br">fred<klr tip="ind"> (kontouriezh)</klr></trd>
+    <trdgrp lng="de">
+      <trd>Forderungen</trd>,
+      <trd>Aktiva</trd>,
+      <trd>Haben</trd>,
+      <trd>Einlagen</trd>
+    </trdgrp>
+    <trd lng="en">asset</trd>
+    <trd lng="es">activo</trd>
+    <trd lng="fr">actif</trd>
+    <trdgrp lng="nl">
+      <trd>actief</trd>,
+      <trd>activa</trd>
+    </trdgrp>
+    <trd lng="pt">ativo</trd>
+    <trd lng="ru">&c_a;&c_k;&c_t;&c_i;&c_v;</trd>
+    <trd lng="sk">akt&iacute;vum</trd>
+  </snc>
+  <snc mrk="aktiv.0o.vocxo">
+    <uzo tip="fak">GRA</uzo>
+    <dif>
+      <tld lit="A"/>a <ref tip="super"
+      cel="vocx.0o.GRA">vo&ccirc;o<sncref/></ref>:
+      <ekz>
+        tre ofte povas esti rekomendinde elekti <tld/>an formon,
+        &ccirc;ar <tld/>o ordinare estas pli simpla kaj pli rekta
+        <fnt><bib>PMEG</bib></fnt>.
+      </ekz>
+    </dif>
+    <trd lng="be">&c_n;&c_je;&c_z;&c_a;&c_l;&c_je;&c_zh;&c_n;&c_y;
+    <ind>&c_s;&c_t;&c_a;&c_n;</ind> <klr
+    tip="amb">(&c_d;&c_z;&c_je;&c_ja;&c_s;&c_l;&c_o;&c_v;&c_a;)</klr></trd>
+    <trdgrp lng="de">
+      <trd>Aktiv</trd>,
+      <trd>T&auml;tigkeitsform</trd>
+    </trdgrp>
+    <trd lng="br">tu-gra</trd>
+    <trd lng="en">active voice</trd>
+    <trd lng="es">voz <ind>activa</ind></trd>
+    <trd lng="fr">voix <ind>active</ind></trd>
+    <trd lng="nl">actief</trd>
+    <trd lng="pt">voz <ind>ativa</ind></trd>
+    <trd
+    lng="ru">&c_d;&c_je;&c_j;&c_s;&c_t;&c_v;&c_i;&c_t;&c_je;&c_l;&c_mol;&c_n;&c_y;&c_j;
+    &c_z;&c_a;&c_l;&c_o;&c_g;</trd>
+    <trd lng="th">&#3585;&#3619;&#3619;&#3605;&#3640;&#3623;&#3634;&#3592;&#3585;</trd>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>aktivita</trd>,
+    <trd>v&yacute;konnost</trd>,
+    <trd>&uacute;&ccaron;innost</trd>,
+    <trd>&ccaron;innost</trd>,
+    <trd>&ccaron;inorodost</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>aktivita</trd>,
+    <trd>v&yacute;konnos&tcaron;</trd>,
+    <trd>&uacute;&ccaron;innos&tcaron;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="aktiv.0eco">
+  <kap><tld/>eco</kap>
+  <snc mrk="aktiv.0eco.KOMUNE">
+    <dif>
+      Tio kion aganto faras.
+      <ekz>
+        ekzemple &leftquot;kuri&rightquot; per si mem povus esti nur
+        <tld/>eco;
+        sed &leftquot;kuri kilometron&rightquot; estas plenumo, 
+        <fnt>
+          <aut>K. Miner</aut>,
+          <vrk><url
+          ref="http://lingvakritiko.com/2009/10/29/situacia-aspekto-en-esperanto/#ref3">
+          Situacia aspekto en Esperanto</url></vrk>,
+          <lok>Lingva Kritiko, 2009-10-29</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trdgrp lng="th">
+      <trd>&#3588;&#3623;&#3634;&#3617;&#3605;&#3639;&#3656;&#3609;&#3605;&#3633;&#3623;</trd>,
+      <trd>&#3588;&#3623;&#3634;&#3617;&#3588;&#3621;&#3656;&#3629;&#3591;&#3649;&#3588;&#3621;&#3656;&#3623;</trd>
+    </trdgrp>
+  </snc>
+  <trd lng="bg">&c_d;&c_je;&c_j;&c_n;&c_o;&c_s;&c_t;</trd>
+  <trdgrp lng="cs">
+    <trd>aktivita</trd>,
+    <trd>v&yacute;konnost</trd>,
+    <trd>&uacute;&ccaron;innost</trd>,
+    <trd>&ccaron;innost</trd>,
+    <trd>&ccaron;inorodost</trd>
+  </trdgrp>
+  <trd lng="de">Aktivit&auml;t</trd>
+  <trd lng="en">activity</trd>
+  <trd lng="es">actividad</trd>
+  <trd lng="fr">activit&eacute;</trd>
+  <trd lng="nl">activiteit</trd>
+  <trdgrp lng="sk">
+    <trd>aktivita</trd>,
+    <trd>v&yacute;konnos&tcaron;</trd>,
+    <trd>&uacute;&ccaron;innos&tcaron;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="aktiv.0igi">
+  <kap><tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="aktiv.0igi.KOMUNE">
+    <dif>
+      Igi <tld/>a, aganta, funkcianta:
+      <ekz>
+        kion vi proponas fari por <tld/>igi la komitaton?
+        <fnt>
+          <aut>[K. Kniivil&auml;]</aut>,
+          <vrk><url
+          ref="http://www.liberafolio.org/2010/amri-wandel-volas-aktivigi-landajn-asociojn-kaj-varbi-membrojn-en-la-reto">
+          Amri Wandel volas aktivigi landajn asociojn...</url></vrk>,
+          <lok>libera folio,  2010-08-16</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="bg">&c_a;&c_k;&c_t;&c_i;&c_v;&c_i;&c_r;&c_a;&c_m;</trd>
+  <trdgrp lng="cs">
+    <trd>aktivizovat</trd>,
+    <trd>popoh&aacute;n&ecaron;t</trd>,
+    <trd>stimulovat</trd>,
+    <trd>vzbudit z&aacute;jem</trd>,
+    <trd>zabavit</trd>
+  </trdgrp>
+  <trd lng="de">aktivieren</trd>
+  <trd lng="en">activate</trd>
+  <trd lng="es">activar</trd>
+  <trd lng="fr">activer</trd>
+  <trd lng="nl">activeren</trd>
+  <trdgrp lng="sk">
+    <trd>aktivizova&tcaron;</trd>,
+    <trd>podnecova&tcaron;</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="aktiv.0ismo">
+  <kap><tld/>ismo</kap>
+  <snc mrk="aktiv.0ismo.POL">
+    <uzo tip="fak">POL</uzo>
+    <dif>
+      Planata, celkonscia agado en la socio:
+      <ekz>
+        la ateismo <klr>...</klr> estas la fono kaj soklo
+        de la <klr>...</klr> socia <tld/>ismo &ccirc;e Sartro
+        <fnt>
+          <aut>V. O&scaron;lak</aut>,
+          <vrk>Foje e&ccirc; pensi estas &gcirc;uo</vrk>,
+          <lok>2003</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="cs">aktivizmus</trd>
+  <trd lng="es">activismo</trd>
+  <trd lng="fr">activisme</trd>
+  <trd lng="sk">aktivizmus</trd>
+</drv>
+
+<drv mrk="aktiv.0ulo">
+  <kap><tld/>ulo</kap>
+  <snc mrk="aktiv.0ulo.POL">
+    <uzo tip="fak">ESP</uzo>
+    <uzo tip="fak">POL</uzo>
+    <dif>
+      Homo, kiu regule agas en societo, por iu celo...:
+      <ekz>
+        kunvenoj de <tld/>uloj dum la universalaj kongresoj
+        <fnt>
+          <aut>I. Lapenna</aut>,
+          <vrk>Por pli efika informado</vrk>,
+          <lok>1974</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>funkcion&aacute;&rcaron;</trd>,
+    <trd>&ccaron;inovn&iacute;k</trd>
+  </trdgrp>
+  <trdgrp lng="es">
+    <trd>voluntario</trd>,
+    <trd>militante</trd>
+  </trdgrp>
+  <trdgrp lng="fr">
+    <trd>membre engag&eacute;</trd>,
+    <trd>militant</trd>
+  </trdgrp>
+  <trdgrp lng="sk">
+    <trd>funkcion&aacute;r</trd>,
+    <trd>&ccaron;inovn&iacute;k</trd>
+  </trdgrp>
+</drv>
+
+<drv mrk="aktiv.0ularo">
+  <kap><tld/>ularo</kap>
+  <snc mrk="aktiv.0ularo.POL">
+    <uzo tip="fak">ESP</uzo>
+    <uzo tip="fak">POL</uzo>
+    <dif>
+      Tuto de <ref tip="prt" cel="aktiv.0ulo.POL"><tld/>uloj</ref>
+      kune agantaj:
+      <ekz>
+        la Deklaracio de Tyres&ouml; respegulas la modan lingva&jcirc;on
+        de la 
+        studenta <tld/>ularo
+        <fnt>
+          <aut>Z. M. Sikosek</aut>,
+          <vrk>La jarcento de Esperanto</vrk>,
+          <bib>LOdE</bib>,
+          <lok>2000:12 (74)</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trd lng="cs">aktiv <klr>(lid&eacute;)</klr></trd>
+  <trd lng="es">los <ind>militantes</ind></trd>
+  <trd lng="fr">les <ind>militants</ind></trd>
+  <trd lng="sk">akt&iacute;v <klr>(&lcaron;udia)</klr></trd>
+</drv>
+
+<drv mrk="aktiv.mal0igi">
+  <kap>mal<tld/>igi</kap>
+  <gra><vspec>tr</vspec></gra>
+  <snc mrk="aktiv.mal0igi.KOMUNE">
+    <dif>
+      Igi ne <tld/>a, ne aganta, ne funkcianta:
+      <ekz>
+        se vi malaktivigas Flash vi ne povos spekti
+        videojn en la plimulto de retejoj
+        <fnt>
+          <aut>[E. Tr&aacute;pani k. a.]</aut>,
+          <vrk><url ref="https://www.mozilla.org/eo/plugincheck/">
+          Kontroli viajn kromprogramojn</url></vrk>,
+          <lok>[vidita en 2013]</lok>
+        </fnt>.
+      </ekz>
+    </dif>
+  </snc>
+  <trdgrp lng="cs">
+    <trd>inhibovat</trd>,
+    <trd>ochromit</trd>
+  </trdgrp>
+  <trd lng="es">desactivar</trd>
+  <trd lng="fr">d&eacute;sactiver</trd>
+  <trdgrp lng="sk">
+    <trd>inhibova&tcaron;</trd>,
+    <trd>ochromova&tcaron;</trd>
+  </trdgrp>
+</drv>
+</art>
+<!--
+$Log: aktiv.xml,v $
+Revision 1.34  2018/09/02 20:10:58  revo
+Michel Cantigneaux: teknika ripareto de indikiloj
+
+Revision 1.33  2018/08/24 15:15:13  revo
+kor. ecaron en la chehha
+
+Revision 1.32  2017/12/04 20:10:14  revo
+Michel Cantigneaux: vorto de la 1 OA fundamentita per la 7a OA
+
+Revision 1.31  2016/07/30 12:10:24  revo
+Warut Bunprasert: +trd th
+
+Revision 1.30  2015/07/04 08:37:30  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.29  2015/06/28 12:03:35  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.28  2014/09/03 16:10:11  revo
+Guillermo Molleda Jimena: trd es
+
+Revision 1.27  2013/08/05 13:10:12  revo
+-->
+</vortaro>

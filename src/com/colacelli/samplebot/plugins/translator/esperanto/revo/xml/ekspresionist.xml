@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: ekspresionist.xml,v 1.6 2018/09/03 18:10:17 revo Exp $">
+<kap>
+  <rad>ekspresionist</rad>/o <fnt><bib>PIV1</bib></fnt>
+</kap>
+<drv mrk="ekspresionist.0o">
+  <kap><tld/>o</kap>
+  <snc mrk="ekspresionist.0o.BELA">
+    <uzo tip="fak">BELA</uzo>
+    <dif>
+      <ref tip="vid" cel="esprim.0ismo.BELA">Esprimism</ref>ano:
+      <ekz>
+        <nom>Helene</nom> estis kapabla pentristino, lernantino de <tld/>o <nom>Beckman</nom> 
+        <fnt>
+          <bib>Monato</bib>
+          <aut>Antanas Grincevi&ccaron;ius</aut>
+          <vrk><url ref="http://www.esperanto.be/fel/2004/008234.html">Helene Holzman</url></vrk>
+        </fnt>.
+      </ekz>
+    </dif>
+    <trd lng="de">Expressionist</trd>
+  </snc>
+  <trd lng="fr">expressionniste</trd>
+  <trd lng="pl">ekspresjonista</trd>
+  <trd lng="pt">expressionista</trd>
+</drv>
+</art>
+
+<!--
+$Log: ekspresionist.xml,v $
+Revision 1.6  2018/09/03 18:10:17  revo
+Wolfram Diestel: +ekz, germ trd
+
+Revision 1.5  2017/03/29 08:10:16  revo
+Damien Brucker: +trd fr
+
+Revision 1.4  2009/09/26 16:31:03  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.3  2007/06/23 16:31:10  revo
+Tulio Flores: +tr pt
+
+Revision 1.2  2007/02/08 17:30:25  revo
+Jeromo Vasxe: sensxangxe, nur por kreigi la html-artikolon
+
+Revision 1.1  2007/01/27 21:07:34  revo
+Jeromo Vasxe: nova artikolo
+
+-->
+</vortaro>

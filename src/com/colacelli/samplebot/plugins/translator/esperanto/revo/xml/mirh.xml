@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE vortaro SYSTEM "../dtd/vokoxml.dtd">
+
+<vortaro>
+<art mrk="$Id: mirh.xml,v 1.19 2017/11/17 11:10:18 revo Exp $">
+<kap>
+  <ofc>*</ofc>
+  <rad>mirh</rad>/o
+</kap>
+<drv mrk="mirh.0o">
+  <kap><ofc>*</ofc><tld/>o</kap>
+  <snc>
+    <dif>
+      Bonodora <ref tip="super" cel="rezin.0o">rezino</ref> el 
+      kelkaj arabaj kaj afrikaj arboj uzata en
+      fabrikado de parfumoj:
+      <ekz>
+        mi parfumis mian ku&scirc;ejon per <tld/>o, aloo kaj
+        cinamo
+        <fnt><bib>MT</bib>, <lok>Sentencoj 7:17</lok></fnt>.
+      </ekz>
+    </dif>
+    <refgrp tip="sin">
+      <ref cel="incens.0o">incenso</ref>,
+      <ref cel="balzam">balzamo</ref>,
+      <ref cel="hisop.0o">hisopo</ref>.
+    </refgrp>
+  </snc>
+  <trd lng="be">&c_m;&c_ib;&c_r;&c_a;</trd>
+  <trd lng="br">mir<klr tip="ind"> (gom-rousin)</klr></trd>
+  <trd lng="ca">mirra</trd>
+  <trd lng="cs">myrha</trd>
+  <trd lng="de">Myrrhe</trd>
+  <trd lng="en">myrrh</trd>
+  <trd lng="es">mirra</trd>
+  <trdgrp lng="fa">
+    <trd>&a_m;&a_damma;&a_r;</trd>,
+    <trd>&a_m;&a_damma;&a_r; &a_m;&f_k;&f_y;</trd>,
+    <trd>&a_S;&a_m;&a_gh; &a_s;&a_q;&a_z;&f_y;</trd>
+  </trdgrp>
+  <trd lng="fr">myrrhe</trd>
+  <trd lng="hu">mirha</trd>
+  <trd lng="nl">mirre</trd>
+  <trd lng="pl">mirra</trd>
+  <trdgrp lng="ru">
+    <trd>&c_m;&c_i;&c_r;&c_r;&c_a;</trd>,
+    <trd>&c_m;&c_i;&c_r;&c_r;&c_o;</trd>
+  </trdgrp>
+  <trd lng="sk">myrha <klr>(&zcaron;ivica)</klr></trd>
+</drv>
+</art>
+<!--
+$Log: mirh.xml,v $
+Revision 1.19  2017/11/17 11:10:18  revo
+Sebastian Cyprych: +trd pl
+
+Revision 1.18  2016/03/12 19:10:14  revo
+Wolfram Diestel: +fnt
+
+Revision 1.17  2016/03/12 14:10:17  revo
+Wolfram Diestel: ref al rezino
+
+Revision 1.16  2015/07/04 08:37:39  revo
+aldono de trd cs per skripto de M. von Laer
+
+Revision 1.15  2015/06/29 16:33:20  revo
+aldono de trd sk per skripto de M. von Laer
+
+Revision 1.14  2012/12/17 14:10:08  revo
+Agustin Garcia Lopez: +trd(es)
+
+Revision 1.13  2012/08/20 00:10:29  revo
+Marc Rausell: + trd ca
+
+Revision 1.12  2009/08/27 16:33:37  revo
+-->
+</vortaro>
