@@ -39,8 +39,8 @@ class RevoLoader {
                 URL resource = getClass().getClassLoader().getResource(REVO_PATH);
                 File folder = new File(resource.toURI());
 
-                for(File file : folder.listFiles()) {
-                    if(file.isFile()) {
+                for (File file : folder.listFiles()) {
+                    if (file.isFile()) {
                         Runnable task = new RevoFileLoader(file);
                         Thread worker = new Thread(task);
                         worker.setName(file.getName());
@@ -86,24 +86,24 @@ class RevoLoader {
                 String baseWord = document.getElementsByTagName(BASE_WORD_TAG).item(0).getTextContent();
 
                 NodeList baseWordNodes = document.getElementsByTagName(BASE_WORD_NODES);
-                for(int i = 0; i < baseWordNodes.getLength(); i++) {
+                for (int i = 0; i < baseWordNodes.getLength(); i++) {
                     baseWordNodes.item(i).setTextContent(baseWord);
                 }
 
                 // <drv><kap><tld/>i<trd lng="es">necesitar...
                 NodeList drvs = document.getElementsByTagName(DEFINITION_TAG);
                 String word = null;
-                for(int i = 0; i < drvs.getLength(); i++) {
+                for (int i = 0; i < drvs.getLength(); i++) {
                     Node drv = drvs.item(i);
                     NodeList drvNodes = drv.getChildNodes();
 
-                    for(int j = 0; j < drvNodes.getLength(); j++) {
+                    for (int j = 0; j < drvNodes.getLength(); j++) {
                         Node drvNode = drvNodes.item(j);
 
-                        if(drvNode.getNodeName().equals(WORD_TAG)) {
+                        if (drvNode.getNodeName().equals(WORD_TAG)) {
                             // Word
                             word = purgeWord(drvNode.getTextContent());
-                        } else if(drvNode.getNodeName().equals(TRANSLATION_TAG)) {
+                        } else if (drvNode.getNodeName().equals(TRANSLATION_TAG)) {
                             // Translation
                             String translation = purgeWord(drvNode.getTextContent());
                             String locale = drvNode.getAttributes().item(0).getTextContent();

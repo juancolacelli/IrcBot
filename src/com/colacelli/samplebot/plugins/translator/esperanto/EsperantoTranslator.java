@@ -7,6 +7,13 @@ public class EsperantoTranslator {
     private static HashMap<String, HashMap<String, String>> translations;
     private boolean loaded = false;
 
+    public EsperantoTranslator() {
+        translations = new HashMap<>();
+
+        RevoLoader revoLoader = new RevoLoader();
+        revoLoader.load();
+    }
+
     public static EsperantoTranslator getInstance() {
         if (instance == null) instance = new EsperantoTranslator();
 
@@ -19,13 +26,6 @@ public class EsperantoTranslator {
 
     void setLoaded(boolean loaded) {
         this.loaded = loaded;
-    }
-
-    public EsperantoTranslator() {
-        translations = new HashMap<>();
-
-        RevoLoader revoLoader = new RevoLoader();
-        revoLoader.load();
     }
 
     void addTranslation(String locale, String word, String translation) {
