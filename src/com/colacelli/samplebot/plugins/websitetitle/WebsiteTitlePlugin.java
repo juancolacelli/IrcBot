@@ -31,15 +31,19 @@ public class WebsiteTitlePlugin implements Plugin {
                         Matcher titleMatch = titlePattern.matcher(responseBody);
                         titleMatch.find();
 
-                        String title = titleMatch.group(1);
+                        try {
+                            String title = titleMatch.group(1);
 
-                        ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                        channelMessageBuilder
-                                .setChannel(message.getChannel())
-                                .setSender(connection.getUser())
-                                .setText("Title: " + title);
+                            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                            channelMessageBuilder
+                                    .setChannel(message.getChannel())
+                                    .setSender(connection.getUser())
+                                    .setText("Title: " + title);
 
-                        connection.send(channelMessageBuilder.build());
+                            connection.send(channelMessageBuilder.build());
+                        } catch (IllegalStateException e) {
+                            // Title not found
+                        }
                     } catch (IllegalArgumentException e) {
                         // Invalid URL
                     }
