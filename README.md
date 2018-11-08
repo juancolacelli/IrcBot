@@ -11,7 +11,8 @@ IRCBot bot = new IRCBot();
 User.Builder userBuilder = new User.Builder();
 userBuilder
         .setNick("ircbot")
-        .setLogin("ircbot");
+        .setLogin("ircbot")
+        .setRealName("ircbot");
 
 Server.Builder serverBuilder = new Server.Builder();
 serverBuilder
