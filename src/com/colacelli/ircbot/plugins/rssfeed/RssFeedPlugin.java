@@ -28,13 +28,27 @@ public class RssFeedPlugin implements Plugin {
     }
 
     private void check(Connection connection) {
-        for (RssFeed rssFeed : rssFeeds) {
-            ArrayList<RssFeedItem> rssFeedItems = rssFeed.check();
+        Runnable task = new RssChecker(connection);
+        Thread worker = new Thread(task);
+        worker.setName("RssChecker");
+        worker.start();
+    }
 
-            if (!rssFeedItems.isEmpty()) {
-                // Use just the first 3 items
-                for (int i = 0; i < 3; i++) {
-                    RssFeedItem rssFeedItem = rssFeedItems.get(i);
+    private class RssChecker implements Runnable {
+        private Connection connection;
+
+        public RssChecker(Connection connection) {
+            this.connection = connection;
+        }
+
+        @Override
+        public void run() {
+            for (RssFeed rssFeed : rssFeeds) {
+                ArrayList<RssFeedItem> rssFeedItems = rssFeed.check();
+
+                if (!rssFeedItems.isEmpty()) {
+                    // Use just the first item
+                    RssFeedItem rssFeedItem = rssFeedItems.get(0);
 
                     connection.getChannels().forEach((channel) -> {
                         ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();

@@ -15,16 +15,14 @@ import java.util.ArrayList;
 
 public class RssFeed {
     private static final String ITEM_TAG = "item";
-    private static final String GUID_TAG = "guid";
     private static final String TITLE_TAG = "title";
     private static final String LINK_TAG = "link";
     private static final String DESCRIPTION_TAG = "description";
-    private static final String CREATED_AT_TAG = "pubDate";
 
     private ArrayList<RssFeedItem> rssFeedItems;
 
     private String url;
-    private String lastGuid;
+    private String lastUrl;
 
     public RssFeed(String url) {
         this.url = url;
@@ -52,9 +50,6 @@ public class RssFeed {
                     Node node = nodes.item(j);
 
                     switch (node.getNodeName()) {
-                        case GUID_TAG:
-                            rssFeedItem.setGuid(node.getTextContent());
-                            break;
                         case TITLE_TAG:
                             rssFeedItem.setTitle(node.getTextContent());
                             break;
@@ -64,13 +59,10 @@ public class RssFeed {
                         case DESCRIPTION_TAG:
                             rssFeedItem.setDescription(node.getTextContent());
                             break;
-                        case CREATED_AT_TAG:
-                            rssFeedItem.setCreatedAt(node.getTextContent());
-                            break;
                     }
                 }
 
-                if (!rssFeedItem.getGuid().equals(lastGuid)) {
+                if (!rssFeedItem.getUrl().equals(lastUrl)) {
                     rssFeedItems.add(rssFeedItem);
                 } else {
                     break;
@@ -85,7 +77,7 @@ public class RssFeed {
         }
 
         if (!rssFeedItems.isEmpty()) {
-            lastGuid = rssFeedItems.get(0).getGuid();
+            lastUrl = rssFeedItems.get(0).getUrl();
         }
 
         return rssFeedItems;
