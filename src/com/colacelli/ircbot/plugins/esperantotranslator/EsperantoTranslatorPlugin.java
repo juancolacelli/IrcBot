@@ -1,9 +1,9 @@
 package com.colacelli.ircbot.plugins.esperantotranslator;
 
 import com.colacelli.ircbot.IRCBot;
+import com.colacelli.ircbot.plugins.esperantotranslator.esperanto.EsperantoTranslator;
 import com.colacelli.ircbot.plugins.help.PluginWithHelp;
 import com.colacelli.irclib.messages.ChannelMessage;
-import com.colacelli.ircbot.plugins.esperantotranslator.esperanto.EsperantoTranslator;
 
 import java.util.ArrayList;
 

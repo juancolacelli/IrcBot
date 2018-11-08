@@ -36,7 +36,7 @@ public class EsperantoTranslator {
         translations.get(locale).putIfAbsent(word, new ArrayList<>());
 
 
-        if(!translations.get(locale).get(word).contains(translation)) {
+        if (!translations.get(locale).get(word).contains(translation)) {
             translations.get(locale).get(word).add(translation);
         }
     }

@@ -46,6 +46,7 @@ bot.addPlugin(new BasicPlugin());
     * **nickserv**: NickServ authentication.
     * **rejoinonkick**: Re-join channels on kick.
     * **websitetitle**: Get website title when an url is detected.
+    * **rssfeed**: Get rss feed notices and send it to all joined channels.
 * Commands
     * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
     * **translator**: Esperato / English translator.
