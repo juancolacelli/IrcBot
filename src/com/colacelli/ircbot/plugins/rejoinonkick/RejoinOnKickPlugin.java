@@ -1,7 +1,7 @@
-package com.colacelli.samplebot.plugins.rejoinonkick;
+package com.colacelli.ircbot.plugins.rejoinonkick;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.Plugin;
+import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.connection.Rawable;
 import com.colacelli.irclib.connection.listeners.OnKickListener;

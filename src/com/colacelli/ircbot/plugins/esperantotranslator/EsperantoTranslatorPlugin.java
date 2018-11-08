@@ -1,17 +1,17 @@
-package com.colacelli.samplebot.plugins.translator;
+package com.colacelli.ircbot.plugins.esperantotranslator;
 
 import com.colacelli.ircbot.IRCBot;
+import com.colacelli.ircbot.plugins.help.PluginWithHelp;
 import com.colacelli.irclib.messages.ChannelMessage;
-import com.colacelli.samplebot.plugins.help.PluginWithHelp;
-import com.colacelli.samplebot.plugins.translator.esperanto.EsperantoTranslator;
+import com.colacelli.ircbot.plugins.esperantotranslator.esperanto.EsperantoTranslator;
 
 import java.util.ArrayList;
 
-public class TranslatorPlugin implements PluginWithHelp {
+public class EsperantoTranslatorPlugin implements PluginWithHelp {
     private final String revoPath;
     private final EsperantoTranslator esperantoTranslator;
 
-    public TranslatorPlugin(String revoPath) {
+    public EsperantoTranslatorPlugin(String revoPath) {
         this.revoPath = revoPath;
         this.esperantoTranslator = EsperantoTranslator.getInstance();
         this.esperantoTranslator.load(revoPath);
@@ -58,6 +58,6 @@ public class TranslatorPlugin implements PluginWithHelp {
 
     @Override
     public String[] getHelp() {
-        return new String[]{"!translate <locale-locale> <word>: Translator"};
+        return new String[]{"!translate <eo-locale/locale-eo> <word>: Translator"};
     }
 }

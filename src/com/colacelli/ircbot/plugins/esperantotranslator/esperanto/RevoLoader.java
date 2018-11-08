@@ -1,4 +1,4 @@
-package com.colacelli.samplebot.plugins.translator.esperanto;
+package com.colacelli.ircbot.plugins.esperantotranslator.esperanto;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;

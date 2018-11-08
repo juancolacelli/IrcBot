@@ -1,9 +1,9 @@
-package com.colacelli.samplebot.plugins.operator;
+package com.colacelli.ircbot.plugins.operator;
 
 import com.colacelli.ircbot.IRCBot;
+import com.colacelli.ircbot.plugins.help.PluginWithHelp;
 import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.actors.User;
-import com.colacelli.samplebot.plugins.help.PluginWithHelp;
 
 import java.util.Arrays;
 import java.util.HashMap;

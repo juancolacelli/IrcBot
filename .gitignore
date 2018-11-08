@@ -23,11 +23,5 @@ hs_err_pid*
 *.iml
 .idea/
 
-# Properties
-src/com/colacelli/samplebot/samplebot.properties
-
 # Artifacts
 */META-INF/*
-
-# Revo
-revo/

@@ -1,7 +1,7 @@
-package com.colacelli.samplebot.plugins.websitetitle;
+package com.colacelli.ircbot.plugins.websitetitle;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.Plugin;
+import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener;
 import com.colacelli.irclib.messages.ChannelMessage;
 

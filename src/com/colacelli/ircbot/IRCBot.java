@@ -1,7 +1,6 @@
 package com.colacelli.ircbot;
 
-import com.colacelli.ircbot.plugins.Plugin;
-import com.colacelli.ircbot.plugins.listeners.OnChannelCommandListener;
+import com.colacelli.ircbot.listeners.OnChannelCommandListener;
 import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.Server;

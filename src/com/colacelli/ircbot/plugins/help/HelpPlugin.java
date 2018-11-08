@@ -1,7 +1,7 @@
-package com.colacelli.samplebot.plugins.help;
+package com.colacelli.ircbot.plugins.help;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.Plugin;
+import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.irclib.messages.PrivateMessage;

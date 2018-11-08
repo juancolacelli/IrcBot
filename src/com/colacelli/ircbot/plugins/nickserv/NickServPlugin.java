@@ -1,7 +1,7 @@
-package com.colacelli.samplebot.plugins.nickserv;
+package com.colacelli.ircbot.plugins.nickserv;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.Plugin;
+import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.listeners.OnConnectListener;
 import com.colacelli.irclib.messages.PrivateMessage;

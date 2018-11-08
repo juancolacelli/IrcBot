@@ -1,4 +1,4 @@
-package com.colacelli.ircbot.plugins.listeners;
+package com.colacelli.ircbot.listeners;
 
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.messages.ChannelMessage;
