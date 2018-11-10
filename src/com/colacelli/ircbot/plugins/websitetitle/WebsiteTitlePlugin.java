@@ -8,6 +8,7 @@ import com.colacelli.irclib.messages.ChannelMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,26 +24,30 @@ public class WebsiteTitlePlugin implements Plugin {
                         // Body
                         InputStream response = new URL(text).openStream();
 
-                        Scanner scanner = new Scanner(response);
-                        String responseBody = scanner.useDelimiter("\\A").next();
+                        Scanner scanner = new Scanner(response).useDelimiter("\\A");
+                        String title = "";
 
-                        // Title
-                        Pattern titlePattern = Pattern.compile("<title>(.+?)</title>");
-                        Matcher titleMatch = titlePattern.matcher(responseBody);
-                        titleMatch.find();
+                        while (title.isEmpty() && scanner.hasNext()) {
+                            String responseBody = scanner.next();
 
-                        try {
-                            String title = titleMatch.group(1);
+                            // Title
+                            Pattern titlePattern = Pattern.compile("<title>(.+?)</title>");
+                            Matcher titleMatch = titlePattern.matcher(responseBody);
+                            titleMatch.find();
 
-                            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                            channelMessageBuilder
-                                    .setChannel(message.getChannel())
-                                    .setSender(connection.getUser())
-                                    .setText("Title: " + title);
+                            try {
+                                title = titleMatch.group(1);
 
-                            connection.send(channelMessageBuilder.build());
-                        } catch (IllegalStateException e) {
-                            // Title not found
+                                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                                channelMessageBuilder
+                                        .setChannel(message.getChannel())
+                                        .setSender(connection.getUser())
+                                        .setText("Title: " + title);
+
+                                connection.send(channelMessageBuilder.build());
+                            } catch (IllegalStateException | NoSuchElementException e) {
+                                // Title not found
+                            }
                         }
                     } catch (IllegalArgumentException e) {
                         // Invalid URL
