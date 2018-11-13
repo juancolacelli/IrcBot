@@ -28,7 +28,8 @@ public class IRCBot implements Listenable {
 
                 if (!onChannelCommandListeners.isEmpty()) {
                     String[] args = null;
-                    if (splittedMessage.length > 1) args = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
+                    if (splittedMessage.length > 1)
+                        args = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
                     String[] finalArgs = args;
 
                     ArrayList<OnChannelCommandListener> listeners = onChannelCommandListeners.get(command);
