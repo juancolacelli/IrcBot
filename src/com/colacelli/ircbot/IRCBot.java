@@ -22,16 +22,19 @@ public class IRCBot implements Listenable {
     private void addOnChannelCommandListener() {
         addListener((OnChannelMessageListener) (connection, message) -> {
             String[] splittedMessage = message.getText().split(" ");
-            String command = splittedMessage[0].toUpperCase();
 
-            if (!onChannelCommandListeners.isEmpty()) {
-                String[] args = null;
-                if (splittedMessage.length > 1) args = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
-                String[] finalArgs = args;
+            if (splittedMessage.length > 0) {
+                String command = splittedMessage[0].toUpperCase();
 
-                ArrayList<OnChannelCommandListener> listeners = onChannelCommandListeners.get(command);
-                if (listeners != null) {
-                    listeners.forEach((listener) -> listener.onChannelCommand(connection, message, command, finalArgs));
+                if (!onChannelCommandListeners.isEmpty()) {
+                    String[] args = null;
+                    if (splittedMessage.length > 1) args = Arrays.copyOfRange(splittedMessage, 1, splittedMessage.length);
+                    String[] finalArgs = args;
+
+                    ArrayList<OnChannelCommandListener> listeners = onChannelCommandListeners.get(command);
+                    if (listeners != null) {
+                        listeners.forEach((listener) -> listener.onChannelCommand(connection, message, command, finalArgs));
+                    }
                 }
             }
         });
