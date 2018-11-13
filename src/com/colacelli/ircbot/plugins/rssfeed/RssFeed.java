@@ -10,6 +10,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -28,52 +29,48 @@ public class RssFeed {
         this.url = url;
     }
 
-    public ArrayList<RssFeedItem> check() {
+    public String getUrl() {
+        return url;
+    }
+
+    public ArrayList<RssFeedItem> check() throws IOException, ParserConfigurationException, SAXException {
         rssFeedItems = new ArrayList<>();
 
-        try {
-            InputStream response = new URL(url).openStream();
+        InputStream response = new URL(url).openStream();
 
-            DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            Document document = documentBuilder.parse(response);
+        DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
+        Document document = documentBuilder.parse(response);
 
-            NodeList items = document.getElementsByTagName(ITEM_TAG);
+        NodeList items = document.getElementsByTagName(ITEM_TAG);
 
-            for (int i = 0; i < items.getLength(); i++) {
-                Node item = items.item(i);
-                NodeList nodes = item.getChildNodes();
+        for (int i = 0; i < items.getLength(); i++) {
+            Node item = items.item(i);
+            NodeList nodes = item.getChildNodes();
 
-                RssFeedItem rssFeedItem = new RssFeedItem();
+            RssFeedItem rssFeedItem = new RssFeedItem();
 
-                for (int j = 0; j < nodes.getLength(); j++) {
-                    Node node = nodes.item(j);
+            for (int j = 0; j < nodes.getLength(); j++) {
+                Node node = nodes.item(j);
 
-                    switch (node.getNodeName()) {
-                        case TITLE_TAG:
-                            rssFeedItem.setTitle(node.getTextContent());
-                            break;
-                        case LINK_TAG:
-                            rssFeedItem.setUrl(node.getTextContent());
-                            break;
-                        case DESCRIPTION_TAG:
-                            rssFeedItem.setDescription(node.getTextContent());
-                            break;
-                    }
-                }
-
-                if (!rssFeedItem.getUrl().equals(lastUrl)) {
-                    rssFeedItems.add(rssFeedItem);
-                } else {
-                    break;
+                switch (node.getNodeName()) {
+                    case TITLE_TAG:
+                        rssFeedItem.setTitle(node.getTextContent());
+                        break;
+                    case LINK_TAG:
+                        rssFeedItem.setUrl(node.getTextContent());
+                        break;
+                    case DESCRIPTION_TAG:
+                        rssFeedItem.setDescription(node.getTextContent());
+                        break;
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
+
+            if (!rssFeedItem.getUrl().equals(lastUrl)) {
+                rssFeedItems.add(rssFeedItem);
+            } else {
+                break;
+            }
         }
 
         if (!rssFeedItems.isEmpty()) {

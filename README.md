@@ -1,7 +1,7 @@
 # IRC Bot
 
 ## Dependencies
-* **irclib**: https://gitlab.com/jic/irclib
+* **GNU IRC Library**: https://gitlab.com/jic/irclib
 * **json-simple**: https://code.google.com/archive/p/json-simple/
 
 ## Basic usage
