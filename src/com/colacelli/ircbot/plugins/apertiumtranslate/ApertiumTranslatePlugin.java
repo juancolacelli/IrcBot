@@ -20,7 +20,7 @@ public class ApertiumTranslatePlugin implements PluginWithHelp {
     @Override
     public String[] getHelp() {
         return new String[]{
-                "!translate <locale A> <locale B> <text>: Translate text from locale A to locale B with Apertium (https://apertium.org)"
+                "!translate <locale A> <locale B> <text>: Translate text from locale A to locale B using Apertium (https://apertium.org)"
         };
     }
 

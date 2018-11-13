@@ -3,7 +3,6 @@ package com.colacelli.ircbot.plugins.rssfeed;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.Connection;
-import com.colacelli.irclib.connection.listeners.OnJoinListener;
 import com.colacelli.irclib.messages.ChannelMessage;
 
 import java.util.ArrayList;
