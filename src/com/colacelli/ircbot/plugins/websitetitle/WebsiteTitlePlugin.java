@@ -18,11 +18,15 @@ public class WebsiteTitlePlugin implements Plugin {
     public void setup(IRCBot bot) {
         bot.addListener((OnChannelMessageListener) (connection, message) -> {
             String text = message.getText();
-            if (text.startsWith("http://") || text.startsWith("https://")) {
+            Pattern urlsPattern = Pattern.compile("((http://|https://)([^ ]+))");
+            Matcher urlsMatcher = urlsPattern.matcher(text);
+            while (urlsMatcher.find()) {
                 try {
                     try {
+                        String url = urlsMatcher.group(0);
+
                         // Body
-                        InputStream response = new URL(text).openStream();
+                        InputStream response = new URL(url).openStream();
 
                         Scanner scanner = new Scanner(response).useDelimiter("\\A");
                         String title = "";
@@ -42,7 +46,7 @@ public class WebsiteTitlePlugin implements Plugin {
                                 channelMessageBuilder
                                         .setChannel(message.getChannel())
                                         .setSender(connection.getUser())
-                                        .setText("Title: " + title);
+                                        .setText(title + " - " + url);
 
                                 connection.send(channelMessageBuilder.build());
                             } catch (IllegalStateException | NoSuchElementException e) {
