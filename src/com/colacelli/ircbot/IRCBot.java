@@ -105,6 +105,11 @@ public class IRCBot implements Listenable {
     }
 
     @Override
+    public void addListener(OnCtcpListener listener) {
+        connection.addListener(listener);
+    }
+
+    @Override
     public void addListener(int rawCode, OnRawCodeListener listener) {
         connection.addListener(rawCode, listener);
     }
