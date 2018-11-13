@@ -24,7 +24,6 @@ public class RssFeedPlugin implements Plugin {
     public void setup(IRCBot bot) {
         // Check RSS feeds on server ping
         bot.addListener((connection) -> check(connection));
-        bot.addListener((OnJoinListener) (connection, user, channel) -> check(connection));
     }
 
     private void check(Connection connection) {
