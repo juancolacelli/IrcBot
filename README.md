@@ -2,6 +2,7 @@
 
 ## Dependencies
 * **irclib**: https://gitlab.com/jic/irclib
+* **json-simple**: https://code.google.com/archive/p/json-simple/
 
 ## Basic usage
 ```java
