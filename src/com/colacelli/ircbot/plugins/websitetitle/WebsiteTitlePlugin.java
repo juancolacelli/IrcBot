@@ -20,6 +20,8 @@ public class WebsiteTitlePlugin implements Plugin {
             String text = message.getText();
             Pattern urlsPattern = Pattern.compile("((http://|https://)([^ ]+))");
             Matcher urlsMatcher = urlsPattern.matcher(text);
+
+            // FIXME: Move it into a thread
             while (urlsMatcher.find()) {
                 try {
                     try {

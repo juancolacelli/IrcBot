@@ -2,7 +2,6 @@
 
 ## Dependencies
 * **irclib**: https://gitlab.com/jic/irclib
-* **revo**: http://www.reta-vortaro.de/tgz/
 
 ## Basic usage
 ```java
@@ -49,8 +48,8 @@ bot.addPlugin(new BasicPlugin());
     * **websitetitle**: Get website title when an url is detected.
     * **rssfeed**: Get rss feed notices and send it to all joined channels.
 * Commands
-    * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
-    * **translator**: Esperato / English translator.
     * **uptime**: Shows bot uptime.
+    * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
+    * **apertiumtranslator**: Translate text using [Apertium](https://apertium.org).
 * Help
     * **help**: Bot help.
