@@ -32,6 +32,10 @@ public class RssFeed {
         return url;
     }
 
+    public boolean justAdded() {
+        return lastUrl == null || lastUrl.isEmpty();
+    }
+
     public ArrayList<RssFeedItem> check() throws IOException, ParserConfigurationException, SAXException {
         rssFeedItems = new ArrayList<>();
 

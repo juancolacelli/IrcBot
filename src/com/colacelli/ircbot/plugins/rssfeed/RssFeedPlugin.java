@@ -148,30 +148,33 @@ public class RssFeedPlugin implements PluginWithHelp {
         for (RssFeed rssFeed : rssFeeds) {
             Runnable task = new RssChecker(connection, rssFeed);
 
-            ((RssChecker) task).addListener(new OnRssFeedCheckListener() {
-                @Override
-                public void onSuccess(RssFeed rssFeed, ArrayList<RssFeedItem> rssFeedItems) {
-                    if (!rssFeedItems.isEmpty()) {
-                        RssFeedItem rssFeedItem = rssFeedItems.get(0);
+            // If it's the first time, don't publish items to prevent flood
+            if (!rssFeed.justAdded()) {
+                ((RssChecker) task).addListener(new OnRssFeedCheckListener() {
+                    @Override
+                    public void onSuccess(RssFeed rssFeed, ArrayList<RssFeedItem> rssFeedItems) {
+                        if (!rssFeedItems.isEmpty()) {
+                            RssFeedItem rssFeedItem = rssFeedItems.get(0);
 
-                        connection.getChannels().forEach((channel) -> {
-                            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                            channelMessageBuilder
-                                    .setSender(connection.getUser())
-                                    .setChannel(channel)
-                                    .setText(rssFeedItem.toString());
+                            connection.getChannels().forEach((channel) -> {
+                                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                                channelMessageBuilder
+                                        .setSender(connection.getUser())
+                                        .setChannel(channel)
+                                        .setText(rssFeedItem.toString());
 
-                            connection.send(channelMessageBuilder.build());
-                        });
+                                connection.send(channelMessageBuilder.build());
+                            });
+                        }
                     }
-                }
 
-                @Override
-                public void onError(RssFeed rssFeed) {
-                    rssFeeds.remove(rssFeed);
-                    saveProperties();
-                }
-            });
+                    @Override
+                    public void onError(RssFeed rssFeed) {
+                        rssFeeds.remove(rssFeed);
+                        saveProperties();
+                    }
+                });
+            }
 
             Thread worker = new Thread(task);
             worker.setName("RssChecker");
