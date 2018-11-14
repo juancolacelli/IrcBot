@@ -1,28 +1,78 @@
 package com.colacelli.ircbot.plugins.rssfeed;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.Plugin;
 import com.colacelli.ircbot.plugins.help.PluginWithHelp;
 import com.colacelli.irclib.connection.Connection;
+import com.colacelli.irclib.messages.PrivateNoticeMessage;
 import com.colacelli.irclib.messages.ChannelMessage;
-import com.colacelli.irclib.messages.PrivateMessage;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Properties;
 
 public class RssFeedPlugin implements PluginWithHelp {
-    ArrayList<RssFeed> rssFeeds;
+    private static final String PROPERTIES_FILE = "rss_feed.properties";
+    public static final String PROPERTIES_URLS = "rss_feed_urls";
+    public static final String PROPERTIES_URLS_SEPARATOR = ",";
+    private ArrayList<RssFeed> rssFeeds;
+    private Properties properties;
 
-    public RssFeedPlugin(String[] urls) {
+    public RssFeedPlugin() {
         rssFeeds = new ArrayList<>();
 
-        for (String url : urls) {
-            RssFeed rssFeed = new RssFeed(url);
-            rssFeeds.add(rssFeed);
+        properties = loadProperties();
+        String urls = properties.getProperty(PROPERTIES_URLS);
+
+        if (urls != null && !urls.isEmpty()) {
+            for (String url : urls.split(PROPERTIES_URLS_SEPARATOR)) {
+                RssFeed rssFeed = new RssFeed(url);
+                rssFeeds.add(rssFeed);
+            }
+        }
+    }
+
+    private Properties loadProperties() {
+        properties = new Properties();
+
+        try {
+            FileInputStream fileInputStream = new FileInputStream(PROPERTIES_FILE);
+            properties.load(fileInputStream);
+        } catch (IOException e) {
+            // Properties file not found
+            properties = new Properties();
+            saveProperties();
+        }
+
+        return properties;
+    }
+
+    private void saveProperties() {
+        OutputStream outputStream = null;
+
+        StringBuilder urls = new StringBuilder();
+        rssFeeds.forEach(rssFeed -> {
+            urls.append(rssFeed.getUrl());
+            urls.append(",");
+        });
+        properties.setProperty(PROPERTIES_URLS, urls.toString());
+
+        try {
+            outputStream = new FileOutputStream(PROPERTIES_FILE);
+            properties.store(outputStream, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -33,8 +83,8 @@ public class RssFeedPlugin implements PluginWithHelp {
 
         bot.addListener("!rss", (connection, message, command, args) -> {
             RssFeed rssFeed;
-            PrivateMessage.Builder privateMessageBuilder = new PrivateMessage.Builder();
-            privateMessageBuilder
+            PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
+            privateNoticeMessageBuilder
                     .setSender(connection.getUser())
                     .setReceiver(message.getSender());
 
@@ -45,14 +95,15 @@ public class RssFeedPlugin implements PluginWithHelp {
                             rssFeed = new RssFeed(args[1]);
 
                             try {
-                                URL url = new URL(rssFeed.getUrl());
+                                new URL(rssFeed.getUrl());
                                 rssFeeds.add(rssFeed);
+                                saveProperties();
 
-                                privateMessageBuilder.setText(rssFeed.getUrl() + " added!");
+                                privateNoticeMessageBuilder.setText(rssFeed.getUrl() + " added!");
                             } catch (IOException e) {
-                                privateMessageBuilder.setText("Wrong RSS feed URL!");
+                                privateNoticeMessageBuilder .setText("Wrong RSS feed URL!");
                             }
-                            connection.send(privateMessageBuilder.build());
+                            connection.send(privateNoticeMessageBuilder.build());
 
                             break;
 
@@ -60,13 +111,14 @@ public class RssFeedPlugin implements PluginWithHelp {
                             try {
                                 int feedIndex = Integer.parseInt(args[1]);
                                 rssFeed = rssFeeds.remove(feedIndex);
+                                saveProperties();
 
-                                privateMessageBuilder.setText(rssFeed.getUrl() + " deleted!");
+                                privateNoticeMessageBuilder.setText(rssFeed.getUrl() + " deleted!");
                             } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                                privateMessageBuilder.setText("Wrong RSS feed index!");
+                                privateNoticeMessageBuilder.setText("Wrong RSS feed index!");
                             }
 
-                            connection.send(privateMessageBuilder.build());
+                            connection.send(privateNoticeMessageBuilder.build());
 
                             break;
                     }
@@ -76,8 +128,8 @@ public class RssFeedPlugin implements PluginWithHelp {
                             for (int i = 0; i < rssFeeds.size(); i++) {
                                 rssFeed = rssFeeds.get(i);
 
-                                privateMessageBuilder.setText(i + ": " + rssFeed.getUrl());
-                                connection.send(privateMessageBuilder.build());
+                                privateNoticeMessageBuilder.setText(i + ": " + rssFeed.getUrl());
+                                connection.send(privateNoticeMessageBuilder.build());
                             }
 
                             break;
@@ -93,10 +145,38 @@ public class RssFeedPlugin implements PluginWithHelp {
     }
 
     private void check(Connection connection) {
-        Runnable task = new RssChecker(connection);
-        Thread worker = new Thread(task);
-        worker.setName("RssChecker");
-        worker.start();
+        for (RssFeed rssFeed : rssFeeds) {
+            Runnable task = new RssChecker(connection, rssFeed);
+
+            ((RssChecker) task).addListener(new OnRssFeedCheckListener() {
+                @Override
+                public void onSuccess(RssFeed rssFeed, ArrayList<RssFeedItem> rssFeedItems) {
+                    if (!rssFeedItems.isEmpty()) {
+                        RssFeedItem rssFeedItem = rssFeedItems.get(0);
+
+                        connection.getChannels().forEach((channel) -> {
+                            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                            channelMessageBuilder
+                                    .setSender(connection.getUser())
+                                    .setChannel(channel)
+                                    .setText(rssFeedItem.toString());
+
+                            connection.send(channelMessageBuilder.build());
+                        });
+                    }
+                }
+
+                @Override
+                public void onError(RssFeed rssFeed) {
+                    rssFeeds.remove(rssFeed);
+                    saveProperties();
+                }
+            });
+
+            Thread worker = new Thread(task);
+            worker.setName("RssChecker");
+            worker.start();
+        }
     }
 
     @Override
@@ -111,35 +191,34 @@ public class RssFeedPlugin implements PluginWithHelp {
 
     private class RssChecker implements Runnable {
         private Connection connection;
+        private RssFeed rssFeed;
+        private ArrayList<OnRssFeedCheckListener> onRssFeedCheckListeners;
 
-        public RssChecker(Connection connection) {
+        public RssChecker(Connection connection, RssFeed rssFeed) {
             this.connection = connection;
+            this.rssFeed = rssFeed;
+            this.onRssFeedCheckListeners = new ArrayList<>();
+        }
+
+        public void addListener(OnRssFeedCheckListener listener) {
+           this.onRssFeedCheckListeners.add(listener);
         }
 
         @Override
         public void run() {
-            for (RssFeed rssFeed : rssFeeds) {
-                try {
-                    ArrayList<RssFeedItem> rssFeedItems = rssFeed.check();
+            ArrayList<RssFeedItem> rssFeedItems = null;
+            try {
+                rssFeedItems = rssFeed.check();
+                if (!rssFeedItems.isEmpty()) {
+                    // Use just the first item
+                    RssFeedItem rssFeedItem = rssFeedItems.get(0);
 
-                    if (!rssFeedItems.isEmpty()) {
-                        // Use just the first item
-                        RssFeedItem rssFeedItem = rssFeedItems.get(0);
-
-                        connection.getChannels().forEach((channel) -> {
-                            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                            channelMessageBuilder
-                                    .setSender(connection.getUser())
-                                    .setChannel(channel)
-                                    .setText(rssFeedItem.toString());
-
-                            connection.send(channelMessageBuilder.build());
-                        });
+                    for(int i = 0; i < onRssFeedCheckListeners.size(); i++) {
+                        onRssFeedCheckListeners.get(i).onSuccess(rssFeed, rssFeedItems);
                     }
-                } catch (SAXException | IOException | ParserConfigurationException e) {
-                    // Not a RSS feed
-                    rssFeeds.remove(rssFeed);
                 }
+            } catch (IOException | ParserConfigurationException | SAXException e) {
+                onRssFeedCheckListeners.forEach(listener -> listener.onError(rssFeed));
             }
         }
     }

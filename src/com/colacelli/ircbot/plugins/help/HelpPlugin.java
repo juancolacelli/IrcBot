@@ -4,7 +4,7 @@ import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.messages.ChannelMessage;
-import com.colacelli.irclib.messages.PrivateMessage;
+import com.colacelli.irclib.messages.PrivateNoticeMessage;
 
 import java.util.ArrayList;
 
@@ -34,13 +34,13 @@ public class HelpPlugin implements Plugin {
 
     private void showHelp(Connection connection, ChannelMessage message, String command, String... args) {
         for (String help : helps) {
-            PrivateMessage.Builder privateMessageBuilder = new PrivateMessage.Builder();
-            privateMessageBuilder
+            PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
+            privateNoticeMessageBuilder
                     .setSender(connection.getUser())
                     .setReceiver(message.getSender())
                     .setText(help);
 
-            connection.send(privateMessageBuilder.build());
+            connection.send(privateNoticeMessageBuilder.build());
         }
     }
 }

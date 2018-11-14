@@ -100,6 +100,11 @@ public class IRCBot implements Listenable {
     }
 
     @Override
+    public void addListener(OnPrivateNoticeMessageListener listener) {
+        connection.addListener(listener);
+    }
+
+    @Override
     public void addListener(OnNickChangeListener listener) {
         connection.addListener(listener);
     }
