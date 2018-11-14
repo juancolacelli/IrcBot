@@ -8,6 +8,7 @@ import com.colacelli.irclib.messages.ChannelMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -23,45 +24,78 @@ public class WebsiteTitlePlugin implements Plugin {
 
             // FIXME: Move it into a thread
             while (urlsMatcher.find()) {
-                try {
-                    try {
-                        String url = urlsMatcher.group(0);
+                Runnable task = new WebsiteTitleGetter(urlsMatcher.group(0));
+                ((WebsiteTitleGetter) task).addListener(new OnWebsiteTitleGetListener() {
+                    @Override
+                    public void onSuccess(String url, String title) {
+                        ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
+                        channelMessageBuilder
+                                .setChannel(message.getChannel())
+                                .setSender(connection.getUser())
+                                .setText(title + " - " + url);
 
-                        // Body
-                        InputStream response = new URL(url).openStream();
-
-                        Scanner scanner = new Scanner(response).useDelimiter("\\A");
-                        String title = "";
-
-                        while (title.isEmpty() && scanner.hasNext()) {
-                            String responseBody = scanner.next();
-
-                            // Title
-                            Pattern titlePattern = Pattern.compile("<title>(.+?)</title>");
-                            Matcher titleMatch = titlePattern.matcher(responseBody);
-                            titleMatch.find();
-
-                            try {
-                                title = titleMatch.group(1);
-
-                                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                                channelMessageBuilder
-                                        .setChannel(message.getChannel())
-                                        .setSender(connection.getUser())
-                                        .setText(title + " - " + url);
-
-                                connection.send(channelMessageBuilder.build());
-                            } catch (IllegalStateException | NoSuchElementException e) {
-                                // Title not found
-                            }
-                        }
-                    } catch (IllegalArgumentException e) {
-                        // Invalid URL
+                        connection.send(channelMessageBuilder.build());
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                    @Override
+                    public void onError() {
+                    }
+                });
+
+                Thread worker = new Thread(task);
+                worker.setName("WebsiteTitleGetter");
+                worker.start();
             }
         });
+    }
+
+    private class WebsiteTitleGetter implements Runnable {
+        private String url;
+        private ArrayList<OnWebsiteTitleGetListener> websiteTitleGetListeners;
+
+        public WebsiteTitleGetter(String url) {
+            this.url = url;
+            websiteTitleGetListeners = new ArrayList<>();
+        }
+
+        public void addListener(OnWebsiteTitleGetListener listener) {
+            websiteTitleGetListeners.add(listener);
+        }
+
+        @Override
+        public void run() {
+            try {
+                // Body
+                InputStream response = new URL(url).openStream();
+
+                Scanner scanner = new Scanner(response).useDelimiter("\\A");
+                String title = "";
+
+                while (title.isEmpty() && scanner.hasNext()) {
+                    String responseBody = scanner.next();
+
+                    // Title
+                    Pattern titlePattern = Pattern.compile("<title>(.+?)</title>");
+                    Matcher titleMatch = titlePattern.matcher(responseBody);
+                    titleMatch.find();
+
+                    try {
+                        title = titleMatch.group(1);
+                        String finalTitle = title;
+                        websiteTitleGetListeners.forEach(listener -> {
+                            listener.onSuccess(url, finalTitle);
+                        });
+                    } catch (IllegalStateException | NoSuchElementException e) {
+                        // Title not found
+                        websiteTitleGetListeners.forEach(listener -> {
+                            listener.onError();
+                        });
+                    }
+                }
+            } catch (IOException e) {
+                // Invalid URL
+                websiteTitleGetListeners.forEach(listener -> listener.onError());
+            }
+        }
     }
 }
