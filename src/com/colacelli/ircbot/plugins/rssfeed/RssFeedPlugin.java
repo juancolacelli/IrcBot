@@ -3,8 +3,8 @@ package com.colacelli.ircbot.plugins.rssfeed;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.plugins.help.PluginWithHelp;
 import com.colacelli.irclib.connection.Connection;
-import com.colacelli.irclib.messages.PrivateNoticeMessage;
 import com.colacelli.irclib.messages.ChannelMessage;
+import com.colacelli.irclib.messages.PrivateNoticeMessage;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class RssFeedPlugin implements PluginWithHelp {
-    private static final String PROPERTIES_FILE = "rss_feed.properties";
     public static final String PROPERTIES_URLS = "rss_feed_urls";
     public static final String PROPERTIES_URLS_SEPARATOR = ",";
+    private static final String PROPERTIES_FILE = "rss_feed.properties";
     private ArrayList<RssFeed> rssFeeds;
     private Properties properties;
 
@@ -101,7 +101,7 @@ public class RssFeedPlugin implements PluginWithHelp {
 
                                 privateNoticeMessageBuilder.setText(rssFeed.getUrl() + " added!");
                             } catch (IOException e) {
-                                privateNoticeMessageBuilder .setText("Wrong RSS feed URL!");
+                                privateNoticeMessageBuilder.setText("Wrong RSS feed URL!");
                             }
                             connection.send(privateNoticeMessageBuilder.build());
 
@@ -201,7 +201,7 @@ public class RssFeedPlugin implements PluginWithHelp {
         }
 
         public void addListener(OnRssFeedCheckListener listener) {
-           this.onRssFeedCheckListeners.add(listener);
+            this.onRssFeedCheckListeners.add(listener);
         }
 
         @Override
@@ -213,7 +213,7 @@ public class RssFeedPlugin implements PluginWithHelp {
                     // Use just the first item
                     RssFeedItem rssFeedItem = rssFeedItems.get(0);
 
-                    for(int i = 0; i < onRssFeedCheckListeners.size(); i++) {
+                    for (int i = 0; i < onRssFeedCheckListeners.size(); i++) {
                         onRssFeedCheckListeners.get(i).onSuccess(rssFeed, rssFeedItems);
                     }
                 }
