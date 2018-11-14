@@ -1,5 +1,6 @@
 package com.colacelli.ircbot.plugins.rssfeed;
 
+import org.apache.commons.text.StringEscapeUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -55,16 +56,18 @@ public class RssFeed {
 
             for (int j = 0; j < nodes.getLength(); j++) {
                 Node node = nodes.item(j);
+                String content = node.getTextContent();
+                content = StringEscapeUtils.unescapeHtml4(content);
 
                 switch (node.getNodeName()) {
                     case TITLE_TAG:
-                        rssFeedItem.setTitle(node.getTextContent());
+                        rssFeedItem.setTitle(content);
                         break;
                     case LINK_TAG:
-                        rssFeedItem.setUrl(node.getTextContent());
+                        rssFeedItem.setUrl(content);
                         break;
                     case DESCRIPTION_TAG:
-                        rssFeedItem.setDescription(node.getTextContent());
+                        rssFeedItem.setDescription(content);
                         break;
                 }
             }

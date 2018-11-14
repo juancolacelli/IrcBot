@@ -4,6 +4,8 @@ import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener;
 import com.colacelli.irclib.messages.ChannelMessage;
+import com.sun.xml.internal.ws.util.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -81,15 +83,11 @@ public class WebsiteTitlePlugin implements Plugin {
 
                     try {
                         title = titleMatch.group(1);
-                        String finalTitle = title;
-                        websiteTitleGetListeners.forEach(listener -> {
-                            listener.onSuccess(url, finalTitle);
-                        });
+                        String unescapedTitle = StringEscapeUtils.unescapeHtml4(title);
+                        websiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, unescapedTitle));
                     } catch (IllegalStateException | NoSuchElementException e) {
                         // Title not found
-                        websiteTitleGetListeners.forEach(listener -> {
-                            listener.onError();
-                        });
+                        websiteTitleGetListeners.forEach(listener -> listener.onError());
                     }
                 }
             } catch (IOException e) {

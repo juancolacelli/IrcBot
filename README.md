@@ -3,6 +3,16 @@
 ## Dependencies
 * **GNU IRC Library**: https://gitlab.com/jic/irclib
 * **json-simple**: https://code.google.com/archive/p/json-simple/
+* **apache-commons**: http://commons.apache.org/proper/commons-lang/
+
+**Maven**
+```
+com.googlecode.json-simple:json-simple:1.1.12
+org.apache.commons:commons-text:1.62
+```
+
+## Showcase
+* **GNU Librebot**: https://gitlab.com/jic/librebot
 
 ## Basic usage
 ```java
