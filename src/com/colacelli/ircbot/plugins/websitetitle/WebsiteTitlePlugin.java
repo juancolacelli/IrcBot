@@ -4,7 +4,6 @@ import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener;
 import com.colacelli.irclib.messages.ChannelMessage;
-import com.sun.xml.internal.ws.util.StringUtils;
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.io.IOException;

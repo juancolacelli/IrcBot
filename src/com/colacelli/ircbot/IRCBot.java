@@ -11,11 +11,18 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class IRCBot implements Listenable {
-    private final Connection connection = new Connection();
-    private ArrayList<Plugin> plugins = new ArrayList<>();
-    private HashMap<String, ArrayList<OnChannelCommandListener>> onChannelCommandListeners = new HashMap<>();
+    private final Connection connection;
+    private ArrayList<Plugin> plugins;
+    private HashMap<String, ArrayList<OnChannelCommandListener>> onChannelCommandListeners;
 
     public IRCBot() {
+        connection = new Connection();
+        plugins = new ArrayList<>();
+        onChannelCommandListeners = new HashMap<>();
+
+        // User Agent used by plugins
+        System.setProperty("http.agent", "GNU IRC Bot - https://gitlab.com/jic/ircbot");
+
         addOnChannelCommandListener();
     }
 
