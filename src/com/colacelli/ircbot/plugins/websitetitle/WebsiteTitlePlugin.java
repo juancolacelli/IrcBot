@@ -74,14 +74,15 @@ public class WebsiteTitlePlugin implements Plugin {
 
                 while (title.isEmpty() && scanner.hasNext()) {
                     String responseBody = scanner.next();
+                    responseBody = responseBody.replaceAll("\\n", "");
 
                     // Title
-                    Pattern titlePattern = Pattern.compile("<title>(.+?)</title>");
+                    Pattern titlePattern = Pattern.compile("<title?([^>]+)>(.+?)</title>");
                     Matcher titleMatch = titlePattern.matcher(responseBody);
                     titleMatch.find();
 
                     try {
-                        title = titleMatch.group(1);
+                        title = titleMatch.group(2);
                         String unescapedTitle = StringEscapeUtils.unescapeHtml4(title);
                         websiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, unescapedTitle));
                     } catch (IllegalStateException | NoSuchElementException e) {
