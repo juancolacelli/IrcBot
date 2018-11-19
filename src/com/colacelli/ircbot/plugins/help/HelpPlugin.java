@@ -8,7 +8,7 @@ import com.colacelli.irclib.messages.PrivateNoticeMessage;
 public class HelpPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
-        bot.addListener("!help", (connection, message, command, args) -> {
+        bot.addListener(".help", (connection, message, command, args) -> {
             int access = IRCBotAccess.getInstance().getLevel(message.getSender());
 
             PluginHelper.getInstance().getHelp(access).forEach(text -> {

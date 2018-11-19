@@ -21,7 +21,7 @@ public class ApertiumTranslatePlugin implements Plugin {
 
     @Override
     public void setup(IRCBot bot) {
-        bot.addListener("!translate", (connection, message, command, args) -> {
+        bot.addListener(".translate", (connection, message, command, args) -> {
             if (args != null && args.length > 2) {
                 String localeA = args[0];
                 String localeB = args[1];
@@ -52,7 +52,7 @@ public class ApertiumTranslatePlugin implements Plugin {
         });
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
-                "!translate",
+                ".translate",
                 "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
                 "locale1",
                 "locale2"));

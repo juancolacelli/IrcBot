@@ -17,7 +17,7 @@ public class UptimePlugin implements Plugin {
 
     @Override
     public void setup(IRCBot bot) {
-        bot.addListener("!uptime", (connection, message, command, args) -> {
+        bot.addListener(".uptime", (connection, message, command, args) -> {
             long currentTimeMillis = System.currentTimeMillis();
             long startMillis = startDate.getTime();
 
@@ -38,7 +38,7 @@ public class UptimePlugin implements Plugin {
             connection.send(channelMessageBuilder.build());
         });
         PluginHelper.getInstance().addHelp(new PluginHelp(
-                "!uptime",
+                ".uptime",
                 "Shows bot uptime"));
     }
 }
