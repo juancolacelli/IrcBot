@@ -57,6 +57,7 @@ bot.addPlugin(new BasicPlugin());
 * **autoreconnect**: Auto-reconnect on disconnection
 * **ctcpversion**: Customize your CTCP VERSION response
 * **help**: Bot help
+* **ircop**: IRCop authentication
 * **nickserv**: NickServ authentication
 * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
 * **rejoinonkick**: Re-join channels on kick
