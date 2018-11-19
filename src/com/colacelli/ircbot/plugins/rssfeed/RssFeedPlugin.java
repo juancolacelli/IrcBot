@@ -84,7 +84,7 @@ public class RssFeedPlugin implements Plugin {
         // Check RSS feeds on server ping
         bot.addListener((connection) -> check(connection));
 
-        IRCBotAccess.getInstance().addListener(bot, "!rss", IRCBotAccess.OPERATOR_LEVEL, (connection, message, command, args) -> {
+        IRCBotAccess.getInstance().addListener(bot, "!rss", IRCBotAccess.ADMIN_LEVEL, (connection, message, command, args) -> {
             RssFeed rssFeed;
             PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
             privateNoticeMessageBuilder
@@ -147,20 +147,20 @@ public class RssFeedPlugin implements Plugin {
         });
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 "!rss check",
-                IRCBotAccess.OPERATOR_LEVEL,
+                IRCBotAccess.ADMIN_LEVEL,
                 "Check all RSS feeds"));
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 "!rss list",
-                IRCBotAccess.OPERATOR_LEVEL,
+                IRCBotAccess.ADMIN_LEVEL,
                 "List all RSS feeds"));
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 "!rss add",
-                IRCBotAccess.OPERATOR_LEVEL,
+                IRCBotAccess.ADMIN_LEVEL,
                 "Add a new RSS feed",
                 "url"));
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 "!rss del",
-                IRCBotAccess.OPERATOR_LEVEL,
+                IRCBotAccess.ADMIN_LEVEL,
                 "Delete an RSS feed",
                 "index"));
     }

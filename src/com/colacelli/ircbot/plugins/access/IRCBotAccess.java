@@ -15,8 +15,9 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class IRCBotAccess {
-    public static final int ADMIN_LEVEL = 10;
-    public static final int OPERATOR_LEVEL = 5;
+    public static final int SUPER_ADMIN_LEVEL = 10;
+    public static final int ADMIN_LEVEL = 5;
+    public static final int OPERATOR_LEVEL = 1;
 
     private static final String PROPERTIES_FILE = "access.properties";
 

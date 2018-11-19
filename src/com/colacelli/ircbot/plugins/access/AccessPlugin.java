@@ -9,7 +9,7 @@ import com.colacelli.irclib.messages.PrivateNoticeMessage;
 public class AccessPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
-        IRCBotAccess.getInstance().addListener(bot, "!access", IRCBotAccess.ADMIN_LEVEL, (connection, message, command, args) -> {
+        IRCBotAccess.getInstance().addListener(bot, "!access", IRCBotAccess.SUPER_ADMIN_LEVEL, (connection, message, command, args) -> {
             if (args != null) {
                 PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
                 privateNoticeMessageBuilder
@@ -51,20 +51,20 @@ public class AccessPlugin implements Plugin {
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 "!access add",
-                IRCBotAccess.ADMIN_LEVEL,
+                IRCBotAccess.SUPER_ADMIN_LEVEL,
                 "Grant user access",
                 "user",
                 "level"));
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 "!access del",
-                IRCBotAccess.ADMIN_LEVEL,
+                IRCBotAccess.SUPER_ADMIN_LEVEL,
                 "Revoke user access",
                 "user"));
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 "!access list",
-                IRCBotAccess.ADMIN_LEVEL,
+                IRCBotAccess.SUPER_ADMIN_LEVEL,
                 "Show access list"));
     }
 }
