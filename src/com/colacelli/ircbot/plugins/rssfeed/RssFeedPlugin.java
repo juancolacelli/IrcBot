@@ -1,7 +1,10 @@
 package com.colacelli.ircbot.plugins.rssfeed;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.help.PluginWithHelp;
+import com.colacelli.ircbot.Plugin;
+import com.colacelli.ircbot.plugins.access.IRCBotAccess;
+import com.colacelli.ircbot.plugins.help.PluginHelp;
+import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.irclib.messages.PrivateNoticeMessage;
@@ -16,7 +19,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Properties;
 
-public class RssFeedPlugin implements PluginWithHelp {
+public class RssFeedPlugin implements Plugin {
     public static final String PROPERTIES_URLS = "rss_feed_urls";
     public static final String PROPERTIES_URLS_SEPARATOR = ",";
     private static final String PROPERTIES_FILE = "rss_feed.properties";
@@ -58,7 +61,7 @@ public class RssFeedPlugin implements PluginWithHelp {
         StringBuilder urls = new StringBuilder();
         rssFeeds.forEach(rssFeed -> {
             urls.append(rssFeed.getUrl());
-            urls.append(",");
+            urls.append(PROPERTIES_URLS_SEPARATOR);
         });
         properties.setProperty(PROPERTIES_URLS, urls.toString());
 
@@ -81,7 +84,7 @@ public class RssFeedPlugin implements PluginWithHelp {
         // Check RSS feeds on server ping
         bot.addListener((connection) -> check(connection));
 
-        bot.addListener("!rss", (connection, message, command, args) -> {
+        IRCBotAccess.getInstance().addListener(bot, "!rss", IRCBotAccess.OPERATOR_LEVEL, (connection, message, command, args) -> {
             RssFeed rssFeed;
             PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
             privateNoticeMessageBuilder
@@ -142,6 +145,24 @@ public class RssFeedPlugin implements PluginWithHelp {
                 }
             }
         });
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!rss check",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Check all RSS feeds"));
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!rss list",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "List all RSS feeds"));
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!rss add",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Add a new RSS feed",
+                "url"));
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!rss del",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Delete an RSS feed",
+                "index"));
     }
 
     private void check(Connection connection) {
@@ -182,16 +203,6 @@ public class RssFeedPlugin implements PluginWithHelp {
         }
     }
 
-    @Override
-    public String[] getHelp() {
-        return new String[]{
-                "!rss check: Check all RSS feeds",
-                "!rss list: List all RSS feeds",
-                "!rss add <url>: Add a new RSS feed",
-                "!rss del <index>: Deleete a RSS feed"
-        };
-    }
-
     private class RssChecker implements Runnable {
         private Connection connection;
         private RssFeed rssFeed;
@@ -209,15 +220,12 @@ public class RssFeedPlugin implements PluginWithHelp {
 
         @Override
         public void run() {
-            ArrayList<RssFeedItem> rssFeedItems = null;
+            ArrayList<RssFeedItem> rssFeedItems;
             try {
                 rssFeedItems = rssFeed.check();
                 if (!rssFeedItems.isEmpty()) {
-                    // Use just the first item
-                    RssFeedItem rssFeedItem = rssFeedItems.get(0);
-
-                    for (int i = 0; i < onRssFeedCheckListeners.size(); i++) {
-                        onRssFeedCheckListeners.get(i).onSuccess(rssFeed, rssFeedItems);
+                    for (OnRssFeedCheckListener listener : onRssFeedCheckListeners) {
+                        listener.onSuccess(rssFeed, rssFeedItems);
                     }
                 }
             } catch (IOException | ParserConfigurationException | SAXException e) {

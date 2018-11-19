@@ -51,17 +51,16 @@ bot.addPlugin(new BasicPlugin());
 ```
 
 ## Plugins
-* Behaviour
-    * **autojoin**: Auto-join channels on connect
-    * **autoreconnect**: Auto-reconnect on disconnection
-    * **nickserv**: NickServ authentication
-    * **rejoinonkick**: Re-join channels on kick
-    * **ctcpversion**: Customize your CTCP VERSION response
-    * **websitetitle**: Get website title when an url is detected
-    * **rssfeed**: Get rss feed notices and send it to all joined channels
-* Commands
-    * **uptime**: Shows bot uptime
-    * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
-    * **apertiumtranslator**: Translate text using [Apertium](https://apertium.org)
-* Help
-    * **help**: Bot help
+* **access**: Grant/Revoke bot access
+* **apertiumtranslator**: Translate text using [Apertium](https://apertium.org)
+* **autojoin**: Auto-join channels on connect
+* **autoreconnect**: Auto-reconnect on disconnection
+* **ctcpversion**: Customize your CTCP VERSION response
+* **help**: Bot help
+* **nickserv**: NickServ authentication
+* **operator**: Basic operator commands (i.e, !op, !voice, etc.)
+* **rejoinonkick**: Re-join channels on kick
+* **rssfeed**: Get rss feed notices and send it to all joined channels
+* **uptime**: Shows bot uptime
+* **websitetitle**: Get website title when an url is detected
+

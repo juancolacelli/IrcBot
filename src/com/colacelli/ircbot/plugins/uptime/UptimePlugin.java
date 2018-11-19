@@ -1,12 +1,14 @@
 package com.colacelli.ircbot.plugins.uptime;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.help.PluginWithHelp;
+import com.colacelli.ircbot.Plugin;
+import com.colacelli.ircbot.plugins.help.PluginHelp;
+import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.messages.ChannelMessage;
 
 import java.util.Date;
 
-public class UptimePlugin implements PluginWithHelp {
+public class UptimePlugin implements Plugin {
     private final Date startDate;
 
     public UptimePlugin() {
@@ -35,10 +37,8 @@ public class UptimePlugin implements PluginWithHelp {
 
             connection.send(channelMessageBuilder.build());
         });
-    }
-
-    @Override
-    public String[] getHelp() {
-        return new String[]{"!uptime: Shows bot uptime"};
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!uptime",
+                "Shows bot uptime"));
     }
 }

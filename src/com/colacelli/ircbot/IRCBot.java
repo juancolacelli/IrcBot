@@ -2,21 +2,18 @@ package com.colacelli.ircbot;
 
 import com.colacelli.ircbot.listeners.OnChannelCommandListener;
 import com.colacelli.irclib.actors.User;
-import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.Server;
-import com.colacelli.irclib.connection.listeners.*;
+import com.colacelli.irclib.connection.listeners.OnChannelMessageListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class IRCBot implements Listenable {
-    private final Connection connection;
+public class IRCBot extends IRCBotListener {
     private ArrayList<Plugin> plugins;
     private HashMap<String, ArrayList<OnChannelCommandListener>> onChannelCommandListeners;
 
     public IRCBot() {
-        connection = new Connection();
         plugins = new ArrayList<>();
         onChannelCommandListeners = new HashMap<>();
 
@@ -61,71 +58,6 @@ public class IRCBot implements Listenable {
         return plugins;
     }
 
-    @Override
-    public void addListener(OnConnectListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnDisconnectListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnPingListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnJoinListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnPartListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnKickListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnChannelModeListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnChannelMessageListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnPrivateMessageListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnPrivateNoticeMessageListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnNickChangeListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(OnCtcpListener listener) {
-        connection.addListener(listener);
-    }
-
-    @Override
-    public void addListener(int rawCode, OnRawCodeListener listener) {
-        connection.addListener(rawCode, listener);
-    }
-
     public void addListener(String command, OnChannelCommandListener listener) {
         command = command.toUpperCase();
 
@@ -138,5 +70,9 @@ public class IRCBot implements Listenable {
         currentListeners.add(listener);
 
         onChannelCommandListeners.put(command, currentListeners);
+    }
+
+    public void removeListener(String command, OnChannelCommandListener listener) {
+        onChannelCommandListeners.get(command).remove(listener);
     }
 }

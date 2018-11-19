@@ -1,7 +1,9 @@
 package com.colacelli.ircbot.plugins.apertiumtranslate;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.help.PluginWithHelp;
+import com.colacelli.ircbot.Plugin;
+import com.colacelli.ircbot.plugins.help.PluginHelp;
+import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.messages.ChannelMessage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -12,17 +14,10 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Scanner;
 
-public class ApertiumTranslatePlugin implements PluginWithHelp {
+public class ApertiumTranslatePlugin implements Plugin {
     private static final String APERTIUM_URL = "https://www.apertium.org/apy/translate?q=TEXT&langpair=LOCALES";
     private static final String APERTIUM_JSON_DATA = "responseData";
     private static final String APERTIUM_JSON_TRANSLATION = "translatedText";
-
-    @Override
-    public String[] getHelp() {
-        return new String[]{
-                "!translate <locale A> <locale B> <text>: Translate text from locale A to locale B using Apertium (https://apertium.org)"
-        };
-    }
 
     @Override
     public void setup(IRCBot bot) {
@@ -55,6 +50,12 @@ public class ApertiumTranslatePlugin implements PluginWithHelp {
                 connection.send(channelMessageBuilder.build());
             }
         });
+
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!translate",
+                "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
+                "locale1",
+                "locale2"));
     }
 
     private String getTranslation(String localeA, String localeB, String text) {

@@ -1,7 +1,10 @@
 package com.colacelli.ircbot.plugins.operator;
 
 import com.colacelli.ircbot.IRCBot;
-import com.colacelli.ircbot.plugins.help.PluginWithHelp;
+import com.colacelli.ircbot.Plugin;
+import com.colacelli.ircbot.plugins.access.IRCBotAccess;
+import com.colacelli.ircbot.plugins.help.PluginHelp;
+import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.actors.Channel;
 import com.colacelli.irclib.actors.User;
 
@@ -9,7 +12,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class OperatorPlugin implements PluginWithHelp {
+public class OperatorPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         HashMap<String, String> commandModes = new HashMap<>();
@@ -28,7 +31,7 @@ public class OperatorPlugin implements PluginWithHelp {
             String text = entry.getKey();
             String mode = entry.getValue();
 
-            bot.addListener(text, (connection, message, command, args) -> {
+            IRCBotAccess.getInstance().addListener(bot, text, IRCBotAccess.OPERATOR_LEVEL, (connection, message, command, args) -> {
                 String nicks[] = {message.getSender().getNick()};
                 if (args != null) nicks = args;
 
@@ -39,55 +42,76 @@ public class OperatorPlugin implements PluginWithHelp {
 
                 connection.mode(message.getChannel(), repeatedMode + " " + String.join(" ", nicks));
             });
+
+            PluginHelper.getInstance().addHelp(new PluginHelp(
+                    text,
+                    IRCBotAccess.OPERATOR_LEVEL,
+                    mode + " user channel mode",
+                    "#channel",
+                    "user"));
         }
 
-        bot.addListener("!join", (connection, message, command, args) -> {
-            if (args != null) {
-                connection.join(new Channel(args[0]));
-            }
-        });
+        IRCBotAccess.getInstance().addListener(bot, "!join", IRCBotAccess.OPERATOR_LEVEL,
+                (connection, message, command, args) -> {
+                    if (args != null) {
+                        connection.join(new Channel(args[0]));
+                    }
+                });
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!join",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Joins a channel",
+                "#channel"));
 
-        bot.addListener("!part", (connection, message, command, args) -> {
+        IRCBotAccess.getInstance().addListener(bot, "!part", IRCBotAccess.OPERATOR_LEVEL, (connection, message, command, args) -> {
             Channel channel = args == null ? message.getChannel() : new Channel(args[0]);
             connection.part(channel);
         });
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!part",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Parts from a channel",
+                "#channel"));
 
-        bot.addListener("!mode", (connection, message, command, args) -> {
+        IRCBotAccess.getInstance().addListener(bot, "!mode", IRCBotAccess.OPERATOR_LEVEL, (connection, message, command, args) -> {
             if (args != null) {
                 String modes = String.join(" ", args);
                 connection.mode(message.getChannel(), modes);
             }
         });
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!mode",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Changes channel modes",
+                "#channel",
+                "modes"));
 
-        bot.addListener("!kick", (connection, message, command, args) -> {
+        IRCBotAccess.getInstance().addListener(bot, "!kick", IRCBotAccess.OPERATOR_LEVEL, (connection, message, command, args) -> {
             if (args != null) {
                 String nick = args[0];
                 String reason = args.length > 1 ? String.join(" ", Arrays.copyOfRange(args, 1, args.length)) : "...";
                 connection.kick(message.getChannel(), new User(nick), reason);
             }
         });
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!kick",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Kicks a user from channel",
+                "#channel",
+                "nick",
+                "reason"));
 
-        bot.addListener("!topic", (connection, message, command, args) -> {
+        IRCBotAccess.getInstance().addListener(bot, "!topic", IRCBotAccess.OPERATOR_LEVEL, (connection, message, command, args) -> {
             if (args != null) {
                 String topic = String.join(" ", args);
                 connection.topic(message.getChannel(), topic);
             }
         });
-    }
-
-    @Override
-    public String[] getHelp() {
-        return new String[]{
-                "!owner/!deowner ?<nick>: Gives/Removes +q mode",
-                "!protect/!deprotect ?<nick>: Gives/Removes +a mode",
-                "!op/!deop ?<nick>: Gives/Removes +o mode",
-                "!halfop/!dehalfop ?<nick>: Gives/Removes +h mode",
-                "!voice/!devoice ?<nick>: Gives/Removes +v mode",
-                "!join <channel>: Joins a channel",
-                "!part ?<channel>: Parts from channel",
-                "!mode <modes>: Sets modes on current channel",
-                "!kick <user> ?<reason>: Kicks a user from current channel",
-                "!topic <topic>: Changes current channel topic"
-        };
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                "!topic",
+                IRCBotAccess.OPERATOR_LEVEL,
+                "Changes channel topic",
+                "#channel",
+                "topic"));
     }
 }
