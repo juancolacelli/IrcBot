@@ -10,6 +10,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class IRCBot extends IRCBotListener {
+    private static final String HTTP_USER_AGENT = "GNU IRC Bot - https://gitlab.com/jic/ircbot";
     private ArrayList<Plugin> plugins;
     private HashMap<String, ArrayList<OnChannelCommandListener>> onChannelCommandListeners;
 
@@ -18,7 +19,7 @@ public class IRCBot extends IRCBotListener {
         onChannelCommandListeners = new HashMap<>();
 
         // User Agent used by plugins
-        System.setProperty("http.agent", "GNU IRC Bot - https://gitlab.com/jic/ircbot");
+        System.setProperty("http.agent", HTTP_USER_AGENT);
 
         addOnChannelCommandListener();
     }
