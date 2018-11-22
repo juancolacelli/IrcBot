@@ -29,13 +29,13 @@ public class WebsiteTitlePlugin implements Plugin {
                 ((WebsiteTitleGetter) task).addListener(new OnWebsiteTitleGetListener() {
                     @Override
                     public void onSuccess(String url, String title) {
-                        ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                        channelMessageBuilder
+                        ChannelMessage.Builder builder = new ChannelMessage.Builder();
+                        builder
                                 .setChannel(message.getChannel())
                                 .setSender(connection.getUser())
                                 .setText(title + " - " + url);
 
-                        connection.send(channelMessageBuilder.build());
+                        connection.send(builder.build());
                     }
 
                     @Override
@@ -52,15 +52,15 @@ public class WebsiteTitlePlugin implements Plugin {
 
     private class WebsiteTitleGetter implements Runnable {
         private String url;
-        private ArrayList<OnWebsiteTitleGetListener> websiteTitleGetListeners;
+        private ArrayList<OnWebsiteTitleGetListener> onWebsiteTitleGetListeners;
 
         public WebsiteTitleGetter(String url) {
             this.url = url;
-            websiteTitleGetListeners = new ArrayList<>();
+            onWebsiteTitleGetListeners = new ArrayList<>();
         }
 
         public void addListener(OnWebsiteTitleGetListener listener) {
-            websiteTitleGetListeners.add(listener);
+            onWebsiteTitleGetListeners.add(listener);
         }
 
         @Override
@@ -84,15 +84,15 @@ public class WebsiteTitlePlugin implements Plugin {
                     try {
                         title = titleMatch.group(2);
                         String unescapedTitle = StringEscapeUtils.unescapeHtml4(title);
-                        websiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, unescapedTitle));
+                        onWebsiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, unescapedTitle));
                     } catch (IllegalStateException | NoSuchElementException e) {
                         // Title not found
-                        websiteTitleGetListeners.forEach(listener -> listener.onError());
+                        onWebsiteTitleGetListeners.forEach(listener -> listener.onError());
                     }
                 }
             } catch (IOException e) {
                 // Invalid URL
-                websiteTitleGetListeners.forEach(listener -> listener.onError());
+                onWebsiteTitleGetListeners.forEach(listener -> listener.onError());
             }
         }
     }

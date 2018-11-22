@@ -6,7 +6,7 @@ import com.colacelli.ircbot.plugins.access.IRCBotAccess;
 import com.colacelli.ircbot.plugins.help.PluginHelp;
 import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.connection.Connection;
-import com.colacelli.irclib.messages.ChannelMessage;
+import com.colacelli.irclib.messages.ChannelNoticeMessage;
 import com.colacelli.irclib.messages.PrivateNoticeMessage;
 import org.xml.sax.SAXException;
 
@@ -178,13 +178,13 @@ public class RssFeedPlugin implements Plugin {
                             RssFeedItem rssFeedItem = rssFeedItems.get(0);
 
                             connection.getChannels().forEach((channel) -> {
-                                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                                channelMessageBuilder
+                                ChannelNoticeMessage.Builder builder = new ChannelNoticeMessage.Builder();
+                                builder
                                         .setSender(connection.getUser())
                                         .setChannel(channel)
                                         .setText(rssFeedItem.toString());
 
-                                connection.send(channelMessageBuilder.build());
+                                connection.send(builder.build());
                             });
                         }
                     }

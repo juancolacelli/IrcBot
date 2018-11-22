@@ -56,6 +56,11 @@ public class IRCBotListener implements Listenable {
     }
 
     @Override
+    public void addListener(OnChannelNoticeMessageListener listener) {
+        connection.addListener(listener);
+    }
+
+    @Override
     public void addListener(OnPrivateNoticeMessageListener listener) {
         connection.addListener(listener);
     }
@@ -117,6 +122,11 @@ public class IRCBotListener implements Listenable {
 
     @Override
     public void removeListener(OnPrivateMessageListener listener) {
+        connection.removeListener(listener);
+    }
+
+    @Override
+    public void removeListener(OnChannelNoticeMessageListener listener) {
         connection.removeListener(listener);
     }
 

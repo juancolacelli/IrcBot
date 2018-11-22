@@ -29,13 +29,13 @@ public class UptimePlugin implements Plugin {
 
             String uptime = String.format("%dd %02d:%02d:%02d", days, hours, minutes, seconds);
 
-            ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-            channelMessageBuilder
+            ChannelMessage.Builder builder = new ChannelMessage.Builder();
+            builder
                     .setSender(connection.getUser())
                     .setChannel(message.getChannel())
                     .setText("Uptime: " + uptime);
 
-            connection.send(channelMessageBuilder.build());
+            connection.send(builder.build());
         });
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".uptime",

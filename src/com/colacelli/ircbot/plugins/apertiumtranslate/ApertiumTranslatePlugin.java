@@ -41,13 +41,13 @@ public class ApertiumTranslatePlugin implements Plugin {
                     translation = "Translation not found!";
                 }
 
-                ChannelMessage.Builder channelMessageBuilder = new ChannelMessage.Builder();
-                channelMessageBuilder
+                ChannelMessage.Builder builder = new ChannelMessage.Builder();
+                builder
                         .setChannel(message.getChannel())
                         .setSender(connection.getUser())
                         .setText("[" + localeA + "] " + text + " ~ " + "[" + localeB + "] " + translation);
 
-                connection.send(channelMessageBuilder.build());
+                connection.send(builder.build());
             }
         });
 

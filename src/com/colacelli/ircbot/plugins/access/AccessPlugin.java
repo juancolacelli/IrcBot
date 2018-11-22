@@ -11,8 +11,8 @@ public class AccessPlugin implements Plugin {
     public void setup(IRCBot bot) {
         IRCBotAccess.getInstance().addListener(bot, ".access", IRCBotAccess.SUPER_ADMIN_LEVEL, (connection, message, command, args) -> {
             if (args != null) {
-                PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
-                privateNoticeMessageBuilder
+                PrivateNoticeMessage.Builder builder = new PrivateNoticeMessage.Builder();
+                builder
                         .setSender(connection.getUser())
                         .setReceiver(message.getSender());
 
@@ -22,26 +22,26 @@ public class AccessPlugin implements Plugin {
                             try {
                                 int level = Integer.parseInt(args[2]);
                                 IRCBotAccess.getInstance().setLevel(args[1], level);
-                                privateNoticeMessageBuilder.setText("Access granted to " + args[1]);
+                                builder.setText("Access granted to " + args[1]);
                             } catch (NumberFormatException e) {
-                                privateNoticeMessageBuilder.setText("Invalid level");
+                                builder.setText("Invalid level");
                                 // Invalid level
                             }
-                            connection.send(privateNoticeMessageBuilder.build());
+                            connection.send(builder.build());
                             break;
 
                         case "del":
                             IRCBotAccess.getInstance().setLevel(args[1], 0);
-                            privateNoticeMessageBuilder.setText("Access revoked to " + args[1]);
-                            connection.send(privateNoticeMessageBuilder.build());
+                            builder.setText("Access revoked to " + args[1]);
+                            connection.send(builder.build());
                             break;
                     }
                 } else {
                     switch (args[0]) {
                         case "list":
                             IRCBotAccess.getInstance().getAccesses().forEach((nick, level) -> {
-                                privateNoticeMessageBuilder.setText(nick + ": " + level);
-                                connection.send(privateNoticeMessageBuilder.build());
+                                builder.setText(nick + ": " + level);
+                                connection.send(builder.build());
                             });
                             break;
                     }

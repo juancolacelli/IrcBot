@@ -17,15 +17,15 @@ public class CTCPVersionPlugin implements Plugin {
         bot.addListener((OnCtcpListener) (connection, message, args1) -> {
             switch (message.getCommand()) {
                 case "VERSION":
-                    CTCPMessage.Builder ctcpMessageBuilder = new CTCPMessage.Builder();
-                    ctcpMessageBuilder
+                    CTCPMessage.Builder builder = new CTCPMessage.Builder();
+                    builder
                             .setSender(connection.getUser())
                             .setReceiver(message.getSender())
                             .setText(version);
 
-                    ctcpMessageBuilder.setCommand(message.getCommand());
+                    builder.setCommand(message.getCommand());
 
-                    connection.send(ctcpMessageBuilder.build());
+                    connection.send(builder.build());
                     break;
             }
         });

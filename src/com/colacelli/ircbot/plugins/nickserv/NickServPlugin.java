@@ -20,13 +20,13 @@ public class NickServPlugin implements Plugin {
                 User.Builder userBuilder = new User.Builder();
                 userBuilder.setNick("nickserv");
 
-                PrivateMessage.Builder privateMessageBuilder = new PrivateMessage.Builder();
-                privateMessageBuilder
+                PrivateMessage.Builder builder = new PrivateMessage.Builder();
+                builder
                         .setSender(connection.getUser())
                         .setReceiver(userBuilder.build())
                         .setText("identify " + password);
 
-                connection.send(privateMessageBuilder.build());
+                connection.send(builder.build());
             });
         }
     }

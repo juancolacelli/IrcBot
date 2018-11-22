@@ -12,13 +12,13 @@ public class HelpPlugin implements Plugin {
             int access = IRCBotAccess.getInstance().getLevel(message.getSender());
 
             PluginHelper.getInstance().getHelp(access).forEach(text -> {
-                PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
-                privateNoticeMessageBuilder
+                PrivateNoticeMessage.Builder builder = new PrivateNoticeMessage.Builder();
+                builder
                         .setSender(connection.getUser())
                         .setReceiver(message.getSender())
                         .setText(text);
 
-                connection.send(privateNoticeMessageBuilder.build());
+                connection.send(builder.build());
             });
         });
     }
