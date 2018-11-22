@@ -6,7 +6,7 @@ import com.colacelli.irclib.connection.listeners.OnCtcpListener;
 import com.colacelli.irclib.messages.CTCPMessage;
 
 public class CTCPVersionPlugin implements Plugin {
-    String version;
+    private String version;
 
     public CTCPVersionPlugin(String version) {
         this.version = version;

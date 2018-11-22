@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class RssFeedPlugin implements Plugin {
-    public static final String PROPERTIES_URLS = "rss_feed_urls";
-    public static final String PROPERTIES_URLS_SEPARATOR = ",";
+    private static final String PROPERTIES_URLS = "rss_feed_urls";
+    private static final String PROPERTIES_URLS_SEPARATOR = ",";
     private static final String PROPERTIES_FILE = "rss_feed.properties";
     private ArrayList<RssFeed> rssFeeds;
     private Properties properties;
@@ -82,7 +82,7 @@ public class RssFeedPlugin implements Plugin {
     @Override
     public void setup(IRCBot bot) {
         // Check RSS feeds on server ping
-        bot.addListener((connection) -> check(connection));
+        bot.addListener(this::check);
 
         IRCBotAccess.getInstance().addListener(bot, ".rss", IRCBotAccess.ADMIN_LEVEL, (connection, message, command, args) -> {
             RssFeed rssFeed;
@@ -167,11 +167,11 @@ public class RssFeedPlugin implements Plugin {
 
     private void check(Connection connection) {
         for (RssFeed rssFeed : rssFeeds) {
-            Runnable task = new RssChecker(connection, rssFeed);
+            RssChecker task = new RssChecker(rssFeed);
 
             // If it's the first time, don't publish items to prevent flood
             if (!rssFeed.justAdded()) {
-                ((RssChecker) task).addListener(new OnRssFeedCheckListener() {
+                task.addListener(new OnRssFeedCheckListener() {
                     @Override
                     public void onSuccess(RssFeed rssFeed, ArrayList<RssFeedItem> rssFeedItems) {
                         if (!rssFeedItems.isEmpty()) {
@@ -204,12 +204,10 @@ public class RssFeedPlugin implements Plugin {
     }
 
     private class RssChecker implements Runnable {
-        private Connection connection;
         private RssFeed rssFeed;
         private ArrayList<OnRssFeedCheckListener> onRssFeedCheckListeners;
 
-        public RssChecker(Connection connection, RssFeed rssFeed) {
-            this.connection = connection;
+        public RssChecker(RssFeed rssFeed) {
             this.rssFeed = rssFeed;
             this.onRssFeedCheckListeners = new ArrayList<>();
         }

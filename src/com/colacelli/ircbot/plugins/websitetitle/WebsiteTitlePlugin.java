@@ -25,8 +25,8 @@ public class WebsiteTitlePlugin implements Plugin {
 
             // FIXME: Move it into a thread
             while (urlsMatcher.find()) {
-                Runnable task = new WebsiteTitleGetter(urlsMatcher.group(0));
-                ((WebsiteTitleGetter) task).addListener(new OnWebsiteTitleGetListener() {
+                WebsiteTitleGetter task = new WebsiteTitleGetter(urlsMatcher.group(0));
+                task.addListener(new OnWebsiteTitleGetListener() {
                     @Override
                     public void onSuccess(String url, String title) {
                         ChannelMessage.Builder builder = new ChannelMessage.Builder();
@@ -79,20 +79,20 @@ public class WebsiteTitlePlugin implements Plugin {
                     // Title
                     Pattern titlePattern = Pattern.compile("<title?([^>]+)>(.+?)</title>");
                     Matcher titleMatch = titlePattern.matcher(responseBody);
-                    titleMatch.find();
-
-                    try {
-                        title = titleMatch.group(2);
-                        String unescapedTitle = StringEscapeUtils.unescapeHtml4(title);
-                        onWebsiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, unescapedTitle));
-                    } catch (IllegalStateException | NoSuchElementException e) {
-                        // Title not found
-                        onWebsiteTitleGetListeners.forEach(listener -> listener.onError());
+                    if (titleMatch.find()) {
+                        try {
+                            title = titleMatch.group(2);
+                            String unescapedTitle = StringEscapeUtils.unescapeHtml4(title);
+                            onWebsiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, unescapedTitle));
+                        } catch (IllegalStateException | NoSuchElementException e) {
+                            // Title not found
+                            onWebsiteTitleGetListeners.forEach(OnWebsiteTitleGetListener::onError);
+                        }
                     }
                 }
             } catch (IOException e) {
                 // Invalid URL
-                onWebsiteTitleGetListeners.forEach(listener -> listener.onError());
+                onWebsiteTitleGetListeners.forEach(OnWebsiteTitleGetListener::onError);
             }
         }
     }
