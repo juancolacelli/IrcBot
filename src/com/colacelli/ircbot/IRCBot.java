@@ -12,11 +12,9 @@ import java.util.HashMap;
 public class IRCBot extends IRCBotListener {
     private static final String HTTP_USER_AGENT = "GNU IRC Bot - https://gitlab.com/jic/ircbot";
     private ArrayList<Plugin> plugins;
-    private HashMap<String, ArrayList<OnChannelCommandListener>> onChannelCommandListeners;
 
     public IRCBot() {
         plugins = new ArrayList<>();
-        onChannelCommandListeners = new HashMap<>();
 
         // User Agent used by plugins
         System.setProperty("http.agent", HTTP_USER_AGENT);
@@ -51,29 +49,16 @@ public class IRCBot extends IRCBotListener {
     }
 
     public void addPlugin(Plugin plugin) {
-        plugin.setup(this);
+        plugin.onLoad(this);
         plugins.add(plugin);
+    }
+
+    public void removePlugin(Plugin plugin) {
+        plugin.onUnload(this);
+        plugins.remove(plugin);
     }
 
     public ArrayList<Plugin> getPlugins() {
         return plugins;
-    }
-
-    public void addListener(String command, OnChannelCommandListener listener) {
-        command = command.toUpperCase();
-
-        ArrayList<OnChannelCommandListener> currentListeners = onChannelCommandListeners.get(command);
-
-        if (currentListeners == null) {
-            currentListeners = new ArrayList<>();
-        }
-
-        currentListeners.add(listener);
-
-        onChannelCommandListeners.put(command, currentListeners);
-    }
-
-    public void removeListener(String command, OnChannelCommandListener listener) {
-        onChannelCommandListeners.get(command).remove(listener);
     }
 }

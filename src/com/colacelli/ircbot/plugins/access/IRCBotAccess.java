@@ -6,6 +6,7 @@ import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.Rawable;
 import com.colacelli.irclib.connection.listeners.OnRawCodeListener;
+import com.colacelli.irclib.messages.ChannelMessage;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -37,34 +38,60 @@ public class IRCBotAccess {
         return instance;
     }
 
-    public void addListener(IRCBot bot, String command, int access, OnChannelCommandListener listener) {
-        bot.addListener(command, (connection, message, command1, args) -> {
-            if (IRCBotAccess.getInstance().getLevel(message.getSender()) >= access) {
-                // Check by whois if nick is identified
-                OnRawCodeListener rawListener = (connection1, message1, rawCode, args1) -> {
-                    // Same nickname?
-                    if (args1[3].equals(message.getSender().getNick())) {
-                        listener.onChannelCommand(connection, message, command1, args);
-                    }
-                };
-                bot.addListener(Rawable.RawCode.WHOIS_IDENTIFIED_NICK.getCode(), rawListener);
+    public void addListener(IRCBot bot, int access, OnChannelCommandListener listener) {
+        bot.addListener(new OnChannelCommandListener() {
+            @Override
+            public String channelCommand() {
+                return listener.channelCommand();
+            }
 
-                // Whois end?
-                bot.addListener(Rawable.RawCode.WHOIS_END.getCode(), new OnRawCodeListener() {
-                    @Override
-                    public void onRawCode(Connection connection1, String message1, int rawCode, String... args1) {
-                        // Same nickname?
-                        if (args1[3].equals(message.getSender().getNick())) {
-                            // Remove whois listeners
-                            bot.removeListener(Rawable.RawCode.WHOIS_IDENTIFIED_NICK.getCode(), rawListener);
-                            bot.removeListener(rawCode, this);
+            @Override
+            public void onChannelCommand(Connection connection, ChannelMessage message, String command, String... args) {
+                if (IRCBotAccess.getInstance().getLevel(message.getSender()) >= access) {
+                    // Check by whois if nick is identified
+                    OnRawCodeListener rawCodeListener = new OnRawCodeListener() {
+                        @Override
+                        public int rawCode() {
+                            return Rawable.RawCode.WHOIS_IDENTIFIED_NICK.getCode();
                         }
-                    }
-                });
 
-                connection.whois(message.getSender());
+                        @Override
+                        public void onRawCode(Connection connection, String message1, int rawCode, String... args1) {
+                            // Same nickname?
+                            if (args1[3].equals(message.getSender().getNick())) {
+                                listener.onChannelCommand(connection, message, command, args);
+                            }
+                        }
+                    };
+
+                    bot.addListener(rawCodeListener);
+
+                    // Whois end?
+                    bot.addListener(new OnRawCodeListener() {
+                        @Override
+                        public int rawCode() {
+                            return Rawable.RawCode.WHOIS_END.getCode();
+                        }
+
+                        @Override
+                        public void onRawCode(Connection connection1, String message1, int rawCode, String... args1) {
+                            // Same nickname?
+                            if (args1[3].equals(message.getSender().getNick())) {
+                                // Remove whois listeners
+                                bot.removeListener(rawCodeListener);
+                                bot.removeListener(this);
+                            }
+                        }
+                    });
+
+                    connection.whois(message.getSender());
+                }
             }
         });
+    }
+
+    public void removeListener(IRCBot bot, String command) {
+        bot.removeListener(command);
     }
 
     public void setLevel(String nick, int level) {

@@ -8,26 +8,39 @@ import com.colacelli.irclib.messages.PrivateMessage;
 
 public class NickServPlugin implements Plugin {
     private String password;
+    private OnConnectListener listener;
 
     public NickServPlugin(String password) {
         this.password = password;
+
+        listener = (connection, server, user) -> {
+            User.Builder userBuilder = new User.Builder();
+            userBuilder.setNick("nickserv");
+
+            PrivateMessage.Builder builder = new PrivateMessage.Builder();
+            builder
+                    .setSender(connection.getUser())
+                    .setReceiver(userBuilder.build())
+                    .setText("identify " + password);
+
+            connection.send(builder.build());
+        };
     }
 
     @Override
-    public void setup(IRCBot bot) {
+    public String name() {
+        return "NICKSERV";
+    }
+
+    @Override
+    public void onLoad(IRCBot bot) {
         if (password != null && !password.isEmpty()) {
-            bot.addListener((OnConnectListener) (connection, server, user) -> {
-                User.Builder userBuilder = new User.Builder();
-                userBuilder.setNick("nickserv");
-
-                PrivateMessage.Builder builder = new PrivateMessage.Builder();
-                builder
-                        .setSender(connection.getUser())
-                        .setReceiver(userBuilder.build())
-                        .setText("identify " + password);
-
-                connection.send(builder.build());
-            });
+            bot.addListener(listener);
         }
+    }
+
+    @Override
+    public void onUnload(IRCBot bot) {
+        bot.removeListener(listener);
     }
 }

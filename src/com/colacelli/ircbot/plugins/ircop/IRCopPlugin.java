@@ -7,6 +7,7 @@ import com.colacelli.irclib.connection.listeners.OnConnectListener;
 public class IRCopPlugin implements Plugin {
     private String name;
     private String password;
+    private OnConnectListener listener;
 
     public IRCopPlugin(String name, String password) {
         this.name = name;
@@ -14,7 +15,18 @@ public class IRCopPlugin implements Plugin {
     }
 
     @Override
-    public void setup(IRCBot bot) {
-        bot.addListener((OnConnectListener) (connection, server, user) -> connection.send("OPER " + name + " " + password));
+    public String name() {
+        return "IRCOP";
+    }
+
+    @Override
+    public void onLoad(IRCBot bot) {
+        listener = (connection, server, user) -> connection.send("OPER " + name + " " + password);
+        bot.addListener(listener);
+    }
+
+    @Override
+    public void onUnload(IRCBot bot) {
+        bot.removeListener(listener);
     }
 }

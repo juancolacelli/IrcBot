@@ -19,6 +19,13 @@ public class PluginHelper {
         helps.add(help);
     }
 
+    public void removeHelp(String command) {
+        for (int i = 0; i < helps.size(); i++) {
+            PluginHelp help = helps.get(i);
+            if (help.getCommand().toUpperCase().equals(command.toUpperCase())) helps.remove(help);
+        }
+    }
+
     public ArrayList<String> getHelp(int access) {
         ArrayList<String> helpTexts = new ArrayList<>();
         this.helps.forEach(help -> {

@@ -5,8 +5,21 @@ import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.listeners.OnDisconnectListener;
 
 public class AutoReconnectPlugin implements Plugin {
+    private OnDisconnectListener listener;
+
     @Override
-    public void setup(IRCBot bot) {
-        bot.addListener((OnDisconnectListener) (connection, server) -> bot.connect(server, connection.getUser()));
+    public String name() {
+        return "AUTO_RECONNECT";
+    }
+
+    @Override
+    public void onLoad(IRCBot bot) {
+        listener = (connection, server) -> bot.connect(server, connection.getUser());
+        bot.addListener(listener);
+    }
+
+    @Override
+    public void onUnload(IRCBot bot) {
+        bot.removeListener(listener);
     }
 }

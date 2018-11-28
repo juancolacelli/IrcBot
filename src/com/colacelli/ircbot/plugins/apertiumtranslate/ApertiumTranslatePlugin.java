@@ -2,8 +2,10 @@ package com.colacelli.ircbot.plugins.apertiumtranslate;
 
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
+import com.colacelli.ircbot.listeners.OnChannelCommandListener;
 import com.colacelli.ircbot.plugins.help.PluginHelp;
 import com.colacelli.ircbot.plugins.help.PluginHelper;
+import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.messages.ChannelMessage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -19,43 +21,68 @@ public class ApertiumTranslatePlugin implements Plugin {
     private static final String APERTIUM_JSON_DATA = "responseData";
     private static final String APERTIUM_JSON_TRANSLATION = "translatedText";
 
-    @Override
-    public void setup(IRCBot bot) {
-        bot.addListener(".translate", (connection, message, command, args) -> {
-            if (args != null && args.length > 2) {
-                String localeA = args[0];
-                String localeB = args[1];
-                StringBuilder text = new StringBuilder();
+    private OnChannelCommandListener listener;
 
-                text.append(args[2]);
-
-                for (int i = 3; i < args.length; i++) {
-                    text.append(" ");
-                    text.append(args[i]);
-                }
-
-                // FIXME: Move it into a thread
-                String translation = getTranslation(localeA, localeB, text.toString());
-
-                if (translation == null || translation.isEmpty()) {
-                    translation = "Translation not found!";
-                }
-
-                ChannelMessage.Builder builder = new ChannelMessage.Builder();
-                builder
-                        .setChannel(message.getChannel())
-                        .setSender(connection.getUser())
-                        .setText("[" + localeA + "] " + text + " ~ " + "[" + localeB + "] " + translation);
-
-                connection.send(builder.build());
+    public ApertiumTranslatePlugin() {
+        listener = new OnChannelCommandListener() {
+            @Override
+            public String channelCommand() {
+                return ".translate";
             }
-        });
+
+            @Override
+            public void onChannelCommand(Connection connection, ChannelMessage message, String command, String... args) {
+                if (args != null && args.length > 2) {
+                    String localeA = args[0];
+                    String localeB = args[1];
+                    StringBuilder text = new StringBuilder();
+
+                    text.append(args[2]);
+
+                    for (int i = 3; i < args.length; i++) {
+                        text.append(" ");
+                        text.append(args[i]);
+                    }
+
+                    // FIXME: Move it into a thread
+                    String translation = getTranslation(localeA, localeB, text.toString());
+
+                    if (translation == null || translation.isEmpty()) {
+                        translation = "Translation not found!";
+                    }
+
+                    ChannelMessage.Builder builder = new ChannelMessage.Builder();
+                    builder
+                            .setChannel(message.getChannel())
+                            .setSender(connection.getUser())
+                            .setText("[" + localeA + "] " + text + " ~ " + "[" + localeB + "] " + translation);
+
+                    connection.send(builder.build());
+                }
+            }
+        };
+    }
+
+    @Override
+    public String name() {
+        return "APERTIUM_TRANSLATE";
+    }
+
+    @Override
+    public void onLoad(IRCBot bot) {
+        bot.addListener(listener);
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".translate",
                 "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
                 "locale1",
                 "locale2"));
+    }
+
+    @Override
+    public void onUnload(IRCBot bot) {
+        bot.removeListener(".translate");
+        PluginHelper.getInstance().removeHelp(".translate");
     }
 
     private String getTranslation(String localeA, String localeB, String text) {

@@ -1,18 +1,21 @@
-package com.colacelli.ircbot.plugins.access;
+package com.colacelli.ircbot.plugins.loader;
 
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.ircbot.listeners.OnChannelCommandListener;
+import com.colacelli.ircbot.plugins.access.IRCBotAccess;
 import com.colacelli.ircbot.plugins.help.PluginHelp;
 import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.irclib.messages.PrivateNoticeMessage;
 
-public class AccessPlugin implements Plugin {
+import java.util.ArrayList;
+
+public class LoaderPlugin implements Plugin {
     @Override
     public String name() {
-        return "ACCESS";
+        return "LOADER";
     }
 
     @Override
@@ -20,12 +23,13 @@ public class AccessPlugin implements Plugin {
         IRCBotAccess.getInstance().addListener(bot, IRCBotAccess.SUPER_ADMIN_LEVEL, new OnChannelCommandListener() {
             @Override
             public String channelCommand() {
-                return ".access";
+                return ".plugin";
             }
 
             @Override
             public void onChannelCommand(Connection connection, ChannelMessage message, String command, String... args) {
                 if (args != null) {
+                    ArrayList<Plugin> botPlugins = bot.getPlugins();
                     PrivateNoticeMessage.Builder builder = new PrivateNoticeMessage.Builder();
                     builder
                             .setSender(connection.getUser())
@@ -33,29 +37,33 @@ public class AccessPlugin implements Plugin {
 
                     if (args.length > 1) {
                         switch (args[0]) {
-                            case "add":
-                                try {
-                                    int level = Integer.parseInt(args[2]);
-                                    IRCBotAccess.getInstance().setLevel(args[1], level);
-                                    builder.setText("Access granted to " + args[1]);
-                                } catch (NumberFormatException e) {
-                                    builder.setText("Invalid level");
-                                    // Invalid level
+                            case "load":
+                                for(int i = 0; i < botPlugins.size(); i++) {
+                                    Plugin plugin = botPlugins.get(i);
+                                    if (plugin.name().toUpperCase().equals(args[1].toUpperCase())) {
+                                        plugin.onLoad(bot);
+                                        builder.setText(plugin.name() + " loaded!");
+                                        connection.send(builder.build());
+                                    }
                                 }
-                                connection.send(builder.build());
                                 break;
 
-                            case "del":
-                                IRCBotAccess.getInstance().setLevel(args[1], 0);
-                                builder.setText("Access revoked to " + args[1]);
-                                connection.send(builder.build());
+                            case "unload":
+                                for(int i = 0; i < botPlugins.size(); i++) {
+                                    Plugin plugin = botPlugins.get(i);
+                                    if (plugin.name().toUpperCase().equals(args[1].toUpperCase())) {
+                                        plugin.onUnload(bot);
+                                        builder.setText(plugin.name() + " unloaded!");
+                                        connection.send(builder.build());
+                                    }
+                                }
                                 break;
                         }
                     } else {
                         switch (args[0]) {
                             case "list":
-                                IRCBotAccess.getInstance().getAccesses().forEach((nick, level) -> {
-                                    builder.setText(nick + ": " + level);
+                                botPlugins.forEach((plugin) -> {
+                                    builder.setText(plugin.name());
                                     connection.send(builder.build());
                                 });
                                 break;
@@ -66,29 +74,28 @@ public class AccessPlugin implements Plugin {
         });
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
-                ".access add",
+                ".plugin list",
                 IRCBotAccess.SUPER_ADMIN_LEVEL,
-                "Grant user access",
-                "user",
-                "level"));
+                "List all available plugins"));
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
-                ".access del",
+                ".plugin load",
                 IRCBotAccess.SUPER_ADMIN_LEVEL,
-                "Revoke user access",
-                "user"));
+                "Load a plugin",
+                "plugin"));
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
-                ".access list",
+                ".plugin unload",
                 IRCBotAccess.SUPER_ADMIN_LEVEL,
-                "Show access list"));
+                "Unload a plugin",
+                "plugin"));
     }
 
     @Override
     public void onUnload(IRCBot bot) {
-        IRCBotAccess.getInstance().removeListener(bot, ".access");
-        PluginHelper.getInstance().removeHelp(".access add");
-        PluginHelper.getInstance().removeHelp(".access del");
-        PluginHelper.getInstance().removeHelp(".access list");
+        IRCBotAccess.getInstance().removeListener(bot, ".plugin");
+        PluginHelper.getInstance().removeHelp(".plugin list");
+        PluginHelper.getInstance().removeHelp(".plugin load");
+        PluginHelper.getInstance().removeHelp(".plugin unload");
     }
 }

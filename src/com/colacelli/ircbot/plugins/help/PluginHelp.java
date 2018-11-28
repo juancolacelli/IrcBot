@@ -24,6 +24,10 @@ public class PluginHelp {
         return access;
     }
 
+    public String getCommand() {
+        return command;
+    }
+
     @Override
     public String toString() {
         StringBuilder text = new StringBuilder();

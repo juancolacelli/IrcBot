@@ -2,10 +2,13 @@ package com.colacelli.ircbot.plugins.rssfeed;
 
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
+import com.colacelli.ircbot.listeners.OnChannelCommandListener;
 import com.colacelli.ircbot.plugins.access.IRCBotAccess;
 import com.colacelli.ircbot.plugins.help.PluginHelp;
 import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.connection.Connection;
+import com.colacelli.irclib.connection.listeners.OnPingListener;
+import com.colacelli.irclib.messages.ChannelMessage;
 import com.colacelli.irclib.messages.ChannelNoticeMessage;
 import com.colacelli.irclib.messages.PrivateNoticeMessage;
 import org.xml.sax.SAXException;
@@ -25,6 +28,7 @@ public class RssFeedPlugin implements Plugin {
     private static final String PROPERTIES_FILE = "rss_feed.properties";
     private ArrayList<RssFeed> rssFeeds;
     private Properties properties;
+    private OnPingListener listener;
 
     public RssFeedPlugin() {
         rssFeeds = new ArrayList<>();
@@ -38,6 +42,8 @@ public class RssFeedPlugin implements Plugin {
                 rssFeeds.add(rssFeed);
             }
         }
+
+        listener = connection -> check(connection);
     }
 
     private Properties loadProperties() {
@@ -80,71 +86,85 @@ public class RssFeedPlugin implements Plugin {
     }
 
     @Override
-    public void setup(IRCBot bot) {
+    public String name() {
+        return "RSS_FEED";
+    }
+
+    @Override
+    public void onLoad(IRCBot bot) {
         // Check RSS feeds on server ping
-        bot.addListener(this::check);
+        bot.addListener(listener);
 
-        IRCBotAccess.getInstance().addListener(bot, ".rss", IRCBotAccess.ADMIN_LEVEL, (connection, message, command, args) -> {
-            RssFeed rssFeed;
-            PrivateNoticeMessage.Builder privateNoticeMessageBuilder = new PrivateNoticeMessage.Builder();
-            privateNoticeMessageBuilder
-                    .setSender(connection.getUser())
-                    .setReceiver(message.getSender());
+        IRCBotAccess.getInstance().addListener(bot, IRCBotAccess.ADMIN_LEVEL, new OnChannelCommandListener() {
+            @Override
+            public String channelCommand() {
+                return ".rss";
+            }
 
-            if (args != null) {
-                if (args.length > 1) {
-                    switch (args[0]) {
-                        case "add":
-                            rssFeed = new RssFeed(args[1]);
+            @Override
+            public void onChannelCommand(Connection connection, ChannelMessage message, String command, String... args) {
+                RssFeed rssFeed;
+                PrivateNoticeMessage.Builder builder = new PrivateNoticeMessage.Builder();
+                builder
+                        .setSender(connection.getUser())
+                        .setReceiver(message.getSender());
 
-                            try {
-                                new URL(rssFeed.getUrl());
-                                rssFeeds.add(rssFeed);
-                                saveProperties();
+                if (args != null) {
+                    if (args.length > 1) {
+                        switch (args[0]) {
+                            case "add":
+                                rssFeed = new RssFeed(args[1]);
 
-                                privateNoticeMessageBuilder.setText(rssFeed.getUrl() + " added!");
-                            } catch (IOException e) {
-                                privateNoticeMessageBuilder.setText("Wrong RSS feed URL!");
-                            }
-                            connection.send(privateNoticeMessageBuilder.build());
+                                try {
+                                    new URL(rssFeed.getUrl());
+                                    rssFeeds.add(rssFeed);
+                                    saveProperties();
 
-                            break;
+                                    builder.setText(rssFeed.getUrl() + " added!");
+                                } catch (IOException e) {
+                                    builder.setText("Wrong RSS feed URL!");
+                                }
+                                connection.send(builder.build());
 
-                        case "del":
-                            try {
-                                int feedIndex = Integer.parseInt(args[1]);
-                                rssFeed = rssFeeds.remove(feedIndex);
-                                saveProperties();
+                                break;
 
-                                privateNoticeMessageBuilder.setText(rssFeed.getUrl() + " deleted!");
-                            } catch (IndexOutOfBoundsException | NumberFormatException e) {
-                                privateNoticeMessageBuilder.setText("Wrong RSS feed index!");
-                            }
+                            case "del":
+                                try {
+                                    int feedIndex = Integer.parseInt(args[1]);
+                                    rssFeed = rssFeeds.remove(feedIndex);
+                                    saveProperties();
 
-                            connection.send(privateNoticeMessageBuilder.build());
+                                    builder.setText(rssFeed.getUrl() + " deleted!");
+                                } catch (IndexOutOfBoundsException | NumberFormatException e) {
+                                    builder.setText("Wrong RSS feed index!");
+                                }
 
-                            break;
-                    }
-                } else {
-                    switch (args[0]) {
-                        case "list":
-                            for (int i = 0; i < rssFeeds.size(); i++) {
-                                rssFeed = rssFeeds.get(i);
+                                connection.send(builder.build());
 
-                                privateNoticeMessageBuilder.setText(i + ": " + rssFeed.getUrl());
-                                connection.send(privateNoticeMessageBuilder.build());
-                            }
+                                break;
+                        }
+                    } else {
+                        switch (args[0]) {
+                            case "list":
+                                for (int i = 0; i < rssFeeds.size(); i++) {
+                                    rssFeed = rssFeeds.get(i);
 
-                            break;
+                                    builder.setText(i + ": " + rssFeed.getUrl());
+                                    connection.send(builder.build());
+                                }
 
-                        case "check":
-                            check(connection);
+                                break;
 
-                            break;
+                            case "check":
+                                check(connection);
+
+                                break;
+                        }
                     }
                 }
             }
         });
+
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".rss check",
                 IRCBotAccess.ADMIN_LEVEL,
@@ -163,6 +183,16 @@ public class RssFeedPlugin implements Plugin {
                 IRCBotAccess.ADMIN_LEVEL,
                 "Delete an RSS feed",
                 "index"));
+    }
+
+    @Override
+    public void onUnload(IRCBot bot) {
+        bot.removeListener(listener);
+        IRCBotAccess.getInstance().removeListener(bot, ".rss");
+        PluginHelper.getInstance().removeHelp(".rss check");
+        PluginHelper.getInstance().removeHelp(".rss list");
+        PluginHelper.getInstance().removeHelp(".rss add");
+        PluginHelper.getInstance().removeHelp(".rss del");
     }
 
     private void check(Connection connection) {

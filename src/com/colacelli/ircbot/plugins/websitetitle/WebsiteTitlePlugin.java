@@ -16,9 +16,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WebsiteTitlePlugin implements Plugin {
+    private OnChannelMessageListener listener;
+
     @Override
-    public void setup(IRCBot bot) {
-        bot.addListener((OnChannelMessageListener) (connection, message) -> {
+    public String name() {
+        return "WEBSITE_TITLE";
+    }
+
+    @Override
+    public void onLoad(IRCBot bot) {
+        listener = (connection, message) -> {
             String text = message.getText();
             Pattern urlsPattern = Pattern.compile("((http://|https://)([^ ]+))");
             Matcher urlsMatcher = urlsPattern.matcher(text);
@@ -47,7 +54,14 @@ public class WebsiteTitlePlugin implements Plugin {
                 worker.setName("WebsiteTitleGetter");
                 worker.start();
             }
-        });
+        };
+
+        bot.addListener(listener);
+    }
+
+    @Override
+    public void onUnload(IRCBot bot) {
+        bot.removeListener(listener);
     }
 
     private class WebsiteTitleGetter implements Runnable {
