@@ -6,10 +6,10 @@ import com.colacelli.ircbot.listeners.OnChannelCommandListener;
 import com.colacelli.ircbot.plugins.access.IRCBotAccess;
 import com.colacelli.ircbot.plugins.help.PluginHelp;
 import com.colacelli.ircbot.plugins.help.PluginHelper;
+import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.listeners.OnPingListener;
 import com.colacelli.irclib.messages.ChannelMessage;
-import com.colacelli.irclib.messages.ChannelNoticeMessage;
 import com.colacelli.irclib.messages.PrivateNoticeMessage;
 import org.xml.sax.SAXException;
 
@@ -23,23 +23,33 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 public class RssFeedPlugin implements Plugin {
-    private static final String PROPERTIES_URLS = "rss_feed_urls";
-    private static final String PROPERTIES_URLS_SEPARATOR = ",";
+    private static final String PROPERTIES_SEPARATOR = ",";
+    private static final String PROPERTIES_URLS = "urls";
+    private static final String PROPERTIES_SUBSCRIBERS = "subscribers";
     private static final String PROPERTIES_FILE = "rss_feed.properties";
     private ArrayList<RssFeed> rssFeeds;
+    private ArrayList<String> subscribers;
     private Properties properties;
     private OnPingListener listener;
 
     public RssFeedPlugin() {
         rssFeeds = new ArrayList<>();
+        subscribers = new ArrayList<>();
 
         properties = loadProperties();
-        String urls = properties.getProperty(PROPERTIES_URLS);
+        String urls_property = properties.getProperty(PROPERTIES_URLS);
+        String subscribers_property = properties.getProperty(PROPERTIES_SUBSCRIBERS);
 
-        if (urls != null && !urls.isEmpty()) {
-            for (String url : urls.split(PROPERTIES_URLS_SEPARATOR)) {
+        if (urls_property != null && !urls_property.isEmpty()) {
+            for (String url : urls_property.split(PROPERTIES_SEPARATOR)) {
                 RssFeed rssFeed = new RssFeed(url);
                 rssFeeds.add(rssFeed);
+            }
+        }
+
+        if (subscribers_property != null && !subscribers_property.isEmpty()) {
+            for (String subscriber : subscribers_property.split(PROPERTIES_SEPARATOR)) {
+                subscribers.add(subscriber);
             }
         }
 
@@ -64,12 +74,19 @@ public class RssFeedPlugin implements Plugin {
     private void saveProperties() {
         OutputStream outputStream = null;
 
-        StringBuilder urls = new StringBuilder();
+        StringBuilder urls_property = new StringBuilder();
         rssFeeds.forEach(rssFeed -> {
-            urls.append(rssFeed.getUrl());
-            urls.append(PROPERTIES_URLS_SEPARATOR);
+            urls_property.append(rssFeed.getUrl());
+            urls_property.append(PROPERTIES_SEPARATOR);
         });
-        properties.setProperty(PROPERTIES_URLS, urls.toString());
+        properties.setProperty(PROPERTIES_URLS, urls_property.toString());
+
+        StringBuilder subscribers_property = new StringBuilder();
+        subscribers.forEach(subscriber -> {
+            subscribers_property.append(subscriber);
+            subscribers_property.append(PROPERTIES_SEPARATOR);
+        });
+        properties.setProperty(PROPERTIES_SUBSCRIBERS, subscribers_property.toString());
 
         try {
             outputStream = new FileOutputStream(PROPERTIES_FILE);
@@ -94,6 +111,43 @@ public class RssFeedPlugin implements Plugin {
     public void onLoad(IRCBot bot) {
         // Check RSS feeds on server ping
         bot.addListener(listener);
+
+        bot.addListener(new OnChannelCommandListener() {
+            @Override
+            public String channelCommand() {
+                return ".rss";
+            }
+
+            @Override
+            public void onChannelCommand(Connection connection, ChannelMessage message, String command, String... args) {
+                if (args.length == 1) {
+                    PrivateNoticeMessage.Builder builder = new PrivateNoticeMessage.Builder();
+                    builder
+                            .setSender(connection.getUser())
+                            .setReceiver(message.getSender());
+
+                    switch (args[0]) {
+                        case "subscribe":
+                            subscribers.add(message.getSender().getNick());
+                            saveProperties();
+
+                            builder.setText("You has been subscribed to RSS feed!");
+                            connection.send(builder.build());
+
+                            break;
+
+                        case "unsubscribe":
+                            subscribers.remove(message.getSender().getNick());
+                            saveProperties();
+
+                            builder.setText("You has been unsubscribed to RSS feed!");
+                            connection.send(builder.build());
+
+                            break;
+                    }
+                }
+            }
+        });
 
         IRCBotAccess.getInstance().addListener(bot, IRCBotAccess.ADMIN_LEVEL, new OnChannelCommandListener() {
             @Override
@@ -145,6 +199,17 @@ public class RssFeedPlugin implements Plugin {
                         }
                     } else {
                         switch (args[0]) {
+                            case "subscribers":
+                                StringBuilder subscribers_nicks = new StringBuilder();
+                                subscribers.forEach(subscriber -> {
+                                    subscribers_nicks.append(subscriber);
+                                    subscribers_nicks.append(" ");
+                                });
+                                builder.setText(subscribers_nicks.toString());
+                                connection.send(builder.build());
+
+                                break;
+
                             case "list":
                                 for (int i = 0; i < rssFeeds.size(); i++) {
                                     rssFeed = rssFeeds.get(i);
@@ -183,6 +248,16 @@ public class RssFeedPlugin implements Plugin {
                 IRCBotAccess.ADMIN_LEVEL,
                 "Delete an RSS feed",
                 "index"));
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                ".rss subscribers",
+                IRCBotAccess.ADMIN_LEVEL,
+                "List all subscribers"));
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                ".rss subscribe",
+                "Subscribe to RSS feed"));
+        PluginHelper.getInstance().addHelp(new PluginHelp(
+                ".rss unsubscribe",
+                "Unsubscribe to RSS feed"));
     }
 
     @Override
@@ -193,6 +268,9 @@ public class RssFeedPlugin implements Plugin {
         PluginHelper.getInstance().removeHelp(".rss list");
         PluginHelper.getInstance().removeHelp(".rss add");
         PluginHelper.getInstance().removeHelp(".rss del");
+        PluginHelper.getInstance().removeHelp(".rss subscribers");
+        PluginHelper.getInstance().removeHelp(".rss subscribe");
+        PluginHelper.getInstance().removeHelp(".rss unsubscribe");
     }
 
     private void check(Connection connection) {
@@ -207,11 +285,11 @@ public class RssFeedPlugin implements Plugin {
                         if (!rssFeedItems.isEmpty()) {
                             RssFeedItem rssFeedItem = rssFeedItems.get(0);
 
-                            connection.getChannels().forEach((channel) -> {
-                                ChannelNoticeMessage.Builder builder = new ChannelNoticeMessage.Builder();
+                            subscribers.forEach((subscriber) -> {
+                                PrivateNoticeMessage.Builder builder = new PrivateNoticeMessage.Builder();
                                 builder
                                         .setSender(connection.getUser())
-                                        .setChannel(channel)
+                                        .setReceiver(new User(subscriber))
                                         .setText(rssFeedItem.toString());
 
                                 connection.send(builder.build());
