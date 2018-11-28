@@ -63,7 +63,7 @@ bot.addPlugin(new BasicPlugin());
 * **nickserv**: NickServ authentication
 * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
 * **rejoinonkick**: Re-join channels on kick
-* **rssfeed**: Get rss feed notices and send it to all joined channels
+* **rssfeed**: Get rss feed notices and send them to all subscribers
 * **uptime**: Shows bot uptime
 * **websitetitle**: Get website title when an url is detected
 

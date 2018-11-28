@@ -257,7 +257,7 @@ public class RssFeedPlugin implements Plugin {
                 "Subscribe to RSS feed"));
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".rss unsubscribe",
-                "Unsubscribe to RSS feed"));
+                "Unsubscribe from RSS feed"));
     }
 
     @Override
