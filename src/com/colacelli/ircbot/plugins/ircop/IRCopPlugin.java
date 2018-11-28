@@ -15,7 +15,7 @@ public class IRCopPlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "IRCOP";
     }
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class LoaderPlugin implements Plugin {
     @Override
-    public String name() {
+    public String getName() {
         return "LOADER";
     }
 
@@ -38,22 +38,22 @@ public class LoaderPlugin implements Plugin {
                     if (args.length > 1) {
                         switch (args[0]) {
                             case "load":
-                                for(int i = 0; i < botPlugins.size(); i++) {
+                                for (int i = 0; i < botPlugins.size(); i++) {
                                     Plugin plugin = botPlugins.get(i);
-                                    if (plugin.name().toUpperCase().equals(args[1].toUpperCase())) {
+                                    if (plugin.getName().toUpperCase().equals(args[1].toUpperCase())) {
                                         plugin.onLoad(bot);
-                                        builder.setText(plugin.name() + " loaded!");
+                                        builder.setText(plugin.getName() + " loaded!");
                                         connection.send(builder.build());
                                     }
                                 }
                                 break;
 
                             case "unload":
-                                for(int i = 0; i < botPlugins.size(); i++) {
+                                for (int i = 0; i < botPlugins.size(); i++) {
                                     Plugin plugin = botPlugins.get(i);
-                                    if (plugin.name().toUpperCase().equals(args[1].toUpperCase())) {
+                                    if (plugin.getName().toUpperCase().equals(args[1].toUpperCase())) {
                                         plugin.onUnload(bot);
-                                        builder.setText(plugin.name() + " unloaded!");
+                                        builder.setText(plugin.getName() + " unloaded!");
                                         connection.send(builder.build());
                                     }
                                 }
@@ -63,7 +63,7 @@ public class LoaderPlugin implements Plugin {
                         switch (args[0]) {
                             case "list":
                                 botPlugins.forEach((plugin) -> {
-                                    builder.setText(plugin.name());
+                                    builder.setText(plugin.getName());
                                     connection.send(builder.build());
                                 });
                                 break;

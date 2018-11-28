@@ -11,7 +11,7 @@ import com.colacelli.irclib.messages.PrivateNoticeMessage;
 
 public class AccessPlugin implements Plugin {
     @Override
-    public String name() {
+    public String getName() {
         return "ACCESS";
     }
 

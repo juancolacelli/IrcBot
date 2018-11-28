@@ -2,7 +2,8 @@ package com.colacelli.ircbot;
 
 import com.colacelli.ircbot.listeners.OnChannelCommandListener;
 import com.colacelli.irclib.connection.Connection;
-import com.colacelli.irclib.connection.listeners.*;
+import com.colacelli.irclib.connection.listeners.Listenable;
+import com.colacelli.irclib.connection.listeners.Listener;
 
 import java.util.ArrayList;
 import java.util.HashMap;

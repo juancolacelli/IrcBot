@@ -7,7 +7,6 @@ import com.colacelli.irclib.connection.listeners.OnChannelMessageListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class IRCBot extends IRCBotListener {
     private static final String HTTP_USER_AGENT = "GNU IRC Bot - https://gitlab.com/jic/ircbot";

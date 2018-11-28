@@ -3,7 +3,6 @@ package com.colacelli.ircbot.plugins.rejoinonkick;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.actors.Channel;
-import com.colacelli.irclib.actors.User;
 import com.colacelli.irclib.connection.Connection;
 import com.colacelli.irclib.connection.Rawable;
 import com.colacelli.irclib.connection.listeners.Listener;
@@ -44,7 +43,7 @@ public class RejoinOnKickPlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "REJOIN_ON_KICK";
     }
 

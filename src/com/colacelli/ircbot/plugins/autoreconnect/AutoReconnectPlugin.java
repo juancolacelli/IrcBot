@@ -8,7 +8,7 @@ public class AutoReconnectPlugin implements Plugin {
     private OnDisconnectListener listener;
 
     @Override
-    public String name() {
+    public String getName() {
         return "AUTO_RECONNECT";
     }
 

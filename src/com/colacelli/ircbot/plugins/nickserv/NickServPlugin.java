@@ -28,7 +28,7 @@ public class NickServPlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "NICKSERV";
     }
 

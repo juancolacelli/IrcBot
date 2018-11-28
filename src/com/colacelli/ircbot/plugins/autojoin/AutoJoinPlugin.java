@@ -18,7 +18,7 @@ public class AutoJoinPlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "AUTO_JOIN";
     }
 

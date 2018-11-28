@@ -19,7 +19,7 @@ public class WebsiteTitlePlugin implements Plugin {
     private OnChannelMessageListener listener;
 
     @Override
-    public String name() {
+    public String getName() {
         return "WEBSITE_TITLE";
     }
 

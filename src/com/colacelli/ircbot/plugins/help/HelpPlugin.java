@@ -36,7 +36,7 @@ public class HelpPlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "HELP";
     }
 

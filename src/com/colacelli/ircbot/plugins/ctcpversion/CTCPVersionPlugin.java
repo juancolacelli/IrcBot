@@ -30,7 +30,7 @@ public class CTCPVersionPlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "CTCP_VERSION";
     }
 

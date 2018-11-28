@@ -64,7 +64,7 @@ public class ApertiumTranslatePlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "APERTIUM_TRANSLATE";
     }
 

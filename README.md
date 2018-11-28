@@ -58,6 +58,8 @@ bot.addPlugin(new BasicPlugin());
 * **ctcpversion**: Customize your CTCP VERSION response
 * **help**: Bot help
 * **ircop**: IRCop authentication
+* **joinpart**: Bot can join and part channels by request
+* **loader**: Plugins can be loaded and unloaded
 * **nickserv**: NickServ authentication
 * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
 * **rejoinonkick**: Re-join channels on kick

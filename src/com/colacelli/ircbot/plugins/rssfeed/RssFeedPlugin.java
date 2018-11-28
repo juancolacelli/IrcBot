@@ -86,7 +86,7 @@ public class RssFeedPlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "RSS_FEED";
     }
 

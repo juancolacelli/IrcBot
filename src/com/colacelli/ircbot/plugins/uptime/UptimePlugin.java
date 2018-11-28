@@ -18,7 +18,7 @@ public class UptimePlugin implements Plugin {
     }
 
     @Override
-    public String name() {
+    public String getName() {
         return "UPTIME";
     }
 
