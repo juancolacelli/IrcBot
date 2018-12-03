@@ -62,6 +62,8 @@ public class ThePirateBaySearchResult {
         } catch (IOException e) {
             // Invalid URL
             return null;
+        } catch (NullPointerException e) {
+            return new ThePirateBaySearchResult();
         }
         return result;
     }
