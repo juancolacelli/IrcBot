@@ -18,6 +18,7 @@ public class JoinPartPlugin implements Plugin {
 
     @Override
     public void onLoad(IRCBot bot) {
+        // TODO: Add/Remove channels from properties file
         IRCBotAccess.getInstance().addListener(bot, IRCBotAccess.OPERATOR_LEVEL, new OnChannelCommandListener() {
             @Override
             public String channelCommand() {

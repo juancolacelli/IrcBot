@@ -54,10 +54,10 @@ public class AccessPlugin implements Plugin {
                     } else {
                         switch (args[0]) {
                             case "list":
-                                IRCBotAccess.getInstance().getAccesses().forEach((nick, level) -> {
-                                    builder.setText(nick + ": " + level);
-                                    connection.send(builder.build());
-                                });
+                                StringBuilder accesses = new StringBuilder();
+                                IRCBotAccess.getInstance().getAccesses().forEach((nick, level) -> accesses.append(nick + "(" + level + ") "));
+                                builder.setText(accesses.toString());
+                                connection.send(builder.build());
                                 break;
                         }
                     }

@@ -1,6 +1,7 @@
 package com.colacelli.ircbot.plugins.help;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class PluginHelper {
     private static PluginHelper instance;
@@ -26,18 +27,27 @@ public class PluginHelper {
         }
     }
 
-    public ArrayList<String> getHelp(int access) {
+    public ArrayList<String> getCommands(int access) {
         ArrayList<String> helpTexts = new ArrayList<>();
+        this.helps.sort(Comparator.comparing(PluginHelp::getCommand));
         this.helps.forEach(help -> {
             if (help.getAccess() <= access) {
-                helpTexts.add(help.toString());
+                helpTexts.add(help.getCommand());
             }
         });
 
         return helpTexts;
     }
 
-    public ArrayList<String> getHelp() {
-        return getHelp(0);
+    public ArrayList<String> getHelp(int access, String command) {
+        ArrayList<String> helpTexts = new ArrayList<>();
+        this.helps.sort(Comparator.comparing(PluginHelp::getCommand));
+        this.helps.forEach(help -> {
+            if (help.getAccess() <= access && (help.getCommand().startsWith(command.toLowerCase()) || help.getCommand().startsWith("." + command.toLowerCase()))) {
+                helpTexts.add(help.toString());
+            }
+        });
+
+        return helpTexts;
     }
 }
