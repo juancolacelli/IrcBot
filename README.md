@@ -56,6 +56,7 @@ bot.addPlugin(new BasicPlugin());
 * **autojoin**: Auto-join channels on connect
 * **autoreconnect**: Auto-reconnect on disconnection
 * **ctcpversion**: Customize your CTCP VERSION response
+* **duckduckgosearch**: Find on [DuckDuckGo](https://duckduckgo.com)
 * **help**: Bot help
 * **ircop**: IRCop authentication
 * **joinpart**: Bot can join and part channels by request

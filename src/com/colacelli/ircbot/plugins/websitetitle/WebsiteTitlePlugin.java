@@ -30,7 +30,6 @@ public class WebsiteTitlePlugin implements Plugin {
             Pattern urlsPattern = Pattern.compile("((http://|https://)([^ ]+))");
             Matcher urlsMatcher = urlsPattern.matcher(text);
 
-            // FIXME: Move it into a thread
             while (urlsMatcher.find()) {
                 WebsiteTitleGetter task = new WebsiteTitleGetter(urlsMatcher.group(0));
                 task.addListener(new OnWebsiteTitleGetListener() {

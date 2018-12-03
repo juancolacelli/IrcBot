@@ -306,7 +306,7 @@ public class RssFeedPlugin implements Plugin {
             }
 
             Thread worker = new Thread(task);
-            worker.setName("RssChecker");
+            worker.setName("RssFeedChecker");
             worker.start();
         }
     }
