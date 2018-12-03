@@ -2,13 +2,15 @@
 
 ## Dependencies
 * **GNU IRC Library**: https://gitlab.com/jic/irclib
-* **json-simple**: https://code.google.com/archive/p/json-simple/
 * **apache-commons**: http://commons.apache.org/proper/commons-lang/
+* **json-simple**: https://code.google.com/archive/p/json-simple/
+* **jsoup**: https://jsoup.org/
 
 **Maven**
 ```
-com.googlecode.json-simple:json-simple:1.1.12
 org.apache.commons:commons-text:1.62
+com.googlecode.json-simple:json-simple:1.1.12
+org.jsoup:jsoup:1.11.3
 ```
 
 ## Showcase
@@ -56,7 +58,7 @@ bot.addPlugin(new BasicPlugin());
 * **autojoin**: Auto-join channels on connect
 * **autoreconnect**: Auto-reconnect on disconnection
 * **ctcpversion**: Customize your CTCP VERSION response
-* **duckduckgosearch**: Find on [DuckDuckGo](https://duckduckgo.com)
+* **duckduckgosearch**: Search on [DuckDuckGo](https://duckduckgo.com)
 * **help**: Bot help
 * **ircop**: IRCop authentication
 * **joinpart**: Bot can join and part channels by request
@@ -65,6 +67,7 @@ bot.addPlugin(new BasicPlugin());
 * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
 * **rejoinonkick**: Re-join channels on kick
 * **rssfeed**: Get rss feed notices and send them to all subscribers
+* **thepiratebaysearch**: Search torrents in [ThePirateBay](https://thepiratebay.online)
 * **uptime**: Shows bot uptime
 * **websitetitle**: Get website title when an url is detected
 

@@ -1,4 +1,4 @@
-package com.colacelli.ircbot.plugins.duckduckgosearch;
+package com.colacelli.ircbot.plugins.thepiratebaysearch;
 
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
@@ -10,29 +10,29 @@ import com.colacelli.irclib.messages.ChannelMessage;
 
 import java.util.ArrayList;
 
-public class DuckDuckGoSearchPlugin implements Plugin {
+public class ThePirateBaySearchPlugin implements Plugin {
     private final OnChannelCommandListener listener;
 
-    public DuckDuckGoSearchPlugin() {
+    public ThePirateBaySearchPlugin() {
         listener = new OnChannelCommandListener() {
             @Override
             public String channelCommand() {
-                return ".ddgo";
+                return ".torrent";
             }
 
             @Override
             public void onChannelCommand(Connection connection, ChannelMessage message, String command, String... args) {
                 if (args != null) {
-                    DuckDuckGoSearch task = new DuckDuckGoSearch(String.join("%20", args));
+                    ThePirateBaySearch task = new ThePirateBaySearch(String.join("+", args));
 
-                    task.addListener(new OnDuckDuckGoSearchResultListener() {
+                    task.addListener(new OnThePirateBaySearchResult() {
                         @Override
-                        public void onSuccess(DuckDuckGoSearchResult searchResult) {
+                        public void onSuccess(ThePirateBaySearchResult result) {
                             ChannelMessage.Builder builder = new ChannelMessage.Builder();
                             builder
                                     .setChannel(message.getChannel())
                                     .setSender(connection.getUser())
-                                    .setText(searchResult.toString());
+                                    .setText(result.toString());
 
                             connection.send(builder.build());
                         }
@@ -43,14 +43,14 @@ public class DuckDuckGoSearchPlugin implements Plugin {
                             builder
                                     .setChannel(message.getChannel())
                                     .setSender(connection.getUser())
-                                    .setText("Query not found!");
+                                    .setText("Torrent not found!");
 
                             connection.send(builder.build());
                         }
                     });
 
                     Thread worker = new Thread(task);
-                    worker.setName("DuckDuckGoSearch");
+                    worker.setName("ThePirateBaySearch");
                     worker.start();
                 }
             }
@@ -59,7 +59,7 @@ public class DuckDuckGoSearchPlugin implements Plugin {
 
     @Override
     public String getName() {
-        return "DUCK_DUCK_GO_SEARCH";
+        return "TORRENT_PROJECT_SEARCH";
     }
 
     @Override
@@ -67,33 +67,33 @@ public class DuckDuckGoSearchPlugin implements Plugin {
         bot.addListener(listener);
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
-                ".ddgo",
-                "Find on DuckDuckGo (https://duckduckgo.com)",
+                ".torrent",
+                "Find torrents on ThePirateBay (https://thepiratebay.online)",
                 "query"));
     }
 
     @Override
     public void onUnload(IRCBot bot) {
-        bot.removeListener(".ddgo");
-        PluginHelper.getInstance().removeHelp(".ddgo");
+        bot.removeListener(".torrent");
+        PluginHelper.getInstance().removeHelp(".torrent");
     }
 
-    private class DuckDuckGoSearch implements Runnable {
-        private ArrayList<OnDuckDuckGoSearchResultListener> listeners;
+    private class ThePirateBaySearch implements Runnable {
+        private ArrayList<OnThePirateBaySearchResult> listeners;
         private String query;
 
-        public DuckDuckGoSearch(String query) {
+        public ThePirateBaySearch(String query) {
             this.query = query;
             listeners = new ArrayList<>();
         }
 
-        public void addListener(OnDuckDuckGoSearchResultListener listener) {
+        public void addListener(OnThePirateBaySearchResult listener) {
             listeners.add(listener);
         }
 
         @Override
         public void run() {
-            DuckDuckGoSearchResult result = DuckDuckGoSearchResult.search(query);
+            ThePirateBaySearchResult result = ThePirateBaySearchResult.search(query);
             listeners.forEach((listener) -> {
                 if (result.isEmpty()) {
                     listener.onError();

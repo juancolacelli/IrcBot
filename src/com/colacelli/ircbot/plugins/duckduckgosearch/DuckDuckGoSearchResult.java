@@ -10,7 +10,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class DuckDuckGoSearchResult {
-    private static final String DUCK_DUCK_GO_URL = "https://api.duckduckgo.com/?q=QUERY&format=json";
+    private static final String DUCK_DUCK_GO_URL = "https://api.duckduckgo.com/?q=QUERY&format=json&t=ircbot";
     private static final String DUCK_DUCK_GO_JSON_TITLE = "Heading";
     private static final String DUCK_DUCK_GO_JSON_TEXT = "AbstractText";
     private static final String DUCK_DUCK_GO_JSON_SOURCE = "AbstractSource";
@@ -28,7 +28,7 @@ public class DuckDuckGoSearchResult {
         this.url = url;
     }
 
-    public static DuckDuckGoSearchResult get(String query) {
+    public static DuckDuckGoSearchResult search(String query) {
         String url = DUCK_DUCK_GO_URL.replace("QUERY", query);
 
         DuckDuckGoSearchResult result = null;
