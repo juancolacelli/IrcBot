@@ -5,6 +5,8 @@ import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener;
 import com.colacelli.irclib.messages.ChannelMessage;
 import org.apache.commons.text.StringEscapeUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -79,30 +81,9 @@ public class WebsiteTitlePlugin implements Plugin {
         @Override
         public void run() {
             try {
-                // Body
-                InputStream response = new URL(url).openStream();
-
-                Scanner scanner = new Scanner(response).useDelimiter("\\A");
-                String title = "";
-
-                while (title.isEmpty() && scanner.hasNext()) {
-                    String responseBody = scanner.next();
-                    responseBody = responseBody.replaceAll("\\n", "");
-
-                    // Title
-                    Pattern titlePattern = Pattern.compile("<title?([^>]+)>(.+?)</title>");
-                    Matcher titleMatch = titlePattern.matcher(responseBody);
-                    if (titleMatch.find()) {
-                        try {
-                            title = titleMatch.group(2);
-                            String unescapedTitle = StringEscapeUtils.unescapeHtml4(title);
-                            onWebsiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, unescapedTitle));
-                        } catch (IllegalStateException | NoSuchElementException e) {
-                            // Title not found
-                            onWebsiteTitleGetListeners.forEach(OnWebsiteTitleGetListener::onError);
-                        }
-                    }
-                }
+                Document document = Jsoup.connect(url).get();
+                String title = document.title();
+                onWebsiteTitleGetListeners.forEach(listener -> listener.onSuccess(url, title));
             } catch (IOException e) {
                 // Invalid URL
                 onWebsiteTitleGetListeners.forEach(OnWebsiteTitleGetListener::onError);

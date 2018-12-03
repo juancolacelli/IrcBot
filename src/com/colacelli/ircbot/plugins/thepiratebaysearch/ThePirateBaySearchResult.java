@@ -16,7 +16,8 @@ public class ThePirateBaySearchResult {
     private int seeders;
     private int leechers;
 
-    private ThePirateBaySearchResult() {}
+    private ThePirateBaySearchResult() {
+    }
 
     private ThePirateBaySearchResult(String title, String url, String magnet, String description, int seeders, int leechers) {
         this.title = title;
@@ -32,9 +33,9 @@ public class ThePirateBaySearchResult {
         try {
             String url = THE_PIRATE_BAY_URL.replace("QUERY", query);
 
-            Document doc = Jsoup.connect(url).get();
+            Document document = Jsoup.connect(url).get();
 
-            Element firstResult = doc.select("table#searchResult tbody td:not(.vertTh)").first();
+            Element firstResult = document.select("table#searchResult tbody td:not(.vertTh)").first();
             Element link = firstResult.select("a").get(0);
             Element magnet = firstResult.select("a").get(1);
             Element description = firstResult.select("font.detDesc").first();

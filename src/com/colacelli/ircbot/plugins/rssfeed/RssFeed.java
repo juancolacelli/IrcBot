@@ -42,6 +42,7 @@ public class RssFeed {
 
         InputStream response = new URL(url).openStream();
 
+        // FIXME: Use Jsoup
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
         Document document = documentBuilder.parse(response);
