@@ -12,18 +12,20 @@ public class ThePirateBaySearchResult {
     private String title;
     private String url;
     private String magnet;
-    private String description;
+    private String uploadedAt;
+    private String size;
     private int seeders;
     private int leechers;
 
     private ThePirateBaySearchResult() {
     }
 
-    private ThePirateBaySearchResult(String title, String url, String magnet, String description, int seeders, int leechers) {
+    private ThePirateBaySearchResult(String title, String url, String magnet, String uploadedAt, String size, int seeders, int leechers) {
         this.title = title;
         this.url = url;
         this.magnet = magnet;
-        this.description = description;
+        this.uploadedAt = uploadedAt;
+        this.size = size;
         this.seeders = seeders;
         this.leechers = leechers;
     }
@@ -43,16 +45,23 @@ public class ThePirateBaySearchResult {
             Element seeders = parentTr.select("td[align=right]").first();
             Element leechers = parentTr.select("td[align=right]").last();
 
+            String[] descriptionText = description.text().split(", ");
+            String size = descriptionText[1].replace("Size ", "");
+            String uploadedAt = descriptionText[0].replace("Uploaded ", "");
+            String magnetLink = magnet.attr("href").split("&")[0];
+
             result = new ThePirateBaySearchResult(
                     link.text(),
                     link.attr("href"),
-                    magnet.attr("href"),
-                    description.text(),
+                    magnetLink,
+                    uploadedAt,
+                    size,
                     Integer.parseInt(seeders.text()),
                     Integer.parseInt(leechers.text())
             );
         } catch (IOException e) {
             // Invalid URL
+            return null;
         }
         return result;
     }
@@ -64,16 +73,20 @@ public class ThePirateBaySearchResult {
     public String toString() {
         StringBuilder resultText = new StringBuilder();
         resultText.append(title);
-        resultText.append(": ");
-        resultText.append(description);
 
-        resultText.append(" (");
+        resultText.append(" [↑");
+        resultText.append(uploadedAt);
+
+        resultText.append("][↓");
+        resultText.append(size);
+
+        resultText.append("][⇅");
         resultText.append(seeders);
-        resultText.append("s/");
+        resultText.append("S/");
         resultText.append(leechers);
-        resultText.append("l) - ");
+        resultText.append("L] ");
 
-        resultText.append(url);
+        resultText.append(magnet);
 
         return resultText.toString();
     }

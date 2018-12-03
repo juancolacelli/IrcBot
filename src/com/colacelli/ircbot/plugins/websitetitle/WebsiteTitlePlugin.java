@@ -4,16 +4,11 @@ import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener;
 import com.colacelli.irclib.messages.ChannelMessage;
-import org.apache.commons.text.StringEscapeUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

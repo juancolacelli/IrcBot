@@ -38,12 +38,17 @@ public class ThePirateBaySearchPlugin implements Plugin {
                         }
 
                         @Override
-                        public void onError() {
+                        public void onError(ThePirateBaySearchResult result) {
                             ChannelMessage.Builder builder = new ChannelMessage.Builder();
                             builder
                                     .setChannel(message.getChannel())
-                                    .setSender(connection.getUser())
-                                    .setText("Torrent not found!");
+                                    .setSender(connection.getUser());
+
+                            if (result == null) {
+                                builder.setText("Timeout, please try again!");
+                            } else {
+                                builder.setText("Torrent not found!");
+                            }
 
                             connection.send(builder.build());
                         }
@@ -95,8 +100,8 @@ public class ThePirateBaySearchPlugin implements Plugin {
         public void run() {
             ThePirateBaySearchResult result = ThePirateBaySearchResult.search(query);
             listeners.forEach((listener) -> {
-                if (result.isEmpty()) {
-                    listener.onError();
+                if (result == null || result.isEmpty()) {
+                    listener.onError(result);
                 } else {
                     listener.onSuccess(result);
                 }
