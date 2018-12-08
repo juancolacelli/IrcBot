@@ -57,6 +57,7 @@ bot.addPlugin(new BasicPlugin());
 * **apertiumtranslator**: Translate text using [Apertium](https://apertium.org)
 * **autojoin**: Auto-join channels on connect
 * **autoreconnect**: Auto-reconnect on disconnection
+* **autoresponse**: Auto-response on text triggers
 * **ctcpversion**: Customize your CTCP VERSION response
 * **duckduckgosearch**: Search on [DuckDuckGo](https://duckduckgo.com)
 * **help**: Bot help

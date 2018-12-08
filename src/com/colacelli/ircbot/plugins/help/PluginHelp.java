@@ -1,10 +1,10 @@
 package com.colacelli.ircbot.plugins.help;
 
 public class PluginHelp {
-    private String command;
-    private int access;
-    private String help;
-    private String[] args;
+    protected String command;
+    protected int access;
+    protected String help;
+    protected String[] args;
 
     public PluginHelp(String command, int access, String help, String... args) {
         this.command = command;

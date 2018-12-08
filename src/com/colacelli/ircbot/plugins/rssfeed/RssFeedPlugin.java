@@ -264,13 +264,11 @@ public class RssFeedPlugin implements Plugin {
     public void onUnload(IRCBot bot) {
         bot.removeListener(listener);
         IRCBotAccess.getInstance().removeListener(bot, ".rss");
-        PluginHelper.getInstance().removeHelp(".rss check");
-        PluginHelper.getInstance().removeHelp(".rss list");
-        PluginHelper.getInstance().removeHelp(".rss add");
-        PluginHelper.getInstance().removeHelp(".rss del");
-        PluginHelper.getInstance().removeHelp(".rss subscribers");
-        PluginHelper.getInstance().removeHelp(".rss subscribe");
-        PluginHelper.getInstance().removeHelp(".rss unsubscribe");
+
+        String[] commands = {"check", "list", "add", "del", "subscribers", "subscribe", "unsubscribe"};
+        for (String command : commands) {
+            PluginHelper.getInstance().removeHelp(".rss " + command);
+        }
     }
 
     private void check(Connection connection) {
