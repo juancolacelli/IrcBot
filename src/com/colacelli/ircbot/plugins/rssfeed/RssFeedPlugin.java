@@ -254,9 +254,11 @@ public class RssFeedPlugin implements Plugin {
                 "List all subscribers"));
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".rss subscribe",
+                IRCBotAccess.USER_LEVEL,
                 "Subscribe to RSS feed"));
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".rss unsubscribe",
+                IRCBotAccess.USER_LEVEL,
                 "Unsubscribe from RSS feed"));
     }
 

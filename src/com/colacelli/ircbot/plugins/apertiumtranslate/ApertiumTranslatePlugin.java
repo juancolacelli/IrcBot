@@ -3,6 +3,7 @@ package com.colacelli.ircbot.plugins.apertiumtranslate;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.ircbot.listeners.OnChannelCommandListener;
+import com.colacelli.ircbot.plugins.access.IRCBotAccess;
 import com.colacelli.ircbot.plugins.help.PluginHelp;
 import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.connection.Connection;
@@ -74,6 +75,7 @@ public class ApertiumTranslatePlugin implements Plugin {
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".translate",
+                IRCBotAccess.USER_LEVEL,
                 "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
                 "locale1",
                 "locale2"));

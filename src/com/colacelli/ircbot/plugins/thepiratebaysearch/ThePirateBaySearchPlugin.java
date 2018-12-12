@@ -3,6 +3,7 @@ package com.colacelli.ircbot.plugins.thepiratebaysearch;
 import com.colacelli.ircbot.IRCBot;
 import com.colacelli.ircbot.Plugin;
 import com.colacelli.ircbot.listeners.OnChannelCommandListener;
+import com.colacelli.ircbot.plugins.access.IRCBotAccess;
 import com.colacelli.ircbot.plugins.help.PluginHelp;
 import com.colacelli.ircbot.plugins.help.PluginHelper;
 import com.colacelli.irclib.connection.Connection;
@@ -73,6 +74,7 @@ public class ThePirateBaySearchPlugin implements Plugin {
 
         PluginHelper.getInstance().addHelp(new PluginHelp(
                 ".torrent",
+                IRCBotAccess.USER_LEVEL,
                 "Find torrents on ThePirateBay (https://thepiratebay.online)",
                 "query"));
     }
