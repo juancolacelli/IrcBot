@@ -34,7 +34,7 @@ class ApertiumTranslatePlugin : Plugin {
                             .setSender(connection.user)
                             .setChannel(message.channel)
 
-                    apertiumTranslate.addListener(object : OnApertiumTranslateResult {
+                    apertiumTranslate.addListener(object : OnApertiumTranslateResultListener {
                         override fun onSuccess(translation: ApertiumTranslation) {
                             response.setText("[${translation.localeA}] ${translation.text} ~ [${translation.localeB}] ${translation.translation}")
                             connection.send(response.build())
@@ -45,6 +45,10 @@ class ApertiumTranslatePlugin : Plugin {
                             connection.send(response.build())
                         }
                     })
+
+                    val worker = Thread(apertiumTranslate)
+                    worker.name = "apertium_translate"
+                    worker.start()
                 }
             }
 
@@ -74,8 +78,8 @@ class ApertiumTranslatePlugin : Plugin {
         PluginHelper.instance.removeHelp(".translate")
     }
 
-    class ApertiumTranslate(private val localeA: String, private val localeB: String, private val text: String) : Runnable {
-        var listeners = ArrayList<OnApertiumTranslateResult>()
+    private class ApertiumTranslate(private val localeA: String, private val localeB: String, private val text: String) : Runnable {
+        var listeners = ArrayList<OnApertiumTranslateResultListener>()
 
         override fun run() {
             val url = APERTIUM_URL
@@ -108,11 +112,11 @@ class ApertiumTranslatePlugin : Plugin {
             }
         }
 
-        fun addListener(listener : OnApertiumTranslateResult) {
+        fun addListener(listener : OnApertiumTranslateResultListener) {
             listeners.add(listener)
         }
     }
 
-    class ApertiumTranslationResponse(@SerializedName("responseStatus") val status: Int, @SerializedName("responseData") val data: ApertiumTranslation)
-    class ApertiumTranslation(var localeA: String, var localeB: String, var text: String, @SerializedName("translatedText") val translation: String)
+    private class ApertiumTranslationResponse(@SerializedName("responseStatus") val status: Int, @SerializedName("responseData") val data: ApertiumTranslation)
+    private class ApertiumTranslation(var localeA: String, var localeB: String, var text: String, @SerializedName("translatedText") val translation: String)
 }

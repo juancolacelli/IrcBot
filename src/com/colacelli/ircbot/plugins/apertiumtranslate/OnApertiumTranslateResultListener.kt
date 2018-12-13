@@ -1,6 +1,6 @@
 package com.colacelli.ircbot.plugins.apertiumtranslate
 
-interface OnApertiumTranslateResult {
+interface OnApertiumTranslateResultListener {
     fun onSuccess(translation: ApertiumTranslatePlugin.ApertiumTranslation)
     fun onError()
 }
