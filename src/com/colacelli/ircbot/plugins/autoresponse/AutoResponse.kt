@@ -34,12 +34,30 @@ class AutoResponse : PropertiesPlugin {
 
     fun get(message: ChannelMessage) : String? {
         properties = loadProperties(PROPERTIES_FILE)
-        var response = properties.getProperty(message.text.toLowerCase())
 
-        when (response?.isNotBlank()) {
+        var text = message.text
+        var trigger = Regex("")
+        var response = ""
+
+        properties.forEach { key, value ->
+            if (response.isBlank()) {
+                trigger = Regex(key.toString())
+                if (text.toLowerCase().matches(trigger)) {
+                    response = value.toString()
+                }
+            }
+        }
+
+        when (trigger.pattern.isNotBlank() && response.isNotBlank()) {
             true -> {
-                response.replace("\$nick", message.sender.nick)
-                response.replace("\$channel", message.channel.name)
+                response = response.replace("\$nick", message.sender.nick)
+                response = response.replace("\$channel", message.channel.name)
+
+                try {
+                    response = text.replace(trigger, response)
+                } catch (e : IndexOutOfBoundsException) {
+                    // $2 not found!
+                }
             }
         }
 

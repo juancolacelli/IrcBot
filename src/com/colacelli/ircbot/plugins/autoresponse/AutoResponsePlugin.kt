@@ -48,20 +48,23 @@ class AutoResponsePlugin :Plugin {
                         "add" -> {
                             // FIXME: Dirty code...
                             val joinedArgs = args.drop(1).joinToString(" ")
-                            val separatorIndex = joinedArgs.indexOf(AutoResponsePluginHelp.SEPARATOR)
-                            val trigger = joinedArgs.substring(0, separatorIndex)
-                            val text = joinedArgs.substring(separatorIndex + 1)
-                            AutoResponse.instance.add(trigger, text)
+                            val separatedArgs = joinedArgs.split(AutoResponsePluginHelp.SEPARATOR)
+                            val trigger = separatedArgs[0]
+                            val text = separatedArgs.drop(1).joinToString("|")
 
-                            response.setText("Autoresponse added!")
-                            connection.send(response.build())
+                            if (trigger.isNotBlank() && text.isNotBlank()) {
+                                AutoResponse.instance.add(trigger, text)
+
+                                response.setText("Auto-response added!")
+                                connection.send(response.build())
+                            }
                         }
 
                         "del" -> {
-                            val trigger = args[1]
+                            val trigger = args.drop(1).joinToString(" ")
                             AutoResponse.instance.del(trigger)
 
-                            response.setText("Autoresponse removed!")
+                            response.setText("Auto-response removed!")
                             connection.send(response.build())
                         }
                     }
@@ -79,31 +82,31 @@ class AutoResponsePlugin :Plugin {
         })
 
         PluginHelper.instance.addHelp(AutoResponsePluginHelp(
-                ".autoresponse add",
+                ".ar add",
                 IRCBotAccess.Level.OPERATOR,
-                "Adds an autoresponse. Available replacements: \$nick and \$channel, ie., .autoresponse add hello" + AutoResponsePluginHelp.SEPARATOR + "hello \$nick, welcome to \$channel!",
+                "Adds an auto-response. Available replacements: regex (\$1, \$2, etc.    ), \$nick and \$channel, ie., .ar add hello" + AutoResponsePluginHelp.SEPARATOR + "hello \$nick, welcome to \$channel!",
                 "trigger",
                 "response"))
 
         PluginHelper.instance.addHelp(PluginHelp(
-                ".autoresponse del",
+                ".ar del",
                 IRCBotAccess.Level.OPERATOR,
-                "Removes an autoresponse",
+                "Removes an auto-response",
                 "trigger"))
 
         PluginHelper.instance.addHelp(PluginHelp(
-                ".autoresponse list",
+                ".ar list",
                 IRCBotAccess.Level.OPERATOR,
-                "List all autoresponses"))
+                "List all auto-responses"))
 
         bot.addListener(listener)
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".autoresponse")
+        bot.removeListener(".ar")
         bot.removeListener(listener)
         arrayOf("add", "del", "list").forEach {
-            PluginHelper.instance.removeHelp(".autoresponse $it")
+            PluginHelper.instance.removeHelp(".ar $it")
         }
     }
 }
