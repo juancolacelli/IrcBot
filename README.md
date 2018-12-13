@@ -68,7 +68,7 @@ bot.addPlugin(new BasicPlugin());
 * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
 * **rejoinonkick**: Re-join channels on kick
 * **rssfeed**: Get rss feed notices and send them to all subscribers
-* **thepiratebaysearch**: Search torrents in [ThePirateBay](https://thepiratebay.online)
+* **thepiratebaysearch**: Search torrents in [ThePirateBay](https://thepiratebay.org)
 * **uptime**: Shows bot uptime
 * **websitetitle**: Get website title when an url is detected
 

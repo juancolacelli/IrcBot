@@ -9,6 +9,7 @@ import com.colacelli.ircbot.plugins.help.PluginHelper
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import org.jsoup.Jsoup
+import java.io.IOException
 
 class ThePirateBaySearchPlugin : Plugin {
     override fun getName(): String {
@@ -37,7 +38,7 @@ class ThePirateBaySearchPlugin : Plugin {
                             connection.send(response)
                         }
 
-                        override fun onError(result: ThePirateBaySearchResult) {
+                        override fun onError() {
                             val response = ChannelMessage.Builder()
                                     .setSender(connection.user)
                                     .setText("Not found!")
@@ -58,7 +59,7 @@ class ThePirateBaySearchPlugin : Plugin {
         PluginHelper.instance.addHelp(PluginHelp(
                 ".torrent",
                 IRCBotAccess.Level.USER,
-                "Find torrents on ThePirateBay (https://thepiratebay.online)",
+                "Find torrents on ThePirateBay (https://thepiratebay.org)",
                 "query"))
     }
 
@@ -71,42 +72,49 @@ class ThePirateBaySearchPlugin : Plugin {
         private val listeners = ArrayList<OnThePirateBaySearchResult>()
 
         companion object {
-            const val THE_PIRATE_BAY_URL = "https://thepiratebay.online/s/?q=QUERY&page=0&orderby=99"
+            const val THE_PIRATE_BAY_URL = "https://thepiratebay.org/search/QUERY/0/99/0"
         }
 
         override fun run() {
             val url = THE_PIRATE_BAY_URL.replace("QUERY", query)
 
-            val document = Jsoup.connect(url).get()
+            try {
+                val document = Jsoup.connect(url).get()
 
-            val firstResult = document.select("table#searchResult tbody td:not(.vertTh)").first()
-            val link = firstResult.select("a").first()
-            val magnet = firstResult.select("a")[1]
-            val description = firstResult.select("font.detDesc").first()
-            val parentTr = firstResult.parent()
-            val seeders = parentTr.select("td[align=right]").first()
-            val leechers = parentTr.select("td[align=right]").last()
+                // FIXME: Dirty code...
+                val firstResult = document.select("table#searchResult tbody td:not(.vertTh)").first()
+                val link = firstResult.select("a").first()
+                val magnet = firstResult.select("a")[1]
+                val description = firstResult.select("font.detDesc").first()
+                val parentTr = firstResult.parent()
+                val seeders = parentTr.select("td[align=right]").first()
+                val leechers = parentTr.select("td[align=right]").last()
 
-            val descriptionText = description.text().split(", ")
-            val size = descriptionText[1].replace("Size ", "")
-            val uploadedAt = descriptionText[0].replace("Uploaded ", "")
-            val magnetLink = magnet.attr("href").split("&")[0]
+                val descriptionText = description.text().split(", ")
+                val size = descriptionText[1].replace("Size ", "")
+                val uploadedAt = descriptionText[0].replace("Uploaded ", "")
+                val magnetLink = magnet.attr("href").split("&")[0]
 
-            val result = ThePirateBaySearchResult(
-                    link.text(),
-                    link.attr("href"),
-                    magnetLink,
-                    uploadedAt,
-                    size,
-                    Integer.parseInt(seeders.text()),
-                    Integer.parseInt(leechers.text())
-            )
+                val result = ThePirateBaySearchResult(
+                        link.text(),
+                        link.attr("href"),
+                        magnetLink,
+                        uploadedAt,
+                        size,
+                        Integer.parseInt(seeders.text()),
+                        Integer.parseInt(leechers.text())
+                )
 
-            listeners.forEach {
-                if (result.magnet.isNotBlank()) {
-                    it.onSuccess(result)
-                } else {
-                    it.onError(result)
+                listeners.forEach {
+                    if (result.magnet.isNotBlank()) {
+                        it.onSuccess(result)
+                    } else {
+                        it.onError()
+                    }
+                }
+            } catch (e : IOException) {
+                listeners.forEach {
+                    it.onError()
                 }
             }
         }

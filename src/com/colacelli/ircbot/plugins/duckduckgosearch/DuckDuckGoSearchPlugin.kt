@@ -30,7 +30,8 @@ class DuckDuckGoSearchPlugin : Plugin {
                     val search = DuckDuckGoSearch(query)
                     search.addListener(object : OnDuckDuckGoSearchResultListener {
                         override fun onSuccess(searchResult: DuckDuckGoSearchResult) {
-                            val text = "[${searchResult.source}] ${searchResult.title}: ${searchResult.text.substring(0, searchResult.text.indexOf(" "))} - ${searchResult.url}"
+                            val description = searchResult.text.split(".")[0]
+                            val text = "[${searchResult.source}] ${searchResult.title}: $description - ${searchResult.url}"
                             val response = ChannelMessage.Builder()
                                     .setSender(connection.user)
                                     .setText(text)

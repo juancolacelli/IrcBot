@@ -14,14 +14,17 @@ import com.colacelli.irclib.messages.PrivateNoticeMessage
 class AutoResponsePlugin :Plugin {
     val listener = OnChannelMessageListener { connection, message ->
         val text = AutoResponse.instance.get(message)
-        if (text.isNotBlank()) {
-            val response = ChannelMessage.Builder()
-                    .setSender(connection.user)
-                    .setChannel(message.channel)
-                    .setText(text)
-                    .build()
 
-            connection.send(response)
+        when (text?.isNotBlank()) {
+            true -> {
+                val response = ChannelMessage.Builder()
+                        .setSender(connection.user)
+                        .setChannel(message.channel)
+                        .setText(text)
+                        .build()
+
+                connection.send(response)
+            }
         }
     }
 
@@ -32,7 +35,7 @@ class AutoResponsePlugin :Plugin {
     override fun onLoad(bot: IRCBot) {
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ADMIN, object : OnChannelCommandListener {
             override fun channelCommand(): String {
-                return ".autoresponse"
+                return ".ar"
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
@@ -40,20 +43,23 @@ class AutoResponsePlugin :Plugin {
                         .setSender(connection.user)
                         .setReceiver(message.sender)
 
-                if (args.size > 2) {
-                    val trigger = args[1]
-
+                if (args.size > 1) {
                     when (args[0]) {
                         "add" -> {
-                            val text = args.drop(2).joinToString(" ")
-                            AutoResponse.instance.set(trigger, text)
+                            // FIXME: Dirty code...
+                            val joinedArgs = args.drop(1).joinToString(" ")
+                            val separatorIndex = joinedArgs.indexOf(AutoResponsePluginHelp.SEPARATOR)
+                            val trigger = joinedArgs.substring(0, separatorIndex)
+                            val text = joinedArgs.substring(separatorIndex + 1)
+                            AutoResponse.instance.add(trigger, text)
 
                             response.setText("Autoresponse added!")
                             connection.send(response.build())
                         }
 
                         "del" -> {
-                            AutoResponse.instance.set(trigger, "")
+                            val trigger = args[1]
+                            AutoResponse.instance.del(trigger)
 
                             response.setText("Autoresponse removed!")
                             connection.send(response.build())

@@ -27,16 +27,13 @@ class HelpPlugin : Plugin {
         }
 
         override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-            val access = IRCBotAccess.instance.getAccess(message.sender)
+            val access = IRCBotAccess.instance.get(message.sender)
 
             if (args.isEmpty()) {
                 var text = "Available commands: (use .help <command> for more information)"
 
-                val commands = PluginHelper.instance.getCommands(access)
-                commands.sort()
-
-                commands.forEach {
-                    if (text.indexOf(command) == -1) text += " ${it.substring(0, it.indexOf(" "))}"
+                PluginHelper.instance.getCommands(access).forEach {
+                    text += " $it"
                 }
 
                 val response = PrivateNoticeMessage.Builder()
@@ -47,14 +44,13 @@ class HelpPlugin : Plugin {
 
                 connection.send(response)
             } else {
-                PluginHelper.instance.getHelp(access, args.joinToString(" ")).forEach {
-                    val response = PrivateNoticeMessage.Builder()
-                            .setSender(connection.user)
-                            .setReceiver(message.sender)
-                            .setText(it)
-                            .build()
+                val response = PrivateNoticeMessage.Builder()
+                        .setSender(connection.user)
+                        .setReceiver(message.sender)
 
-                    connection.send(response)
+                PluginHelper.instance.getHelp(access, args.joinToString(" ")).forEach {
+                    response.setText(it)
+                    connection.send(response.build())
                 }
             }
         }

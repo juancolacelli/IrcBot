@@ -118,5 +118,5 @@ class ApertiumTranslatePlugin : Plugin {
     }
 
     private class ApertiumTranslationResponse(@SerializedName("responseStatus") val status: Int, @SerializedName("responseData") val data: ApertiumTranslation)
-    private class ApertiumTranslation(var localeA: String, var localeB: String, var text: String, @SerializedName("translatedText") val translation: String)
+    class ApertiumTranslation(var localeA: String, var localeB: String, var text: String, @SerializedName("translatedText") val translation: String)
 }

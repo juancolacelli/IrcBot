@@ -13,15 +13,11 @@ class PluginHelper {
         val instance by lazy {
             Singleton.instance
         }
-
-        // @JvmStatic
-        // fun getInstance() : PluginHelper {
-        //     return Singleton.instance
-        // }
     }
 
     fun addHelp(help : PluginHelp) {
         helps.add(help)
+        helps.sortBy { it.command }
     }
 
     fun removeHelp(help : PluginHelp) {
@@ -37,11 +33,12 @@ class PluginHelper {
     }
 
     fun getCommands(access : IRCBotAccess.Level = IRCBotAccess.Level.USER) : ArrayList<String> {
-        helps.sortBy { it.command }
-
         var commands = ArrayList<String>()
         helps.forEach {
-            if (it.access.level < access.level) commands.add(it.command)
+            // Prevent dupes
+            if (commands.indexOf(it.baseCommand) == -1) {
+                if (it.access.level < access.level) commands.add(it.baseCommand)
+            }
         }
 
         return commands
@@ -50,7 +47,7 @@ class PluginHelper {
     fun getHelp(access : IRCBotAccess.Level = IRCBotAccess.Level.USER, command : String) : ArrayList<String> {
         var texts = ArrayList<String>()
         helps.forEach {
-            if (it.help.startsWith(command) && it.access.level < access.level) texts.add(it.toString())
+            if (it.command.startsWith(command) && it.access.level <= access.level) texts.add(it.toString())
         }
 
         return texts

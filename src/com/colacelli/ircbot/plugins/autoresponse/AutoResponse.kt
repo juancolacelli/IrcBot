@@ -13,26 +13,34 @@ class AutoResponse : PropertiesPlugin {
     }
 
     companion object {
-        const val PROPERTIES_FILE = "access.properties"
+        const val PROPERTIES_FILE = "auto_response.properties"
 
         val instance by lazy {
             Singleton.instance
         }
     }
 
-    fun set(trigger: String, response: String) {
+    fun add(trigger: String, response: String) {
         properties = loadProperties(PROPERTIES_FILE)
         properties.setProperty(trigger.toLowerCase(), response)
         saveProperties(PROPERTIES_FILE, properties)
     }
 
-    fun get(message: ChannelMessage) : String {
+    fun del(trigger: String) {
         properties = loadProperties(PROPERTIES_FILE)
-        val response = properties.getProperty(message.text.toLowerCase())
+        properties.remove(trigger.toLowerCase())
+        saveProperties(PROPERTIES_FILE, properties)
+    }
 
-        if (response.isNotBlank()) {
-            response.replace("\$nick", message.sender.nick)
-            response.replace("\$channel", message.channel.name)
+    fun get(message: ChannelMessage) : String? {
+        properties = loadProperties(PROPERTIES_FILE)
+        var response = properties.getProperty(message.text.toLowerCase())
+
+        when (response?.isNotBlank()) {
+            true -> {
+                response.replace("\$nick", message.sender.nick)
+                response.replace("\$channel", message.channel.name)
+            }
         }
 
         return response

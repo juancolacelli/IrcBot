@@ -23,7 +23,7 @@ class IRCBot : Listenable {
 
             when (words?.isNotEmpty()) {
                 true -> {
-                    val command = words[0].toUpperCase()
+                    val command = words[0].toLowerCase()
 
                     if (listeners.isNotEmpty()) {
                         // Remove the command
@@ -47,7 +47,7 @@ class IRCBot : Listenable {
     }
 
     fun addListener(listener: OnChannelCommandListener) {
-        val command = listener.channelCommand().toUpperCase()
+        val command = listener.channelCommand().toLowerCase()
 
         val commandListeners = listeners.getOrDefault(command, ArrayList())
         commandListeners.add(listener)
@@ -56,7 +56,7 @@ class IRCBot : Listenable {
     }
 
     fun removeListener(command: String) {
-        listeners[command.toUpperCase()]?.clear()
+        listeners[command.toLowerCase()]?.clear()
     }
 
     fun connect(server: Server, user: User) {

@@ -22,8 +22,9 @@ class JoinPartPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val channel = Channel(args[0])
-                connection.join(channel)
+                if (args.isNotEmpty()) {
+                    connection.join(Channel(args[0]))
+                }
             }
 
         })
@@ -40,8 +41,9 @@ class JoinPartPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val channel = Channel(args[0])
-                connection.part(channel)
+                if (args.isNotEmpty()) {
+                    connection.part(Channel(args[0]))
+                }
             }
 
         })

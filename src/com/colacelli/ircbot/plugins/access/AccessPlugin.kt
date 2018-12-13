@@ -28,17 +28,23 @@ class AccessPlugin : Plugin {
                 if (args.size > 1) {
                     when (args[0]) {
                         "add" -> {
-                            val level = args[2].toInt()
-                            val nick = args[1]
-                            IRCBotAccess.instance.setAccess(nick, level)
+                            try {
+                                val level = IRCBotAccess.Level.valueOf(args[2].toUpperCase())
+                                val nick = args[1]
 
-                            response.setText("Access granted!")
-                            connection.send(response.build())
+                                IRCBotAccess.instance.add(nick, level)
+
+                                response.setText("Access granted!")
+                                connection.send(response.build())
+                            } catch (e : IllegalArgumentException) {
+                                response.setText("Invalid access level!")
+                                connection.send(response.build())
+                            }
                         }
 
                         "del" -> {
                             val nick = args[1]
-                            IRCBotAccess.instance.setAccess(nick, IRCBotAccess.Level.USER)
+                            IRCBotAccess.instance.del(nick)
 
                             response.setText("Access revoked!")
                             connection.send(response.build())
@@ -48,8 +54,8 @@ class AccessPlugin : Plugin {
                     when (args[0]) {
                         "list" -> {
                             var accesses = ""
-                            IRCBotAccess.instance.getAccesses().forEach {
-                                accesses += "${it.key} (${it.value.level}) "
+                            IRCBotAccess.instance.list().forEach {
+                                accesses += "${it.key}(${it.value.toString().toLowerCase()}) "
                             }
 
                             response.setText(accesses)
@@ -65,7 +71,7 @@ class AccessPlugin : Plugin {
                 IRCBotAccess.Level.ROOT,
                 "Grant user access",
                 "user",
-                "level"))
+                "root/admin/operator"))
 
         PluginHelper.instance.addHelp(PluginHelp(
                 ".access del",

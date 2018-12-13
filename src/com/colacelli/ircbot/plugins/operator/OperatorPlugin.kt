@@ -48,7 +48,7 @@ class OperatorPlugin : Plugin {
 
                             connection.mode(message.channel, "$modes $nicks")
                         } else {
-                            connection.mode(message.channel, "$sign$mode ${message.sender}")
+                            connection.mode(message.channel, "$sign$mode ${message.sender.nick}")
                         }
                     }
                 })
@@ -108,7 +108,7 @@ class OperatorPlugin : Plugin {
                         }
                     }
 
-                    connection.mode(message.channel, "$nick!*@*")
+                    connection.mode(message.channel, "+b $nick!*@*")
                     connection.kick(message.channel, User(nick), reason)
                 }
             }
@@ -128,7 +128,7 @@ class OperatorPlugin : Plugin {
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
                     val nick = args[0]
-                    connection.mode(message.channel, args.joinToString("$nick!*@*"))
+                    connection.mode(message.channel, "-b $nick!*@*")
                 }
             }
         })

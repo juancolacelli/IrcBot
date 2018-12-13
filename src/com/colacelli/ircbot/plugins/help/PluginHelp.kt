@@ -3,6 +3,8 @@ package com.colacelli.ircbot.plugins.help
 import com.colacelli.ircbot.plugins.access.IRCBotAccess
 
 open class PluginHelp(val command : String, val access : IRCBotAccess.Level, val help : String, vararg val args : String) {
+    val baseCommand : String = command.split(" ")[0]
+
     override fun toString() : String {
         var text = command
 

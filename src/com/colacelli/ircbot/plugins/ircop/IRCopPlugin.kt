@@ -30,10 +30,12 @@ class IRCopPlugin(user : String, password : String) : Plugin {
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val user = args[0]
 
-                var reason = "..."
-                if (args.size > 1) reason = args.drop(1).joinToString(" ")
+                if (user.toLowerCase() != connection.user.nick.toLowerCase()) {
+                    var reason = "..."
+                    if (args.size > 1) reason = args.drop(1).joinToString(" ")
 
-                connection.send("KILL $user $reason")
+                    connection.send("KILL $user $reason")
+                }
             }
 
         })
