@@ -54,10 +54,6 @@ class ApertiumTranslatePlugin : Plugin {
 
         }
 
-    companion object {
-        const val APERTIUM_URL = "https://www.apertium.org/apy/translate?q=TEXT&langpair=LOCALES"
-    }
-
     override fun getName(): String {
         return "apertium_translate"
     }
@@ -81,13 +77,17 @@ class ApertiumTranslatePlugin : Plugin {
     private class ApertiumTranslate(private val localeA: String, private val localeB: String, private val text: String) : Runnable {
         var listeners = ArrayList<OnApertiumTranslateResultListener>()
 
+        companion object {
+            const val APERTIUM_URL = "https://www.apertium.org/apy/translate?q=TEXT&langpair=LOCALES"
+        }
+
         override fun run() {
             val url = APERTIUM_URL
                 .replace("LOCALES", "$localeA|$localeB")
                 .replace("TEXT", text)
 
-            val response = URL(url).openStream()
-            val scanner = Scanner(response).useDelimiter("\\A")
+            val stream = URL(url).openStream()
+            val scanner = Scanner(stream).useDelimiter("\\A")
 
             var json = ""
             while (scanner.hasNext()) {
@@ -95,12 +95,12 @@ class ApertiumTranslatePlugin : Plugin {
             }
 
             val gson = Gson()
-            val translationResponse = gson.fromJson(json, ApertiumTranslationResponse::class.java)
+            val response = gson.fromJson(json, ApertiumTranslationResponse::class.java)
 
             listeners.forEach {
-                if (translationResponse.status == 200) {
+                if (response.status == 200) {
                     // FIXME: Remove it from the forEach, and try to be assigned by Gson
-                    val translation = translationResponse.data
+                    val translation = response.data
                     translation.localeA = localeA
                     translation.localeB = localeB
                     translation.text = text
