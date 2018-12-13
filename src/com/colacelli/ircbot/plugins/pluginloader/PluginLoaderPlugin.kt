@@ -1,4 +1,4 @@
-package com.colacelli.ircbot.plugins.loader
+package com.colacelli.ircbot.plugins.pluginloader
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.Plugin
@@ -10,7 +10,7 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
 
-class LoaderPlugin : Plugin {
+class PluginLoaderPlugin : Plugin {
     override fun getName(): String {
         return "plugin_loader"
     }
@@ -86,7 +86,7 @@ class LoaderPlugin : Plugin {
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(".plugin")
         arrayOf("list", "load", "unload").forEach {
-            PluginHelper.instance.removeHelp(it)
+            PluginHelper.instance.removeHelp(".plugin $it")
         }
     }
 }

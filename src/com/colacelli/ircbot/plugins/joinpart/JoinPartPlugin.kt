@@ -55,7 +55,7 @@ class JoinPartPlugin : Plugin {
 
     override fun onUnload(bot: IRCBot) {
         arrayOf(".join", ".part").forEach {
-            IRCBotAccess.instance.removeListener(bot, it)
+            bot.removeListener(it)
             PluginHelper.instance.removeHelp(it)
         }
     }

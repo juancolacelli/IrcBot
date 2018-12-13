@@ -188,10 +188,14 @@ class OperatorPlugin : Plugin {
         modifiers.forEach { prefix, sign ->
             modes.forEach { name, mode ->
                 bot.removeListener(".$prefix$name")
+                PluginHelper.instance.removeHelp(".$prefix$name")
             }
         }
 
-        arrayOf("k", "kb", "unban", "mode", "invite", "topic")
+        arrayOf("k", "kb", "unban", "mode", "invite", "topic").forEach {
+            bot.removeListener(".$it")
+            PluginHelper.instance.removeHelp(".$it")
+        }
     }
 
 }
