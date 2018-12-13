@@ -47,7 +47,7 @@ class IRCBotAccess : PropertiesPlugin {
                     }
 
                     override fun onRawCode(connection1: Connection?, message1: String?, rawCode: Int, vararg args1: String?) {
-                        if (args1[3] == message.sender.nick) {
+                        if (args1[3] == message.sender.nick && getAccess(message.sender).level >= level.level) {
                             listener.onChannelCommand(connection, message, command, args)
                         }
                     }

@@ -11,6 +11,8 @@ interface PropertiesPlugin {
 
         properties.load(file)
         file.close()
+
+        return properties
     }
 
     fun saveProperties(filename: String, properties: Properties) {

@@ -3,13 +3,13 @@
 ## Dependencies
 * **GNU IRC Library**: https://gitlab.com/jic/irclib
 * **apache-commons**: http://commons.apache.org/proper/commons-lang/
-* **json-simple**: https://code.google.com/archive/p/json-simple/
+* **gson**: https://github.com/google/gson
 * **jsoup**: https://jsoup.org/
 
 **Maven**
 ```
 org.apache.commons:commons-text:1.62
-com.googlecode.json-simple:json-simple:1.1.12
+com.google.code.gson:gson:2.8.5
 org.jsoup:jsoup:1.11.3
 ```
 

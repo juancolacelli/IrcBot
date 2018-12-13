@@ -22,7 +22,7 @@ class LoaderPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val message = PrivateNoticeMessage.Builder()
+                val response = PrivateNoticeMessage.Builder()
                         .setSender(connection.user)
                         .setReceiver(message.sender)
 
@@ -34,8 +34,8 @@ class LoaderPlugin : Plugin {
                                 if (it.getName().toLowerCase() == plugin) {
                                     it.onLoad(bot)
 
-                                    message.setText("Plugin loaded!")
-                                    connection.send(message.build())
+                                    response.setText("Plugin loaded!")
+                                    connection.send(response.build())
                                 }
                             }
                         }
@@ -46,8 +46,8 @@ class LoaderPlugin : Plugin {
                                 if (it.getName().toLowerCase() == plugin) {
                                     it.onUnload(bot)
 
-                                    message.setText("Plugin unloaded!")
-                                    connection.send(message.build())
+                                    response.setText("Plugin unloaded!")
+                                    connection.send(response.build())
                                 }
                             }
                         }
@@ -56,8 +56,8 @@ class LoaderPlugin : Plugin {
                     when (args[0]) {
                         "list" -> {
                             bot.plugins.forEach {
-                                message.setText(it.getName())
-                                connection.send(message.build())
+                                response.setText(it.getName())
+                                connection.send(response.build())
                             }
                         }
                     }

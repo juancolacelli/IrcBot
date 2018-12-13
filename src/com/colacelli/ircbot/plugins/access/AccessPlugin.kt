@@ -21,7 +21,7 @@ class AccessPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val message = PrivateNoticeMessage.Builder()
+                val response = PrivateNoticeMessage.Builder()
                         .setSender(connection.user)
                         .setReceiver(message.sender)
 
@@ -32,16 +32,16 @@ class AccessPlugin : Plugin {
                             val nick = args[1]
                             IRCBotAccess.instance.setAccess(nick, level)
 
-                            message.setText("Access granted!")
-                            connection.send(message.build())
+                            response.setText("Access granted!")
+                            connection.send(response.build())
                         }
 
                         "del" -> {
                             val nick = args[1]
                             IRCBotAccess.instance.setAccess(nick, IRCBotAccess.Level.USER)
 
-                            message.setText("Access revoked!")
-                            connection.send(message.build())
+                            response.setText("Access revoked!")
+                            connection.send(response.build())
                         }
                     }
                 } else {
@@ -52,8 +52,8 @@ class AccessPlugin : Plugin {
                                 accesses += "${it.key} (${it.value.level}) "
                             }
 
-                            message.setText(accesses)
-                            connection.send(message.build())
+                            response.setText(accesses)
+                            connection.send(response.build())
                         }
                     }
                 }

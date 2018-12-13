@@ -36,26 +36,25 @@ class HelpPlugin : Plugin {
                 commands.sort()
 
                 commands.forEach {
-                    val command = it.split(" ")[0]
-                    if (text.indexOf(command) == -1) text += " $command"
+                    if (text.indexOf(command) == -1) text += " ${it.substring(0, it.indexOf(" "))}"
                 }
 
-                val message = PrivateNoticeMessage.Builder()
+                val response = PrivateNoticeMessage.Builder()
                         .setSender(connection.user)
                         .setReceiver(message.sender)
                         .setText(text)
                         .build()
 
-                connection.send(message)
+                connection.send(response)
             } else {
                 PluginHelper.instance.getHelp(access, args.joinToString(" ")).forEach {
-                    val message = PrivateNoticeMessage.Builder()
+                    val response = PrivateNoticeMessage.Builder()
                             .setSender(connection.user)
                             .setReceiver(message.sender)
                             .setText(it)
                             .build()
 
-                    connection.send(message)
+                    connection.send(response)
                 }
             }
         }

@@ -35,13 +35,13 @@ class RejoinOnKickPlugin : Plugin {
 
                         val channel = Channel(args[3])
 
-                        val message = PrivateMessage.Builder()
+                        val response = PrivateMessage.Builder()
                                 .setSender(connection?.user)
                                 .setReceiver(chanServ)
                                 .setText("unban ${channel.name}")
                                 .build()
 
-                        connection?.send(message)
+                        connection?.send(response)
                         connection?.join(channel)
                     }
                 }, 5000)
