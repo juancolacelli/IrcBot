@@ -18,28 +18,20 @@ org.jsoup:jsoup:1.11.3
 
 ## Basic usage
 ```kotlin
-val bot = IRCBot()
+val server = Server("irc.freenode.net", 6697, true)
+val user = User("ircbot", "ircbot", "GNU IRCBot - https://gitlab.com/jic/ircbot")
+val bot = IRCBot(server, user)
 
-val user = User.Builder()
-        .setNick("ircbot")
-        .setLogin("ircbot")
-        .setRealName("GNU IRCBot - https://gitlab.com/jic/ircbot")
-        .build()
-
-val server = Server.Builder()
-        .setHostname("irc.freenode.net")
-        .setPort(6697)
-        .setSecure(true)
-        .build()
-
-bot.connect(server, user)
+bot.connect()
 ```
 
 ## Basic plugin definition
 ```kotlin
 class BasicPlugin : Plugin {
-    private val listener = OnConnectListener { connection, _, _ ->
-        connection.join("#gnu")
+    private val listener = object : OnConnectListener {
+        override fun onConnect(connection: Connection, server: Server, user: User) {
+            connection.join("#gnu")
+        }
     }
         
     override fun getName(): String {
@@ -57,7 +49,6 @@ class BasicPlugin : Plugin {
 ```
 
 ```kotlin
-val bot = IRCBot()
 bot.addPlugin(BasicPlugin())
 ```
 

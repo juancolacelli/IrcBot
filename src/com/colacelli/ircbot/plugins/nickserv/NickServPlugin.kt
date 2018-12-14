@@ -3,22 +3,20 @@ package com.colacelli.ircbot.plugins.nickserv
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.Plugin
 import com.colacelli.irclib.actors.User
+import com.colacelli.irclib.connection.Connection
+import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.PrivateMessage
 
 class NickServPlugin(password : String) : Plugin {
-    val listener = OnConnectListener { connection, _, user ->
-        val nickServ = User.Builder()
-                .setNick("nickserv")
-                .build()
-
-        val message = PrivateMessage.Builder()
-                .setReceiver(nickServ)
-                .setSender(user)
-                .setText("identify $password")
-                .build()
-
-        connection.send(message)
+    val listener = object : OnConnectListener {
+        override fun onConnect(connection: Connection, server: Server, user: User) {
+            return connection.send(PrivateMessage(
+                    "identify $password",
+                    connection.user,
+                    User("NickServ")
+            ))
+        }
     }
     override fun getName(): String {
         return "nickserv"

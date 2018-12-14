@@ -7,42 +7,38 @@ import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.Listenable
 import com.colacelli.irclib.connection.listeners.Listener
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
+import com.colacelli.irclib.messages.ChannelMessage
 import java.util.*
 
 const val HTTP_USER_AGENT = "GNU IRC Bot - https://gitlab.com/jic/ircbot"
 
-class IRCBot : Listenable {
+class IRCBot(val server: Server, val user: User) : Listenable {
     private val listeners =  HashMap<String, ArrayList<OnChannelCommandListener>>()
-    private val connection = Connection()
+    private val connection = Connection(server, user)
     var plugins = ArrayList<Plugin>()
 
     init {
         System.setProperty("http.agent", HTTP_USER_AGENT)
-        addListener(OnChannelMessageListener { connection, message ->
-            val words = message?.text?.split(" ")
+        addListener(object : OnChannelMessageListener {
+            override fun onChannelMessage(connection: Connection, message: ChannelMessage) {
+                val words = message.text.split(" ")
+                val command = words[0].toLowerCase()
 
-            when (words?.isNotEmpty()) {
-                true -> {
-                    val command = words[0].toLowerCase()
+                // Remove the command
+                val args = words.drop(1).toTypedArray()
 
-                    if (listeners.isNotEmpty()) {
-                        // Remove the command
-                        var args = words.drop(1).toTypedArray()
-
-                        listeners.get(command)?.forEach {
-                            it.onChannelCommand(connection, message, command, args)
-                        }
-                    }
+                listeners[command]?.forEach {
+                    it.onChannelCommand(connection, message, command, args)
                 }
             }
         })
     }
 
-    override fun addListener(listener: Listener?) {
+    override fun addListener(listener: Listener) {
         connection.addListener(listener)
     }
 
-    override fun removeListener(listener: Listener?) {
+    override fun removeListener(listener: Listener) {
         connection.removeListener(listener)
     }
 
@@ -59,8 +55,8 @@ class IRCBot : Listenable {
         listeners[command.toLowerCase()]?.clear()
     }
 
-    fun connect(server: Server, user: User) {
-        connection.connect(server, user)
+    fun connect() {
+        connection.connect()
     }
 
     fun addPlugin(plugin: Plugin) {

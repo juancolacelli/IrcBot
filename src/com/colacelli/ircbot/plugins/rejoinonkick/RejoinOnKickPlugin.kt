@@ -16,8 +16,10 @@ class RejoinOnKickPlugin : Plugin {
     private val listeners : ArrayList<Listener> = ArrayList()
 
     init {
-        listeners.add(OnKickListener { connection, _, channel ->
-            connection.join(channel)
+        listeners.add(object : OnKickListener {
+            override fun onKick(connection: Connection, user: User, channel: Channel) {
+                return connection.join(channel)
+            }
         })
 
         listeners.add(object : OnRawCodeListener {
@@ -25,23 +27,17 @@ class RejoinOnKickPlugin : Plugin {
                 return Rawable.RawCode.JOIN_BANNED.code
             }
 
-            override fun onRawCode(connection: Connection?, message: String?, rawCode: Int, vararg args: String?) {
+            override fun onRawCode(connection: Connection, message: String, rawCode: Int, args: List<String>) {
                 val timer = Timer()
                 timer.schedule(object : TimerTask() {
                     override fun run() {
-                        val chanServ = User.Builder()
-                                .setNick("chanserv")
-                                .build()
-
                         val channel = Channel(args[3])
 
-                        val response = PrivateMessage.Builder()
-                                .setSender(connection?.user)
-                                .setReceiver(chanServ)
-                                .setText("unban ${channel.name}")
-                                .build()
-
-                        connection?.send(response)
+                        connection?.send(PrivateMessage(
+                                "unban ${channel.name}",
+                                connection.user,
+                                User("ChanServ")
+                        ))
                         connection?.join(channel)
                     }
                 }, 5000)

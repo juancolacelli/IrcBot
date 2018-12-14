@@ -33,13 +33,7 @@ class UptimePlugin : Plugin {
                 val days = diff / (60 * 60 * 1000 * 24)
 
                 val uptime = String.format("%dd %02d:%02d:%02d", days, hours, minutes, seconds)
-
-                val builder = ChannelMessage.Builder()
-                        .setSender(connection.user)
-                        .setChannel(message.channel)
-                        .setText("Uptime: $uptime")
-
-                connection.send(builder.build())
+                connection.send(ChannelMessage(message.channel, "Uptime: $uptime", connection.user))
             }
 
         })

@@ -3,12 +3,17 @@ package com.colacelli.ircbot.plugins.autojoin
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.Plugin
 import com.colacelli.irclib.actors.Channel
+import com.colacelli.irclib.actors.User
+import com.colacelli.irclib.connection.Connection
+import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 
 class AutoJoinPlugin(channels : ArrayList<Channel>) : Plugin {
-    private var listener = OnConnectListener { connection, _, _ ->
-        channels.forEach {
-            connection.join(it)
+    private var listener = object : OnConnectListener {
+        override fun onConnect(connection: Connection, server: Server, user: User) {
+            return channels.forEach {
+                connection.join(it)
+            }
         }
     }
 

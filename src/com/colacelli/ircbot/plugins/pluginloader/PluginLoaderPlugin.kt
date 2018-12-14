@@ -22,10 +22,6 @@ class PluginLoaderPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val response = PrivateNoticeMessage.Builder()
-                        .setSender(connection.user)
-                        .setReceiver(message.sender)
-
                 if (args.size > 1) {
                     when (args[0]) {
                         "load" -> {
@@ -33,9 +29,7 @@ class PluginLoaderPlugin : Plugin {
                             bot.plugins.forEach {
                                 if (it.getName().toLowerCase() == plugin) {
                                     it.onLoad(bot)
-
-                                    response.setText("Plugin loaded!")
-                                    connection.send(response.build())
+                                    connection.send(PrivateNoticeMessage("Plugin loaded!", connection.user, message.sender))
                                 }
                             }
                         }
@@ -45,9 +39,7 @@ class PluginLoaderPlugin : Plugin {
                             bot.plugins.forEach {
                                 if (it.getName().toLowerCase() == plugin) {
                                     it.onUnload(bot)
-
-                                    response.setText("Plugin unloaded!")
-                                    connection.send(response.build())
+                                    connection.send(PrivateNoticeMessage("Plugin unloaded!", connection.user, message.sender))
                                 }
                             }
                         }
@@ -56,8 +48,7 @@ class PluginLoaderPlugin : Plugin {
                     when (args[0]) {
                         "list" -> {
                             bot.plugins.forEach {
-                                response.setText(it.getName())
-                                connection.send(response.build())
+                                connection.send(PrivateNoticeMessage(it.getName(), connection.user, message.sender))
                             }
                         }
                     }

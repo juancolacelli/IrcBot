@@ -48,7 +48,7 @@ class OperatorPlugin : Plugin {
 
                             connection.mode(message.channel, "$modes $nicks")
                         } else {
-                            connection.mode(message.channel, "$sign$mode ${message.sender.nick}")
+                            connection.mode(message.channel, "$sign$mode ${message.sender?.nick}")
                         }
                     }
                 })
@@ -185,8 +185,8 @@ class OperatorPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        modifiers.forEach { prefix, sign ->
-            modes.forEach { name, mode ->
+        modifiers.forEach { prefix, _ ->
+            modes.forEach { name, _ ->
                 bot.removeListener(".$prefix$name")
                 PluginHelper.instance.removeHelp(".$prefix$name")
             }

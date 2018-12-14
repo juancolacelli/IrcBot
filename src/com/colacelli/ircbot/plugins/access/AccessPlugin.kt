@@ -21,10 +21,6 @@ class AccessPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val response = PrivateNoticeMessage.Builder()
-                        .setSender(connection.user)
-                        .setReceiver(message.sender)
-
                 if (args.size > 1) {
                     when (args[0]) {
                         "add" -> {
@@ -33,21 +29,16 @@ class AccessPlugin : Plugin {
                                 val nick = args[1]
 
                                 IRCBotAccess.instance.add(nick, level)
-
-                                response.setText("Access granted!")
-                                connection.send(response.build())
+                                connection.send(PrivateNoticeMessage("Access granted!", connection.user, message.sender))
                             } catch (e : IllegalArgumentException) {
-                                response.setText("Invalid access level!")
-                                connection.send(response.build())
+                                connection.send(PrivateNoticeMessage("Invalid access level!", connection.user, message.sender))
                             }
                         }
 
                         "del" -> {
                             val nick = args[1]
                             IRCBotAccess.instance.del(nick)
-
-                            response.setText("Access revoked!")
-                            connection.send(response.build())
+                            connection.send(PrivateNoticeMessage("Access revoked!", connection.user, message.sender))
                         }
                     }
                 } else {
@@ -58,8 +49,7 @@ class AccessPlugin : Plugin {
                                 accesses += "${it.key}(${it.value.toString().toLowerCase()}) "
                             }
 
-                            response.setText(accesses)
-                            connection.send(response.build())
+                            connection.send(PrivateNoticeMessage(accesses, connection.user, message.sender))
                         }
                     }
                 }

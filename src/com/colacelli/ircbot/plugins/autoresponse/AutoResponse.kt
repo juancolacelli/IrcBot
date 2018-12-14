@@ -35,7 +35,7 @@ class AutoResponse : PropertiesPlugin {
     fun get(message: ChannelMessage) : String? {
         properties = loadProperties(PROPERTIES_FILE)
 
-        var text = message.text
+        val text = message.text
         var trigger = Regex("")
         var response = ""
 
@@ -50,7 +50,7 @@ class AutoResponse : PropertiesPlugin {
 
         when (trigger.pattern.isNotBlank() && response.isNotBlank()) {
             true -> {
-                response = response.replace("\$nick", message.sender.nick)
+                response = response.replace("\$nick", message.sender!!.nick)
                 response = response.replace("\$channel", message.channel.name)
 
                 try {

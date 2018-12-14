@@ -29,23 +29,11 @@ class ThePirateBaySearchPlugin : Plugin {
                     search.addListener(object : OnThePirateBaySearchResult {
                         override fun onSuccess(result: ThePirateBaySearchResult) {
                             val text = "${result.title} [↑${result.uploadedAt}][↓${result.size}][⇅${result.seeders}S/${result.leechers}L] ${result.magnet}"
-                            val response = ChannelMessage.Builder()
-                                    .setSender(connection.user)
-                                    .setText(text)
-                                    .setChannel(message.channel)
-                                    .build()
-
-                            connection.send(response)
+                            connection.send(ChannelMessage(message.channel, text, connection.user))
                         }
 
                         override fun onError() {
-                            val response = ChannelMessage.Builder()
-                                    .setSender(connection.user)
-                                    .setText("Not found!")
-                                    .setChannel(message.channel)
-                                    .build()
-
-                            connection.send(response)
+                            connection.send(ChannelMessage(message.channel, "Not found!", connection.user))
                         }
                     })
 

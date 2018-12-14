@@ -13,13 +13,13 @@ import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
 import org.jsoup.Jsoup
 import java.io.IOException
-import java.net.MalformedURLException
-import java.net.URL
 import java.util.*
 
 class RSSFeedPlugin : Plugin {
-    val listener = OnPingListener {
-        check(it)
+    val listener = object : OnPingListener {
+        override fun onPing(connection: Connection) {
+            return check(connection)
+        }
     }
 
     override fun getName(): String {
@@ -33,23 +33,15 @@ class RSSFeedPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val response = PrivateNoticeMessage.Builder()
-                        .setSender(connection.user)
-                        .setReceiver(message.sender)
-
                 if (args.isNotEmpty()) {
                     when (args[0]) {
                         "subscribe" -> {
-                            RSSFeed.instance.subscribe(message.sender)
-
-                            response.setText("Subscribed to RSS feed!")
-                            connection.send(response.build())
+                            RSSFeed.instance.subscribe(message.sender!!)
+                            connection.send(PrivateNoticeMessage("Subscribed to RSS feed!", connection.user, message.sender))
                         }
                         "unsubscribe" -> {
-                            RSSFeed.instance.unsubscribe(message.sender)
-
-                            response.setText("Unsubscribed from RSS feed!")
-                            connection.send(response.build())
+                            RSSFeed.instance.unsubscribe(message.sender!!)
+                            connection.send(PrivateNoticeMessage("Unsubscribed to RSS feed!", connection.user, message.sender))
                         }
                     }
                 }
@@ -63,25 +55,17 @@ class RSSFeedPlugin : Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val response = PrivateNoticeMessage.Builder()
-                        .setSender(connection.user)
-                        .setReceiver(message.sender)
-
                 if (args.size > 1) {
                     val url = args[1]
                     when (args[0]) {
                         "add" -> {
                             RSSFeed.instance.add(url)
-
-                            response.setText("RSS feed added!")
-                            connection.send(response.build())
+                            connection.send(PrivateNoticeMessage("RSS feed added!", connection.user, message.sender))
                         }
 
                         "del" -> {
                             RSSFeed.instance.del(url)
-
-                            response.setText("RSS feed removed!")
-                            connection.send(response.build())
+                            connection.send(PrivateNoticeMessage("RSS feed removed!", connection.user, message.sender))
                         }
                     }
                 } else {
@@ -89,22 +73,17 @@ class RSSFeedPlugin : Plugin {
                         "subscribers" -> {
                             val nicks = RSSFeed.instance.subscribers()
                             nicks.sort()
-
-                            response.setText(nicks.joinToString(" "))
-                            connection.send(response.build())
+                            connection.send(PrivateNoticeMessage(nicks.joinToString(" "), connection.user, message.sender))
                         }
 
                         "list" -> {
                             RSSFeed.instance.list().forEach { url, _ ->
-                                response.setText(url)
-                                connection.send(response.build())
+                                connection.send(PrivateNoticeMessage(url, connection.user, message.sender))
                             }
                         }
 
                         "check" -> {
-                            response.setText("Checking...")
-                            connection.send(response.build())
-
+                            connection.send(PrivateNoticeMessage("Checking...", connection.user, message.sender))
                             check(connection)
                         }
                     }
@@ -166,15 +145,12 @@ class RSSFeedPlugin : Plugin {
                 override fun onSuccess(rssFeedItem: RSSFeedItem) {
                     if (rssFeedItem.url != lastUrl) {
                         RSSFeed.instance.set(rssFeedItem.rssFeedUrl, rssFeedItem.url)
-
-                        val response = PrivateNoticeMessage.Builder()
-                                .setSender(connection.user)
-                                .setText("${rssFeedItem.title} - ${rssFeedItem.url}")
-
                         RSSFeed.instance.subscribers().forEach {
-                            response.setReceiver(User(it))
-
-                            connection.send(response.build())
+                            connection.send(PrivateNoticeMessage(
+                                    "${rssFeedItem.title} - ${rssFeedItem.url}",
+                                    connection.user,
+                                    User(it)
+                            ))
                         }
                     }
                 }

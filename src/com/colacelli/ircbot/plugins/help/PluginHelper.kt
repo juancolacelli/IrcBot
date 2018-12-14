@@ -33,7 +33,7 @@ class PluginHelper {
     }
 
     fun getCommands(access : IRCBotAccess.Level = IRCBotAccess.Level.USER) : ArrayList<String> {
-        var commands = ArrayList<String>()
+        val commands = ArrayList<String>()
         helps.forEach {
             // Prevent dupes
             if (commands.indexOf(it.baseCommand) == -1) {
@@ -45,7 +45,7 @@ class PluginHelper {
     }
 
     fun getHelp(access : IRCBotAccess.Level = IRCBotAccess.Level.USER, command : String) : ArrayList<String> {
-        var texts = ArrayList<String>()
+        val texts = ArrayList<String>()
         helps.forEach {
             if (it.command.startsWith(command) && it.access.level <= access.level) texts.add(it.toString())
         }

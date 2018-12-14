@@ -12,18 +12,12 @@ import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
 
 class AutoResponsePlugin :Plugin {
-    val listener = OnChannelMessageListener { connection, message ->
-        val text = AutoResponse.instance.get(message)
+    val listener = object : OnChannelMessageListener {
+        override fun onChannelMessage(connection: Connection, message: ChannelMessage) {
+            val text = AutoResponse.instance.get(message)
 
-        when (text?.isNotBlank()) {
-            true -> {
-                val response = ChannelMessage.Builder()
-                        .setSender(connection.user)
-                        .setChannel(message.channel)
-                        .setText(text)
-                        .build()
-
-                connection.send(response)
+            if (text != null) {
+                connection.send(ChannelMessage(message.channel, text, connection.user))
             }
         }
     }
@@ -39,10 +33,6 @@ class AutoResponsePlugin :Plugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val response = PrivateNoticeMessage.Builder()
-                        .setSender(connection.user)
-                        .setReceiver(message.sender)
-
                 if (args.size > 1) {
                     when (args[0]) {
                         "add" -> {
@@ -54,26 +44,21 @@ class AutoResponsePlugin :Plugin {
 
                             if (trigger.isNotBlank() && text.isNotBlank()) {
                                 AutoResponse.instance.add(trigger, text)
-
-                                response.setText("Auto-response added!")
-                                connection.send(response.build())
+                                connection.send(PrivateNoticeMessage("Auto-response added!", connection.user, message.sender))
                             }
                         }
 
                         "del" -> {
                             val trigger = args.drop(1).joinToString(" ")
                             AutoResponse.instance.del(trigger)
-
-                            response.setText("Auto-response removed!")
-                            connection.send(response.build())
+                            connection.send(PrivateNoticeMessage("Auto-response removed!", connection.user, message.sender))
                         }
                     }
                 } else {
                     when (args[0]) {
                         "list" -> {
                             AutoResponse.instance.list().forEach { trigger, text ->
-                                response.setText("$trigger: $text")
-                                connection.send(response.build())
+                                connection.send(PrivateNoticeMessage("$trigger: $text", connection.user, message.sender))
                             }
                         }
                     }

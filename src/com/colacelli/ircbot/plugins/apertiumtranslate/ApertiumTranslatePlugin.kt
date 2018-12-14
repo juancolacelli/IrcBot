@@ -30,19 +30,18 @@ class ApertiumTranslatePlugin : Plugin {
                     }
 
                     val apertiumTranslate = ApertiumTranslate(localeA, localeB, text)
-                    val response = ChannelMessage.Builder()
-                            .setSender(connection.user)
-                            .setChannel(message.channel)
 
                     apertiumTranslate.addListener(object : OnApertiumTranslateResultListener {
                         override fun onSuccess(translation: ApertiumTranslation) {
-                            response.setText("[${translation.localeA}] ${translation.text} ~ [${translation.localeB}] ${translation.translation}")
-                            connection.send(response.build())
+                            connection.send(ChannelMessage(
+                                    message.channel,
+                                    "[${translation.localeA}] ${translation.text} ~ [${translation.localeB}] ${translation.translation}",
+                                    connection.user
+                            ))
                         }
 
                         override fun onError() {
-                            response.setText("Translation not found!")
-                            connection.send(response.build())
+                            connection.send(ChannelMessage(message.channel, "Translation not found!", connection.user))
                         }
                     })
 

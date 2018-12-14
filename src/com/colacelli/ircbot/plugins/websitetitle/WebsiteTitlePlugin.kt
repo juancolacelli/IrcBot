@@ -2,37 +2,37 @@ package com.colacelli.ircbot.plugins.websitetitle
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.Plugin
+import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
 import com.colacelli.irclib.messages.ChannelMessage
 import org.jsoup.Jsoup
 import java.util.regex.Pattern
 
 class WebsiteTitlePlugin : Plugin {
-    val listener = OnChannelMessageListener { connection, message ->
-        val text = message.text
-        val urlsPattern = Pattern.compile("((http://|https://)([^ ]+))")
-        val urlsMatcher = urlsPattern.matcher(text)
+    val listener = object : OnChannelMessageListener {
+        override fun onChannelMessage(connection: Connection, message: ChannelMessage) {
+            val text = message.text
+            val urlsPattern = Regex("((http://|https://)([^ ]+))")
 
-        while (urlsMatcher.find()) {
-            val websiteTitle = WebsiteTitle(urlsMatcher.group(0))
-            websiteTitle.addListener(object : OnWebsiteTitleGetListener {
-                override fun onSuccess(url: String, title: String) {
-                    val response = ChannelMessage.Builder()
-                            .setSender(connection.user)
-                            .setChannel(message.channel)
-                            .setText("$title - $url")
-                            .build()
+            urlsPattern.findAll(text).forEach {
+                val websiteTitle = WebsiteTitle(it.value)
+                websiteTitle.addListener(object : OnWebsiteTitleGetListener {
+                    override fun onSuccess(url: String, title: String) {
+                        connection.send(ChannelMessage(
+                                message.channel,
+                                "$title - $url",
+                                connection.user
+                        ))
+                    }
 
-                    connection.send(response)
-                }
+                    override fun onError(url: String) {
+                    }
+                })
 
-                override fun onError(url: String) {
-                }
-            })
-
-            val worker = Thread(websiteTitle)
-            worker.name = "website_title"
-            worker.start()
+                val worker = Thread(websiteTitle)
+                worker.name = "website_title"
+                worker.start()
+            }
         }
     }
 

@@ -41,15 +41,15 @@ class IRCBotAccess : PropertiesPlugin {
             }
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                if (get(message.sender).level >= level.level) {
+                if (get(message.sender!!).level >= level.level) {
                     // Identified by nickserv?
                     val identifiedListener = object : OnRawCodeListener {
                         override fun rawCode(): Int {
                             return Rawable.RawCode.WHOIS_IDENTIFIED_NICK.code
                         }
 
-                        override fun onRawCode(connection1: Connection?, message1: String?, rawCode: Int, vararg args1: String?) {
-                            if (args1[3] == message.sender.nick) {
+                        override fun onRawCode(connection: Connection, message1: String, rawCode: Int, args1: List<String>) {
+                            if (args1[3] == message.sender?.nick) {
                                 listener.onChannelCommand(connection, message, command, args)
                             }
                         }
@@ -63,8 +63,8 @@ class IRCBotAccess : PropertiesPlugin {
                             return Rawable.RawCode.WHOIS_END.code
                         }
 
-                        override fun onRawCode(connection1: Connection?, message1: String?, rawCode: Int, vararg args1: String?) {
-                            if (args1[3] == message.sender.nick) {
+                        override fun onRawCode(connection: Connection, message1: String, rawCode: Int, args1: List<String>) {
+                            if (args1[3] == message.sender?.nick) {
                                 bot.removeListener(identifiedListener)
                                 bot.removeListener(this)
                             }
@@ -72,14 +72,9 @@ class IRCBotAccess : PropertiesPlugin {
 
                     })
 
-                    connection.whois(message.sender)
+                    connection.whois(message.sender!!)
                 } else {
-                    val response = PrivateNoticeMessage.Builder()
-                            .setSender(connection.user)
-                            .setReceiver(message.sender)
-                            .setText("You don't have access to that command!")
-                            .build()
-
+                    val response = PrivateNoticeMessage("You don't have access to that command!", connection.user, message.sender)
                     connection.send(response)
                 }
             }
@@ -92,9 +87,8 @@ class IRCBotAccess : PropertiesPlugin {
 
     fun get(user : User) : Level {
         properties = loadProperties(PROPERTIES_FILE)
-        var level = Level.valueOf(properties.getProperty(user.nick.toLowerCase()))
 
-        return level
+        return Level.valueOf(properties.getProperty(user.nick.toLowerCase()))
     }
 
     fun add(nick:String, level:Level) {
