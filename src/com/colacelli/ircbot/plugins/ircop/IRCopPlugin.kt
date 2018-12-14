@@ -12,10 +12,10 @@ import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.ChannelMessage
 
-class IRCopPlugin(user : String, password : String) : Plugin {
+class IRCopPlugin(name : String, password : String) : Plugin {
     val listener = object : OnConnectListener {
         override fun onConnect(connection: Connection, server: Server, user: User) {
-            return connection.send("OPER $user $password")
+            return connection.send("OPER $name $password")
         }
     }
 

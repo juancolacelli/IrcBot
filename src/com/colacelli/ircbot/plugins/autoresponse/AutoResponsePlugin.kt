@@ -16,7 +16,7 @@ class AutoResponsePlugin :Plugin {
         override fun onChannelMessage(connection: Connection, message: ChannelMessage) {
             val text = AutoResponse.instance.get(message)
 
-            if (text != null) {
+            if (text != null && text.isNotBlank()) {
                 connection.send(ChannelMessage(message.channel, text, connection.user))
             }
         }
@@ -69,7 +69,7 @@ class AutoResponsePlugin :Plugin {
         PluginHelper.instance.addHelp(AutoResponsePluginHelp(
                 ".ar add",
                 IRCBotAccess.Level.OPERATOR,
-                "Adds an auto-response. Available replacements: regex (\$1, \$2, etc.    ), \$nick and \$channel, ie., .ar add hello" + AutoResponsePluginHelp.SEPARATOR + "hello \$nick, welcome to \$channel!",
+                "Adds an auto-response. Available replacements: regex (\$1, \$2, etc.), \$nick and \$channel, ie., .ar add hello" + AutoResponsePluginHelp.SEPARATOR + "hello \$nick, welcome to \$channel!",
                 "trigger",
                 "response"))
 

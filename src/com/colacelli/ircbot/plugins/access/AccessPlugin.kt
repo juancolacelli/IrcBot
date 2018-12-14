@@ -24,14 +24,16 @@ class AccessPlugin : Plugin {
                 if (args.size > 1) {
                     when (args[0]) {
                         "add" -> {
-                            try {
-                                val level = IRCBotAccess.Level.valueOf(args[2].toUpperCase())
-                                val nick = args[1]
+                            if (args.size == 3) {
+                                try {
+                                    val level = IRCBotAccess.Level.valueOf(args[2].toUpperCase())
+                                    val nick = args[1]
 
-                                IRCBotAccess.instance.add(nick, level)
-                                connection.send(PrivateNoticeMessage("Access granted!", connection.user, message.sender))
-                            } catch (e : IllegalArgumentException) {
-                                connection.send(PrivateNoticeMessage("Invalid access level!", connection.user, message.sender))
+                                    IRCBotAccess.instance.add(nick, level)
+                                    connection.send(PrivateNoticeMessage("Access granted!", connection.user, message.sender))
+                                } catch (e : IllegalArgumentException) {
+                                    connection.send(PrivateNoticeMessage("Invalid access level!", connection.user, message.sender))
+                                }
                             }
                         }
 

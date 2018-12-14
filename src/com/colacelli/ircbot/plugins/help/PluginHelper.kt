@@ -25,11 +25,9 @@ class PluginHelper {
     }
 
     fun removeHelp(command : String) {
-        helps.forEach {
-            if (it.command.toUpperCase() == command.toUpperCase()) {
-                helps.remove(it)
-            }
-        }
+        helps.removeAll(helps.filter {
+            it.command.toLowerCase() == command.toLowerCase()
+        })
     }
 
     fun getCommands(access : IRCBotAccess.Level = IRCBotAccess.Level.USER) : ArrayList<String> {

@@ -103,7 +103,7 @@ class IRCBotAccess : PropertiesPlugin {
         saveProperties(PROPERTIES_FILE, properties)
     }
 
-    fun list() : HashMap<String, Level> {
+    fun list() : SortedMap<String, Level> {
         properties = loadProperties(PROPERTIES_FILE)
 
         val accesses = HashMap<String, Level>()
@@ -111,6 +111,6 @@ class IRCBotAccess : PropertiesPlugin {
             accesses[it.key.toString()] = Level.valueOf(it.value.toString())
         }
 
-        return accesses
+        return accesses.toSortedMap()
     }
 }

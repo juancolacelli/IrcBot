@@ -29,7 +29,7 @@ class HelpPlugin : Plugin {
         override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
             val access = IRCBotAccess.instance.get(message.sender!!)
 
-            if (args.isEmpty()) {
+            if (args.isEmpty() || args[0].isBlank()) {
                 var text = "Available commands: (use .help <command> for more information)"
 
                 PluginHelper.instance.getCommands(access).forEach {

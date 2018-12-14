@@ -73,7 +73,7 @@ class AutoResponse : PropertiesPlugin {
         return response
     }
 
-    fun list() : HashMap<String, String> {
+    fun list() : SortedMap<String, String> {
         properties = loadProperties(PROPERTIES_FILE)
         val responses = HashMap<String, String>()
 
@@ -81,6 +81,8 @@ class AutoResponse : PropertiesPlugin {
             if (value.toString().isNotBlank()) responses[key.toString()] = value.toString()
         }
 
-        return responses
+        responses
+
+        return responses.toSortedMap()
     }
 }
