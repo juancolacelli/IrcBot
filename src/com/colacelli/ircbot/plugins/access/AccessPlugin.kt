@@ -16,9 +16,8 @@ class AccessPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ROOT, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".access"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".access", ".acc")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size > 1) {

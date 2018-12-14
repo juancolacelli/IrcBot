@@ -18,9 +18,8 @@ class UptimePlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".uptime"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".uptime", ".up")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val currentTimeMillis = System.currentTimeMillis()

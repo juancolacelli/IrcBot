@@ -22,9 +22,8 @@ class HelpPlugin : Plugin {
     }
 
     val listener = object : OnChannelCommandListener {
-        override fun channelCommand(): String {
-            return ".help"
-        }
+        override val commands: Array<String>
+            get() = arrayOf(".help", ".h")
 
         override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
             val access = IRCBotAccess.instance.get(message.sender!!)

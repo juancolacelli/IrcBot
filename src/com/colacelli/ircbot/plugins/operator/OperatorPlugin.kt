@@ -31,9 +31,8 @@ class OperatorPlugin : Plugin {
         modifiers.forEach { prefix, sign ->
             modes.forEach { name, mode ->
                 IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-                    override fun channelCommand(): String {
-                        return ".$prefix$name"
-                    }
+                    override val commands: Array<String>
+                        get() = arrayOf(".$prefix$name")
 
                     override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                         if (args.isNotEmpty()) {
@@ -63,9 +62,8 @@ class OperatorPlugin : Plugin {
         }
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".k"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".kick", ".k")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -91,9 +89,8 @@ class OperatorPlugin : Plugin {
                 "reason"))
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".kb"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".kickban", ".kb")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 // FIXME: Copy pasted from .k
@@ -121,9 +118,8 @@ class OperatorPlugin : Plugin {
                 "reason"))
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".unban"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".unban")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -139,9 +135,8 @@ class OperatorPlugin : Plugin {
                 "nick"))
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".mode"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".mode")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 connection.mode(message.channel, args.joinToString(" "))
@@ -154,9 +149,8 @@ class OperatorPlugin : Plugin {
                 "mode"))
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".invite"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".invite")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.invite(message.channel, User(args[0]))
@@ -169,9 +163,8 @@ class OperatorPlugin : Plugin {
                 "nick"))
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".topic"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".topic")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.topic(message.channel, args.joinToString(" "))
@@ -192,7 +185,7 @@ class OperatorPlugin : Plugin {
             }
         }
 
-        arrayOf("k", "kb", "unban", "mode", "invite", "topic").forEach {
+        arrayOf("kick", "k", "kickban", "kb", "unban", "mode", "invite", "topic").forEach {
             bot.removeListener(".$it")
             PluginHelper.instance.removeHelp(".$it")
         }

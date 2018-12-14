@@ -17,9 +17,8 @@ class PluginLoaderPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ROOT, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".plugin"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".plugin", ".plug")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size > 1) {

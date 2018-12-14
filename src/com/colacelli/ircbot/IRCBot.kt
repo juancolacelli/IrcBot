@@ -43,12 +43,14 @@ class IRCBot(val server: Server, val user: User) : Listenable {
     }
 
     fun addListener(listener: OnChannelCommandListener) {
-        val command = listener.channelCommand().toLowerCase()
+        listener.commands.forEach {
+            val command = it.toLowerCase()
 
-        val commandListeners = listeners.getOrDefault(command, ArrayList())
-        commandListeners.add(listener)
+            val commandListeners = listeners.getOrDefault(command, ArrayList())
+            commandListeners.add(listener)
 
-        listeners[command] = commandListeners
+            listeners[command] = commandListeners
+        }
     }
 
     fun removeListener(command: String) {

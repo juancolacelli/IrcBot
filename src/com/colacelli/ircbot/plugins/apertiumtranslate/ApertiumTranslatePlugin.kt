@@ -15,9 +15,8 @@ import java.util.*
 
 class ApertiumTranslatePlugin : Plugin {
     private val listener = object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".translate"
-            }
+        override val commands: Array<String>
+            get() = arrayOf(".translate", ".trans")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size > 2) {

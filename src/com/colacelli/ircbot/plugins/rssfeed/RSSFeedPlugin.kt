@@ -28,9 +28,8 @@ class RSSFeedPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener{
-            override fun channelCommand(): String {
-                return ".rss"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".rss")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -50,9 +49,8 @@ class RSSFeedPlugin : Plugin {
         })
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ADMIN, object : OnChannelCommandListener{
-            override fun channelCommand(): String {
-                return ".rss"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".rss")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size > 1) {

@@ -28,9 +28,8 @@ class AutoResponsePlugin :Plugin {
 
     override fun onLoad(bot: IRCBot) {
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ADMIN, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".ar"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".autoresponse", ".ar")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size > 1) {

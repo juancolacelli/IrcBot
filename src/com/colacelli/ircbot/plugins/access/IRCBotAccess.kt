@@ -36,9 +36,8 @@ class IRCBotAccess : PropertiesPlugin {
 
     fun addListener(bot : IRCBot, level : Level, listener: OnChannelCommandListener) {
         bot.addListener(object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return listener.channelCommand()
-            }
+            override val commands: Array<String>
+                get() = listener.commands
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (get(message.sender!!).level >= level.level) {

@@ -20,9 +20,8 @@ class DuckDuckGoSearchPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".ddgo"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".duckduckgo", ".ddgo")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {

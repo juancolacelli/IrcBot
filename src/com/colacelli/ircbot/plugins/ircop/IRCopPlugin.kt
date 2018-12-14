@@ -27,9 +27,8 @@ class IRCopPlugin(name : String, password : String) : Plugin {
         bot.addListener(listener)
 
         IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ADMIN, object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".kill"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".kill")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val user = args[0]

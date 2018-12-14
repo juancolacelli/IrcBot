@@ -18,9 +18,8 @@ class ThePirateBaySearchPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override fun channelCommand(): String {
-                return ".torrent"
-            }
+            override val commands: Array<String>
+                get() = arrayOf(".torrent")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
