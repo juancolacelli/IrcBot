@@ -3,6 +3,9 @@ package com.colacelli.ircbot.plugins.autoresponse
 import com.colacelli.ircbot.PropertiesPlugin
 import com.colacelli.irclib.messages.ChannelMessage
 import java.util.*
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+import java.util.regex.PatternSyntaxException
 import kotlin.collections.HashMap
 
 class AutoResponse : PropertiesPlugin {
@@ -41,7 +44,13 @@ class AutoResponse : PropertiesPlugin {
 
         properties.forEach { key, value ->
             if (response.isBlank()) {
-                trigger = Regex(key.toString())
+                trigger = try {
+                    Regex(key.toString())
+                } catch (e: PatternSyntaxException) {
+                    // Invalid Regex saved
+                    Regex.fromLiteral(key.toString())
+                }
+
                 if (text.toLowerCase().matches(trigger)) {
                     response = value.toString()
                 }
