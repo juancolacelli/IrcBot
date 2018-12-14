@@ -17,58 +17,67 @@ org.jsoup:jsoup:1.11.3
 * **GNU Librebot**: https://gitlab.com/jic/librebot
 
 ## Basic usage
-```java
-IRCBot bot = new IRCBot();
+```kotlin
+val bot = IRCBot()
 
-User.Builder userBuilder = new User.Builder();
-userBuilder
+val user = User.Builder()
         .setNick("ircbot")
         .setLogin("ircbot")
-        .setRealName("ircbot");
+        .setRealName("GNU IRCBot - https://gitlab.com/jic/ircbot")
+        .build()
 
-Server.Builder serverBuilder = new Server.Builder();
-serverBuilder
+val server = Server.Builder()
         .setHostname("irc.freenode.net")
         .setPort(6697)
-        .setSecure(true);
+        .setSecure(true)
+        .build()
 
-bot.connect(serverBuilder.build(), userBuilder.build());
+bot.connect(server, user)
 ```
 
 ## Basic plugin definition
-```java
-public class BasicPlugin implements Plugin {
-    @Override
-    public void setup(IRCBot bot) {
-        bot.addListener((OnConnectListener) (connection, server, user) -> {
-            // TODO: Do something...
-        });
+```kotlin
+class BasicPlugin : Plugin {
+    private val listener = OnConnectListener { connection, _, _ ->
+        connection.join("#gnu")
+    }
+        
+    override fun getName(): String {
+        return "basic_plugin"
+    }
+
+    override fun onLoad(bot: IRCBot) {
+        bot.addListener(listener)
+    }
+
+    override fun onUnload(bot: IRCBot) {
+        bot.removeListener(listener)
     }
 }
 ```
 
-```java
-IRCBot bot = new IRCBot();
-bot.addPlugin(new BasicPlugin());
+```kotlin
+val bot = IRCBot()
+bot.addPlugin(BasicPlugin())
 ```
 
 ## Plugins
 * **access**: Grant/Revoke bot access
-* **apertiumtranslator**: Translate text using [Apertium](https://apertium.org)
-* **autojoin**: Auto-join channels on connect
-* **autoreconnect**: Auto-reconnect on disconnection
-* **autoresponse**: Auto-response on text triggers
-* **ctcpversion**: Customize your CTCP VERSION response
-* **duckduckgosearch**: Search on [DuckDuckGo](https://duckduckgo.com)
+* **apertium_translator**: Translate text using [Apertium](https://apertium.org)
+* **auto_join**: Auto-join channels on connect
+* **auto_reconnect**: Auto-reconnect on disconnection
+* **auto_response**: Auto-response on text triggers
+* **ctcp_version**: Customize your CTCP VERSION response
+* **duck_duck_go_search**: Search on [DuckDuckGo](https://duckduckgo.com)
 * **help**: Bot help
 * **ircop**: IRCop authentication
-* **joinpart**: Bot can join and part channels by request
-* **loader**: Plugins can be loaded and unloaded
+* **join_part**: Bot can join and part channels by request
+* **plugin_loader**: Plugins can be loaded and unloaded
 * **nickserv**: NickServ authentication
 * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
-* **rejoinonkick**: Re-join channels on kick
-* **rssfeed**: Get rss feed notices and send them to all subscribers
-* **thepiratebaysearch**: Search torrents in [ThePirateBay](https://thepiratebay.org)
+* **rejoin_on_kick**: Re-join channels on kick
+* **rss_feed**: Get rss feed notices and send them to all subscribers
+* **the_pirate_bay_search**: Search torrents in [ThePirateBay](https://thepiratebay.org)
 * **uptime**: Shows bot uptime
-* **websitetitle**: Get website title when an url is detected
+* **website_title**: Get website title when an url is detected
 
