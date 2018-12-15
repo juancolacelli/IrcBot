@@ -78,9 +78,6 @@ class AutoResponse : PropertiesPlugin {
         properties.forEach { key, value ->
             if (value.toString().isNotBlank()) responses[key.toString()] = value.toString()
         }
-
-        responses
-
         return responses.toSortedMap()
     }
 }
