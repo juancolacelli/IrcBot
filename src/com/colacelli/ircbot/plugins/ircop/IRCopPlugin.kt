@@ -1,17 +1,17 @@
 package com.colacelli.ircbot.plugins.ircop
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.Plugin
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Help
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.ChannelMessage
 
-class IRCopPlugin(name : String, password : String) : Plugin {
+class IRCopPlugin(name: String, password: String) : Plugin {
     val listener = object : OnConnectListener {
         override fun onConnect(connection: Connection, server: Server, user: User) {
             return connection.send("OPER $name $password")

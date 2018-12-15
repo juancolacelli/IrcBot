@@ -13,7 +13,7 @@ import com.colacelli.irclib.messages.PrivateMessage
 import java.util.*
 
 class RejoinOnKickPlugin : Plugin {
-    private val listeners : ArrayList<Listener> = ArrayList()
+    private val listeners: ArrayList<Listener> = ArrayList()
 
     init {
         listeners.add(object : OnKickListener {

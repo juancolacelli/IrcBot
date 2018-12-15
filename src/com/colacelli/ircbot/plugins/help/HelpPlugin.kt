@@ -1,10 +1,10 @@
 package com.colacelli.ircbot.plugins.help
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.Plugin
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Help
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage

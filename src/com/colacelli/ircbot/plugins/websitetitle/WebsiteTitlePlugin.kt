@@ -45,7 +45,7 @@ class WebsiteTitlePlugin : Plugin {
         bot.removeListener(listener)
     }
 
-    private class WebsiteTitle(val url : String) : Runnable {
+    private class WebsiteTitle(val url: String) : Runnable {
         val listeners = ArrayList<OnWebsiteTitleGetListener>()
 
         override fun run() {

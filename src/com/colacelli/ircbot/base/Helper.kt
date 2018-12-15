@@ -3,7 +3,7 @@ package com.colacelli.ircbot.base
 import com.colacelli.ircbot.IRCBot
 
 class Helper(private val bot: IRCBot) {
-    fun list(level : Access.Level) : ArrayList<String> {
+    fun list(level: Access.Level): ArrayList<String> {
         var commands = ArrayList<String>()
         bot.listeners.forEach {
             // Prevent dupes
@@ -15,7 +15,7 @@ class Helper(private val bot: IRCBot) {
         return commands
     }
 
-    fun get(level : Access.Level, command : String) : ArrayList<String> {
+    fun get(level: Access.Level, command: String): ArrayList<String> {
         val texts = ArrayList<String>()
         bot.listeners.forEach {
             if (it.command.startsWith(command) && it.level.value <= level.value) texts.add(it.help.toString())

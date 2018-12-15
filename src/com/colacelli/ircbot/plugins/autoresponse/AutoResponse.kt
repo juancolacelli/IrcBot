@@ -33,7 +33,7 @@ class AutoResponse : PropertiesPlugin {
         saveProperties(PROPERTIES_FILE, properties)
     }
 
-    fun get(message: ChannelMessage) : String? {
+    fun get(message: ChannelMessage): String? {
         properties = loadProperties(PROPERTIES_FILE)
 
         val text = message.text
@@ -62,7 +62,7 @@ class AutoResponse : PropertiesPlugin {
 
                 try {
                     response = text.replace(trigger, response)
-                } catch (e : IndexOutOfBoundsException) {
+                } catch (e: IndexOutOfBoundsException) {
                     // $2 not found!
                 }
             }
@@ -71,7 +71,7 @@ class AutoResponse : PropertiesPlugin {
         return response
     }
 
-    fun list() : SortedMap<String, String> {
+    fun list(): SortedMap<String, String> {
         properties = loadProperties(PROPERTIES_FILE)
         val responses = HashMap<String, String>()
 

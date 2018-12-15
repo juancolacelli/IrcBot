@@ -6,7 +6,7 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnCTCPListener
 import com.colacelli.irclib.messages.CTCPMessage
 
-class CTCPVersionPlugin(response : String) : Plugin {
+class CTCPVersionPlugin(response: String) : Plugin {
     val listener = object : OnCTCPListener {
         override fun onCTCP(connection: Connection, message: CTCPMessage, vararg args: List<String>) {
             when (message.text) {

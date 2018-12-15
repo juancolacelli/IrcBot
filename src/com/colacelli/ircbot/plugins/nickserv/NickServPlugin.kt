@@ -8,7 +8,7 @@ import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.PrivateMessage
 
-class NickServPlugin(password : String) : Plugin {
+class NickServPlugin(password: String) : Plugin {
     val listener = object : OnConnectListener {
         override fun onConnect(connection: Connection, server: Server, user: User) {
             return connection.send(PrivateMessage(

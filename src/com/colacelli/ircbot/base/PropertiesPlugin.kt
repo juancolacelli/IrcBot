@@ -6,14 +6,14 @@ import java.io.FileOutputStream
 import java.util.*
 
 interface PropertiesPlugin {
-    fun loadProperties(filename : String) : Properties {
+    fun loadProperties(filename: String): Properties {
         var properties = Properties()
         try {
             val file = FileInputStream(filename)
 
             properties.load(file)
             file.close()
-        } catch (e : FileNotFoundException) {
+        } catch (e: FileNotFoundException) {
             // Saving file for first time
             saveProperties(filename, properties)
         }

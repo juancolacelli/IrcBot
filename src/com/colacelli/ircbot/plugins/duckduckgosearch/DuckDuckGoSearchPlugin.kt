@@ -1,10 +1,10 @@
 package com.colacelli.ircbot.plugins.duckduckgosearch
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.Plugin
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Help
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.google.gson.Gson
@@ -50,7 +50,7 @@ class DuckDuckGoSearchPlugin : Plugin {
         bot.removeListener(".duckDuckGo")
     }
 
-    private class DuckDuckGoSearch(val query : String) : Runnable {
+    private class DuckDuckGoSearch(val query: String) : Runnable {
         private val listeners = ArrayList<OnDuckDuckGoSearchResultListener>()
 
         companion object {

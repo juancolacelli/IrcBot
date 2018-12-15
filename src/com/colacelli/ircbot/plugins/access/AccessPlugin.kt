@@ -2,9 +2,9 @@ package com.colacelli.ircbot.plugins.access
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
@@ -26,7 +26,7 @@ class AccessPlugin : Plugin {
 
                         bot.access.add(nick, level)
                         connection.send(PrivateNoticeMessage("Access granted!", connection.user, message.sender))
-                    } catch (e : IllegalArgumentException) {
+                    } catch (e: IllegalArgumentException) {
                         connection.send(PrivateNoticeMessage("Invalid access value!", connection.user, message.sender))
                     }
                 }

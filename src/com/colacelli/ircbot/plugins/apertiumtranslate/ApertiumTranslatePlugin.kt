@@ -1,10 +1,10 @@
 package com.colacelli.ircbot.plugins.apertiumtranslate
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.Plugin
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Help
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.google.gson.Gson
@@ -71,8 +71,8 @@ class ApertiumTranslatePlugin : Plugin {
 
         override fun run() {
             val url = APERTIUM_URL
-                .replace("LOCALES", "$localeA|$localeB")
-                .replace("TEXT", text)
+                    .replace("LOCALES", "$localeA|$localeB")
+                    .replace("TEXT", text)
 
             val stream = URL(url).openStream()
             val scanner = Scanner(stream).useDelimiter("\\A")
@@ -100,7 +100,7 @@ class ApertiumTranslatePlugin : Plugin {
             }
         }
 
-        fun addListener(listener : OnApertiumTranslateResultListener) {
+        fun addListener(listener: OnApertiumTranslateResultListener) {
             listeners.add(listener)
         }
     }

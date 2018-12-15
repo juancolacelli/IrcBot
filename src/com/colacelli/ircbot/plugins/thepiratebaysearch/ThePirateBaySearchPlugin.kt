@@ -1,10 +1,10 @@
 package com.colacelli.ircbot.plugins.thepiratebaysearch
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.Plugin
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Help
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import org.jsoup.Jsoup
@@ -90,7 +90,7 @@ class ThePirateBaySearchPlugin : Plugin {
                         it.onError()
                     }
                 }
-            } catch (e : IOException) {
+            } catch (e: IOException) {
                 listeners.forEach {
                     it.onError()
                 }
@@ -102,5 +102,5 @@ class ThePirateBaySearchPlugin : Plugin {
         }
     }
 
-    class ThePirateBaySearchResult(val title: String, val description: String, val magnet: String, val uploadedAt: String, val size: String, val seeders:Int, val leechers:Int)
+    class ThePirateBaySearchResult(val title: String, val description: String, val magnet: String, val uploadedAt: String, val size: String, val seeders: Int, val leechers: Int)
 }

@@ -12,7 +12,6 @@ import com.colacelli.irclib.connection.listeners.Listenable
 import com.colacelli.irclib.connection.listeners.Listener
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
 import com.colacelli.irclib.messages.ChannelMessage
-import kotlin.collections.ArrayList
 
 class IRCBot(val server: Server, val user: User) : Listenable {
     val connection = Connection(server, user)
@@ -91,7 +90,7 @@ class IRCBot(val server: Server, val user: User) : Listenable {
         plugins.add(plugin)
     }
 
-    fun removePlugin(plugin : Plugin) {
+    fun removePlugin(plugin: Plugin) {
         plugin.onUnload(this)
         plugins.remove(plugin)
     }

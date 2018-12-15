@@ -41,7 +41,7 @@ class RSSFeed : PropertiesPlugin {
         saveProperties(PROPERTIES_FILE, properties)
     }
 
-    fun list() : SortedMap<String, String> {
+    fun list(): SortedMap<String, String> {
         properties = loadProperties(PROPERTIES_FILE)
         val response = HashMap<String, String>()
 
@@ -52,7 +52,7 @@ class RSSFeed : PropertiesPlugin {
         return response.toSortedMap()
     }
 
-    fun subscribers() : ArrayList<String> {
+    fun subscribers(): ArrayList<String> {
         properties = loadProperties(PROPERTIES_FILE)
 
         val subscribers = ArrayList<String>()
@@ -65,7 +65,7 @@ class RSSFeed : PropertiesPlugin {
         return subscribers
     }
 
-    fun subscribe(user : User) {
+    fun subscribe(user: User) {
         val subscribers = subscribers()
         val nick = user.nick.toLowerCase()
 
@@ -75,7 +75,7 @@ class RSSFeed : PropertiesPlugin {
         saveProperties(PROPERTIES_FILE, properties)
     }
 
-    fun unsubscribe(user : User) {
+    fun unsubscribe(user: User) {
         val subscribers = subscribers()
         val nick = user.nick.toLowerCase()
 

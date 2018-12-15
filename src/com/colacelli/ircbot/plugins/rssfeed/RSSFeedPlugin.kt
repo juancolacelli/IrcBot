@@ -1,10 +1,10 @@
 package com.colacelli.ircbot.plugins.rssfeed
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.Plugin
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Help
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnPingListener
@@ -24,7 +24,7 @@ class RSSFeedPlugin : Plugin {
     override var name = "rss_feed"
 
     override fun onLoad(bot: IRCBot) {
-        bot.addListener(object : OnChannelCommandListener{
+        bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssSubscribe"
             override var level = Access.Level.USER
             override var help = Help("Subscribe to RSS feed")
@@ -35,7 +35,7 @@ class RSSFeedPlugin : Plugin {
             }
         })
 
-        bot.addListener(object : OnChannelCommandListener{
+        bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssUnsubscribe"
             override var level = Access.Level.USER
             override var help = Help("Unsubscribe from RSS feed")
@@ -46,7 +46,7 @@ class RSSFeedPlugin : Plugin {
             }
         })
 
-        bot.addListener(object : OnChannelCommandListener{
+        bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssAdd"
             override var level = Access.Level.ADMIN
             override var help = Help("Add a RSS feed", "url")
@@ -59,7 +59,7 @@ class RSSFeedPlugin : Plugin {
             }
         })
 
-        bot.addListener(object : OnChannelCommandListener{
+        bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssDel"
             override var level = Access.Level.ADMIN
             override var help = Help("Removes a RSS feed", "url")
@@ -72,7 +72,7 @@ class RSSFeedPlugin : Plugin {
             }
         })
 
-        bot.addListener(object : OnChannelCommandListener{
+        bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssList"
             override var level = Access.Level.ADMIN
             override var help = Help("List all available RSS feeds")
@@ -84,7 +84,7 @@ class RSSFeedPlugin : Plugin {
             }
         })
 
-        bot.addListener(object : OnChannelCommandListener{
+        bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssCheck"
             override var level = Access.Level.ADMIN
             override var help = Help("Check all available RSS feed")
@@ -95,7 +95,7 @@ class RSSFeedPlugin : Plugin {
             }
         })
 
-        bot.addListener(object : OnChannelCommandListener{
+        bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssSubscribers"
             override var level = Access.Level.ADMIN
             override var help = Help("List all RSS feed subscribers")
@@ -110,10 +110,10 @@ class RSSFeedPlugin : Plugin {
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(listener)
-        bot.removeListeners( arrayOf(".rssSubscribe", ".rssUnsubscribe", ".rssAdd", ".rssDel", ".rssList", ".rssCheck", ".rssSubscribers"))
+        bot.removeListeners(arrayOf(".rssSubscribe", ".rssUnsubscribe", ".rssAdd", ".rssDel", ".rssList", ".rssCheck", ".rssSubscribers"))
     }
 
-    private fun check(connection:Connection) {
+    private fun check(connection: Connection) {
         RSSFeed.instance.list().forEach { url, lastUrl ->
             val checker = RSSFeedChecker(url)
 
@@ -157,16 +157,17 @@ class RSSFeedPlugin : Plugin {
                 listeners.forEach {
                     it.onSuccess(rssFeedItem)
                 }
-            } catch (e : IOException) {
+            } catch (e: IOException) {
                 listeners.forEach {
                     it.onError(url)
                 }
             }
         }
 
-        fun addListener(listener : OnRSSFeedCheckListener) {
+        fun addListener(listener: OnRSSFeedCheckListener) {
             listeners.add(listener)
         }
     }
-    class RSSFeedItem(val rssFeedUrl: String, val url:String, val title:String)
+
+    class RSSFeedItem(val rssFeedUrl: String, val url: String, val title: String)
 }

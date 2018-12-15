@@ -10,5 +10,5 @@ interface OnChannelCommandListener {
     var level: Access.Level
     var help: Help
 
-    fun onChannelCommand(connection : Connection, message : ChannelMessage, command : String, args : Array<String>)
+    fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>)
 }
