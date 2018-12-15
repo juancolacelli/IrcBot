@@ -17,9 +17,19 @@ class Helper(private val bot: IRCBot) {
 
     fun get(level: Access.Level, command: String): ArrayList<String> {
         val texts = ArrayList<String>()
+        var helps = ArrayList<Help>()
+
         bot.listeners.forEach {
-            if (it.command.startsWith(command) && it.level.value <= level.value) texts.add(it.help.toString())
+            if (it.command.startsWith(command) && it.level.value <= level.value) helps.add(it.help)
         }
+
+        // Get max command length + 5
+        val whitespaces = helps.sortedBy { it.commandWithArgs!!.length }.reversed()[0].commandWithArgs!!.length
+
+        helps.forEach {
+            texts.add(it.toText(whitespaces))
+        }
+
         texts.sort()
         return texts
     }

@@ -1,16 +1,17 @@
 package com.colacelli.ircbot.base
 
 open class Help(val help: String, vararg val args: String) {
+    var commandWithArgs : String? = null
     var command: String? = null
-
-    override fun toString(): String {
-        var text = command!!
-
-        args.forEach {
-            text += " $it"
+        set(value) {
+            commandWithArgs = value + " " + args.joinToString(" ")
+            field = value
         }
 
-        text += ": $help"
+    fun toText(whitespaces: Int): String {
+        var text = commandWithArgs
+        text = String.format("%-${whitespaces}s | ", text)
+        text += help
 
         return text
     }
