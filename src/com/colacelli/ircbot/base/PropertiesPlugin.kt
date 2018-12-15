@@ -1,4 +1,4 @@
-package com.colacelli.ircbot
+package com.colacelli.ircbot.base
 
 import java.io.FileInputStream
 import java.io.FileNotFoundException

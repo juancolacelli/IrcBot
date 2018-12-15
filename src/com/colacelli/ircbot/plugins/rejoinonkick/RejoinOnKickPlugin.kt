@@ -1,7 +1,7 @@
 package com.colacelli.ircbot.plugins.rejoinonkick
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
+import com.colacelli.ircbot.base.Plugin
 import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
@@ -33,21 +33,19 @@ class RejoinOnKickPlugin : Plugin {
                     override fun run() {
                         val channel = Channel(args[3])
 
-                        connection?.send(PrivateMessage(
+                        connection.send(PrivateMessage(
                                 "unban ${channel.name}",
                                 connection.user,
                                 User("ChanServ")
                         ))
-                        connection?.join(channel)
+                        connection.join(channel)
                     }
                 }, 5000)
             }
         })
     }
 
-    override fun getName(): String {
-        return "rejoin_on_kick"
-    }
+    override var name = "rejoin_on_kick"
 
     override fun onLoad(bot: IRCBot) {
         listeners.forEach {

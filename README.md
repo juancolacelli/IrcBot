@@ -34,9 +34,7 @@ class BasicPlugin : Plugin {
         }
     }
         
-    override fun getName(): String {
-        return "basic_plugin"
-    }
+    override var name = "basic_plugin"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(listener)

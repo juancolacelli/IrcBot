@@ -1,11 +1,10 @@
 package com.colacelli.ircbot.plugins.duckduckgosearch
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.google.gson.Gson
@@ -14,14 +13,13 @@ import java.net.URL
 import java.util.*
 
 class DuckDuckGoSearchPlugin : Plugin {
-    override fun getName(): String {
-        return "duck_duck_go_search"
-    }
+    override var name = "duck_duck_go_search"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".duckduckgo", ".ddgo")
+            override var command = ".duckDuckGo"
+            override var level = Access.Level.USER
+            override var help = Help("Find on DuckDuckGo (https://duckduckgo.com)", "query")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -46,17 +44,10 @@ class DuckDuckGoSearchPlugin : Plugin {
             }
 
         })
-
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".ddgo",
-                IRCBotAccess.Level.USER,
-                "Find on DuckDuckGo (https://duckduckgo.com)",
-                "query"))
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".ddgo")
-        PluginHelper.instance.removeHelp(".ddgo")
+        bot.removeListener(".duckDuckGo")
     }
 
     private class DuckDuckGoSearch(val query : String) : Runnable {

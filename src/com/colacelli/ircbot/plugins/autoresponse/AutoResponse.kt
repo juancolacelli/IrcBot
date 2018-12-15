@@ -1,10 +1,8 @@
 package com.colacelli.ircbot.plugins.autoresponse
 
-import com.colacelli.ircbot.PropertiesPlugin
+import com.colacelli.ircbot.base.PropertiesPlugin
 import com.colacelli.irclib.messages.ChannelMessage
 import java.util.*
-import java.util.regex.Matcher
-import java.util.regex.Pattern
 import java.util.regex.PatternSyntaxException
 import kotlin.collections.HashMap
 

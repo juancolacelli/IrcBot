@@ -1,6 +1,6 @@
 package com.colacelli.ircbot.plugins.rssfeed
 
-import com.colacelli.ircbot.PropertiesPlugin
+import com.colacelli.ircbot.base.PropertiesPlugin
 import com.colacelli.irclib.actors.User
 import java.util.*
 import kotlin.collections.ArrayList

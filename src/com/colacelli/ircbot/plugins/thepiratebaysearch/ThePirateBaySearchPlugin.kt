@@ -1,25 +1,23 @@
 package com.colacelli.ircbot.plugins.thepiratebaysearch
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import org.jsoup.Jsoup
 import java.io.IOException
 
 class ThePirateBaySearchPlugin : Plugin {
-    override fun getName(): String {
-        return "the_pirate_bay_search"
-    }
+    override var name = "the_pirate_bay_search"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".torrent")
+            override var command = ".torrent"
+            override var level = Access.Level.USER
+            override var help = Help("Find torrents on ThePirateBay (https://thepiratebay.org)", "query")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -42,17 +40,10 @@ class ThePirateBaySearchPlugin : Plugin {
                 }
             }
         })
-
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".torrent",
-                IRCBotAccess.Level.USER,
-                "Find torrents on ThePirateBay (https://thepiratebay.org)",
-                "query"))
     }
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(".torrent")
-        PluginHelper.instance.removeHelp(".torrent")
     }
 
     private class ThePirateBaySearch(val query: String) : Runnable {

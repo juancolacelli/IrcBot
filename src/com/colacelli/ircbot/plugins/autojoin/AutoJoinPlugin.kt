@@ -1,7 +1,7 @@
 package com.colacelli.ircbot.plugins.autojoin
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
+import com.colacelli.ircbot.base.Plugin
 import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
@@ -17,9 +17,7 @@ class AutoJoinPlugin(channels : ArrayList<Channel>) : Plugin {
         }
     }
 
-    override fun getName(): String {
-        return "auto_join"
-    }
+    override var name = "auto_join"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(listener)

@@ -1,11 +1,10 @@
 package com.colacelli.ircbot.plugins.rssfeed
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnPingListener
@@ -22,117 +21,96 @@ class RSSFeedPlugin : Plugin {
         }
     }
 
-    override fun getName(): String {
-        return "rss_feed"
-    }
+    override var name = "rss_feed"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener{
-            override val commands: Array<String>
-                get() = arrayOf(".rss")
+            override var command = ".rssSubscribe"
+            override var level = Access.Level.USER
+            override var help = Help("Subscribe to RSS feed")
+
+            override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                RSSFeed.instance.subscribe(message.sender!!)
+                connection.send(PrivateNoticeMessage("Subscribed to RSS feed!", connection.user, message.sender))
+            }
+        })
+
+        bot.addListener(object : OnChannelCommandListener{
+            override var command = ".rssUnsubscribe"
+            override var level = Access.Level.USER
+            override var help = Help("Unsubscribe from RSS feed")
+
+            override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                RSSFeed.instance.unsubscribe(message.sender!!)
+                connection.send(PrivateNoticeMessage("Unsubscribed to RSS feed!", connection.user, message.sender))
+            }
+        })
+
+        bot.addListener(object : OnChannelCommandListener{
+            override var command = ".rssAdd"
+            override var level = Access.Level.ADMIN
+            override var help = Help("Add a RSS feed", "url")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
-                    when (args[0]) {
-                        "subscribe" -> {
-                            RSSFeed.instance.subscribe(message.sender!!)
-                            connection.send(PrivateNoticeMessage("Subscribed to RSS feed!", connection.user, message.sender))
-                        }
-                        "unsubscribe" -> {
-                            RSSFeed.instance.unsubscribe(message.sender!!)
-                            connection.send(PrivateNoticeMessage("Unsubscribed to RSS feed!", connection.user, message.sender))
-                        }
-                    }
+                    RSSFeed.instance.add(args[0])
+                    connection.send(PrivateNoticeMessage("RSS feed added!", connection.user, message.sender))
                 }
             }
-
         })
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ADMIN, object : OnChannelCommandListener{
-            override val commands: Array<String>
-                get() = arrayOf(".rss")
+        bot.addListener(object : OnChannelCommandListener{
+            override var command = ".rssDel"
+            override var level = Access.Level.ADMIN
+            override var help = Help("Removes a RSS feed", "url")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                if (args.size > 1) {
-                    val url = args[1]
-                    when (args[0]) {
-                        "add" -> {
-                            RSSFeed.instance.add(url)
-                            connection.send(PrivateNoticeMessage("RSS feed added!", connection.user, message.sender))
-                        }
-
-                        "del" -> {
-                            RSSFeed.instance.del(url)
-                            connection.send(PrivateNoticeMessage("RSS feed removed!", connection.user, message.sender))
-                        }
-                    }
-                } else {
-                    when (args[0]) {
-                        "subscribers" -> {
-                            val nicks = RSSFeed.instance.subscribers()
-                            nicks.sort()
-                            connection.send(PrivateNoticeMessage(nicks.joinToString(" "), connection.user, message.sender))
-                        }
-
-                        "list" -> {
-                            RSSFeed.instance.list().forEach { url, _ ->
-                                connection.send(PrivateNoticeMessage(url, connection.user, message.sender))
-                            }
-                        }
-
-                        "check" -> {
-                            connection.send(PrivateNoticeMessage("Checking...", connection.user, message.sender))
-                            check(connection)
-                        }
-                    }
+                if (args.isNotEmpty()) {
+                    RSSFeed.instance.del(args[0])
+                    connection.send(PrivateNoticeMessage("RSS feed removed!", connection.user, message.sender))
                 }
             }
         })
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".rss check",
-                IRCBotAccess.Level.ADMIN,
-                "Check all RSS feeds"))
+        bot.addListener(object : OnChannelCommandListener{
+            override var command = ".rssList"
+            override var level = Access.Level.ADMIN
+            override var help = Help("List all available RSS feeds")
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".rss list",
-                IRCBotAccess.Level.ADMIN,
-                "List all RSS feeds"))
+            override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                RSSFeed.instance.list().forEach { url, _ ->
+                    connection.send(PrivateNoticeMessage(url, connection.user, message.sender))
+                }
+            }
+        })
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".rss add",
-                IRCBotAccess.Level.ADMIN,
-                "Add a RSS feed",
-                "url"))
+        bot.addListener(object : OnChannelCommandListener{
+            override var command = ".rssCheck"
+            override var level = Access.Level.ADMIN
+            override var help = Help("Check all available RSS feed")
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".rss del",
-                IRCBotAccess.Level.ADMIN,
-                "Delete an RSS feed",
-                "index"))
+            override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                connection.send(PrivateNoticeMessage("Checking...", connection.user, message.sender))
+                check(connection)
+            }
+        })
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".rss subscribers",
-                IRCBotAccess.Level.ADMIN,
-                "List all subscribers"))
+        bot.addListener(object : OnChannelCommandListener{
+            override var command = ".rssSubscribers"
+            override var level = Access.Level.ADMIN
+            override var help = Help("List all RSS feed subscribers")
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".rss subscribe",
-                IRCBotAccess.Level.USER,
-                "Subscribe to RSS feed"))
-
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".rss unsubscribe",
-                IRCBotAccess.Level.USER,
-                "Unsubscribe from RSS feed"))
+            override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                val nicks = RSSFeed.instance.subscribers()
+                nicks.sort()
+                connection.send(PrivateNoticeMessage(nicks.joinToString(" "), connection.user, message.sender))
+            }
+        })
     }
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(listener)
-        bot.removeListener(".rss")
-        arrayOf("check", "list", "add", "del", "subscribers", "subscribe", "unsubscribe").forEach {
-            PluginHelper.instance.removeHelp(it)
-        }
+        bot.removeListeners( arrayOf(".rssSubscribe", ".rssUnsubscribe", ".rssAdd", ".rssDel", ".rssList", ".rssCheck", ".rssSubscribers"))
     }
 
     private fun check(connection:Connection) {

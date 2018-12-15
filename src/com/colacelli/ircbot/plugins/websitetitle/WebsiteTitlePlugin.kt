@@ -1,12 +1,11 @@
 package com.colacelli.ircbot.plugins.websitetitle
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
+import com.colacelli.ircbot.base.Plugin
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
 import com.colacelli.irclib.messages.ChannelMessage
 import org.jsoup.Jsoup
-import java.util.regex.Pattern
 
 class WebsiteTitlePlugin : Plugin {
     val listener = object : OnChannelMessageListener {
@@ -36,9 +35,7 @@ class WebsiteTitlePlugin : Plugin {
         }
     }
 
-    override fun getName(): String {
-        return "website_title"
-    }
+    override var name = "website_title"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(listener)

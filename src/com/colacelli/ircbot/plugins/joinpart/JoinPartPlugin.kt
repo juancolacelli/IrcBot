@@ -1,24 +1,22 @@
 package com.colacelli.ircbot.plugins.joinpart
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 
 class JoinPartPlugin : Plugin {
-    override fun getName(): String {
-        return "join_part"
-    }
+    override var name = "join_part"
 
     override fun onLoad(bot: IRCBot) {
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".join")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".join"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Joins a channel", "#channel")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -28,15 +26,10 @@ class JoinPartPlugin : Plugin {
 
         })
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".join",
-                IRCBotAccess.Level.OPERATOR,
-                "Joins a channel",
-                "#channel"))
-
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".part")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".part"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Parts from a channel", "#channel")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -45,18 +38,9 @@ class JoinPartPlugin : Plugin {
             }
 
         })
-
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".part",
-                IRCBotAccess.Level.OPERATOR,
-                "Joins a channel",
-                "#channel"))
     }
 
     override fun onUnload(bot: IRCBot) {
-        arrayOf(".join", ".part").forEach {
-            bot.removeListener(it)
-            PluginHelper.instance.removeHelp(it)
-        }
+        bot.removeListeners(arrayOf(".join", ".part"))
     }
 }

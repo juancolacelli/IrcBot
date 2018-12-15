@@ -1,11 +1,10 @@
 package com.colacelli.ircbot.plugins.apertiumtranslate
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.google.gson.Gson
@@ -14,9 +13,16 @@ import java.net.URL
 import java.util.*
 
 class ApertiumTranslatePlugin : Plugin {
-    private val listener = object : OnChannelCommandListener {
-        override val commands: Array<String>
-            get() = arrayOf(".translate", ".trans")
+    override var name = "apertium_translate"
+
+    override fun onLoad(bot: IRCBot) {
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".translate"
+            override var level = Access.Level.USER
+            override var help = Help(
+                    "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
+                    "locale1", "locale2"
+            )
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size > 2) {
@@ -49,27 +55,11 @@ class ApertiumTranslatePlugin : Plugin {
                     worker.start()
                 }
             }
-
-        }
-
-    override fun getName(): String {
-        return "apertium_translate"
-    }
-
-    override fun onLoad(bot: IRCBot) {
-        bot.addListener(listener)
-
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".translate",
-                IRCBotAccess.Level.USER,
-                "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
-                "locale1",
-                "locale2"))
+        })
     }
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(".translate")
-        PluginHelper.instance.removeHelp(".translate")
     }
 
     private class ApertiumTranslate(private val localeA: String, private val localeB: String, private val text: String) : Runnable {

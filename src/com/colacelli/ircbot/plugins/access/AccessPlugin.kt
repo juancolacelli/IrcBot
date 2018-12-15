@@ -1,85 +1,71 @@
 package com.colacelli.ircbot.plugins.access
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
 
 class AccessPlugin : Plugin {
-    override fun getName(): String {
-        return "access"
-    }
+    override var name = "access"
 
     override fun onLoad(bot: IRCBot) {
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ROOT, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".access", ".acc")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".accessAdd"
+            override var level = Access.Level.ROOT
+            override var help = Help("Grant user access", "nick", "value")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                if (args.size > 1) {
-                    when (args[0]) {
-                        "add" -> {
-                            if (args.size == 3) {
-                                try {
-                                    val level = IRCBotAccess.Level.valueOf(args[2].toUpperCase())
-                                    val nick = args[1]
+                if (args.size == 2) {
+                    try {
+                        val nick = args[0]
+                        val level = Access.Level.valueOf(args[1].toUpperCase())
 
-                                    IRCBotAccess.instance.add(nick, level)
-                                    connection.send(PrivateNoticeMessage("Access granted!", connection.user, message.sender))
-                                } catch (e : IllegalArgumentException) {
-                                    connection.send(PrivateNoticeMessage("Invalid access level!", connection.user, message.sender))
-                                }
-                            }
-                        }
-
-                        "del" -> {
-                            val nick = args[1]
-                            IRCBotAccess.instance.del(nick)
-                            connection.send(PrivateNoticeMessage("Access revoked!", connection.user, message.sender))
-                        }
-                    }
-                } else {
-                    when (args[0]) {
-                        "list" -> {
-                            var accesses = ""
-                            IRCBotAccess.instance.list().forEach {
-                                accesses += "${it.key}(${it.value.toString().toLowerCase()}) "
-                            }
-
-                            connection.send(PrivateNoticeMessage(accesses, connection.user, message.sender))
-                        }
+                        bot.access.add(nick, level)
+                        connection.send(PrivateNoticeMessage("Access granted!", connection.user, message.sender))
+                    } catch (e : IllegalArgumentException) {
+                        connection.send(PrivateNoticeMessage("Invalid access value!", connection.user, message.sender))
                     }
                 }
             }
         })
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".access add",
-                IRCBotAccess.Level.ROOT,
-                "Grant user access",
-                "user",
-                "root/admin/operator"))
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".accessDel"
+            override var level = Access.Level.ROOT
+            override var help = Help("Revoke user access", "nick")
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".access del",
-                IRCBotAccess.Level.ROOT,
-                "Revoke user access",
-                "user"))
+            override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                if (args.isNotEmpty()) {
+                    val nick = args[0]
+                    bot.access.del(nick)
+                    connection.send(PrivateNoticeMessage("Access revoked!", connection.user, message.sender))
+                }
+            }
+        })
 
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".access list",
-                IRCBotAccess.Level.ROOT,
-                "Show access list"))
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".accessList"
+
+            override var level = Access.Level.ROOT
+
+            override var help = Help("List user accesses")
+
+            override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                var accesses = ""
+                bot.access.list().forEach {
+                    accesses += "${it.key}(${it.value.toString().toLowerCase()}) "
+                }
+
+                connection.send(PrivateNoticeMessage(accesses, connection.user, message.sender))
+            }
+        })
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".access")
-        arrayOf("add", "del", "list").forEach {
-            PluginHelper.instance.removeHelp(".access $it")
-        }
+        bot.removeListeners(arrayOf(".accessAdd", ".accessDel", ".accessList"))
     }
 }

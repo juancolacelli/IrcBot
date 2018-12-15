@@ -1,69 +1,60 @@
 package com.colacelli.ircbot.plugins.operator
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 
 class OperatorPlugin : Plugin {
     private val modes = hashMapOf(
-            "owner" to "q",
-            "protect" to "a",
-            "op" to "o",
-            "halfop" to "h",
-            "voice" to "v"
-    )
-    private val modifiers = hashMapOf(
-            "" to "+",
-            "de" to "-"
+            "owner" to "+q",
+            "protect" to "+a",
+            "op" to "+o",
+            "halfOp" to "+h",
+            "voice" to "+v",
+            "deOwner" to "-q",
+            "deProtect" to "-a",
+            "deOp" to "-o",
+            "deHalfOp" to "-h",
+            "deVoice" to "-v"
     )
 
-    override fun getName(): String {
-        return "operator"
-    }
+    override var name = "operator"
 
     override fun onLoad(bot: IRCBot) {
-        modifiers.forEach { prefix, sign ->
-            modes.forEach { name, mode ->
-                IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-                    override val commands: Array<String>
-                        get() = arrayOf(".$prefix$name")
+        modes.forEach { name, mode ->
+            bot.addListener(object : OnChannelCommandListener {
+                override var command = ".$name"
+                override var level = Access.Level.OPERATOR
+                override var help = Help("$mode user channel mode", "nick1", "nick2")
 
-                    override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                        if (args.isNotEmpty()) {
-                            var nicks = ""
-                            var modes = ""
-                            args.forEach {
-                                if (it.toLowerCase() != connection.user.nick.toLowerCase()) {
-                                    modes += "$sign$mode"
-                                    nicks += "$it "
-                                }
+                override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                    if (args.isNotEmpty()) {
+                        var nicks = ""
+                        var modes = ""
+                        args.forEach {
+                            if (it.toLowerCase() != connection.user.nick.toLowerCase()) {
+                                modes += "$mode"
+                                nicks += "$it "
                             }
-
-                            connection.mode(message.channel, "$modes $nicks")
-                        } else {
-                            connection.mode(message.channel, "$sign$mode ${message.sender?.nick}")
                         }
-                    }
-                })
 
-                PluginHelper.instance.addHelp(PluginHelp(
-                        ".$prefix$name",
-                        IRCBotAccess.Level.OPERATOR,
-                        "$sign$mode user channel mode",
-                        "nick1",
-                        "nick2"))
-            }
+                        connection.mode(message.channel, "$modes $nicks")
+                    } else {
+                        connection.mode(message.channel, "$mode ${message.sender?.nick}")
+                    }
+                }
+            })
         }
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".kick", ".k")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".kick"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Kicks a user from channel", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -71,38 +62,27 @@ class OperatorPlugin : Plugin {
                     var reason = "..."
 
                     if (args.size > 1) {
-                        reason = ""
-                        for (i in 1 until args.size) {
-                            reason += "${args[i]} "
-                        }
+                        reason = args.drop(1).joinToString(" ")
                     }
 
                     connection.kick(message.channel, User(nick), reason)
                 }
             }
         })
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".k",
-                IRCBotAccess.Level.OPERATOR,
-                "Kicks a user from channel",
-                "nick",
-                "reason"))
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".kickban", ".kb")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".kickBan"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Kick and bans a user from channel", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                // FIXME: Copy pasted from .k
+                // FIXME: Copy pasted from .kick
                 if (args.isNotEmpty()) {
                     val nick = args[0]
                     var reason = "..."
 
                     if (args.size > 1) {
-                        reason = ""
-                        for (i in 1 until args.size) {
-                            reason += "${args[i]} "
-                        }
+                        reason = args.drop(1).joinToString(" ")
                     }
 
                     connection.mode(message.channel, "+b $nick!*@*")
@@ -110,16 +90,11 @@ class OperatorPlugin : Plugin {
                 }
             }
         })
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".kb",
-                IRCBotAccess.Level.OPERATOR,
-                "Kicks and bans a user from channel",
-                "nick",
-                "reason"))
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".unban")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".unBan"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Remove user bans from channel", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -128,67 +103,41 @@ class OperatorPlugin : Plugin {
                 }
             }
         })
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".unban",
-                IRCBotAccess.Level.OPERATOR,
-                "Unbans an user from channel",
-                "nick"))
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".mode")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".mode"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Change channel modes", "modes")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 connection.mode(message.channel, args.joinToString(" "))
             }
         })
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".mode",
-                IRCBotAccess.Level.OPERATOR,
-                "Changes channel modes",
-                "mode"))
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".invite")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".invite"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Invite an user to channel", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.invite(message.channel, User(args[0]))
             }
         })
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".mode",
-                IRCBotAccess.Level.OPERATOR,
-                "Invites an user to channel",
-                "nick"))
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.OPERATOR, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".topic")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".topic"
+            override var level = Access.Level.OPERATOR
+            override var help = Help("Change channel topic", "topic")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.topic(message.channel, args.joinToString(" "))
             }
         })
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".topic",
-                IRCBotAccess.Level.OPERATOR,
-                "Changes a channel topic",
-                "topic"))
     }
 
     override fun onUnload(bot: IRCBot) {
-        modifiers.forEach { prefix, _ ->
-            modes.forEach { name, _ ->
-                bot.removeListener(".$prefix$name")
-                PluginHelper.instance.removeHelp(".$prefix$name")
-            }
-        }
-
-        arrayOf("kick", "k", "kickban", "kb", "unban", "mode", "invite", "topic").forEach {
-            bot.removeListener(".$it")
-            PluginHelper.instance.removeHelp(".$it")
-        }
+        bot.removeListeners(modes.values.toTypedArray())
+        bot.removeListeners(arrayOf(".kick", ".kickBan", ".unBan", ".mode", ".invite", ".topic"))
     }
 
 }

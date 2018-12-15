@@ -1,25 +1,23 @@
 package com.colacelli.ircbot.plugins.uptime
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import java.util.*
 
 class UptimePlugin : Plugin {
     private val startDate = Date(System.currentTimeMillis())
-    override fun getName(): String {
-        return "uptime"
-    }
+    override var name = "uptime"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".uptime", ".up")
+            override var command = ".uptime"
+            override var level = Access.Level.USER
+            override var help = Help("Show bot uptime")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val currentTimeMillis = System.currentTimeMillis()
@@ -36,15 +34,9 @@ class UptimePlugin : Plugin {
             }
 
         })
-
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".uptime",
-                IRCBotAccess.Level.USER,
-                "Shows bot uptime"))
     }
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(".uptime")
-        PluginHelper.instance.removeHelp(".uptime")
     }
 }

@@ -1,11 +1,10 @@
 package com.colacelli.ircbot.plugins.ircop
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.Plugin
-import com.colacelli.ircbot.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.IRCBotAccess
-import com.colacelli.ircbot.plugins.help.PluginHelp
-import com.colacelli.ircbot.plugins.help.PluginHelper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.Help
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.Server
@@ -19,16 +18,15 @@ class IRCopPlugin(name : String, password : String) : Plugin {
         }
     }
 
-    override fun getName(): String {
-        return "ircop"
-    }
+    override var name = "ircop"
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(listener)
 
-        IRCBotAccess.instance.addListener(bot, IRCBotAccess.Level.ADMIN, object : OnChannelCommandListener {
-            override val commands: Array<String>
-                get() = arrayOf(".kill")
+        bot.addListener(object : OnChannelCommandListener {
+            override var command = ".kill"
+            override var level = Access.Level.ADMIN
+            override var help = Help("Kills a user from server", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val user = args[0]
@@ -42,18 +40,10 @@ class IRCopPlugin(name : String, password : String) : Plugin {
             }
 
         })
-
-        PluginHelper.instance.addHelp(PluginHelp(
-                ".kill",
-                IRCBotAccess.Level.ADMIN,
-                "Kills a user from server",
-                "nick",
-                "reason"))
     }
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(listener)
-        IRCBotAccess.instance.removeListener(bot, ".kill")
-        PluginHelper.instance.removeHelp(".kill")
+        bot.removeListener(".kill")
     }
 }
