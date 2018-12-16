@@ -34,9 +34,9 @@ class AutoResponsePlugin : Plugin {
             override var help = Help("Adds an auto-response. Available replacements: Regex (\$1, \$2, etc.), \$nick and \$channel", "trigger$SEPARATOR", "response")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                if (args.size > 1) {
+                if (args.isNotEmpty()) {
                     // FIXME: Dirty code...
-                    val joinedArgs = args.joinToString(" ").split("")
+                    val joinedArgs = args.joinToString(" ").split(SEPARATOR)
                     val trigger = joinedArgs[0]
                     val text = joinedArgs.drop(1).joinToString(SEPARATOR)
 
@@ -54,7 +54,7 @@ class AutoResponsePlugin : Plugin {
             override var help = Help("Removes an auto-response", "trigger")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                if (args.size > 1) {
+                if (args.isNotEmpty()) {
                     val trigger = args.joinToString(" ")
                     AutoResponse.instance.del(trigger)
                     connection.send(PrivateNoticeMessage("Auto-response removed!", connection.user, message.sender))

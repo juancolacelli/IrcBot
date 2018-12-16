@@ -16,7 +16,7 @@ class AccessPlugin : Plugin {
         bot.addListener(object : OnChannelCommandListener {
             override var command = ".accessAdd"
             override var level = Access.Level.ROOT
-            override var help = Help("Grant user access", "nick", "value")
+            override var help = Help("Grant user access", "nick", "operator/admin/root")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size == 2) {
