@@ -77,8 +77,7 @@ class Access(private val bot: IRCBot) : PropertiesPlugin {
 
     fun get(user: User): Level {
         properties = loadProperties(PROPERTIES_FILE)
-
-        return Level.valueOf(properties.getProperty(user.nick.toLowerCase()))
+        return Level.valueOf(properties.getProperty(user.nick.toLowerCase(), Level.USER.toString()))
     }
 
     fun add(nick: String, level: Level) {

@@ -8,7 +8,7 @@ class Helper(private val bot: IRCBot) {
         bot.listeners.forEach {
             // Prevent dupes
             if (commands.indexOf(it.command) == -1) {
-                if (it.level.value < level.value) commands.add(it.command)
+                if (it.level.value <= level.value) commands.add(it.command)
             }
         }
         commands.sort()
