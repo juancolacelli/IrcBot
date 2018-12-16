@@ -2,6 +2,7 @@ package com.colacelli.ircbot.plugins.help
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.AsciiTable
 import com.colacelli.ircbot.base.Help
 import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
@@ -20,19 +21,12 @@ class HelpPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val level = bot.access.get(message.sender!!)
-
-                if (args.isEmpty() || args[0].isBlank()) {
-                    var text = "Available commands:"
-
-                    bot.help.list(level).forEach {
-                        text += " $it"
-                    }
-
-                    connection.send(PrivateNoticeMessage(text, connection.user, message.sender))
-                } else {
-                    bot.help.get(level, args.joinToString(" ")).forEach {
-                        connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
-                    }
+                val helps = ArrayList<Array<String>>()
+                bot.help.list(level, args.joinToString(" ")).forEach {
+                    helps.add(arrayOf(it.key, it.value))
+                }
+                AsciiTable(arrayOf("Command", "Description"), helps).toText().forEach {
+                    connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
                 }
             }
 

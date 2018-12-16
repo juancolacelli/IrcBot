@@ -12,6 +12,7 @@ import com.colacelli.irclib.connection.listeners.Listenable
 import com.colacelli.irclib.connection.listeners.Listener
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
 import com.colacelli.irclib.messages.ChannelMessage
+import com.colacelli.irclib.messages.PrivateNoticeMessage
 
 class IRCBot(val server: Server, val user: User) : Listenable {
     val connection = Connection(server, user)
@@ -43,6 +44,13 @@ class IRCBot(val server: Server, val user: User) : Listenable {
                             }
 
                             override fun onError(user: User, level: Access.Level) {
+                                val error = if (level == Access.Level.USER) {
+                                    "You don't have access to that command!"
+                                } else {
+                                    "You need to be identified with NickServ before using that command!"
+                                }
+
+                                connection.send(PrivateNoticeMessage(error, connection.user, message.sender))
                             }
                         })
                     }

@@ -2,6 +2,7 @@ package com.colacelli.ircbot.plugins.access
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.AsciiTable
 import com.colacelli.ircbot.base.Help
 import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
@@ -55,12 +56,14 @@ class AccessPlugin : Plugin {
             override var help = Help("List user accesses")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                var accesses = ""
+                var accesses = ArrayList<Array<String>>()
                 bot.access.list().forEach {
-                    accesses += "${it.key}(${it.value.toString().toLowerCase()}) "
+                    accesses.add(arrayOf(it.key.toString(), it.value.toString()))
                 }
 
-                connection.send(PrivateNoticeMessage(accesses, connection.user, message.sender))
+                AsciiTable(arrayOf("User", "Level"), accesses).toText().forEach {
+                    connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
+                }
             }
         })
     }

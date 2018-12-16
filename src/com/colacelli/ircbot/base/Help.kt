@@ -7,12 +7,4 @@ open class Help(val help: String, vararg val args: String) {
             commandWithArgs = value + " " + args.joinToString(" ")
             field = value
         }
-
-    fun toText(whitespaces: Int): String {
-        var text = commandWithArgs
-        text = String.format("%-${whitespaces}s | ", text)
-        text += help
-
-        return text
-    }
 }

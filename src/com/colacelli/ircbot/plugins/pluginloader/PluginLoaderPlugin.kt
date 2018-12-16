@@ -2,6 +2,7 @@ package com.colacelli.ircbot.plugins.pluginloader
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.AsciiTable
 import com.colacelli.ircbot.base.Help
 import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
@@ -55,11 +56,14 @@ class PluginLoaderPlugin : Plugin {
             override var help = Help("List all available plugins")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                var plugins = ""
+                var plugins = ArrayList<Array<String>>()
                 bot.plugins.forEach {
-                    plugins += "${it.name} "
+                    plugins.add(arrayOf(it.name))
                 }
-                connection.send(PrivateNoticeMessage(plugins, connection.user, message.sender))
+
+                AsciiTable(arrayOf("Plugin"), plugins).toText().forEach {
+                    connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
+                }
             }
         })
     }

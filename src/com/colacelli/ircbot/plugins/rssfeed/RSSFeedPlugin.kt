@@ -2,6 +2,7 @@ package com.colacelli.ircbot.plugins.rssfeed
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.AsciiTable
 import com.colacelli.ircbot.base.Help
 import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
@@ -10,9 +11,11 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnPingListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
+import com.google.common.base.Ascii
 import org.jsoup.Jsoup
 import java.io.IOException
 import java.util.*
+import kotlin.collections.ArrayList
 
 class RSSFeedPlugin : Plugin {
     val listener = object : OnPingListener {
@@ -78,8 +81,13 @@ class RSSFeedPlugin : Plugin {
             override var help = Help("List all available RSS feeds")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                val rssFeeds = ArrayList<Array<String>>()
                 RSSFeed.instance.list().forEach { url, _ ->
-                    connection.send(PrivateNoticeMessage(url, connection.user, message.sender))
+                    rssFeeds.add(arrayOf(url))
+                }
+
+                AsciiTable(arrayOf("URL"), rssFeeds).toText().forEach {
+                    connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
                 }
             }
         })
@@ -101,9 +109,14 @@ class RSSFeedPlugin : Plugin {
             override var help = Help("List all RSS feed subscribers")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                val nicks = RSSFeed.instance.subscribers()
-                nicks.sort()
-                connection.send(PrivateNoticeMessage(nicks.joinToString(" "), connection.user, message.sender))
+                val nicks = ArrayList<Array<String>>()
+                RSSFeed.instance.subscribers().forEach {
+                    nicks.add(arrayOf(it))
+                }
+
+                AsciiTable(arrayOf("Subscriber"), nicks).toText().forEach {
+                    connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
+                }
             }
         })
     }
