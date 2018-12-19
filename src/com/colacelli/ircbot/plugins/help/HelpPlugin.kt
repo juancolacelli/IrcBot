@@ -15,17 +15,18 @@ class HelpPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".help"
-            override var level = Access.Level.USER
-            override var help = Help("Show help")
+            override val command = ".help"
+            override val aliases = arrayOf(".h")
+            override val level = Access.Level.USER
+            override val help = Help("Show help")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val level = bot.access.get(message.sender!!)
                 val helps = ArrayList<Array<String>>()
                 bot.help.list(level, args.joinToString(" ")).forEach {
-                    helps.add(arrayOf(it.key, it.value))
+                    helps.add(it)
                 }
-                AsciiTable(arrayOf("Command", "Description"), helps).toText().forEach {
+                AsciiTable(arrayOf("Command", "Aliases", "Description"), helps).toText().forEach {
                     connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
                 }
             }

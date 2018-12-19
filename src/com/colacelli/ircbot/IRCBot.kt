@@ -37,7 +37,15 @@ class IRCBot(val server: Server, val user: User) : Listenable {
                 val args = words.drop(1).toTypedArray()
 
                 listeners.forEach {
-                    if (it.command.toLowerCase() == command) {
+                    // FIXME: Dirty logic...
+                    var shouldExecute = it.command.toLowerCase() == command
+                    if (!shouldExecute) {
+                        it.aliases?.forEach { alias ->
+                            shouldExecute = alias.toLowerCase() == command
+                        }
+                    }
+
+                    if (shouldExecute) {
                         access.check(message.sender!!, it.level, object : OnAccessCheckListener {
                             override fun onSuccess(user: User, level: Access.Level) {
                                 it.onChannelCommand(connection, message, command, args)
@@ -69,6 +77,7 @@ class IRCBot(val server: Server, val user: User) : Listenable {
 
     fun addListener(listener: OnChannelCommandListener) {
         listener.help.command = listener.command
+        listener.help.aliases = listener.aliases
 
         listeners.add(listener)
     }

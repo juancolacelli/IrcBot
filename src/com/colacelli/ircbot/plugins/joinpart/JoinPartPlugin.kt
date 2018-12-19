@@ -14,9 +14,10 @@ class JoinPartPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".join"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Joins a channel", "#channel")
+            override val command = ".join"
+            override val aliases: Nothing? = null
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Joins a channel", "#channel")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -27,9 +28,10 @@ class JoinPartPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".part"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Parts from a channel", "#channel")
+            override val command = ".part"
+            override val aliases: Nothing? = null
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Parts from a channel", "#channel")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {

@@ -15,9 +15,10 @@ class AccessPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".accessAdd"
-            override var level = Access.Level.ROOT
-            override var help = Help("Grant user access", "nick", "operator/admin/root")
+            override val command = ".accessAdd"
+            override val aliases = arrayOf(".accAdd")
+            override val level = Access.Level.ROOT
+            override val help = Help("Grant user access", "nick", "operator/admin/root")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size == 2) {
@@ -35,9 +36,10 @@ class AccessPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".accessDel"
-            override var level = Access.Level.ROOT
-            override var help = Help("Revoke user access", "nick")
+            override val command = ".accessDel"
+            override val aliases = arrayOf(".accDel")
+            override val level = Access.Level.ROOT
+            override val help = Help("Revoke user access", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -49,11 +51,10 @@ class AccessPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".accessList"
-
-            override var level = Access.Level.ROOT
-
-            override var help = Help("List user accesses")
+            override val command = ".accessList"
+            override val aliases = arrayOf(".access")
+            override val level = Access.Level.ROOT
+            override val help = Help("List user accesses")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var accesses = ArrayList<Array<String>>()

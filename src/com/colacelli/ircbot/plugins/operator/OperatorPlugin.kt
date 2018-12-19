@@ -28,9 +28,10 @@ class OperatorPlugin : Plugin {
     override fun onLoad(bot: IRCBot) {
         modes.forEach { name, mode ->
             bot.addListener(object : OnChannelCommandListener {
-                override var command = ".$name"
-                override var level = Access.Level.OPERATOR
-                override var help = Help("$mode user channel mode", "nick1", "nick2")
+                override val command = ".$name"
+                override val aliases = arrayOf(".$mode")
+                override val level = Access.Level.OPERATOR
+                override val help = Help("$mode user channel mode", "nick1", "nick2")
 
                 override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                     if (args.isNotEmpty()) {
@@ -38,7 +39,7 @@ class OperatorPlugin : Plugin {
                         var modes = ""
                         args.forEach {
                             if (it.toLowerCase() != connection.user.nick.toLowerCase()) {
-                                modes += "$mode"
+                                modes += mode
                                 nicks += "$it "
                             }
                         }
@@ -52,9 +53,10 @@ class OperatorPlugin : Plugin {
         }
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".kick"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Kicks a user from channel", "nick", "reason")
+            override val command = ".kick"
+            override val aliases = arrayOf(".k")
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Kicks a user from channel", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -71,9 +73,10 @@ class OperatorPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".kickBan"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Kick and bans a user from channel", "nick", "reason")
+            override val command = ".kickBan"
+            override val aliases = arrayOf(".kb")
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Kick and bans a user from channel", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 // FIXME: Copy pasted from .kick
@@ -92,9 +95,10 @@ class OperatorPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".unBan"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Remove user bans from channel", "nick")
+            override val command = ".unBan"
+            override val aliases: Nothing? = null
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Remove user bans from channel", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -105,9 +109,10 @@ class OperatorPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".mode"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Change channel modes", "modes")
+            override val command = ".mode"
+            override val aliases: Nothing? = null
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Change channel modes", "modes")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 connection.mode(message.channel, args.joinToString(" "))
@@ -115,9 +120,10 @@ class OperatorPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".invite"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Invite an user to channel", "nick")
+            override val command = ".invite"
+            override val aliases: Nothing? = null
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Invite an user to channel", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.invite(message.channel, User(args[0]))
@@ -125,9 +131,10 @@ class OperatorPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".topic"
-            override var level = Access.Level.OPERATOR
-            override var help = Help("Change channel topic", "topic")
+            override val command = ".topic"
+            override val aliases: Nothing? = null
+            override val level = Access.Level.OPERATOR
+            override val help = Help("Change channel topic", "topic")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.topic(message.channel, args.joinToString(" "))

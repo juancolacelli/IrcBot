@@ -30,9 +30,10 @@ class AutoResponsePlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".autoResponseAdd"
-            override var level = Access.Level.ADMIN
-            override var help = Help("Adds an auto-response. Available replacements: Regex (\$1, \$2, etc.), \$nick and \$channel", "trigger$SEPARATOR", "response")
+            override val command = ".autoResponseAdd"
+            override val aliases = arrayOf(".arAdd")
+            override val level = Access.Level.ADMIN
+            override val help = Help("Adds an auto-response. Available replacements: Regex (\$1, \$2, etc.), \$nick and \$channel", "trigger$SEPARATOR", "response")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -50,9 +51,10 @@ class AutoResponsePlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".autoResponseDel"
-            override var level = Access.Level.ADMIN
-            override var help = Help("Removes an auto-response", "trigger")
+            override val command = ".autoResponseDel"
+            override val aliases = arrayOf(".arDel")
+            override val level = Access.Level.ADMIN
+            override val help = Help("Removes an auto-response", "trigger")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -64,9 +66,10 @@ class AutoResponsePlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".autoResponseList"
-            override var level = Access.Level.ADMIN
-            override var help = Help("List all auto-responses")
+            override val command = ".autoResponseList"
+            override val aliases = arrayOf(".autoResponse", ".ar")
+            override val level = Access.Level.ADMIN
+            override val help = Help("List all auto-responses")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var autoResponses = ArrayList<Array<String>>()

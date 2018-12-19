@@ -17,9 +17,10 @@ class ApertiumTranslatePlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".translate"
-            override var level = Access.Level.USER
-            override var help = Help(
+            override val command = ".apertium"
+            override var aliases = arrayOf(".translate", ".tra")
+            override val level = Access.Level.USER
+            override val help = Help(
                     "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
                     "locale1", "locale2", "text"
             )
@@ -59,7 +60,7 @@ class ApertiumTranslatePlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".translate")
+        bot.removeListener(".apertium")
     }
 
     private class ApertiumTranslate(private val localeA: String, private val localeB: String, private val text: String) : Runnable {

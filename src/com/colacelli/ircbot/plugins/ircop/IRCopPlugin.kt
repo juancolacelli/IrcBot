@@ -24,9 +24,10 @@ class IRCopPlugin(name: String, password: String) : Plugin {
         bot.addListener(listener)
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".kill"
-            override var level = Access.Level.ADMIN
-            override var help = Help("Kills a user from server", "nick", "reason")
+            override val command = ".kill"
+            override val aliases: Nothing? = null
+            override val level = Access.Level.ADMIN
+            override val help = Help("Kills a user from server", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val user = args[0]

@@ -7,4 +7,5 @@ open class Help(val help: String, vararg val args: String) {
             commandWithArgs = value + " " + args.joinToString(" ")
             field = value
         }
+    var aliases: Array<String>? = null
 }

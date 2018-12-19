@@ -6,9 +6,10 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 
 interface OnChannelCommandListener {
-    var command: String
-    var level: Access.Level
-    var help: Help
+    val command: String
+    val aliases: Array<String>?
+    val level: Access.Level
+    val help: Help
 
     fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>)
 }

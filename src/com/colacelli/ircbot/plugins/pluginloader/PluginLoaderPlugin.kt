@@ -15,9 +15,10 @@ class PluginLoaderPlugin : Plugin {
 
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".pluginLoad"
-            override var level = Access.Level.ROOT
-            override var help = Help("Load a plugin", "plugin")
+            override val command = ".pluginLoad"
+            override val aliases = arrayOf(".load")
+            override val level = Access.Level.ROOT
+            override val help = Help("Load a plugin", "plugin")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -33,9 +34,10 @@ class PluginLoaderPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".pluginUnload"
-            override var level = Access.Level.ROOT
-            override var help = Help("Unload a plugin", "plugin")
+            override val command = ".pluginUnload"
+            override val aliases = arrayOf(".unload")
+            override val level = Access.Level.ROOT
+            override val help = Help("Unload a plugin", "plugin")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -51,9 +53,10 @@ class PluginLoaderPlugin : Plugin {
         })
 
         bot.addListener(object : OnChannelCommandListener {
-            override var command = ".pluginList"
-            override var level = Access.Level.ROOT
-            override var help = Help("List all available plugins")
+            override val command = ".pluginList"
+            override val aliases = arrayOf(".plugin")
+            override val level = Access.Level.ROOT
+            override val help = Help("List all available plugins")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var plugins = ArrayList<Array<String>>()
