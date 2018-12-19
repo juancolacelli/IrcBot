@@ -21,7 +21,7 @@ class ApertiumTranslatePlugin : Plugin {
             override var level = Access.Level.USER
             override var help = Help(
                     "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
-                    "locale1", "locale2"
+                    "locale1", "locale2", "text"
             )
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
@@ -72,7 +72,7 @@ class ApertiumTranslatePlugin : Plugin {
         override fun run() {
             val url = APERTIUM_URL
                     .replace("LOCALES", "$localeA|$localeB")
-                    .replace("TEXT", text)
+                    .replace("TEXT", text.replace(" ", "%20"))
 
             val stream = URL(url).openStream()
             val scanner = Scanner(stream).useDelimiter("\\A")

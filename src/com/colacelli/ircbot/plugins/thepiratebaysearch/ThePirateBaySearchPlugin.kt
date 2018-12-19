@@ -50,7 +50,7 @@ class ThePirateBaySearchPlugin : Plugin {
         private val listeners = ArrayList<OnThePirateBaySearchResult>()
 
         companion object {
-            const val THE_PIRATE_BAY_URL = "https://thepiratebay.org/search/QUERY/0/99/0"
+            const val THE_PIRATE_BAY_URL = "https://pirateproxy.app/search/QUERY/0/99/0"
         }
 
         override fun run() {
