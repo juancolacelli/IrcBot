@@ -43,10 +43,10 @@ class AutoResponse : PropertiesPlugin {
         properties.forEach { key, value ->
             if (response.isBlank()) {
                 trigger = try {
-                    Regex(key.toString())
+                    Regex(key.toString().toLowerCase())
                 } catch (e: PatternSyntaxException) {
                     // Invalid Regex saved
-                    Regex.fromLiteral(key.toString())
+                    Regex.fromLiteral(key.toString().toLowerCase())
                 }
 
                 if (text.toLowerCase().matches(trigger)) {

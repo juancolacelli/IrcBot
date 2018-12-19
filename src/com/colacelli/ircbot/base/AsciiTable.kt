@@ -1,6 +1,6 @@
 package com.colacelli.ircbot.base
 
-class AsciiTable(private val titles : Array<String>, private val rows : ArrayList<Array<String>>) {
+class AsciiTable(private val titles: Array<String>, private val rows: ArrayList<Array<String>>) {
     private val maxLengths = ArrayList<Int>()
     private var lineLength = 0
 
@@ -23,7 +23,7 @@ class AsciiTable(private val titles : Array<String>, private val rows : ArrayLis
         lineLength = maxLengths.sum() + (maxLengths.size * 3)
     }
 
-    fun toText() : ArrayList<String> {
+    fun toText(): ArrayList<String> {
 
         val texts = ArrayList<String>()
 
@@ -40,7 +40,7 @@ class AsciiTable(private val titles : Array<String>, private val rows : ArrayLis
         return texts
     }
 
-    private fun row(texts : Array<String>) : String {
+    private fun row(texts: Array<String>): String {
         var format = ""
 
         for (i in 0 until texts.size) {
@@ -51,7 +51,7 @@ class AsciiTable(private val titles : Array<String>, private val rows : ArrayLis
         return String.format(format, *texts)
     }
 
-    private fun line() : String {
+    private fun line(): String {
         var line = ""
 
         for (i in 0..lineLength) {

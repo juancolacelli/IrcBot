@@ -11,11 +11,8 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnPingListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
-import com.google.common.base.Ascii
 import org.jsoup.Jsoup
 import java.io.IOException
-import java.util.*
-import kotlin.collections.ArrayList
 
 class RSSFeedPlugin : Plugin {
     val listener = object : OnPingListener {
