@@ -24,6 +24,8 @@ class RSSFeedPlugin : Plugin {
     override var name = "rss_feed"
 
     override fun onLoad(bot: IRCBot) {
+        bot.addListener(listener)
+
         bot.addListener(object : OnChannelCommandListener {
             override var command = ".rssSubscribe"
             override var level = Access.Level.USER
