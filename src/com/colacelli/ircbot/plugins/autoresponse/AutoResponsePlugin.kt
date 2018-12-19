@@ -2,6 +2,7 @@ package com.colacelli.ircbot.plugins.autoresponse
 
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
+import com.colacelli.ircbot.base.AsciiTable
 import com.colacelli.ircbot.base.Help
 import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
@@ -68,8 +69,13 @@ class AutoResponsePlugin : Plugin {
             override var help = Help("List all auto-responses")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
+                var autoResponses = ArrayList<Array<String>>()
                 AutoResponse.instance.list().forEach { trigger, text ->
-                    connection.send(PrivateNoticeMessage("$trigger: $text", connection.user, message.sender))
+                    autoResponses.add(arrayOf(trigger, text))
+                }
+
+                AsciiTable(arrayOf("Trigger", "Response"), autoResponses).toText().forEach {
+                    connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
                 }
             }
         })
