@@ -52,7 +52,7 @@ class AccessPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".accessList"
-            override val aliases = arrayOf(".acc")
+            override val aliases = arrayOf(".accList", ".acc")
             override val level = Access.Level.OPERATOR
             override val help = Help(this, "List user accesses")
 
