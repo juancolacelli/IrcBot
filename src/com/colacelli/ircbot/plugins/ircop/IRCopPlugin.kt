@@ -27,7 +27,7 @@ class IRCopPlugin(name: String, password: String) : Plugin {
             override val command = ".kill"
             override val aliases: Nothing? = null
             override val level = Access.Level.ADMIN
-            override val help = Help("Kills a user from server", "nick", "reason")
+            override val help = Help(this, "Kills a user from server", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val user = args[0]
@@ -36,7 +36,7 @@ class IRCopPlugin(name: String, password: String) : Plugin {
                     var reason = "..."
                     if (args.size > 1) reason = args.drop(1).joinToString(" ")
 
-                    connection.send("KILL $user $reason")
+                    connection.kill(User(user),  reason)
                 }
             }
 

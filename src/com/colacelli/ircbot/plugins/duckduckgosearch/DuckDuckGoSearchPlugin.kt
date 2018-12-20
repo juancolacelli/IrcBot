@@ -20,7 +20,7 @@ class DuckDuckGoSearchPlugin : Plugin {
             override val command = ".duckDuckGo"
             override val aliases = arrayOf(".ddgo", ".search")
             override val level = Access.Level.USER
-            override val help = Help("Find on DuckDuckGo (https://duckduckgo.com)", "query")
+            override val help = Help(this, "Find on DuckDuckGo (https://duckduckgo.com)", "query")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {

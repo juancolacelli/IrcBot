@@ -30,7 +30,7 @@ class RSSFeedPlugin : Plugin {
             override val command = ".rssSubscribe"
             override val aliases = arrayOf(".rssSub")
             override val level = Access.Level.USER
-            override val help = Help("Subscribe to RSS feed")
+            override val help = Help(this, "Subscribe to RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 RSSFeed.instance.subscribe(message.sender!!)
@@ -42,7 +42,7 @@ class RSSFeedPlugin : Plugin {
             override val command = ".rssUnsubscribe"
             override val aliases = arrayOf(".rssUnsub")
             override val level = Access.Level.USER
-            override val help = Help("Unsubscribe from RSS feed")
+            override val help = Help(this, "Unsubscribe from RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 RSSFeed.instance.unsubscribe(message.sender!!)
@@ -52,9 +52,9 @@ class RSSFeedPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssAdd"
-            override val aliases: Nothing? = null
+            override val aliases = arrayOf(".rss+")
             override val level = Access.Level.ADMIN
-            override val help = Help("Add a RSS feed", "url")
+            override val help = Help(this, "Add a RSS feed", "url")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -66,9 +66,9 @@ class RSSFeedPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssDel"
-            override val aliases: Nothing? = null
+            override val aliases = arrayOf(".rss-")
             override val level = Access.Level.ADMIN
-            override val help = Help("Removes a RSS feed", "url")
+            override val help = Help(this, "Removes a RSS feed", "url")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -80,9 +80,9 @@ class RSSFeedPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssList"
-            override val aliases = arrayOf(".rss")
+            override val aliases = arrayOf(".rssList", ".rss")
             override val level = Access.Level.ADMIN
-            override val help = Help("List all available RSS feeds")
+            override val help = Help(this, "List all available RSS feeds")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val rssFeeds = ArrayList<Array<String>>()
@@ -98,9 +98,9 @@ class RSSFeedPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssCheck"
-            override val aliases: Nothing? = null
+            override val aliases = arrayOf(".rss()")
             override val level = Access.Level.ADMIN
-            override val help = Help("Check all available RSS feed")
+            override val help = Help(this, "Check all available RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 connection.send(PrivateNoticeMessage("Checking...", connection.user, message.sender))
@@ -112,7 +112,7 @@ class RSSFeedPlugin : Plugin {
             override val command = ".rssSubscribers"
             override val aliases: Nothing? = null
             override val level = Access.Level.ADMIN
-            override val help = Help("List all RSS feed subscribers")
+            override val help = Help(this, "List all RSS feed subscribers")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val nicks = ArrayList<Array<String>>()

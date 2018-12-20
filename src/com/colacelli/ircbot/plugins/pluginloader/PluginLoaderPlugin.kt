@@ -16,9 +16,9 @@ class PluginLoaderPlugin : Plugin {
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".pluginLoad"
-            override val aliases = arrayOf(".load")
+            override val aliases = arrayOf(".load", ".plug+")
             override val level = Access.Level.ROOT
-            override val help = Help("Load a plugin", "plugin")
+            override val help = Help(this, "Load a plugin", "plugin")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -35,9 +35,9 @@ class PluginLoaderPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".pluginUnload"
-            override val aliases = arrayOf(".unload")
+            override val aliases = arrayOf(".unload", ".plug-")
             override val level = Access.Level.ROOT
-            override val help = Help("Unload a plugin", "plugin")
+            override val help = Help(this, "Unload a plugin", "plugin")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -54,9 +54,9 @@ class PluginLoaderPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".pluginList"
-            override val aliases = arrayOf(".plugin")
+            override val aliases = arrayOf(".plugList", ".plug")
             override val level = Access.Level.ROOT
-            override val help = Help("List all available plugins")
+            override val help = Help(this, "List all available plugins")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var plugins = ArrayList<Array<String>>()

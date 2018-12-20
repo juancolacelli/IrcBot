@@ -18,7 +18,7 @@ class ThePirateBaySearchPlugin : Plugin {
             override val command = ".thepiratebay"
             override val aliases = arrayOf(".tpb", ".torrent")
             override val level = Access.Level.USER
-            override val help = Help("Find torrents on ThePirateBay (https://thepiratebay.org)", "query")
+            override val help = Help(this, "Find torrents on ThePirateBay (https://thepiratebay.org)", "query")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {

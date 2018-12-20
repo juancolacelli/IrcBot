@@ -11,27 +11,29 @@ import com.colacelli.irclib.messages.ChannelMessage
 
 class OperatorPlugin : Plugin {
     private val modes = hashMapOf(
-            "owner" to "+q",
-            "protect" to "+a",
-            "op" to "+o",
-            "halfOp" to "+h",
-            "voice" to "+v",
-            "deOwner" to "-q",
-            "deProtect" to "-a",
-            "deOp" to "-o",
-            "deHalfOp" to "-h",
-            "deVoice" to "-v"
+            "+q" to arrayOf(".owner"),
+            "+a" to arrayOf(".protect"),
+            "+o" to arrayOf(".op"),
+            "+h" to arrayOf(".halfOp", ".h"),
+            "+v" to arrayOf(".voice", ".v"),
+            "-q" to arrayOf(".deOwner"),
+            "-a" to arrayOf(".deProtect"),
+            "-o" to arrayOf(".deOp"),
+            "-h" to arrayOf(".deHalfOp", ".deH"),
+            "-v" to arrayOf(".deVoice", ".deV")
     )
 
     override var name = "operator"
 
     override fun onLoad(bot: IRCBot) {
-        modes.forEach { name, mode ->
+        modes.forEach { mode, commands ->
+            val command = commands[0]
+            commands.drop(0)
             bot.addListener(object : OnChannelCommandListener {
-                override val command = ".$name"
-                override val aliases = arrayOf(".$mode")
+                override val command = command
+                override val aliases = commands
                 override val level = Access.Level.OPERATOR
-                override val help = Help("$mode user channel mode", "nick1", "nick2")
+                override val help = Help(this, "$mode user channel mode", "nick1", "nick2")
 
                 override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                     if (args.isNotEmpty()) {
@@ -56,7 +58,7 @@ class OperatorPlugin : Plugin {
             override val command = ".kick"
             override val aliases = arrayOf(".k")
             override val level = Access.Level.OPERATOR
-            override val help = Help("Kicks a user from channel", "nick", "reason")
+            override val help = Help(this, "Kicks a user from channel", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -76,7 +78,7 @@ class OperatorPlugin : Plugin {
             override val command = ".kickBan"
             override val aliases = arrayOf(".kb")
             override val level = Access.Level.OPERATOR
-            override val help = Help("Kick and bans a user from channel", "nick", "reason")
+            override val help = Help(this, "Kick and bans a user from channel", "nick", "reason")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 // FIXME: Copy pasted from .kick
@@ -98,7 +100,7 @@ class OperatorPlugin : Plugin {
             override val command = ".unBan"
             override val aliases: Nothing? = null
             override val level = Access.Level.OPERATOR
-            override val help = Help("Remove user bans from channel", "nick")
+            override val help = Help(this, "Remove user bans from channel", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -112,7 +114,7 @@ class OperatorPlugin : Plugin {
             override val command = ".mode"
             override val aliases: Nothing? = null
             override val level = Access.Level.OPERATOR
-            override val help = Help("Change channel modes", "modes")
+            override val help = Help(this, "Change channel modes", "modes")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 connection.mode(message.channel, args.joinToString(" "))
@@ -123,7 +125,7 @@ class OperatorPlugin : Plugin {
             override val command = ".invite"
             override val aliases: Nothing? = null
             override val level = Access.Level.OPERATOR
-            override val help = Help("Invite an user to channel", "nick")
+            override val help = Help(this, "Invite an user to channel", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.invite(message.channel, User(args[0]))
@@ -134,7 +136,7 @@ class OperatorPlugin : Plugin {
             override val command = ".topic"
             override val aliases: Nothing? = null
             override val level = Access.Level.OPERATOR
-            override val help = Help("Change channel topic", "topic")
+            override val help = Help(this, "Change channel topic", "topic")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) connection.topic(message.channel, args.joinToString(" "))
@@ -143,7 +145,9 @@ class OperatorPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListeners(modes.values.toTypedArray())
+        modes.forEach { _, commands ->
+            bot.removeListener(commands[0])
+        }
         bot.removeListeners(arrayOf(".kick", ".kickBan", ".unBan", ".mode", ".invite", ".topic"))
     }
 

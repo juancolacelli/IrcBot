@@ -5,6 +5,7 @@ class AsciiTable(private val titles: Array<String>, private val rows: ArrayList<
     private var lineLength = 0
 
     companion object {
+        const val SEPARATOR = "|"
         const val LINE_CHAR = "-"
     }
 
@@ -44,8 +45,8 @@ class AsciiTable(private val titles: Array<String>, private val rows: ArrayList<
         var format = ""
 
         for (i in 0 until texts.size) {
-            if (i == 0) format += "|"
-            format += " %-${maxLengths[i]}s |"
+            if (i == 0) format += SEPARATOR
+            format += " %-${maxLengths[i]}s $SEPARATOR"
         }
 
         return String.format(format, *texts)

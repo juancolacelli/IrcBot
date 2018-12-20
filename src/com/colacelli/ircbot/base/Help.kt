@@ -1,11 +1,13 @@
 package com.colacelli.ircbot.base
 
-open class Help(val help: String, vararg val args: String) {
-    var commandWithArgs: String? = null
-    var command: String? = null
-        set(value) {
-            commandWithArgs = value + " " + args.joinToString(" ")
-            field = value
-        }
-    var aliases: Array<String>? = null
+import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+
+open class Help(listener: OnChannelCommandListener, val help: String, vararg val args: String) {
+    val command = listener.command
+    val aliases = listener.aliases
+    val level = listener.level
+
+    init {
+        aliases?.sort()
+    }
 }

@@ -11,6 +11,7 @@ import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.Listenable
 import com.colacelli.irclib.connection.listeners.Listener
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
+import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
 
@@ -18,7 +19,7 @@ class IRCBot(val server: Server, val user: User) : Listenable {
     val connection = Connection(server, user)
 
     val access = Access(this)
-    val help = Helper(this)
+    val helper = Helper()
     val listeners = ArrayList<OnChannelCommandListener>()
     val plugins = ArrayList<Plugin>()
 
@@ -28,6 +29,13 @@ class IRCBot(val server: Server, val user: User) : Listenable {
 
     init {
         System.setProperty("http.agent", HTTP_USER_AGENT)
+        addListener(object : OnConnectListener {
+            override fun onConnect(connection: Connection, server: Server, user: User) {
+                // Bot mode
+                connection.mode("+B")
+            }
+        })
+
         addListener(object : OnChannelMessageListener {
             override fun onChannelMessage(connection: Connection, message: ChannelMessage) {
                 val words = message.text.split(" ")
@@ -39,8 +47,8 @@ class IRCBot(val server: Server, val user: User) : Listenable {
                 listeners.forEach {
                     // FIXME: Dirty logic...
                     var shouldExecute = it.command.toLowerCase() == command
-                    if (!shouldExecute) {
-                        it.aliases?.forEach { alias ->
+                    it.aliases?.forEach { alias ->
+                        if (!shouldExecute) {
                             shouldExecute = alias.toLowerCase() == command
                         }
                     }
@@ -76,20 +84,23 @@ class IRCBot(val server: Server, val user: User) : Listenable {
     }
 
     fun addListener(listener: OnChannelCommandListener) {
-        listener.help.command = listener.command
-        listener.help.aliases = listener.aliases
-
+        helper.addHelp(listener.help)
         listeners.add(listener)
     }
 
-    fun removeListener(command: String) {
-        var toRemove = ArrayList<OnChannelCommandListener>()
+    fun removeListener(listener: OnChannelCommandListener) {
+        helper.removeHelp(listener.help)
+        listeners.remove(listener)
+    }
 
-        listeners.forEach {
-            if (it.command.toLowerCase() == command) toRemove.add(it)
+    fun removeListener(command: String) {
+        val toRemove = listeners.filter {
+            it.command.toLowerCase() == command.toLowerCase()
         }
 
-        listeners.removeAll(toRemove)
+        toRemove.forEach {
+            removeListener(it)
+        }
     }
 
     fun removeListeners(commands: Array<String>) {

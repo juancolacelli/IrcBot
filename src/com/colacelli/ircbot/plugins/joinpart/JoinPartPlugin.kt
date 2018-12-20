@@ -17,7 +17,7 @@ class JoinPartPlugin : Plugin {
             override val command = ".join"
             override val aliases: Nothing? = null
             override val level = Access.Level.OPERATOR
-            override val help = Help("Joins a channel", "#channel")
+            override val help = Help(this, "Joins a channel", "#channel")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -31,7 +31,7 @@ class JoinPartPlugin : Plugin {
             override val command = ".part"
             override val aliases: Nothing? = null
             override val level = Access.Level.OPERATOR
-            override val help = Help("Parts from a channel", "#channel")
+            override val help = Help(this, "Parts from a channel", "#channel")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {

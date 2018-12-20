@@ -20,7 +20,7 @@ class ApertiumTranslatePlugin : Plugin {
             override val command = ".apertium"
             override var aliases = arrayOf(".translate", ".tra")
             override val level = Access.Level.USER
-            override val help = Help(
+            override val help = Help(this,
                     "Translate text from locale1 to locale2 using Apertium (https://apertium.org)",
                     "locale1", "locale2", "text"
             )

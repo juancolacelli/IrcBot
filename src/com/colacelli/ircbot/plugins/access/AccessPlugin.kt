@@ -16,9 +16,9 @@ class AccessPlugin : Plugin {
     override fun onLoad(bot: IRCBot) {
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".accessAdd"
-            override val aliases = arrayOf(".accAdd")
+            override val aliases = arrayOf(".accAdd", ".acc+")
             override val level = Access.Level.ROOT
-            override val help = Help("Grant user access", "nick", "operator/admin/root")
+            override val help = Help(this,  "Grant user access", "nick", "operator/admin/root")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size == 2) {
@@ -37,9 +37,9 @@ class AccessPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".accessDel"
-            override val aliases = arrayOf(".accDel")
+            override val aliases = arrayOf(".accDel", ".acc-")
             override val level = Access.Level.ROOT
-            override val help = Help("Revoke user access", "nick")
+            override val help = Help(this, "Revoke user access", "nick")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
@@ -52,9 +52,9 @@ class AccessPlugin : Plugin {
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".accessList"
-            override val aliases = arrayOf(".access")
+            override val aliases = arrayOf(".acc")
             override val level = Access.Level.ROOT
-            override val help = Help("List user accesses")
+            override val help = Help(this, "List user accesses")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var accesses = ArrayList<Array<String>>()

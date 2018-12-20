@@ -18,7 +18,7 @@ class UptimePlugin : Plugin {
             override val command = ".uptime"
             override val aliases = arrayOf(".up")
             override val level = Access.Level.USER
-            override val help = Help("Show bot uptime")
+            override val help = Help(this, "Show bot uptime")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val currentTimeMillis = System.currentTimeMillis()
