@@ -6,6 +6,7 @@ class Helper {
     fun list(level: Access.Level, query: String): ArrayList<Array<String>> {
         val texts = ArrayList<Array<String>>()
         helps.filter {
+            // FIXME: Allow get help from aliases
             (query.isBlank() || it.command.startsWith(query)) && it.level.value <= level.value
         }.forEach {
             // FIXME: Dirty...

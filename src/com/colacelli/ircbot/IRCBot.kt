@@ -45,7 +45,7 @@ class IRCBot(val server: Server, val user: User) : Listenable {
                 val args = words.drop(1).toTypedArray()
 
                 listeners.forEach {
-                    // FIXME: Dirty logic...
+                    // FIXME: Dirty logic... use filter instead
                     var shouldExecute = it.command.toLowerCase() == command
                     it.aliases?.forEach { alias ->
                         if (!shouldExecute) {

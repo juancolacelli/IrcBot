@@ -28,10 +28,9 @@ class OperatorPlugin : Plugin {
     override fun onLoad(bot: IRCBot) {
         modes.forEach { mode, commands ->
             val command = commands[0]
-            commands.drop(0)
             bot.addListener(object : OnChannelCommandListener {
                 override val command = command
-                override val aliases = commands
+                override val aliases = commands.drop(1).toTypedArray()
                 override val level = Access.Level.OPERATOR
                 override val help = Help(this, "$mode user channel mode", "nick1", "nick2")
 

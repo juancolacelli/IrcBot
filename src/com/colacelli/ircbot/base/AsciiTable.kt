@@ -10,6 +10,7 @@ class AsciiTable(private val titles: Array<String>, private val rows: ArrayList<
     }
 
     init {
+        // FIXME: Non-common characters break length (ASCII drawing)
         titles.forEach {
             maxLengths.add(it.length)
         }

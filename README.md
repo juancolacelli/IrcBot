@@ -54,6 +54,7 @@ bot.addPlugin(BasicPlugin())
 * **access**: Grant/Revoke bot access
 * **apertium_translator**: Translate text using [Apertium](https://apertium.org)
 * **auto_join**: Auto-join channels on connect
+* **auto_op**: Auto claim op on join
 * **auto_reconnect**: Auto-reconnect on disconnection
 * **auto_response**: Auto-response on text triggers
 * **ctcp_version**: Customize your CTCP VERSION response

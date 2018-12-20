@@ -26,6 +26,7 @@ class HelpPlugin : Plugin {
                 bot.helper.list(level, args.joinToString(" ")).forEach {
                     helps.add(it)
                 }
+                // FIXME: If didn't find matching help, show an error message instead of a blank table
                 AsciiTable(arrayOf("Command", "Parameters", "Aliases", "Description", "Level"), helps).toText().forEach {
                     connection.send(PrivateNoticeMessage(it, connection.user, message.sender))
                 }
