@@ -53,7 +53,7 @@ class AccessPlugin : Plugin {
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".accessList"
             override val aliases = arrayOf(".acc")
-            override val level = Access.Level.ROOT
+            override val level = Access.Level.OPERATOR
             override val help = Help(this, "List user accesses")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {

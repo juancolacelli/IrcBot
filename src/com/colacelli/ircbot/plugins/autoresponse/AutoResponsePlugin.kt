@@ -68,7 +68,7 @@ class AutoResponsePlugin : Plugin {
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".autoResponseList"
             override val aliases = arrayOf(".arList", ".ar")
-            override val level = Access.Level.ADMIN
+            override val level = Access.Level.OPERATOR
             override val help = Help(this, "List all auto-responses")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {

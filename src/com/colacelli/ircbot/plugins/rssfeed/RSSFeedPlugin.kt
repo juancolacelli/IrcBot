@@ -81,7 +81,7 @@ class RSSFeedPlugin : Plugin {
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssList"
             override val aliases = arrayOf(".rssList", ".rss")
-            override val level = Access.Level.ADMIN
+            override val level = Access.Level.USER
             override val help = Help(this, "List all available RSS feeds")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
@@ -99,7 +99,7 @@ class RSSFeedPlugin : Plugin {
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssCheck"
             override val aliases = arrayOf(".rss()")
-            override val level = Access.Level.ADMIN
+            override val level = Access.Level.OPERATOR
             override val help = Help(this, "Check all available RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
@@ -111,7 +111,7 @@ class RSSFeedPlugin : Plugin {
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssSubscribers"
             override val aliases: Nothing? = null
-            override val level = Access.Level.ADMIN
+            override val level = Access.Level.OPERATOR
             override val help = Help(this, "List all RSS feed subscribers")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {

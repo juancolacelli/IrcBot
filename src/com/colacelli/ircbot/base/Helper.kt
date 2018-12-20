@@ -5,7 +5,7 @@ class Helper {
 
     fun list(level: Access.Level, query: String): ArrayList<Array<String>> {
         val texts = ArrayList<Array<String>>()
-        helps.takeWhile {
+        helps.filter {
             (query.isBlank() || it.command.startsWith(query)) && it.level.value <= level.value
         }.forEach {
             // FIXME: Dirty...
@@ -13,7 +13,7 @@ class Helper {
             if (it.aliases != null) {
                 aliases = it.aliases!!.joinToString(" ")
             }
-            texts.add(arrayOf(it.command, it.args.joinToString(" "), aliases, it.help))
+            texts.add(arrayOf(it.command, it.args.joinToString(" "), aliases, it.help, it.level.toString()))
         }
 
         return texts
