@@ -14,9 +14,7 @@ repositories {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
-
-    compile("com.gitlab.jic:irclib:gradle-SNAPSHOT")
-
+    compile("com.gitlab.jic:irclib:0.2.0")
     compile("com.google.code.gson:gson:2.8.5")
     compile("org.jsoup:jsoup:1.11.3")
 }
