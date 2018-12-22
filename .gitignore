@@ -22,8 +22,8 @@ hs_err_pid*
 *.iml
 .idea/
 
-# Artifacts
-*/META-INF/*
+# Manifest
+MANIFEST.MF
 
 # Gradle
 .gradle/
