@@ -1,7 +1,8 @@
 # IRC Bot
+[![](https://jitpack.io/v/com.gitlab.jic/ircbot.svg)](https://jitpack.io/#com.gitlab.jic/ircbot)
 
 ## Dependencies
-* **GNU IRC Library**: https://gitlab.com/jic/irclib
+* **GNU IRC Lib**: https://gitlab.com/jic/irclib
 * **gson**: https://github.com/google/gson
 * **jsoup**: https://jsoup.org/
 
