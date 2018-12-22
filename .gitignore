@@ -7,7 +7,6 @@ out/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -19,9 +18,13 @@ hs_err_pid*
 .classpath
 .settings/
 
-# Idea esperanto and folders
+# Idea files and folders
 *.iml
 .idea/
 
 # Artifacts
 */META-INF/*
+
+# Gradle
+.gradle/
+build/

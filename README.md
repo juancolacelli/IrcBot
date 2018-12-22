@@ -2,16 +2,8 @@
 
 ## Dependencies
 * **GNU IRC Library**: https://gitlab.com/jic/irclib
-* **apache-commons**: http://commons.apache.org/proper/commons-lang/
 * **gson**: https://github.com/google/gson
 * **jsoup**: https://jsoup.org/
-
-**Maven**
-```
-org.apache.commons:commons-text:1.62
-com.google.code.gson:gson:2.8.5
-org.jsoup:jsoup:1.11.3
-```
 
 ## Showcase
 * **GNU Librebot**: https://gitlab.com/jic/librebot
