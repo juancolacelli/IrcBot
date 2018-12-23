@@ -6,17 +6,25 @@ plugins {
 }
 
 repositories {
+    jcenter()
     mavenCentral()
     maven {
         url = uri("https://jitpack.io")
     }
 }
 
-dependencies {
-    compile(kotlin("stdlib-jdk8"))
-    compile("com.gitlab.jic:irclib:0.2.0")
-    compile("com.google.code.gson:gson:2.8.5")
-    compile("org.jsoup:jsoup:1.11.3")
+allprojects {
+    dependencies {
+        compile(kotlin("stdlib-jdk8"))
+        compile("com.gitlab.jic:irclib:0.2.0")
+        compile("com.google.code.gson:gson:2.8.5")
+        compile("org.jsoup:jsoup:1.11.3")
+
+        testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
+        testCompile("org.junit.jupiter:junit-jupiter-params:5.3.2")
+        testCompile("org.mockito:mockito-core:2.23.4")
+        testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.2")
+    }
 }
 
 val compileKotlin: KotlinCompile by tasks
@@ -26,4 +34,8 @@ compileKotlin.kotlinOptions {
 val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "1.8"
+}
+
+tasks.withType<Test> {
+    useJUnitPlatform()
 }

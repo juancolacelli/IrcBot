@@ -25,6 +25,9 @@ hs_err_pid*
 # Manifest
 MANIFEST.MF
 
+# Properties
+*.properties
+
 # Gradle
 .gradle/
 build/
