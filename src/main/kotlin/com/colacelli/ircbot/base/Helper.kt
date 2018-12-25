@@ -12,7 +12,7 @@ class Helper {
             // FIXME: Dirty...
             var aliases = ""
             if (it.aliases != null) {
-                aliases = it.aliases!!.joinToString(" ")
+                aliases = it.aliases.joinToString(" ")
             }
             texts.add(arrayOf(it.command, it.args.joinToString(" "), aliases, it.help, it.level.toString()))
         }

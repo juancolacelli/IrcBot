@@ -10,7 +10,11 @@ import java.util.*
 import kotlin.collections.HashMap
 
 class Access(private val bot: IRCBot) : PropertiesPlugin {
-    var properties = loadProperties(PROPERTIES_FILE)
+    private var properties = loadProperties(PROPERTIES_FILE)
+
+    constructor(bot: IRCBot, injectedProperties: Properties) : this(bot) {
+        properties = injectedProperties
+    }
 
     enum class Level(val value: Int) {
         ROOT(3),
@@ -76,25 +80,20 @@ class Access(private val bot: IRCBot) : PropertiesPlugin {
     }
 
     fun get(user: User): Level {
-        properties = loadProperties(PROPERTIES_FILE)
         return Level.valueOf(properties.getProperty(user.nick.toLowerCase(), Level.USER.toString()))
     }
 
     fun add(nick: String, level: Level) {
-        properties = loadProperties(PROPERTIES_FILE)
         properties.setProperty(nick.toLowerCase(), level.toString())
         saveProperties(PROPERTIES_FILE, properties)
     }
 
     fun del(nick: String) {
-        properties = loadProperties(PROPERTIES_FILE)
         properties.remove(nick.toLowerCase())
         saveProperties(PROPERTIES_FILE, properties)
     }
 
     fun list(): SortedMap<String, Level> {
-        properties = loadProperties(PROPERTIES_FILE)
-
         val accesses = HashMap<String, Level>()
         properties.forEach {
             accesses[it.key.toString()] = Level.valueOf(it.value.toString())

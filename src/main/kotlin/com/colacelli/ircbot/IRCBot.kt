@@ -109,10 +109,6 @@ class IRCBot(val server: Server, val user: User) : Listenable {
         }
     }
 
-    fun connect() {
-        connection.connect()
-    }
-
     fun addPlugin(plugin: Plugin) {
         plugin.onLoad(this)
         plugins.add(plugin)
