@@ -22,7 +22,9 @@ allprojects {
 
         testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
         testCompile("org.junit.jupiter:junit-jupiter-params:5.3.2")
-        testCompile("org.mockito:mockito-core:2.23.4")
+        testCompile("org.awaitility:awaitility:3.1.5")
+        // testCompile("org.mockito:mockito-core:2.23.4")
+        testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0")
         testRuntime("org.junit.jupiter:junit-jupiter-engine:5.3.2")
     }
 }
