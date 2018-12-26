@@ -20,7 +20,7 @@ internal class AsciiTableTest {
 
         val iterator = toText.iterator()
 
-        var line = "-------------------"
+        val line = "-------------------"
         assertEquals(iterator.next(), line)
         assertEquals(iterator.next(), "| t1  | t2  | t3  |")
         assertEquals(iterator.next(), line)

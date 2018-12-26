@@ -3,13 +3,11 @@ package com.colacelli.ircbot.base
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
-import com.nhaarman.mockitokotlin2.mock
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
-
 internal class HelpTest {
-    val listener = object : OnChannelCommandListener {
+    private val listener = object : OnChannelCommandListener {
         override val command = ".test"
         override val aliases = arrayOf(".t", ".te")
         override val level = Access.Level.ROOT

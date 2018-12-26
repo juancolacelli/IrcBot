@@ -9,7 +9,7 @@ import com.colacelli.irclib.connection.listeners.OnChannelModeListener
 import com.colacelli.irclib.connection.listeners.OnJoinListener
 import com.colacelli.irclib.messages.PrivateMessage
 
-class AutoOp : Plugin {
+class AutoOpPlugin : Plugin {
     val listeners = arrayOf(
         object : OnJoinListener {
             override fun onJoin(connection: Connection, user: User, channel: Channel) {
