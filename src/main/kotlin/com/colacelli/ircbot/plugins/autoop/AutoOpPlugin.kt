@@ -10,7 +10,7 @@ import com.colacelli.irclib.connection.listeners.OnJoinListener
 import com.colacelli.irclib.messages.PrivateMessage
 
 class AutoOpPlugin : Plugin {
-    val listeners = arrayOf(
+    private val listeners = arrayOf(
             object : OnJoinListener {
                 override fun onJoin(connection: Connection, user: User, channel: Channel) {
                     if (user.nick == connection.user.nick) {
