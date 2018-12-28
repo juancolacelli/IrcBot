@@ -8,7 +8,7 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 
-class AutoJoinPlugin(channels: ArrayList<Channel>) : Plugin {
+class AutoJoinPlugin(channels: Array<Channel>) : Plugin {
     private var listener = object : OnConnectListener {
         override fun onConnect(connection: Connection, server: Server, user: User) {
             return channels.forEach {

@@ -26,14 +26,17 @@ internal class TranslatePluginTest {
         on { listeners } doReturn listeners
     }
 
-    @UseExperimental(ObsoleteCoroutinesApi::class) private val mainDispatcher = newSingleThreadContext("TranslatePluginTest thread")
+    @UseExperimental(ObsoleteCoroutinesApi::class)
+    private val mainDispatcher = newSingleThreadContext("TranslatePluginTest thread")
     private val plugin = TranslatePlugin()
 
-    @BeforeEach fun initialize() {
+    @BeforeEach
+    fun initialize() {
         @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
     }
 
-    @AfterEach fun finalize() {
+    @AfterEach
+    fun finalize() {
         @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
         mainDispatcher.close()
     }
@@ -76,7 +79,7 @@ internal class TranslatePluginTest {
         whenever(pluginMock.dispatcher).thenReturn(mainDispatcher)
         whenever(pluginMock.translator).thenReturn(translatorMock)
 
-        lateinit var listener : OnChannelCommandListener
+        lateinit var listener: OnChannelCommandListener
 
         val message = mock<ChannelMessage> {
             on { channel } doReturn Channel("#test")

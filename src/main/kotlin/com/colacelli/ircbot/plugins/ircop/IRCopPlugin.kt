@@ -36,7 +36,7 @@ class IRCopPlugin(name: String, password: String) : Plugin {
                     var reason = "..."
                     if (args.size > 1) reason = args.drop(1).joinToString(" ")
 
-                    connection.kill(User(user),  reason)
+                    connection.kill(User(user), reason)
                 }
             }
 

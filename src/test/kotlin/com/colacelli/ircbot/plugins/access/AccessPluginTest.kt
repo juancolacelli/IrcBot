@@ -7,11 +7,9 @@ import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
-import com.colacelli.irclib.messages.Message
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class AccessPluginTest {
     private val access = mock<Access> {}
@@ -22,16 +20,16 @@ internal class AccessPluginTest {
         on { listeners } doReturn listeners
         on { access } doReturn access
     }
-    private val accessPlugin = AccessPlugin()
+    private val plugin = AccessPlugin()
 
     @Test
     fun getName() {
-        assertEquals("access", accessPlugin.name)
+        assertEquals("access", plugin.name)
     }
 
     @Test
     fun onLoad() {
-        accessPlugin.onLoad(bot)
+        plugin.onLoad(bot)
         argumentCaptor<OnChannelCommandListener>().apply {
             verify(bot, times(3)).addListener(capture())
 
@@ -60,7 +58,7 @@ internal class AccessPluginTest {
 
     @Test
     fun onUnload() {
-        accessPlugin.onUnload(bot)
+        plugin.onUnload(bot)
         argumentCaptor<Array<String>>().apply {
             verify(bot).removeListeners(capture())
             val delListeners = firstValue
@@ -71,16 +69,16 @@ internal class AccessPluginTest {
 
     @Test
     fun commands() {
-        lateinit var addListener : OnChannelCommandListener
-        lateinit var delListener : OnChannelCommandListener
-        lateinit var listListener : OnChannelCommandListener
+        lateinit var addListener: OnChannelCommandListener
+        lateinit var delListener: OnChannelCommandListener
+        lateinit var listListener: OnChannelCommandListener
 
         val message = mock<ChannelMessage> {
             on { channel } doReturn Channel("#test")
             on { sender } doReturn User("r")
         }
 
-        accessPlugin.onLoad(bot)
+        plugin.onLoad(bot)
         argumentCaptor<OnChannelCommandListener>().apply {
             verify(bot, times(3)).addListener(capture())
 

@@ -18,7 +18,7 @@ class AccessPlugin : Plugin {
             override val command = ".accessAdd"
             override val aliases = arrayOf(".accAdd", ".acc+")
             override val level = Access.Level.ROOT
-            override val help = Help(this,  "Grant user access", "nick", "operator/admin/root")
+            override val help = Help(this, "Grant user access", "nick", "operator/admin/root")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size == 2) {

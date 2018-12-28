@@ -11,20 +11,20 @@ import com.colacelli.irclib.messages.PrivateMessage
 
 class AutoOpPlugin : Plugin {
     val listeners = arrayOf(
-        object : OnJoinListener {
-            override fun onJoin(connection: Connection, user: User, channel: Channel) {
-                if (user.nick == connection.user.nick) {
-                    claimOp(connection, channel)
+            object : OnJoinListener {
+                override fun onJoin(connection: Connection, user: User, channel: Channel) {
+                    if (user.nick == connection.user.nick) {
+                        claimOp(connection, channel)
+                    }
+                }
+            },
+            object : OnChannelModeListener {
+                override fun onChannelMode(connection: Connection, channel: Channel, mode: String, vararg args: String) {
+                    if (mode.indexOf("-") > -1 && args.indexOf(connection.user.nick) > -1) {
+                        claimOp(connection, channel)
+                    }
                 }
             }
-        },
-        object : OnChannelModeListener {
-            override fun onChannelMode(connection: Connection, channel: Channel, mode: String, vararg args: String) {
-                if (mode.indexOf("-") > -1 && args.indexOf(connection.user.nick) > -1)  {
-                    claimOp(connection, channel)
-                }
-            }
-        }
     )
 
     override var name = "auto_op"

@@ -10,7 +10,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito.*
 
-internal class IRCBotTest{
+internal class IRCBotTest {
     private lateinit var user: User
     private lateinit var server: Server
     private lateinit var bot: IRCBot
@@ -19,7 +19,8 @@ internal class IRCBotTest{
     private val listener = mock(OnChannelCommandListener::class.java)
 
 
-    @BeforeEach fun initialize() {
+    @BeforeEach
+    fun initialize() {
         server = Server("localhost", 6667, false, "")
         user = User("Test")
         bot = IRCBot(server, user)

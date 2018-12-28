@@ -17,10 +17,11 @@ internal class AccessTest {
     private val bot = mock<IRCBot> {
         on { connection } doReturn connection
     }
-    private lateinit var properties : Properties
-    private lateinit var access : Access
+    private lateinit var properties: Properties
+    private lateinit var access: Access
 
-    @BeforeEach fun initialize() {
+    @BeforeEach
+    fun initialize() {
         properties = Properties()
         properties.setProperty("r", "ROOT")
         properties.setProperty("a", "ADMIN")

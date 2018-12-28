@@ -3,13 +3,12 @@ package com.colacelli.ircbot.base
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
-import org.junit.jupiter.api.BeforeEach
-
 internal class HelperTest {
-    private lateinit var helper : Helper
+    private lateinit var helper: Helper
     private val listener1 = object : OnChannelCommandListener {
         override val command = ".test"
         override val aliases: Nothing? = null
@@ -33,7 +32,9 @@ internal class HelperTest {
         }
 
     }
-    @BeforeEach fun initialize() {
+
+    @BeforeEach
+    fun initialize() {
         helper = Helper()
     }
 

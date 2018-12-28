@@ -1,7 +1,10 @@
 package com.colacelli.ircbot.plugins.translate.apertium
 
 import com.google.gson.Gson
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 import java.net.URL
 import java.util.*
 import kotlin.coroutines.CoroutineContext
@@ -11,7 +14,7 @@ class ApertiumTranslator(val dispatcher: CoroutineContext = Dispatchers.Main) {
         const val APERTIUM_URL = "https://www.apertium.org/apy/translate?q=TEXT&langpair=LOCALES"
     }
 
-    fun translate(localeA: String, localeB: String, text: String) : Deferred<ApertiumTranslation?> {
+    fun translate(localeA: String, localeB: String, text: String): Deferred<ApertiumTranslation?> {
         val url = APERTIUM_URL
                 .replace("LOCALES", "$localeA|$localeB")
                 .replace("TEXT", text.replace(" ", "%20"))
