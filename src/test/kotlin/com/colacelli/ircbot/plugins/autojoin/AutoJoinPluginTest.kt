@@ -16,10 +16,8 @@ import org.junit.jupiter.api.Assertions.*
 internal class AutoJoinPluginTest {
     private val plugin = AutoJoinPlugin(arrayOf(Channel("#test"),  Channel("#test2")))
     private val connection = mock<Connection> {}
-    private val listeners = mock<ArrayList<OnChannelCommandListener>>()
     private val bot = mock<IRCBot> {
         on { connection } doReturn connection
-        on { listeners } doReturn listeners
     }
 
     @Test
