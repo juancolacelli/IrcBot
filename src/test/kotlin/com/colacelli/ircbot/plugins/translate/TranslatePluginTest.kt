@@ -14,10 +14,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 
 internal class TranslatePluginTest {
     private val connection = mock<Connection> {}
@@ -26,26 +25,27 @@ internal class TranslatePluginTest {
         on { connection } doReturn connection
         on { listeners } doReturn listeners
     }
-    private val translatePlugin = TranslatePlugin()
-    private val dispatcher = newSingleThreadContext("UI thread")
+
+    @UseExperimental(ObsoleteCoroutinesApi::class) private val mainDispatcher = newSingleThreadContext("TranslatePluginTest thread")
+    private val plugin = TranslatePlugin()
 
     @BeforeEach fun initialize() {
-        Dispatchers.setMain(dispatcher)
+        @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
     }
 
     @AfterEach fun finalize() {
-        Dispatchers.resetMain()
-        dispatcher.close()
+        @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
+        mainDispatcher.close()
     }
 
     @Test
     fun getName() {
-        assertEquals("translate", translatePlugin.name)
+        assertEquals("translate", plugin.name)
     }
 
     @Test
     fun onLoad() {
-        translatePlugin.onLoad(bot)
+        plugin.onLoad(bot)
         argumentCaptor<OnChannelCommandListener>().apply {
             verify(bot).addListener(capture())
 
@@ -57,7 +57,7 @@ internal class TranslatePluginTest {
 
     @Test
     fun onUnload() {
-        translatePlugin.onUnload(bot)
+        plugin.onUnload(bot)
         argumentCaptor<String>().apply {
             verify(bot).removeListener(capture())
             assertEquals(".translate", firstValue)
@@ -66,6 +66,16 @@ internal class TranslatePluginTest {
 
     @Test
     fun commands() {
+        val translatorMock = mock<ApertiumTranslator> {
+            on { dispatcher } doReturn mainDispatcher
+            on { translate(any(), any(), any()) } doReturn GlobalScope.async { ApertiumTranslation("en", "es", "hello", "hola") }
+        }
+        val pluginMock = spy<TranslatePlugin> {
+        }
+
+        whenever(pluginMock.dispatcher).thenReturn(mainDispatcher)
+        whenever(pluginMock.translator).thenReturn(translatorMock)
+
         lateinit var listener : OnChannelCommandListener
 
         val message = mock<ChannelMessage> {
@@ -73,16 +83,7 @@ internal class TranslatePluginTest {
             on { sender } doReturn User("r")
         }
 
-        val translatorMock = mock<ApertiumTranslator> {
-            on { translate("en", "es", "hello") } doReturn GlobalScope.async(dispatcher) { ApertiumTranslation("en", "es", "hello", "hola") }
-        }
-
-        val translatePluginMock = spy<TranslatePlugin> {
-            on { translator } doReturn translatorMock
-            on { dispatcher } doReturn dispatcher
-        }
-
-        translatePluginMock.onLoad(bot)
+        pluginMock.onLoad(bot)
 
         argumentCaptor<OnChannelCommandListener>().apply {
             verify(bot).addListener(capture())
@@ -90,10 +91,10 @@ internal class TranslatePluginTest {
             listener = firstValue
         }
 
-        runBlocking(dispatcher) {
+        runBlocking(mainDispatcher) {
             listener.onChannelCommand(connection, message, ".translate", arrayOf("en", "es", "hello"))
         }
 
-        verify(translatorMock).translate("en", "es", "hello")
+        verify(pluginMock.translator).translate("en", "es", "hello")
     }
 }

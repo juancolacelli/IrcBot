@@ -6,7 +6,7 @@ import java.net.URL
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class ApertiumTranslator(private val dispatcher: CoroutineContext = Dispatchers.Main) {
+class ApertiumTranslator(val dispatcher: CoroutineContext = Dispatchers.Main) {
     companion object {
         const val APERTIUM_URL = "https://www.apertium.org/apy/translate?q=TEXT&langpair=LOCALES"
     }
