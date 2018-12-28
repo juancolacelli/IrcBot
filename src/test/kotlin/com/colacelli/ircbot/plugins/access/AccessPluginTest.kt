@@ -37,18 +37,21 @@ internal class AccessPluginTest {
 
             val addListener = allValues.first { it.command == ".accessAdd" }
             assertEquals(".accessAdd", addListener.command)
+            assertEquals(Access.Level.ROOT, addListener.level)
             val addAliases = addListener.aliases!!
             addAliases.sort()
             assertEquals(".acc+ .accAdd", addAliases.joinToString(" "))
 
             val delListener = allValues.first { it.command == ".accessDel" }
             assertEquals(".accessDel", delListener.command)
+            assertEquals(Access.Level.ROOT, delListener.level)
             val delAliases = delListener.aliases!!
             delAliases.sort()
             assertEquals(".acc- .accDel", delAliases.joinToString(" "))
 
             val listListener = allValues.first { it.command == ".accessList" }
             assertEquals(".accessList", listListener.command)
+            assertEquals(Access.Level.OPERATOR, listListener.level)
             val listAliases = listListener.aliases!!
             listAliases.sort()
             assertEquals(".acc .accList", listAliases.joinToString(" "))

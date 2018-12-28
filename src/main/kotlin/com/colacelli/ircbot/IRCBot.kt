@@ -83,6 +83,10 @@ class IRCBot(val server: Server, val user: User) : Listenable {
         connection.removeListener(listener)
     }
 
+    fun connect() {
+        connection.connect()
+    }
+
     fun addListener(listener: OnChannelCommandListener) {
         helper.addHelp(listener.help)
         listeners.add(listener)
