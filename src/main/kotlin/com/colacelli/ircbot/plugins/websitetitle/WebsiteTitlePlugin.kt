@@ -5,32 +5,34 @@ import com.colacelli.ircbot.base.Plugin
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
 import com.colacelli.irclib.messages.ChannelMessage
-import org.jsoup.Jsoup
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlin.coroutines.CoroutineContext
 
 class WebsiteTitlePlugin : Plugin {
-    val listener = object : OnChannelMessageListener {
+    val parser = WebsiteParser()
+
+    private val listener = object : OnChannelMessageListener {
         override fun onChannelMessage(connection: Connection, message: ChannelMessage) {
-            val text = message.text
-            val urlsPattern = Regex("((http://|https://)([^ ]+))")
+            GlobalScope.launch {
+                val text = message.text
+                val urlsPattern = Regex("((http://|https://)([^ ]+))")
 
-            urlsPattern.findAll(text).forEach {
-                val websiteTitle = WebsiteTitle(it.value)
-                websiteTitle.addListener(object : OnWebsiteTitleGetListener {
-                    override fun onSuccess(url: String, title: String) {
-                        connection.send(ChannelMessage(
-                                message.channel,
-                                "$title - $url",
-                                connection.user
-                        ))
+                urlsPattern.findAll(text).forEach {
+                    val url = it.value
+                    var title = parser.parseTitle(url).await()
+
+                    if (title == null) {
+                        title = "Title not found!"
                     }
 
-                    override fun onError(url: String) {
-                    }
-                })
-
-                val worker = Thread(websiteTitle)
-                worker.name = "website_title"
-                worker.start()
+                    connection.send(ChannelMessage(
+                            message.channel,
+                            "$title - $url",
+                            connection.user
+                    ))
+                }
             }
         }
     }
@@ -45,24 +47,4 @@ class WebsiteTitlePlugin : Plugin {
         bot.removeListener(listener)
     }
 
-    private class WebsiteTitle(val url: String) : Runnable {
-        val listeners = ArrayList<OnWebsiteTitleGetListener>()
-
-        override fun run() {
-            val document = Jsoup.connect(url).get()
-            val title = document.title()
-
-            listeners.forEach {
-                if (title.isNotBlank()) {
-                    it.onSuccess(url, title)
-                } else {
-                    it.onError(url)
-                }
-            }
-        }
-
-        fun addListener(listener: OnWebsiteTitleGetListener) {
-            listeners.add(listener)
-        }
-    }
 }

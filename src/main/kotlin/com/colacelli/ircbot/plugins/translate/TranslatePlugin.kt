@@ -13,8 +13,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-class TranslatePlugin(val dispatcher: CoroutineContext = Dispatchers.Main) : Plugin {
-    val translator = ApertiumTranslator(dispatcher)
+class TranslatePlugin : Plugin {
+    val translator = ApertiumTranslator()
 
     override var name = "translate"
 
@@ -30,15 +30,15 @@ class TranslatePlugin(val dispatcher: CoroutineContext = Dispatchers.Main) : Plu
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.size > 2) {
-                    val localeA = args[0]
-                    val localeB = args[1]
-                    var text = args[2]
+                    GlobalScope.launch {
+                        val localeA = args[0]
+                        val localeB = args[1]
+                        var text = args[2]
 
-                    for (i in 3 until args.size) {
-                        text += " ${args[i]}"
-                    }
+                        for (i in 3 until args.size) {
+                            text += " ${args[i]}"
+                        }
 
-                    GlobalScope.launch(dispatcher) {
                         val translation = translator.translate(localeA, localeB, text).await()
 
                         if (translation == null) {

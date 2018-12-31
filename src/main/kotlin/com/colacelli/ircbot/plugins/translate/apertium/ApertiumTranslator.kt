@@ -9,28 +9,28 @@ import java.net.URL
 import java.util.*
 import kotlin.coroutines.CoroutineContext
 
-class ApertiumTranslator(val dispatcher: CoroutineContext = Dispatchers.Main) {
+class ApertiumTranslator {
     companion object {
         const val APERTIUM_URL = "https://www.apertium.org/apy/translate?q=TEXT&langpair=LOCALES"
     }
 
     fun translate(localeA: String, localeB: String, text: String): Deferred<ApertiumTranslation?> {
-        val url = APERTIUM_URL
-                .replace("LOCALES", "$localeA|$localeB")
-                .replace("TEXT", text.replace(" ", "%20"))
+        return GlobalScope.async {
+            val url = APERTIUM_URL
+                    .replace("LOCALES", "$localeA|$localeB")
+                    .replace("TEXT", text.replace(" ", "%20"))
 
-        val stream = URL(url).openStream()
-        val scanner = Scanner(stream).useDelimiter("\\A")
+            val stream = URL(url).openStream()
+            val scanner = Scanner(stream).useDelimiter("\\A")
 
-        var json = ""
-        while (scanner.hasNext()) {
-            json += scanner.next()
-        }
+            var json = ""
+            while (scanner.hasNext()) {
+                json += scanner.next()
+            }
 
-        val gson = Gson()
-        val response = gson.fromJson(json, ApertiumResponse::class.java)
+            val gson = Gson()
+            val response = gson.fromJson(json, ApertiumResponse::class.java)
 
-        return GlobalScope.async(dispatcher) {
             if (response.status == 200) {
                 // FIXME: Assign with Gson
                 val translation = response.data
