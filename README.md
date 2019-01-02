@@ -40,7 +40,7 @@ class BasicPlugin : Plugin {
 ```
 
 ```kotlin
-bot.addPlugin(BasicPlugin())
+bot.pluginLoader.add(BasicPlugin())
 ```
 
 ## Plugins

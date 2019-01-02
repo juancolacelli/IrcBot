@@ -2,7 +2,7 @@ package com.colacelli.ircbot
 
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Helper
-import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.PluginLoader
 import com.colacelli.ircbot.base.listeners.OnAccessCheckListener
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.actors.User
@@ -18,10 +18,10 @@ import com.colacelli.irclib.messages.PrivateNoticeMessage
 class IRCBot(val server: Server, val user: User) : Listenable {
     val connection = Connection(server, user)
 
+    val pluginLoader = PluginLoader(this)
     val access = Access(this)
     val helper = Helper()
     val listeners = ArrayList<OnChannelCommandListener>()
-    val plugins = ArrayList<Plugin>()
 
     companion object {
         const val HTTP_USER_AGENT = "GNU IRC Bot - https://gitlab.com/jic/ircbot"
@@ -111,15 +111,5 @@ class IRCBot(val server: Server, val user: User) : Listenable {
         commands.forEach {
             removeListener(it)
         }
-    }
-
-    fun addPlugin(plugin: Plugin) {
-        plugin.onLoad(this)
-        plugins.add(plugin)
-    }
-
-    fun removePlugin(plugin: Plugin) {
-        plugin.onUnload(this)
-        plugins.remove(plugin)
     }
 }

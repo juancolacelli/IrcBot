@@ -23,12 +23,7 @@ class PluginLoaderPlugin : Plugin {
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
                     val plugin = args[0].toLowerCase()
-                    bot.plugins.forEach {
-                        if (it.name.toLowerCase() == plugin) {
-                            it.onLoad(bot)
-                            connection.send(PrivateNoticeMessage("Plugin loaded!", connection.user, message.sender))
-                        }
-                    }
+                    if(bot.pluginLoader.load(plugin)) connection.send(PrivateNoticeMessage("Plugin loaded!", connection.user, message.sender))
                 }
             }
         })
@@ -42,12 +37,7 @@ class PluginLoaderPlugin : Plugin {
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
                     val plugin = args[0].toLowerCase()
-                    bot.plugins.forEach {
-                        if (it.name.toLowerCase() == plugin) {
-                            it.onUnload(bot)
-                            connection.send(PrivateNoticeMessage("Plugin unloaded!", connection.user, message.sender))
-                        }
-                    }
+                    if(bot.pluginLoader.unload(plugin)) connection.send(PrivateNoticeMessage("Plugin unloaded!", connection.user, message.sender))
                 }
             }
         })
@@ -60,8 +50,8 @@ class PluginLoaderPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var plugins = ArrayList<Array<String>>()
-                bot.plugins.forEach {
-                    plugins.add(arrayOf(it.name))
+                bot.pluginLoader.list()?.forEach {
+                    plugins.add(arrayOf(it))
                 }
 
                 AsciiTable(arrayOf("Plugin"), plugins).toText().forEach {
@@ -72,6 +62,6 @@ class PluginLoaderPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListeners(arrayOf(".pluginList", ".pluginLoad", ".pluginUnload"))
+        bot.removeListeners(arrayOf(".pluginLoad", ".pluginUnload", ".pluginList"))
     }
 }
