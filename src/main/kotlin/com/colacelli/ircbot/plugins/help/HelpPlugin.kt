@@ -36,6 +36,6 @@ class HelpPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".help")
+        bot.removeListenerByCommand(".help")
     }
 }

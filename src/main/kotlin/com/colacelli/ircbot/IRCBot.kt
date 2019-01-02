@@ -17,7 +17,6 @@ import com.colacelli.irclib.messages.PrivateNoticeMessage
 
 class IRCBot(val server: Server, val user: User) : Listenable {
     val connection = Connection(server, user)
-
     val pluginLoader = PluginLoader(this)
     val access = Access(this)
     val helper = Helper()
@@ -97,7 +96,7 @@ class IRCBot(val server: Server, val user: User) : Listenable {
         listeners.remove(listener)
     }
 
-    fun removeListener(command: String) {
+    fun removeListenerByCommand(command: String) {
         val toRemove = listeners.filter {
             it.command.toLowerCase() == command.toLowerCase()
         }
@@ -107,9 +106,9 @@ class IRCBot(val server: Server, val user: User) : Listenable {
         }
     }
 
-    fun removeListeners(commands: Array<String>) {
+    fun removeListenersByCommands(commands: Array<String>) {
         commands.forEach {
-            removeListener(it)
+            removeListenerByCommand(it)
         }
     }
 }

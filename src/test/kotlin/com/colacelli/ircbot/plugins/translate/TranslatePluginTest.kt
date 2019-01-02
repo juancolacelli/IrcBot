@@ -63,7 +63,7 @@ internal class TranslatePluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<String>().apply {
-            verify(bot).removeListener(capture())
+            verify(bot).removeListenerByCommand(capture())
             assertEquals(".translate", firstValue)
         }
     }

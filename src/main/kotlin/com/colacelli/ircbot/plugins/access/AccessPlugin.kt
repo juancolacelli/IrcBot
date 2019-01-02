@@ -70,6 +70,6 @@ class AccessPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListeners(arrayOf(".accessAdd", ".accessDel", ".accessList"))
+        bot.removeListenersByCommands(arrayOf(".accessAdd", ".accessDel", ".accessList"))
     }
 }

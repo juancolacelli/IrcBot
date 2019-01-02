@@ -62,6 +62,6 @@ class PluginLoaderPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListeners(arrayOf(".pluginLoad", ".pluginUnload", ".pluginList"))
+        bot.removeListenersByCommands(arrayOf(".pluginLoad", ".pluginUnload", ".pluginList"))
     }
 }

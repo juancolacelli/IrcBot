@@ -42,18 +42,18 @@ internal class IRCBotTest {
     }
 
     @Test
-    fun removeListener1() {
+    fun removeListenerByCommand() {
         assert(bot.listeners.isEmpty())
         bot.addListener(listener)
-        bot.removeListener(listener.command)
+        bot.removeListenerByCommand(listener.command)
         assert(bot.listeners.isEmpty())
     }
 
     @Test
-    fun removeListeners() {
+    fun removeListenersByCommands() {
         assert(bot.listeners.isEmpty())
         bot.addListener(listener)
-        bot.removeListeners(arrayOf(listener.command))
+        bot.removeListenersByCommands(arrayOf(listener.command))
         assert(bot.listeners.isEmpty())
     }
 }

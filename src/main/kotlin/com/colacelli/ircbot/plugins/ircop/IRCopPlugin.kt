@@ -45,6 +45,6 @@ class IRCopPlugin(name: String, password: String) : Plugin {
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(listener)
-        bot.removeListener(".kill")
+        bot.removeListenerByCommand(".kill")
     }
 }

@@ -88,6 +88,6 @@ class AutoResponsePlugin : Plugin {
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(listener)
-        bot.removeListeners(arrayOf(".autoResponseAdd", ".autoResponseDel", ".autoResponseList"))
+        bot.removeListenersByCommands(arrayOf(".autoResponseAdd", ".autoResponseDel", ".autoResponseList"))
     }
 }

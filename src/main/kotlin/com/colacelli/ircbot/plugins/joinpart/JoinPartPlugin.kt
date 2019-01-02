@@ -43,6 +43,6 @@ class JoinPartPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListeners(arrayOf(".join", ".part"))
+        bot.removeListenersByCommands(arrayOf(".join", ".part"))
     }
 }

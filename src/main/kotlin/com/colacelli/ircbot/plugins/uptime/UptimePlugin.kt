@@ -38,6 +38,6 @@ class UptimePlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".uptime")
+        bot.removeListenerByCommand(".uptime")
     }
 }

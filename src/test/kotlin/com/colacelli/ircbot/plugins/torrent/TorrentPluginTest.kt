@@ -70,7 +70,7 @@ internal class TorrentPluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<String>().apply {
-            verify(bot).removeListener(capture())
+            verify(bot).removeListenerByCommand(capture())
             assertEquals(".torrent", firstValue)
         }
     }

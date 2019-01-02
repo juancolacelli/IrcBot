@@ -129,7 +129,7 @@ class RSSFeedPlugin : Plugin {
 
     override fun onUnload(bot: IRCBot) {
         bot.removeListener(listener)
-        bot.removeListeners(arrayOf(".rssSubscribe", ".rssUnsubscribe", ".rssAdd", ".rssDel", ".rssList", ".rssCheck", ".rssSubscribers"))
+        bot.removeListenersByCommands(arrayOf(".rssSubscribe", ".rssUnsubscribe", ".rssAdd", ".rssDel", ".rssList", ".rssCheck", ".rssSubscribers"))
     }
 
     private fun check(connection: Connection) {

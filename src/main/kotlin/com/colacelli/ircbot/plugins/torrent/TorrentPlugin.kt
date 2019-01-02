@@ -41,6 +41,6 @@ class TorrentPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".torrent")
+        bot.removeListenerByCommand(".torrent")
     }
 }

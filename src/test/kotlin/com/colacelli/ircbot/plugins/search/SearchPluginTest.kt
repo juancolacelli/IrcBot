@@ -65,7 +65,7 @@ internal class SearchPluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<String>().apply {
-            verify(bot).removeListener(capture())
+            verify(bot).removeListenerByCommand(capture())
             assertEquals(".search", firstValue)
         }
     }

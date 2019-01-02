@@ -5,7 +5,6 @@ import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Help
 import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.search.duckduckgo.DuckDuckGoSearchResult
 import com.colacelli.ircbot.plugins.search.duckduckgo.DuckDuckGoSearcher
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
@@ -45,7 +44,7 @@ class SearchPlugin : Plugin {
     }
 
     override fun onUnload(bot: IRCBot) {
-        bot.removeListener(".search")
+        bot.removeListenerByCommand(".search")
     }
 
 }

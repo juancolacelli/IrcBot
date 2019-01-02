@@ -9,7 +9,6 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -50,7 +49,7 @@ internal class IRCopPluginTest {
         plugin.onUnload(bot)
         verify(bot).removeListener(any<OnConnectListener>())
         argumentCaptor<String>().apply {
-            verify(bot).removeListener(capture())
+            verify(bot).removeListenerByCommand(capture())
             assertEquals(".kill", firstValue)
         }
     }

@@ -145,9 +145,9 @@ class OperatorPlugin : Plugin {
 
     override fun onUnload(bot: IRCBot) {
         modes.forEach { _, commands ->
-            bot.removeListener(commands[0])
+            bot.removeListenerByCommand(commands[0])
         }
-        bot.removeListeners(arrayOf(".kick", ".kickBan", ".unBan", ".mode", ".invite", ".topic"))
+        bot.removeListenersByCommands(arrayOf(".kick", ".kickBan", ".unBan", ".mode", ".invite", ".topic"))
     }
 
 }

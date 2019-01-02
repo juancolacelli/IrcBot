@@ -11,7 +11,6 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -45,7 +44,7 @@ internal class UptimePluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<String>().apply {
-            verify(bot).removeListener(capture())
+            verify(bot).removeListenerByCommand(capture())
             assertEquals(".uptime", firstValue)
         }
     }

@@ -9,7 +9,6 @@ import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -49,7 +48,7 @@ internal class HelpPluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<String>().apply {
-            verify(bot).removeListener(capture())
+            verify(bot).removeListenerByCommand(capture())
             assertEquals(".help", firstValue)
         }
     }

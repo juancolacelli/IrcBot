@@ -60,7 +60,7 @@ internal class AccessPluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<Array<String>>().apply {
-            verify(bot).removeListeners(capture())
+            verify(bot).removeListenersByCommands(capture())
             val delListeners = firstValue
             delListeners.sort()
             assertEquals(".accessAdd .accessDel .accessList", delListeners.joinToString(" "))

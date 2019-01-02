@@ -3,15 +3,11 @@ package com.colacelli.ircbot.plugins.pluginloader
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Helper
-import com.colacelli.ircbot.base.Plugin
-import com.colacelli.ircbot.base.PluginLoader
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
-import com.colacelli.ircbot.plugins.access.AccessPlugin
 import com.colacelli.ircbot.plugins.help.HelpPlugin
 import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
-import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
 import org.junit.jupiter.api.Test
@@ -61,7 +57,7 @@ internal class PluginLoaderPluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<Array<String>>().apply {
-            verify(bot).removeListeners(capture())
+            verify(bot).removeListenersByCommands(capture())
 
             assertEquals(".pluginLoad", firstValue[0])
             assertEquals(".pluginUnload", firstValue[1])

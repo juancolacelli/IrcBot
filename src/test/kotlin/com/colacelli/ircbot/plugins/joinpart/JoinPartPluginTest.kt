@@ -8,7 +8,6 @@ import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -51,7 +50,7 @@ internal class JoinPartPluginTest {
     fun onUnload() {
         plugin.onUnload(bot)
         argumentCaptor<Array<String>>().apply {
-            verify(bot).removeListeners(capture())
+            verify(bot).removeListenersByCommands(capture())
             assertEquals(".join", firstValue[0])
             assertEquals(".part", firstValue[1])
         }
