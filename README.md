@@ -45,13 +45,11 @@ bot.addPlugin(BasicPlugin())
 
 ## Plugins
 * **access**: Grant/Revoke bot access
-* **apertium_translator**: Translate text using [Apertium](https://apertium.org)
 * **auto_join**: Auto-join channels on connect
 * **auto_op**: Auto claim op on join
 * **auto_reconnect**: Auto-reconnect on disconnection
 * **auto_response**: Auto-response on text triggers
 * **ctcp_version**: Customize your CTCP VERSION response
-* **duck_duck_go_search**: Search on [DuckDuckGo](https://duckduckgo.com)
 * **help**: Bot help
 * **ircop**: IRCop authentication
 * **join_part**: Bot can join and part channels by request
@@ -60,7 +58,9 @@ bot.addPlugin(BasicPlugin())
 * **operator**: Basic operator commands (i.e, !op, !voice, etc.)
 * **rejoin_on_kick**: Re-join channels on kick
 * **rss_feed**: Get rss feed notices and send them to all subscribers
+* **search**: Search on [DuckDuckGo](https://duckduckgo.com)
 * **the_pirate_bay_search**: Search torrents in [ThePirateBay](https://thepiratebay.org)
+* **translate**: Translate text using [Apertium](https://apertium.org)
 * **uptime**: Shows bot uptime
 * **website_title**: Get website title when an url is detected
 

@@ -24,20 +24,19 @@ internal class WebsiteTitlePluginTest {
     private val plugin = WebsiteTitlePlugin()
 
     companion object {
-        private val mainDispatcher = Dispatchers.IO
+        private val mainDispatcher = newSingleThreadContext("WebsiteTitlePluginTest thread")
 
         @BeforeAll
         @JvmStatic
         internal fun dispatcherSet() {
-            println("Dispatcher set!")
             @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
         }
 
         @AfterAll
         @JvmStatic
         internal fun dispatcherReset() {
-            println("Dispatcher reset!")
             @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
+            mainDispatcher.close()
         }
     }
 
