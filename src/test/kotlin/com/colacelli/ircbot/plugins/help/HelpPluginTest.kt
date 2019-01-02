@@ -70,9 +70,7 @@ internal class HelpPluginTest {
             listener = firstValue
         }
 
-        runBlocking {
-            listener.onChannelCommand(connection, message, ".help", arrayOf(""))
-        }
+        listener.onChannelCommand(connection, message, ".help", arrayOf(""))
         verify(bot.helper).list(Access.Level.USER, "")
     }
 }

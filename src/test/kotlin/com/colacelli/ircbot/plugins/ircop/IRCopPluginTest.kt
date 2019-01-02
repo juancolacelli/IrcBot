@@ -41,6 +41,7 @@ internal class IRCopPluginTest {
 
             assertEquals(".kill", firstValue.command)
             assertEquals(Access.Level.ADMIN, firstValue.level)
+            assertNull(firstValue.aliases)
         }
     }
 
@@ -84,10 +85,8 @@ internal class IRCopPluginTest {
             listener = firstValue
         }
 
-        runBlocking {
-            listener.onChannelCommand(connection, message, ".kill", arrayOf("test", "you", "must", "die"))
-            listener.onChannelCommand(connection, message, ".kill", arrayOf("user", "you", "must", "die"))
-        }
+        listener.onChannelCommand(connection, message, ".kill", arrayOf("test", "you", "must", "die"))
+        listener.onChannelCommand(connection, message, ".kill", arrayOf("user", "you", "must", "die"))
 
         argumentCaptor<User>().apply {
             verify(bot.connection).kill(capture(), any())
