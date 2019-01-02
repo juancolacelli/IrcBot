@@ -5,7 +5,13 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class ApertiumResponseTest {
-    private val json = "{\"responseData\": {\"translatedText\": \"hola\"}, \"responseDetails\": null, \"responseStatus\": 200}"
+    private val json = """{
+        "responseData": {
+            "translatedText": "hola"
+        },
+        "responseDetails": null,
+        "responseStatus": 200
+    }""".trimIndent()
     private val response = Gson().fromJson(json, ApertiumResponse::class.java)
 
     @Test

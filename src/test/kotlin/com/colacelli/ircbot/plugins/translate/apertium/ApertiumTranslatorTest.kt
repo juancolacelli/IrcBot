@@ -10,17 +10,14 @@ import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 
 internal class ApertiumTranslatorTest {
-    private val translator = mock<ApertiumTranslator> {
-        on { translate("en", "es", "hello") } doReturn GlobalScope.async { ApertiumTranslation("en", "es", "hello", "hola") }
-    }
+    private val translator = ApertiumTranslator()
 
     @Test
     fun translate() {
         runBlocking {
-            // TODO: Improve this test, it's just testing the mock
             val translation = translator.translate("en", "es", "hello").await()
             assertNotNull(translation)
-            assertEquals("hola", translation!!.translation)
+            assertEquals("hola", translation?.translation)
         }
     }
 }

@@ -13,16 +13,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.*
 
 internal class WebsiteParserTest {
-    private val parser = mock<WebsiteParser> {
-        on { parseTitle(any()) } doReturn GlobalScope.async { "GNU" }
-    }
+    private val parser = WebsiteParser()
 
     @Test
     fun parseTitle() {
         runBlocking {
-            // TODO: Improve this test, it's just testing the mock
             val title = parser.parseTitle("https://gnu.org").await()
-            assertEquals("GNU", title)
+            assertEquals("The GNU Operating System and the Free Software Movement", title)
         }
     }
 }

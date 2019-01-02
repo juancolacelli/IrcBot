@@ -73,7 +73,7 @@ internal class SearchPluginTest {
     @Test
     fun commands() {
         val searcherMock = mock<DuckDuckGoSearcher> {
-            on { search(any()) } doReturn GlobalScope.async { DuckDuckGoSearchResult("GNU", "GNU is not Unix", "Wikipedia", "https://gnu.org") }
+            on { search(any()) } doReturn GlobalScope.async { DuckDuckGoSearchResult("GNU", "GNU is not UNIX", "Wikipedia", "https://gnu.org") }
         }
         val pluginSpy = spy<SearchPlugin> {
             on { searcher } doReturn searcherMock

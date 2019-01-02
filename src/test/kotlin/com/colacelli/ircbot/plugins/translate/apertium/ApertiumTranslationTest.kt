@@ -5,7 +5,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class ApertiumTranslationTest {
-    private val json = "{\"translatedText\": \"hola\"}"
+    private val json = """{
+        "translatedText": "hola"
+    }""".trimIndent()
     private val translation = Gson().fromJson(json, ApertiumTranslation::class.java)
 
     @Test
