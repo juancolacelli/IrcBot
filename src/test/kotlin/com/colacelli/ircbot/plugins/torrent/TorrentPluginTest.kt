@@ -3,12 +3,21 @@ package com.colacelli.ircbot.plugins.torrent
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
+import com.colacelli.ircbot.plugins.torrent.thepiratebay.ThePirateBaySearchResult
+import com.colacelli.ircbot.plugins.torrent.thepiratebay.ThePirateBaySearcher
+import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
+import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
+import kotlinx.coroutines.*
+import kotlinx.coroutines.test.resetMain
+import kotlinx.coroutines.test.setMain
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.BeforeAll
 
 internal class TorrentPluginTest {
     private val connection = mock<Connection> {
@@ -22,6 +31,23 @@ internal class TorrentPluginTest {
         on { access } doReturn access
     }
     private val plugin = TorrentPlugin()
+
+    companion object {
+        private val mainDispatcher = newSingleThreadContext("TorrentPluginTest thread")
+
+        @BeforeAll
+        @JvmStatic
+        internal fun dispatcherSet() {
+            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
+        }
+
+        @AfterAll
+        @JvmStatic
+        internal fun dispatcherReset() {
+            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
+            mainDispatcher.close()
+        }
+    }
 
     @Test
     fun getName() {
@@ -47,5 +73,35 @@ internal class TorrentPluginTest {
             verify(bot).removeListener(capture())
             assertEquals(".torrent", firstValue)
         }
+    }
+
+    @Test
+    fun commands() {
+        val searcherMock = mock<ThePirateBaySearcher> {
+            on { search(any()) } doReturn GlobalScope.async { mock<ThePirateBaySearchResult>() }
+        }
+        val pluginSpy = spy<TorrentPlugin> {
+            on { searcher } doReturn searcherMock
+        }
+
+        var listener : OnChannelCommandListener
+
+        val message = mock<ChannelMessage> {
+            on { channel } doReturn Channel("#test")
+            on { sender } doReturn User("r")
+        }
+
+        pluginSpy.onLoad(bot)
+
+        argumentCaptor<OnChannelCommandListener>().apply {
+            verify(bot).addListener(capture())
+
+            listener = firstValue
+        }
+
+        runBlocking {
+            listener.onChannelCommand(connection, message, ".torrent", arrayOf("gnu"))
+        }
+        verify(searcherMock).search("gnu")
     }
 }
