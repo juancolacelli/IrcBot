@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Assertions.*
 internal class HelpPluginTest {
     private val connection = mock<Connection>()
     private val helper = mock<Helper>()
-    private val access = mock<Access>() {
+    private val access = mock<Access> {
         on { get(any()) } doReturn Access.Level.USER
     }
     private val bot = mock<IRCBot> {
