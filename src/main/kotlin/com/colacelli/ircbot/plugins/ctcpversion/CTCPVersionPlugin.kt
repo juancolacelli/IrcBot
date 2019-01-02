@@ -9,7 +9,7 @@ import com.colacelli.irclib.messages.CTCPMessage
 class CTCPVersionPlugin(response: String) : Plugin {
     val listener = object : OnCTCPListener {
         override fun onCTCP(connection: Connection, message: CTCPMessage, vararg args: List<String>) {
-            when (message.text) {
+            when (message.command) {
                 "VERSION" -> {
                     connection.send(CTCPMessage(response, message.text, connection.user, message.sender))
                 }
