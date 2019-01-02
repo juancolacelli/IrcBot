@@ -59,7 +59,7 @@ bot.addPlugin(BasicPlugin())
 * **rejoin_on_kick**: Re-join channels on kick
 * **rss_feed**: Get rss feed notices and send them to all subscribers
 * **search**: Search on [DuckDuckGo](https://duckduckgo.com)
-* **the_pirate_bay_search**: Search torrents in [ThePirateBay](https://thepiratebay.org)
+* **torrent**: Search torrents in [ThePirateBay](https://thepiratebay.org)
 * **translate**: Translate text using [Apertium](https://apertium.org)
 * **uptime**: Shows bot uptime
 * **website_title**: Get website title when an url is detected
