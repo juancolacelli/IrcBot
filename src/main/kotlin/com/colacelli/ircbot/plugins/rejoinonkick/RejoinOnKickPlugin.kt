@@ -22,6 +22,7 @@ class RejoinOnKickPlugin : Plugin {
             }
         })
 
+        // TODO: Add other blocking entrance modes like +i, +l, etc.
         listeners.add(object : OnRawCodeListener {
             override fun rawCode(): Int {
                 return Rawable.RawCode.JOIN_BANNED.code
