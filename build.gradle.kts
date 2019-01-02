@@ -23,8 +23,6 @@ allprojects {
 
         testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
         testCompile("org.junit.jupiter:junit-jupiter-params:5.3.2")
-        testCompile("org.awaitility:awaitility:3.1.5")
-        // testCompile("org.mockito:mockito-core:2.23.4")
         testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.0.0")
         testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.0")
         testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.1.0")
