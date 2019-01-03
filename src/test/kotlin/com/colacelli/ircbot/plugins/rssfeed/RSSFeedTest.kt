@@ -2,18 +2,18 @@ package com.colacelli.ircbot.plugins.rssfeed
 
 import com.colacelli.irclib.actors.User
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Test
-
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import java.util.*
 
 internal class RSSFeedTest {
 
     private val testUrl = "https://static.fsf.org/fsforg/rss/news.xml"
-    private lateinit var rssFeed : RSSFeed
+    private lateinit var rssFeed: RSSFeed
 
-    @BeforeEach fun initialize() {
+    @BeforeEach
+    fun initialize() {
         val properties = Properties()
         properties.setProperty(RSSFeed.SUBSCRIBERS_PROPERTY, "nick_a${RSSFeed.SUBSCRIBERS_SEPARATOR}nick_b")
         properties.setProperty("https://test.org/rss", "test notice")

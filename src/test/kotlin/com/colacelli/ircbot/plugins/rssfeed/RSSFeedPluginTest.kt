@@ -9,10 +9,7 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnPingListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
-import jdk.nashorn.internal.ir.annotations.Ignore
-import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -90,7 +87,7 @@ internal class RSSFeedPluginTest {
 
     @Test
     fun behavior() {
-        var listener : OnPingListener
+        var listener: OnPingListener
 
         val rssFeedMock = mock<RSSFeed> {
             on { check() } doReturn mock()
@@ -112,7 +109,7 @@ internal class RSSFeedPluginTest {
 
     @Test
     fun commands() {
-        var listeners : List<OnChannelCommandListener>
+        var listeners: List<OnChannelCommandListener>
 
         val rssFeedMock = mock<RSSFeed> {
             on { check() } doReturn mock()

@@ -24,7 +24,7 @@ class RSSFeed() : PropertiesPlugin {
         const val SUBSCRIBERS_SEPARATOR = ","
     }
 
-    fun set(url: String, lastUrl: String) : Boolean {
+    fun set(url: String, lastUrl: String): Boolean {
         return if (url != SUBSCRIBERS_PROPERTY) {
             properties.setProperty(url, lastUrl)
             saveProperties(PROPERTIES_FILE, properties)
@@ -34,7 +34,7 @@ class RSSFeed() : PropertiesPlugin {
         }
     }
 
-    fun add(url: String) : Boolean {
+    fun add(url: String): Boolean {
         return if (url != SUBSCRIBERS_PROPERTY) {
             properties.setProperty(url, "")
             saveProperties(PROPERTIES_FILE, properties)
@@ -44,7 +44,7 @@ class RSSFeed() : PropertiesPlugin {
         }
     }
 
-    fun del(url: String) : Boolean {
+    fun del(url: String): Boolean {
         return if (url != SUBSCRIBERS_PROPERTY) {
             properties.remove(url)
             saveProperties(PROPERTIES_FILE, properties)
@@ -75,7 +75,7 @@ class RSSFeed() : PropertiesPlugin {
         return subscribers
     }
 
-    fun subscribe(user: User) : Boolean {
+    fun subscribe(user: User): Boolean {
         val subscribers = subscribers()
         val nick = user.nick.toLowerCase()
 
@@ -89,7 +89,7 @@ class RSSFeed() : PropertiesPlugin {
         }
     }
 
-    fun unsubscribe(user: User) : Boolean {
+    fun unsubscribe(user: User): Boolean {
         val subscribers = subscribers()
         val nick = user.nick.toLowerCase()
 
@@ -103,7 +103,7 @@ class RSSFeed() : PropertiesPlugin {
         }
     }
 
-    private fun check(url: String) : Deferred<RSSFeedItem?> {
+    private fun check(url: String): Deferred<RSSFeedItem?> {
         return GlobalScope.async {
             try {
                 val document = Jsoup.connect(url).get()
@@ -118,7 +118,7 @@ class RSSFeed() : PropertiesPlugin {
         }
     }
 
-    fun check() : Deferred<ArrayList<RSSFeedItem>> {
+    fun check(): Deferred<ArrayList<RSSFeedItem>> {
         val items = ArrayList<RSSFeedItem>()
 
         return GlobalScope.async {

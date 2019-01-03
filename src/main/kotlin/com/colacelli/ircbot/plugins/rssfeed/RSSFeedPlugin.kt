@@ -133,7 +133,7 @@ class RSSFeedPlugin : Plugin {
     private fun check(connection: Connection) {
         GlobalScope.launch {
             val items = rssFeed.check().await()
-            items?.forEach {
+            items.forEach {
                 if (it.hasNewContent) {
                     rssFeed.subscribers().forEach { subscriber ->
                         connection.send(PrivateNoticeMessage(
