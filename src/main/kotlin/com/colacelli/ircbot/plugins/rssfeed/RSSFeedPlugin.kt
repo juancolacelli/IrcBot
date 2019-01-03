@@ -15,6 +15,8 @@ import org.jsoup.Jsoup
 import java.io.IOException
 
 class RSSFeedPlugin : Plugin {
+    val rssFeed = RSSFeed()
+
     val listener = object : OnPingListener {
         override fun onPing(connection: Connection) {
             return check(connection)
@@ -33,7 +35,7 @@ class RSSFeedPlugin : Plugin {
             override val help = Help(this, "Subscribe to RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                RSSFeed.instance.subscribe(message.sender!!)
+                rssFeed.subscribe(message.sender!!)
                 connection.send(PrivateNoticeMessage("Subscribed to RSS feed!", connection.user, message.sender))
             }
         })
@@ -45,7 +47,7 @@ class RSSFeedPlugin : Plugin {
             override val help = Help(this, "Unsubscribe from RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                RSSFeed.instance.unsubscribe(message.sender!!)
+                rssFeed.unsubscribe(message.sender!!)
                 connection.send(PrivateNoticeMessage("Unsubscribed to RSS feed!", connection.user, message.sender))
             }
         })
@@ -58,7 +60,7 @@ class RSSFeedPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
-                    RSSFeed.instance.add(args[0])
+                    rssFeed.add(args[0])
                     connection.send(PrivateNoticeMessage("RSS feed added!", connection.user, message.sender))
                 }
             }
@@ -72,7 +74,7 @@ class RSSFeedPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
-                    RSSFeed.instance.del(args[0])
+                    rssFeed.del(args[0])
                     connection.send(PrivateNoticeMessage("RSS feed removed!", connection.user, message.sender))
                 }
             }
@@ -86,7 +88,7 @@ class RSSFeedPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val rssFeeds = ArrayList<Array<String>>()
-                RSSFeed.instance.list().forEach { url, _ ->
+                rssFeed.list().forEach { url, _ ->
                     rssFeeds.add(arrayOf(url))
                 }
 
@@ -116,7 +118,7 @@ class RSSFeedPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 val nicks = ArrayList<Array<String>>()
-                RSSFeed.instance.subscribers().forEach {
+                rssFeed.subscribers().forEach {
                     nicks.add(arrayOf(it))
                 }
 
@@ -133,14 +135,14 @@ class RSSFeedPlugin : Plugin {
     }
 
     private fun check(connection: Connection) {
-        RSSFeed.instance.list().forEach { url, lastUrl ->
+        rssFeed.list().forEach { url, lastUrl ->
             val checker = RSSFeedChecker(url)
 
             checker.addListener(object : OnRSSFeedCheckListener {
                 override fun onSuccess(rssFeedItem: RSSFeedItem) {
                     if (rssFeedItem.url != lastUrl) {
-                        RSSFeed.instance.set(rssFeedItem.rssFeedUrl, rssFeedItem.url)
-                        RSSFeed.instance.subscribers().forEach {
+                        rssFeed.set(rssFeedItem.rssFeedUrl, rssFeedItem.url)
+                        rssFeed.subscribers().forEach {
                             connection.send(PrivateNoticeMessage(
                                     "${rssFeedItem.title} - ${rssFeedItem.url}",
                                     connection.user,
@@ -151,7 +153,7 @@ class RSSFeedPlugin : Plugin {
                 }
 
                 override fun onError(url: String) {
-                    RSSFeed.instance.del(url)
+                    rssFeed.del(url)
                 }
             })
 
