@@ -26,24 +26,6 @@ internal class TranslatePluginTest {
 
     private val plugin = TranslatePlugin()
 
-    companion object {
-        @UseExperimental(ExperimentalCoroutinesApi::class)
-        private val mainDispatcher = newSingleThreadContext("TranslatePluginTest thread")
-
-        @BeforeAll
-        @JvmStatic
-        internal fun dispatcherSet() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
-        }
-
-        @AfterAll
-        @JvmStatic
-        internal fun dispatcherReset() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
-            mainDispatcher.close()
-        }
-    }
-
     @Test
     fun getName() {
         assertEquals("translate", plugin.name)

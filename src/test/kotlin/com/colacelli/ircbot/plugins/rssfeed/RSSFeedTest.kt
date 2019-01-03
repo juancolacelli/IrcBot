@@ -1,6 +1,7 @@
 package com.colacelli.ircbot.plugins.rssfeed
 
 import com.colacelli.irclib.actors.User
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.Assertions.*
@@ -80,5 +81,23 @@ internal class RSSFeedTest {
         assert(rssFeed.unsubscribe(User("nick_a")))
         assertEquals(1, rssFeed.subscribers().size)
         assertEquals(-1, rssFeed.subscribers().indexOf("nick_a"))
+    }
+
+    @Test
+    fun check() {
+        rssFeed.add(testUrl)
+        assertEquals(2, rssFeed.list().size)
+
+        runBlocking {
+            val items = rssFeed.check().await()
+            val item = items[0]
+            assertEquals(1, items.size)
+            assertEquals(testUrl, item.rssFeedUrl)
+            assertNotNull(item.title)
+            assertNotNull(item.url)
+            assert(item.hasNewContent)
+        }
+
+        assertEquals(1, rssFeed.list().size)
     }
 }

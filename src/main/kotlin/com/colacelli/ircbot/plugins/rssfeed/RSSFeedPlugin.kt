@@ -11,15 +11,15 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnPingListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
-import org.jsoup.Jsoup
-import java.io.IOException
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 class RSSFeedPlugin : Plugin {
     val rssFeed = RSSFeed()
 
     val listener = object : OnPingListener {
         override fun onPing(connection: Connection) {
-            return check(connection)
+            check(connection)
         }
     }
 
@@ -35,8 +35,7 @@ class RSSFeedPlugin : Plugin {
             override val help = Help(this, "Subscribe to RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                rssFeed.subscribe(message.sender!!)
-                connection.send(PrivateNoticeMessage("Subscribed to RSS feed!", connection.user, message.sender))
+                if (rssFeed.subscribe(message.sender!!)) connection.send(PrivateNoticeMessage("Subscribed to RSS feed!", connection.user, message.sender))
             }
         })
 
@@ -47,8 +46,7 @@ class RSSFeedPlugin : Plugin {
             override val help = Help(this, "Unsubscribe from RSS feed")
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
-                rssFeed.unsubscribe(message.sender!!)
-                connection.send(PrivateNoticeMessage("Unsubscribed to RSS feed!", connection.user, message.sender))
+                if (rssFeed.unsubscribe(message.sender!!)) connection.send(PrivateNoticeMessage("Unsubscribed to RSS feed!", connection.user, message.sender))
             }
         })
 
@@ -60,8 +58,7 @@ class RSSFeedPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
-                    rssFeed.add(args[0])
-                    connection.send(PrivateNoticeMessage("RSS feed added!", connection.user, message.sender))
+                    if (rssFeed.add(args[0])) connection.send(PrivateNoticeMessage("RSS feed added!", connection.user, message.sender))
                 }
             }
         })
@@ -74,15 +71,14 @@ class RSSFeedPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
-                    rssFeed.del(args[0])
-                    connection.send(PrivateNoticeMessage("RSS feed removed!", connection.user, message.sender))
+                    if (rssFeed.del(args[0])) connection.send(PrivateNoticeMessage("RSS feed removed!", connection.user, message.sender))
                 }
             }
         })
 
         bot.addListener(object : OnChannelCommandListener {
             override val command = ".rssList"
-            override val aliases = arrayOf(".rssList", ".rss")
+            override val aliases = arrayOf(".rss")
             override val level = Access.Level.USER
             override val help = Help(this, "List all available RSS feeds")
 
@@ -135,60 +131,19 @@ class RSSFeedPlugin : Plugin {
     }
 
     private fun check(connection: Connection) {
-        rssFeed.list().forEach { url, lastUrl ->
-            val checker = RSSFeedChecker(url)
-
-            checker.addListener(object : OnRSSFeedCheckListener {
-                override fun onSuccess(rssFeedItem: RSSFeedItem) {
-                    if (rssFeedItem.url != lastUrl) {
-                        rssFeed.set(rssFeedItem.rssFeedUrl, rssFeedItem.url)
-                        rssFeed.subscribers().forEach {
-                            connection.send(PrivateNoticeMessage(
-                                    "${rssFeedItem.title} - ${rssFeedItem.url}",
-                                    connection.user,
-                                    User(it)
-                            ))
-                        }
+        GlobalScope.launch {
+            val items = rssFeed.check().await()
+            items?.forEach {
+                if (it.hasNewContent) {
+                    rssFeed.subscribers().forEach { subscriber ->
+                        connection.send(PrivateNoticeMessage(
+                                "${it.title} - ${it.url}",
+                                connection.user,
+                                User(subscriber)
+                        ))
                     }
-                }
-
-                override fun onError(url: String) {
-                    rssFeed.del(url)
-                }
-            })
-
-            val worker = Thread(checker)
-            worker.name = "rss_feed_checker"
-            worker.start()
-        }
-    }
-
-    private class RSSFeedChecker(val url: String) : Runnable {
-        val listeners = ArrayList<OnRSSFeedCheckListener>()
-
-        override fun run() {
-            try {
-                val document = Jsoup.connect(url).get()
-                val lastItem = document.selectFirst("item")
-                val title = lastItem.selectFirst("title").text()
-                val link = lastItem.selectFirst("link").text()
-
-                val rssFeedItem = RSSFeedItem(url, link, title)
-
-                listeners.forEach {
-                    it.onSuccess(rssFeedItem)
-                }
-            } catch (e: IOException) {
-                listeners.forEach {
-                    it.onError(url)
                 }
             }
         }
-
-        fun addListener(listener: OnRSSFeedCheckListener) {
-            listeners.add(listener)
-        }
     }
-
-    class RSSFeedItem(val rssFeedUrl: String, val url: String, val title: String)
 }

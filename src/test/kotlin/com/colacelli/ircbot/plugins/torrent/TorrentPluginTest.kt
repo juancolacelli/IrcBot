@@ -31,23 +31,6 @@ internal class TorrentPluginTest {
     }
     private val plugin = TorrentPlugin()
 
-    companion object {
-        private val mainDispatcher = newSingleThreadContext("TorrentPluginTest thread")
-
-        @BeforeAll
-        @JvmStatic
-        internal fun dispatcherSet() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
-        }
-
-        @AfterAll
-        @JvmStatic
-        internal fun dispatcherReset() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
-            mainDispatcher.close()
-        }
-    }
-
     @Test
     fun getName() {
         assertEquals("torrent", plugin.name)

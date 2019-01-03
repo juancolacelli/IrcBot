@@ -23,23 +23,6 @@ internal class WebsiteTitlePluginTest {
 
     private val plugin = WebsiteTitlePlugin()
 
-    companion object {
-        private val mainDispatcher = newSingleThreadContext("WebsiteTitlePluginTest thread")
-
-        @BeforeAll
-        @JvmStatic
-        internal fun dispatcherSet() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
-        }
-
-        @AfterAll
-        @JvmStatic
-        internal fun dispatcherReset() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
-            mainDispatcher.close()
-        }
-    }
-
     @Test
     fun getName() {
         assertEquals("website_title", plugin.name)
@@ -60,7 +43,7 @@ internal class WebsiteTitlePluginTest {
     @Test
     fun behavior() {
         val parserMock = mock<WebsiteParser> {
-            on { parseTitle(any()) } doReturn GlobalScope.async(mainDispatcher) { "Title test" }
+            on { parseTitle(any()) } doReturn GlobalScope.async { "Title test" }
         }
         val pluginMock = spy<WebsiteTitlePlugin> {
             on { parser } doReturn parserMock

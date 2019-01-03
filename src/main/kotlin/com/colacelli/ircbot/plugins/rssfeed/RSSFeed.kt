@@ -2,6 +2,11 @@ package com.colacelli.ircbot.plugins.rssfeed
 
 import com.colacelli.ircbot.base.PropertiesPlugin
 import com.colacelli.irclib.actors.User
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import org.jsoup.Jsoup
+import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.collections.HashMap
@@ -95,6 +100,42 @@ class RSSFeed() : PropertiesPlugin {
             true
         } else {
             false
+        }
+    }
+
+    private fun check(url: String) : Deferred<RSSFeedItem?> {
+        return GlobalScope.async {
+            try {
+                val document = Jsoup.connect(url).get()
+                val lastItem = document.selectFirst("item")
+                val title = lastItem.selectFirst("title").text()
+                val link = lastItem.selectFirst("link").text()
+
+                RSSFeedItem(url, link, title)
+            } catch (e: IOException) {
+                null
+            }
+        }
+    }
+
+    fun check() : Deferred<ArrayList<RSSFeedItem>> {
+        val items = ArrayList<RSSFeedItem>()
+
+        return GlobalScope.async {
+            list().forEach {
+                val item = check(it.key).await()
+
+                if (item != null) {
+                    item.hasNewContent = it.value != item.url
+                    items.add(item)
+
+                    set(it.key, item.url)
+                } else {
+                    del(it.key)
+                }
+            }
+
+            items
         }
     }
 }

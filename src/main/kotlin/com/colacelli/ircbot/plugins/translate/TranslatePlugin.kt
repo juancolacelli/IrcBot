@@ -8,6 +8,8 @@ import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.plugins.translate.apertium.ApertiumTranslator
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 

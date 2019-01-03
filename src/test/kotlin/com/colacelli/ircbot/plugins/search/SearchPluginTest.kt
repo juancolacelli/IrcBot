@@ -26,23 +26,6 @@ internal class SearchPluginTest {
 
     private val plugin = SearchPlugin()
 
-    companion object {
-        private val mainDispatcher = newSingleThreadContext("SearchPluginTest thread")
-
-        @BeforeAll
-        @JvmStatic
-        internal fun dispatcherSet() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.setMain(mainDispatcher)
-        }
-
-        @AfterAll
-        @JvmStatic
-        internal fun dispatcherReset() {
-            @UseExperimental(ExperimentalCoroutinesApi::class) Dispatchers.resetMain()
-            mainDispatcher.close()
-        }
-    }
-
     @Test
     fun getName() {
         assertEquals("search", plugin.name)
