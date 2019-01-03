@@ -3,6 +3,8 @@ package com.colacelli.ircbot.plugins.pluginloader
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Helper
+import com.colacelli.ircbot.base.Plugin
+import com.colacelli.ircbot.base.PluginLoader
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.plugins.help.HelpPlugin
 import com.colacelli.irclib.actors.Channel
@@ -19,11 +21,14 @@ internal class PluginLoaderPluginTest {
         on { get(any()) } doReturn Access.Level.ROOT
     }
     private val ircbot = IRCBot(mock(), mock())
+    private val pluginLoader = mock<PluginLoader> {
+        on { list() } doReturn arrayOf()
+    }
     private val bot = spy(ircbot) {
         on { helper } doReturn Helper()
         on { connection } doReturn connection
         on { access } doReturn access
-        on { pluginLoader } doReturn mock()
+        on { pluginLoader } doReturn pluginLoader
     }
     private val plugin = PluginLoaderPlugin()
 

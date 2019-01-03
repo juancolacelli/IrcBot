@@ -56,7 +56,7 @@ internal class TorrentPluginTest {
     }
 
     @Test
-    fun commands() {
+    fun commands() = runBlocking {
         val searcherMock = mock<ThePirateBaySearcher> {
             on { search(any()) } doReturn GlobalScope.async { mock<ThePirateBaySearchResult>() }
         }
@@ -79,9 +79,7 @@ internal class TorrentPluginTest {
             listener = firstValue
         }
 
-        runBlocking {
-            listener.onChannelCommand(connection, message, ".torrent", arrayOf("gnu"))
-        }
+        listener.onChannelCommand(connection, message, ".torrent", arrayOf("gnu"))
         verify(searcherMock).search("gnu")
     }
 }

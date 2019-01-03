@@ -2,6 +2,7 @@ package com.colacelli.ircbot.plugins.search.duckduckgo
 
 import com.colacelli.ircbot.IRCBot
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeAll
@@ -19,8 +20,8 @@ internal class DuckDuckGoSearcherTest {
     }
 
     @Test
-    fun search() {
-        runBlocking {
+    fun search() = runBlocking {
+        withTimeout(10000L) {
             val result = searcher.search("gnu").await()
             assertNotNull(result)
             assertEquals("GNU", result?.title)

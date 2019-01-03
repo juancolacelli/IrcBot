@@ -51,7 +51,7 @@ internal class TranslatePluginTest {
     }
 
     @Test
-    fun commands() {
+    fun commands() = runBlocking {
         val translatorMock = mock<ApertiumTranslator> {
             on { translate(any(), any(), any()) } doReturn GlobalScope.async { ApertiumTranslation("en", "es", "hello", "hola") }
         }
@@ -74,9 +74,7 @@ internal class TranslatePluginTest {
             listener = firstValue
         }
 
-        runBlocking {
-            listener.onChannelCommand(connection, message, ".translate", arrayOf("en", "es", "hello"))
-        }
+        listener.onChannelCommand(connection, message, ".translate", arrayOf("en", "es", "hello"))
         verify(translatorMock).translate("en", "es", "hello")
     }
 }

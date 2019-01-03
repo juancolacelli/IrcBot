@@ -1,5 +1,6 @@
 package com.colacelli.ircbot.plugins.translate.apertium
 
+import com.colacelli.ircbot.IRCBot
 import com.google.gson.Gson
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
@@ -18,7 +19,11 @@ class ApertiumTranslator {
                     .replace("LOCALES", "$localeA|$localeB")
                     .replace("TEXT", text.replace(" ", "%20"))
 
-            val stream = URL(url).openStream()
+            val connection = URL(url).openConnection()
+            connection.setRequestProperty("User-Agent", IRCBot.HTTP_USER_AGENT)
+            connection.connect()
+
+            val stream = connection.getInputStream()
             val scanner = Scanner(stream).useDelimiter("\\A")
 
             var json = ""

@@ -39,7 +39,7 @@ internal class WebsiteTitlePluginTest {
     }
 
     @Test
-    fun behavior() {
+    fun behavior() = runBlocking {
         val parserMock = mock<WebsiteParser> {
             on { parseTitle(any()) } doReturn GlobalScope.async { "Title test" }
         }
@@ -64,9 +64,7 @@ internal class WebsiteTitlePluginTest {
         }
 
 
-        runBlocking {
-            listener.onChannelMessage(connection, message)
-        }
+        listener.onChannelMessage(connection, message)
         verify(pluginMock.parser).parseTitle("https://gnu.org")
     }
 }

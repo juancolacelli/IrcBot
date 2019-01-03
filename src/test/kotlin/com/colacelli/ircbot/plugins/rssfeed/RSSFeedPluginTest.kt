@@ -86,7 +86,7 @@ internal class RSSFeedPluginTest {
     }
 
     @Test
-    fun behavior() {
+    fun behavior() = runBlocking {
         var listener: OnPingListener
 
         val rssFeedMock = mock<RSSFeed> {
@@ -101,14 +101,12 @@ internal class RSSFeedPluginTest {
             listener = firstValue
         }
 
-        runBlocking {
-            listener.onPing(connection)
-            verify(pluginSpy.rssFeed).check()
-        }
+        listener.onPing(connection)
+        verify(pluginSpy.rssFeed).check()
     }
 
     @Test
-    fun commands() {
+    fun commands() = runBlocking {
         var listeners: List<OnChannelCommandListener>
 
         val rssFeedMock = mock<RSSFeed> {
@@ -146,11 +144,9 @@ internal class RSSFeedPluginTest {
         listeners[4].onChannelCommand(connection, message, ".rssList", arrayOf())
         verify(rssFeedMock).list()
 
-        runBlocking {
-            assertEquals(".rssCheck", listeners[5].command)
-            listeners[5].onChannelCommand(connection, message, ".rssCheck", arrayOf())
-            verify(rssFeedMock).check()
-        }
+        assertEquals(".rssCheck", listeners[5].command)
+        listeners[5].onChannelCommand(connection, message, ".rssCheck", arrayOf())
+        verify(rssFeedMock).check()
 
         assertEquals(".rssSubscribers", listeners[6].command)
         listeners[6].onChannelCommand(connection, message, ".rssSubscribers", arrayOf())

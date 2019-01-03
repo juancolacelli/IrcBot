@@ -51,7 +51,7 @@ internal class SearchPluginTest {
     }
 
     @Test
-    fun commands() {
+    fun commands() = runBlocking {
         val searcherMock = mock<DuckDuckGoSearcher> {
             on { search(any()) } doReturn GlobalScope.async { DuckDuckGoSearchResult("GNU", "GNU is not UNIX", "Wikipedia", "https://gnu.org") }
         }
@@ -74,9 +74,7 @@ internal class SearchPluginTest {
             listener = firstValue
         }
 
-        runBlocking {
-            listener.onChannelCommand(connection, message, ".search", arrayOf("gnu"))
-        }
+        listener.onChannelCommand(connection, message, ".search", arrayOf("gnu"))
         verify(searcherMock).search("gnu")
     }
 }

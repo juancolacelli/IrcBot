@@ -2,6 +2,7 @@ package com.colacelli.ircbot.plugins.rssfeed
 
 import com.colacelli.irclib.actors.User
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -84,11 +85,11 @@ internal class RSSFeedTest {
     }
 
     @Test
-    fun check() {
-        rssFeed.add(testUrl)
-        assertEquals(2, rssFeed.list().size)
+    fun check() = runBlocking {
+        withTimeout(10000L) {
+            rssFeed.add(testUrl)
+            assertEquals(2, rssFeed.list().size)
 
-        runBlocking {
             val items = rssFeed.check().await()
             val item = items[0]
             assertEquals(1, items.size)
@@ -96,8 +97,8 @@ internal class RSSFeedTest {
             assertNotNull(item.title)
             assertNotNull(item.url)
             assert(item.hasNewContent)
-        }
 
-        assertEquals(1, rssFeed.list().size)
+            assertEquals(1, rssFeed.list().size)
+        }
     }
 }
