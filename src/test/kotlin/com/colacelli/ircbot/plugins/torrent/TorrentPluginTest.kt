@@ -14,10 +14,9 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
 import org.junit.jupiter.api.AfterAll
-import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
 
 internal class TorrentPluginTest {
     private val connection = mock<Connection> {
@@ -84,7 +83,7 @@ internal class TorrentPluginTest {
             on { searcher } doReturn searcherMock
         }
 
-        var listener : OnChannelCommandListener
+        var listener: OnChannelCommandListener
 
         val message = mock<ChannelMessage> {
             on { channel } doReturn Channel("#test")

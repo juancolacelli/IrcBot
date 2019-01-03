@@ -11,9 +11,8 @@ import com.nhaarman.mockitokotlin2.argumentCaptor
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class UptimePluginTest {
     private val connection = mock<Connection>()
@@ -51,7 +50,7 @@ internal class UptimePluginTest {
 
     @Test
     fun commands() {
-        var listener : OnChannelCommandListener
+        var listener: OnChannelCommandListener
 
         val message = mock<ChannelMessage> {
             on { channel } doReturn Channel("#test")

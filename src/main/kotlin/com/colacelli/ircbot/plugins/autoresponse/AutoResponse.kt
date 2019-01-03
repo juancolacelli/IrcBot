@@ -6,36 +6,28 @@ import java.util.*
 import java.util.regex.PatternSyntaxException
 import kotlin.collections.HashMap
 
-class AutoResponse : PropertiesPlugin {
-    var properties = Properties()
+class AutoResponse() : PropertiesPlugin {
+    private var properties = loadProperties(PROPERTIES_FILE)
 
-    private object Singleton {
-        val instance = AutoResponse()
+    constructor(injectedProperties: Properties) : this() {
+        properties = injectedProperties
     }
 
     companion object {
         const val PROPERTIES_FILE = "auto_response.properties"
-
-        val instance by lazy {
-            Singleton.instance
-        }
     }
 
     fun add(trigger: String, response: String) {
-        properties = loadProperties(PROPERTIES_FILE)
         properties.setProperty(trigger.toLowerCase(), response)
         saveProperties(PROPERTIES_FILE, properties)
     }
 
     fun del(trigger: String) {
-        properties = loadProperties(PROPERTIES_FILE)
         properties.remove(trigger.toLowerCase())
         saveProperties(PROPERTIES_FILE, properties)
     }
 
     fun get(message: ChannelMessage): String? {
-        properties = loadProperties(PROPERTIES_FILE)
-
         val text = message.text
         var trigger = Regex("")
         var response = ""
@@ -72,7 +64,6 @@ class AutoResponse : PropertiesPlugin {
     }
 
     fun list(): SortedMap<String, String> {
-        properties = loadProperties(PROPERTIES_FILE)
         val responses = HashMap<String, String>()
 
         properties.forEach { key, value ->

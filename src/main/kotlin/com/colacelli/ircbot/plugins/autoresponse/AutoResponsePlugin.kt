@@ -12,13 +12,15 @@ import com.colacelli.irclib.messages.ChannelMessage
 import com.colacelli.irclib.messages.PrivateNoticeMessage
 
 class AutoResponsePlugin : Plugin {
+    val autoResponse = AutoResponse()
+
     companion object {
         const val SEPARATOR = "|"
     }
 
     val listener = object : OnChannelMessageListener {
         override fun onChannelMessage(connection: Connection, message: ChannelMessage) {
-            val text = AutoResponse.instance.get(message)
+            val text = autoResponse.get(message)
 
             if (text != null && text.isNotBlank()) {
                 connection.send(ChannelMessage(message.channel, text, connection.user))
@@ -43,7 +45,7 @@ class AutoResponsePlugin : Plugin {
                     val text = joinedArgs.drop(1).joinToString(SEPARATOR)
 
                     if (trigger.isNotBlank() && text.isNotBlank()) {
-                        AutoResponse.instance.add(trigger, text)
+                        autoResponse.add(trigger, text)
                         connection.send(PrivateNoticeMessage("Auto-response added!", connection.user, message.sender))
                     }
                 }
@@ -59,7 +61,7 @@ class AutoResponsePlugin : Plugin {
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
                     val trigger = args.joinToString(" ")
-                    AutoResponse.instance.del(trigger)
+                    autoResponse.del(trigger)
                     connection.send(PrivateNoticeMessage("Auto-response removed!", connection.user, message.sender))
                 }
             }
@@ -73,7 +75,7 @@ class AutoResponsePlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var autoResponses = ArrayList<Array<String>>()
-                AutoResponse.instance.list().forEach { trigger, text ->
+                autoResponse.list().forEach { trigger, text ->
                     autoResponses.add(arrayOf(trigger, text))
                 }
 

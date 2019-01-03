@@ -5,9 +5,8 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.PrivateMessage
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class NickServPluginTest {
     private val plugin = NickServPlugin("test")

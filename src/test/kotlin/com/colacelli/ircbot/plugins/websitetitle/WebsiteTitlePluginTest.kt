@@ -7,13 +7,13 @@ import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
-import jdk.nashorn.internal.ir.annotations.Ignore
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertEquals
-import java.util.concurrent.Executors
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
 
 internal class WebsiteTitlePluginTest {
     private val connection = mock<Connection>()
@@ -40,21 +40,25 @@ internal class WebsiteTitlePluginTest {
         }
     }
 
-    @Test fun getName() {
+    @Test
+    fun getName() {
         assertEquals("website_title", plugin.name)
     }
 
-    @Test fun onLoad() {
+    @Test
+    fun onLoad() {
         plugin.onLoad(bot)
         verify(bot).addListener(any<OnChannelMessageListener>())
     }
 
-    @Test fun onUnload() {
+    @Test
+    fun onUnload() {
         plugin.onUnload(bot)
         verify(bot).removeListener(any<OnChannelMessageListener>())
     }
 
-    @Test fun behavior() {
+    @Test
+    fun behavior() {
         val parserMock = mock<WebsiteParser> {
             on { parseTitle(any()) } doReturn GlobalScope.async(mainDispatcher) { "Title test" }
         }
@@ -62,7 +66,7 @@ internal class WebsiteTitlePluginTest {
             on { parser } doReturn parserMock
         }
 
-        var listener : OnChannelMessageListener
+        var listener: OnChannelMessageListener
 
         var message = mock<ChannelMessage> {
             on { sender } doReturn User("test")

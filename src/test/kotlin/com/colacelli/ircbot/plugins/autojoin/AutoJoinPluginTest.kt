@@ -1,20 +1,15 @@
 package com.colacelli.ircbot.plugins.autojoin
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.Access
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.actors.Channel
-import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
-import com.colacelli.irclib.connection.Server
 import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-import org.junit.jupiter.api.Assertions.*
-
 internal class AutoJoinPluginTest {
-    private val plugin = AutoJoinPlugin(arrayOf(Channel("#test"),  Channel("#test2")))
+    private val plugin = AutoJoinPlugin(arrayOf(Channel("#test"), Channel("#test2")))
     private val connection = mock<Connection> {}
     private val bot = mock<IRCBot> {
         on { connection } doReturn connection

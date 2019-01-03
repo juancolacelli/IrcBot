@@ -1,15 +1,13 @@
 package com.colacelli.ircbot.plugins.ctcpversion
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnCTCPListener
 import com.colacelli.irclib.messages.CTCPMessage
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class CTCPVersionPluginTest {
     private val plugin = CTCPVersionPlugin("test")
@@ -37,7 +35,7 @@ internal class CTCPVersionPluginTest {
 
     @Test
     fun behavior() {
-        var listener : OnCTCPListener
+        var listener: OnCTCPListener
         plugin.onLoad(bot)
         argumentCaptor<OnCTCPListener>().apply {
             verify(bot).addListener(capture())

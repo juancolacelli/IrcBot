@@ -9,9 +9,8 @@ import com.colacelli.irclib.connection.listeners.OnChannelModeListener
 import com.colacelli.irclib.connection.listeners.OnJoinListener
 import com.colacelli.irclib.messages.PrivateMessage
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class AutoOpPluginTest {
     private val user = User("test")
@@ -56,8 +55,8 @@ internal class AutoOpPluginTest {
     @Test
     fun behavior() {
         val channel = Channel("#test")
-        var joinListener : OnJoinListener
-        var channelModeListener : OnChannelModeListener
+        var joinListener: OnJoinListener
+        var channelModeListener: OnChannelModeListener
 
         plugin.onLoad(bot)
         argumentCaptor<Listener>().apply {

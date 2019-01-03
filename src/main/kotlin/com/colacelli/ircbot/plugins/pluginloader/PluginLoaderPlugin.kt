@@ -23,7 +23,7 @@ class PluginLoaderPlugin : Plugin {
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
                     val plugin = args[0].toLowerCase()
-                    if(bot.pluginLoader.load(plugin)) connection.send(PrivateNoticeMessage("Plugin loaded!", connection.user, message.sender))
+                    if (bot.pluginLoader.load(plugin)) connection.send(PrivateNoticeMessage("Plugin loaded!", connection.user, message.sender))
                 }
             }
         })
@@ -37,7 +37,7 @@ class PluginLoaderPlugin : Plugin {
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 if (args.isNotEmpty()) {
                     val plugin = args[0].toLowerCase()
-                    if(bot.pluginLoader.unload(plugin)) connection.send(PrivateNoticeMessage("Plugin unloaded!", connection.user, message.sender))
+                    if (bot.pluginLoader.unload(plugin)) connection.send(PrivateNoticeMessage("Plugin unloaded!", connection.user, message.sender))
                 }
             }
         })
@@ -50,7 +50,7 @@ class PluginLoaderPlugin : Plugin {
 
             override fun onChannelCommand(connection: Connection, message: ChannelMessage, command: String, args: Array<String>) {
                 var plugins = ArrayList<Array<String>>()
-                bot.pluginLoader.list()?.forEach {
+                bot.pluginLoader.list().forEach {
                     plugins.add(arrayOf(it))
                 }
 

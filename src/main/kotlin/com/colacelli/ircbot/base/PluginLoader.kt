@@ -11,7 +11,7 @@ class PluginLoader(val bot: IRCBot) {
         load(plugin.name)
     }
 
-    fun load(name: String) : Boolean {
+    fun load(name: String): Boolean {
         val plugin = find(name)
         return if (plugin != null && loadedPlugins.indexOf(name) == -1) {
             loadedPlugins.add(name)
@@ -22,7 +22,7 @@ class PluginLoader(val bot: IRCBot) {
         }
     }
 
-    fun unload(name: String) : Boolean {
+    fun unload(name: String): Boolean {
         val plugin = find(name)
         return if (plugin != null && loadedPlugins.indexOf(name) > -1) {
             loadedPlugins.remove(name)
@@ -33,7 +33,7 @@ class PluginLoader(val bot: IRCBot) {
         }
     }
 
-    fun list(loaded: Boolean = false) : Array<String> {
+    fun list(loaded: Boolean = false): Array<String> {
         return if (loaded) {
             loadedPlugins.toTypedArray()
         } else {
@@ -45,7 +45,7 @@ class PluginLoader(val bot: IRCBot) {
         }
     }
 
-    private fun find(name: String) : Plugin? {
+    private fun find(name: String): Plugin? {
         return plugins.first {
             it.name == name
         }

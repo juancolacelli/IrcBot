@@ -1,9 +1,8 @@
 package com.colacelli.ircbot.plugins.search.duckduckgo
 
 import com.google.gson.Gson
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class DuckDuckGoSearchResultTest {
     private val json = """{

@@ -1,13 +1,11 @@
 package com.colacelli.ircbot.plugins.autoreconnect
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnDisconnectListener
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class AutoReconnectPluginTest {
     private val plugin = AutoReconnectPlugin()

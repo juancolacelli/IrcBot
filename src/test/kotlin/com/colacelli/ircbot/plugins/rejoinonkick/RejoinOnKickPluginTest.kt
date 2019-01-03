@@ -10,9 +10,8 @@ import com.colacelli.irclib.connection.listeners.OnKickListener
 import com.colacelli.irclib.connection.listeners.OnRawCodeListener
 import com.colacelli.irclib.messages.PrivateMessage
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class RejoinOnKickPluginTest {
     private val connection = mock<Connection> {
@@ -46,8 +45,8 @@ internal class RejoinOnKickPluginTest {
     @Test
     fun behavior() {
         plugin.onLoad(bot)
-        val kickListener : Listener
-        val banListener : Listener
+        val kickListener: Listener
+        val banListener: Listener
         argumentCaptor<Listener>().apply {
             verify(bot, times(2)).addListener(capture())
             kickListener = firstValue

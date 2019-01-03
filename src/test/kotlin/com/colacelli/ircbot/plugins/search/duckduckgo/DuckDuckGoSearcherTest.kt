@@ -2,10 +2,10 @@ package com.colacelli.ircbot.plugins.search.duckduckgo
 
 import com.colacelli.ircbot.IRCBot
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
 
 internal class DuckDuckGoSearcherTest {
     private val searcher = DuckDuckGoSearcher()

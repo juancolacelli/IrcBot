@@ -2,12 +2,10 @@ package com.colacelli.ircbot.plugins.translate.apertium
 
 import com.google.gson.Gson
 import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import java.net.URL
 import java.util.*
-import kotlin.coroutines.CoroutineContext
 
 class ApertiumTranslator {
     companion object {

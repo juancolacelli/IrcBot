@@ -11,7 +11,7 @@ class ThePirateBaySearcher {
         const val THE_PIRATE_BAY_URL = "https://pirateproxy.app/search/QUERY/0/99/0"
     }
 
-    fun search(query: String) : Deferred<ThePirateBaySearchResult?> {
+    fun search(query: String): Deferred<ThePirateBaySearchResult?> {
         return GlobalScope.async {
             val url = THE_PIRATE_BAY_URL.replace("QUERY", query)
 

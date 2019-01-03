@@ -5,10 +5,8 @@ import com.colacelli.ircbot.base.Plugin
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.connection.listeners.OnChannelMessageListener
 import com.colacelli.irclib.messages.ChannelMessage
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlin.coroutines.CoroutineContext
 
 class WebsiteTitlePlugin : Plugin {
     val parser = WebsiteParser()

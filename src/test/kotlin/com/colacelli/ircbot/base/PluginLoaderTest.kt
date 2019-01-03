@@ -3,9 +3,8 @@ package com.colacelli.ircbot.base
 import com.colacelli.ircbot.plugins.access.AccessPlugin
 import com.colacelli.ircbot.plugins.help.HelpPlugin
 import com.nhaarman.mockitokotlin2.mock
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class PluginLoaderTest {
     private val loader = PluginLoader(mock())

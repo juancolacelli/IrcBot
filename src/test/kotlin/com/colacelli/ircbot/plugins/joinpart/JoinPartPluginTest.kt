@@ -8,9 +8,9 @@ import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class JoinPartPluginTest {
     private val connection = mock<Connection> {
@@ -58,8 +58,8 @@ internal class JoinPartPluginTest {
 
     @Test
     fun commands() {
-        var joinListener : OnChannelCommandListener
-        var partListener : OnChannelCommandListener
+        var joinListener: OnChannelCommandListener
+        var partListener: OnChannelCommandListener
 
         val message = mock<ChannelMessage> {
             on { channel } doReturn Channel("#test")

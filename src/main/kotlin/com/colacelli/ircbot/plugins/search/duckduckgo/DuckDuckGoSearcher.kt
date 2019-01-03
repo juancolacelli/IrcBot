@@ -12,7 +12,7 @@ class DuckDuckGoSearcher {
         const val DUCK_DUCK_GO_URL = "https://api.duckduckgo.com/?q=QUERY&format=json&t=ircbot"
     }
 
-    fun search(query: String) : Deferred<DuckDuckGoSearchResult?> {
+    fun search(query: String): Deferred<DuckDuckGoSearchResult?> {
         return GlobalScope.async {
             val url = DUCK_DUCK_GO_URL
                     .replace("QUERY", query)

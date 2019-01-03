@@ -13,8 +13,10 @@ import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Test
 
 internal class TranslatePluginTest {
     private val connection = mock<Connection>()
@@ -77,7 +79,7 @@ internal class TranslatePluginTest {
             on { translator } doReturn translatorMock
         }
 
-        var listener : OnChannelCommandListener
+        var listener: OnChannelCommandListener
 
         val message = mock<ChannelMessage> {
             on { channel } doReturn Channel("#test")
