@@ -6,7 +6,7 @@ class PluginLoader(val bot: IRCBot) {
     private val plugins = ArrayList<Plugin>()
     private val loadedPlugins = ArrayList<String>()
 
-    fun add(plugin: Plugin, load: Boolean = false) {
+    fun add(plugin: Plugin, load: Boolean = true) {
         if(load) load(plugin.name)
         plugins.add(plugin)
     }
