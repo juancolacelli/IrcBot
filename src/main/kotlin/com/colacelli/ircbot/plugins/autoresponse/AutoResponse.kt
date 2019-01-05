@@ -3,6 +3,7 @@ package com.colacelli.ircbot.plugins.autoresponse
 import com.colacelli.ircbot.base.PropertiesPlugin
 import com.colacelli.irclib.messages.ChannelMessage
 import java.util.*
+import java.util.regex.PatternSyntaxException
 import kotlin.collections.HashMap
 
 class AutoResponse() : PropertiesPlugin {
@@ -33,7 +34,12 @@ class AutoResponse() : PropertiesPlugin {
         var response = ""
 
         properties.forEach { key, value ->
-            trigger = key.toString().toRegex(RegexOption.IGNORE_CASE)
+            trigger = try {
+                key.toString().toRegex(RegexOption.IGNORE_CASE)
+            } catch (e: PatternSyntaxException) {
+                key.toString().toRegex(setOf(RegexOption.IGNORE_CASE, RegexOption.LITERAL))
+            }
+
             if (response.isEmpty() && trigger.matches(text)) {
                 replacement = value.toString()
                         .replace("\$nick", message.sender!!.nick)
