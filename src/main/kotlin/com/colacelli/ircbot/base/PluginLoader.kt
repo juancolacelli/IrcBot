@@ -8,7 +8,7 @@ class PluginLoader(val bot: IRCBot) {
 
     fun add(plugin: Plugin, load: Boolean = true) {
         plugins.add(plugin)
-        if(load) load(plugin.name)
+        if (load) load(plugin.name)
     }
 
     fun load(name: String): Boolean {

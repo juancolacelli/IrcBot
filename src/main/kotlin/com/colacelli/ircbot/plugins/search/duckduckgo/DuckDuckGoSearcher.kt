@@ -1,7 +1,6 @@
 package com.colacelli.ircbot.plugins.search.duckduckgo
 
 import com.colacelli.ircbot.IRCBot
-import com.colacelli.ircbot.IRCBot.Companion.HTTP_USER_AGENT
 import com.google.gson.Gson
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope

@@ -3,7 +3,6 @@ package com.colacelli.ircbot.plugins.pluginloader
 import com.colacelli.ircbot.IRCBot
 import com.colacelli.ircbot.base.Access
 import com.colacelli.ircbot.base.Helper
-import com.colacelli.ircbot.base.Plugin
 import com.colacelli.ircbot.base.PluginLoader
 import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.ircbot.plugins.help.HelpPlugin

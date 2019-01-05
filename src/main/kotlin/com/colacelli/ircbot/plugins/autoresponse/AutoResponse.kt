@@ -3,7 +3,6 @@ package com.colacelli.ircbot.plugins.autoresponse
 import com.colacelli.ircbot.base.PropertiesPlugin
 import com.colacelli.irclib.messages.ChannelMessage
 import java.util.*
-import java.util.regex.PatternSyntaxException
 import kotlin.collections.HashMap
 
 class AutoResponse() : PropertiesPlugin {
@@ -29,34 +28,19 @@ class AutoResponse() : PropertiesPlugin {
 
     fun get(message: ChannelMessage): String? {
         val text = message.text
-        var trigger = Regex("")
+        var trigger: Regex
+        var replacement: Regex?
         var response = ""
 
         properties.forEach { key, value ->
-            if (response.isBlank()) {
-                trigger = try {
-                    Regex(key.toString().toLowerCase())
-                } catch (e: PatternSyntaxException) {
-                    // Invalid Regex saved
-                    Regex.fromLiteral(key.toString().toLowerCase())
-                }
+            trigger = key.toString().toRegex(RegexOption.IGNORE_CASE)
+            if (response.isEmpty() && trigger.matches(text)) {
+                replacement = value.toString()
+                        .replace("\$nick", message.sender!!.nick)
+                        .replace("\$channel", message.channel.name)
+                        .toRegex(RegexOption.IGNORE_CASE)
 
-                if (text.toLowerCase().matches(trigger)) {
-                    response = value.toString()
-                }
-            }
-        }
-
-        when (trigger.pattern.isNotBlank() && response.isNotBlank()) {
-            true -> {
-                response = response.replace("\$nick", message.sender!!.nick)
-                response = response.replace("\$channel", message.channel.name)
-
-                try {
-                    response = text.replace(trigger, response)
-                } catch (e: IndexOutOfBoundsException) {
-                    // $2 not found!
-                }
+                response = text.replace(trigger, replacement.toString())
             }
         }
 
