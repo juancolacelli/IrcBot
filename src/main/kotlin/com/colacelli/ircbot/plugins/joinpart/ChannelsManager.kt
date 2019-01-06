@@ -44,7 +44,7 @@ class ChannelsManager() : PropertiesPlugin {
 
     fun list(): ArrayList<String> {
         val channels = ArrayList<String> ()
-        properties.getProperty(CHANNELS_PROPERTY).split(CHANNELS_SEPARATOR).forEach {
+        properties.getProperty(CHANNELS_PROPERTY, "").split(CHANNELS_SEPARATOR).forEach {
             channels.add(it)
         }
 
