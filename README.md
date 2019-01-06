@@ -45,7 +45,6 @@ bot.pluginLoader.add(BasicPlugin())
 
 ## Plugins
 * **access**: Grant/Revoke bot access
-* **auto_join**: Auto-join channels on connect
 * **auto_op**: Auto claim op on join
 * **auto_reconnect**: Auto-reconnect on disconnection
 * **auto_response**: Auto-response on text triggers
