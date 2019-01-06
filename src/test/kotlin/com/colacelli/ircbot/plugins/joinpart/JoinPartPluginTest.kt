@@ -6,6 +6,7 @@ import com.colacelli.ircbot.base.listeners.OnChannelCommandListener
 import com.colacelli.irclib.actors.Channel
 import com.colacelli.irclib.actors.User
 import com.colacelli.irclib.connection.Connection
+import com.colacelli.irclib.connection.listeners.OnConnectListener
 import com.colacelli.irclib.messages.ChannelMessage
 import com.nhaarman.mockitokotlin2.*
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -24,6 +25,9 @@ internal class JoinPartPluginTest {
         on { access } doReturn access
     }
     private val plugin = JoinPartPlugin()
+    private val manager = mock<ChannelsManager> {
+        on { list() } doReturn arrayListOf("#channel_a", "#channel_b")
+    }
 
     @Test
     fun getName() {
@@ -66,7 +70,10 @@ internal class JoinPartPluginTest {
             on { sender } doReturn User("r")
         }
 
-        plugin.onLoad(bot)
+        val pluginSpy = spy<JoinPartPlugin> {
+            on { manager } doReturn manager
+        }
+        pluginSpy.onLoad(bot)
         argumentCaptor<OnChannelCommandListener>().apply {
             verify(bot, times(2)).addListener(capture())
 
@@ -78,12 +85,32 @@ internal class JoinPartPluginTest {
         argumentCaptor<Channel>().apply {
             verify(bot.connection).join(capture())
             assertEquals("#test", firstValue.name)
+            verify(manager).add("#test")
         }
 
         partListener.onChannelCommand(connection, message, ".part", arrayOf("#test"))
         argumentCaptor<Channel>().apply {
             verify(bot.connection).part(capture())
             assertEquals("#test", firstValue.name)
+            verify(manager).del("#test")
+        }
+    }
+
+    @Test
+    fun behavior() {
+        val pluginSpy = spy<JoinPartPlugin> {
+            on { manager } doReturn manager
+        }
+        pluginSpy.onLoad(bot)
+        argumentCaptor<OnConnectListener>().apply {
+            verify(bot).addListener(capture())
+            firstValue.onConnect(connection, mock(), mock())
+        }
+
+        argumentCaptor<Channel>().apply {
+            verify(connection, times(2)).join(capture())
+            assertEquals("#channel_a", firstValue.name)
+            assertEquals("#channel_b", secondValue.name)
         }
     }
 }
