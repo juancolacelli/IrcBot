@@ -37,14 +37,21 @@ class AutoResponse() : PropertiesPlugin {
             trigger = try {
                 key.toString().toRegex(RegexOption.IGNORE_CASE)
             } catch (e: PatternSyntaxException) {
+                // Invalid RegEx on trigger
                 key.toString().toRegex(setOf(RegexOption.IGNORE_CASE, RegexOption.LITERAL))
             }
 
             if (response.isEmpty() && trigger.matches(text)) {
-                replacement = value.toString()
+                response = value.toString()
                         .replace("\$nick", message.sender!!.nick)
                         .replace("\$channel", message.channel.name)
-                        .toRegex(RegexOption.IGNORE_CASE)
+
+                replacement = try {
+                    response.toRegex(RegexOption.IGNORE_CASE)
+                } catch (e: PatternSyntaxException) {
+                    // Invalid RegEx on replacement
+                    response.toRegex(setOf(RegexOption.IGNORE_CASE, RegexOption.LITERAL))
+                }
 
                 response = text.replace(trigger, replacement.toString())
             }

@@ -77,6 +77,13 @@ internal class AutoResponseTest {
     }
 
     @Test
+    fun get_regExRepetitionError() {
+        autoResponse.add("\\.", "{{{(>_<)}}}")
+        val message = ChannelMessage(Channel("#test"), ".", User("test"))
+        assertEquals("{{{(>_<)}}}", autoResponse.get(message))
+    }
+
+    @Test
     fun list() {
         assertEquals(2, autoResponse.list().size)
     }
