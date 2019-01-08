@@ -44,22 +44,81 @@ bot.pluginLoader.add(BasicPlugin())
 ```
 
 ## Plugins
-* **access**: Grant/Revoke bot access
-* **auto_op**: Auto claim op on join
-* **auto_reconnect**: Auto-reconnect on disconnection
-* **auto_response**: Auto-response on text triggers
-* **ctcp_version**: Customize your CTCP VERSION response
-* **help**: Bot help
-* **ircop**: IRCop authentication
-* **join_part**: Bot can join and part channels by request
-* **plugin_loader**: Plugins can be loaded and unloaded
-* **nickserv**: NickServ authentication
-* **operator**: Basic operator commands (i.e, !op, !voice, etc.)
-* **rejoin_on_kick**: Re-join channels on kick
-* **rss_feed**: Get rss feed notices and send them to all subscribers
-* **search**: Search on [DuckDuckGo](https://duckduckgo.com)
-* **torrent**: Search torrents in [ThePirateBay](https://thepiratebay.org)
-* **translate**: Translate text using [Apertium](https://apertium.org)
-* **uptime**: Shows bot uptime
-* **website_title**: Get website title when an url is detected
-
+<table>
+    <tr>
+        <th>Plugin</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>Access</td>
+        <td>Grant/Revoke bot access</td>
+    </tr>
+    <tr>
+        <td>Auto OP</td>
+        <td>Claim op when join a channel</td>
+    </tr>
+    <tr>
+        <td>Auto reconnect</td>
+        <td>Auto-reconnect on disconnection</td>
+    </tr>
+    <tr>
+        <td>Auto response</td>
+        <td>Auto-response when text triggers are detected</td>
+    </tr>
+    <tr>
+        <td>CTCP VERSION</td>
+        <td>Customize your CTCP VERSION response</td>
+    </tr>
+    <tr>
+        <td>Help</td>
+        <td>Bot help</td>
+    </tr>
+    <tr>
+        <td>IRCop</td>
+        <td>IRCop authentication</td>
+    </tr>
+    <tr>
+        <td>Join and part</td>
+        <td>Join and part channels by request</td>
+    </tr>
+    <tr>
+        <td>Plugin loader</td>
+        <td>Plugins can be loaded and unloaded by request</td>
+    </tr>
+    <tr>
+        <td>NickServ</td>
+        <td>NickServ authentication</td>
+    </tr>
+    <tr>
+        <td>Operator</td>
+        <td>Basic operator commands (i.e, !op, !voice, etc.)</td>
+    </tr>
+    <tr>
+        <td>Re-join on kick</td>
+        <td>Join channels when kicked</td>
+    </tr>
+    <tr>
+        <td>RSS feed</td>
+        <td>Get RSS feed notices and send them to subscribers</td>
+    </tr>
+    <tr>
+        <td>Search</td>
+        <td>Search on <a href="https://duckduckgo.com">DuckDuckGo</a></td>
+    </tr>
+    <tr>
+        <td>Torrent</td>
+        <td>Search torrents on <a href="https://thepiratebay.org">ThePirateBay</a></td>
+    </tr>
+    <tr>
+        <td>Translate</td>
+        <td>Translate text using <a href="https://apertium.org">Apertium</a></td>
+    </tr>
+    <tr>
+        <td>Uptime</td>
+        <td>Shows bot uptime</td>
+    </tr>
+    <tr>
+        <td>Website title</td>
+        <td>Get website title when an URL is detected</td>
+    </tr>
+</table>
