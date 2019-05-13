@@ -23,7 +23,7 @@ class IRCBot(val server: Server, val user: User) : Listenable {
     val listeners = ArrayList<OnChannelCommandListener>()
 
     companion object {
-        const val HTTP_USER_AGENT = "GNU IRC Bot - https://gitlab.com/jic/ircbot"
+        const val HTTP_USER_AGENT = "GNU IRC Bot - https://gitlab.com/juancolacelli/ircbot"
     }
 
     init {

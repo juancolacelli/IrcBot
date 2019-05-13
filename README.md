@@ -1,18 +1,18 @@
 # IRC Bot
-[![](https://jitpack.io/v/com.gitlab.jic/ircbot.svg)](https://jitpack.io/#com.gitlab.jic/ircbot)
+[![](https://jitpack.io/v/com.gitlab.juancolacelli/ircbot.svg)](https://jitpack.io/#com.gitlab.juancolacelli/ircbot)
 
 ## Dependencies
-* **GNU IRC Lib**: https://gitlab.com/jic/irclib
+* **GNU IRC Lib**: https://gitlab.com/juancolacelli/irclib
 * **gson**: https://github.com/google/gson
 * **jsoup**: https://jsoup.org/
 
 ## Showcase
-* **GNU Librebot**: https://gitlab.com/jic/librebot
+* **GNU Librebot**: https://gitlab.com/juancolacelli/librebot
 
 ## Basic usage
 ```kotlin
 val server = Server("irc.freenode.net", 6697, true)
-val user = User("ircbot", "ircbot", "GNU IRCBot - https://gitlab.com/jic/ircbot")
+val user = User("ircbot", "ircbot", "GNU IRCBot - https://gitlab.com/juancolacelli/ircbot")
 val bot = IRCBot(server, user)
 
 bot.connect()
