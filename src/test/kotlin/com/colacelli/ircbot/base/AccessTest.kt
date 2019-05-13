@@ -67,6 +67,15 @@ internal class AccessTest {
     }
 
     @Test
+    fun check_okWithoutNickserv() {
+        val listener = mock<OnAccessCheckListener>()
+
+        access.checkWithNickServ = false
+        access.check(User("r"), Access.Level.ROOT, listener)
+        verify(listener).onSuccess(any(), any())
+    }
+
+    @Test
     fun check_nok() {
         val listener = mock<OnAccessCheckListener>()
 

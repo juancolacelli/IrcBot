@@ -11,6 +11,7 @@ import kotlin.collections.HashMap
 
 class Access(private val bot: IRCBot) : PropertiesPlugin {
     private var properties = loadProperties(PROPERTIES_FILE)
+    var checkWithNickServ = true
 
     constructor(bot: IRCBot, injectedProperties: Properties) : this(bot) {
         properties = injectedProperties
@@ -35,42 +36,46 @@ class Access(private val bot: IRCBot) : PropertiesPlugin {
             listener.onSuccess(user, userLevel)
         } else {
             if (userLevel.value >= level.value) {
-                var whoisListener: OnRawCodeListener? = null
+                if (checkWithNickServ) {
+                    var whoisListener: OnRawCodeListener? = null
 
-                // Identified by nickserv?
-                val identifiedListener = object : OnRawCodeListener {
-                    override fun rawCode(): Int {
-                        return Rawable.RawCode.WHOIS_IDENTIFIED_NICK.code
-                    }
+                    // Identified by NickServ?
+                    val identifiedListener = object : OnRawCodeListener {
+                        override fun rawCode(): Int {
+                            return Rawable.RawCode.WHOIS_IDENTIFIED_NICK.code
+                        }
 
-                    override fun onRawCode(connection: Connection, message: String, rawCode: Int, args: List<String>) {
-                        if (args[3] == user.nick) {
-                            bot.removeListener(this)
-                            bot.removeListener(whoisListener!!)
+                        override fun onRawCode(connection: Connection, message: String, rawCode: Int, args: List<String>) {
+                            if (args[3] == user.nick) {
+                                bot.removeListener(this)
+                                bot.removeListener(whoisListener!!)
 
-                            listener.onSuccess(user, userLevel)
+                                listener.onSuccess(user, userLevel)
+                            }
                         }
                     }
-                }
 
-                // End of whois?
-                whoisListener = object : OnRawCodeListener {
-                    override fun rawCode(): Int {
-                        return Rawable.RawCode.WHOIS_END.code
-                    }
+                    // End of whois?
+                    whoisListener = object : OnRawCodeListener {
+                        override fun rawCode(): Int {
+                            return Rawable.RawCode.WHOIS_END.code
+                        }
 
-                    override fun onRawCode(connection: Connection, message: String, rawCode: Int, args: List<String>) {
-                        if (args[3] == user.nick) {
-                            bot.removeListener(this)
-                            bot.removeListener(identifiedListener)
+                        override fun onRawCode(connection: Connection, message: String, rawCode: Int, args: List<String>) {
+                            if (args[3] == user.nick) {
+                                bot.removeListener(this)
+                                bot.removeListener(identifiedListener)
 
-                            listener.onError(user, userLevel)
+                                listener.onError(user, userLevel)
+                            }
                         }
                     }
-                }
 
-                bot.addListener(identifiedListener)
-                bot.addListener(whoisListener)
+                    bot.addListener(identifiedListener)
+                    bot.addListener(whoisListener)
+                } else {
+                    listener.onSuccess(user, userLevel)
+                }
             } else {
                 listener.onError(user, userLevel)
             }
